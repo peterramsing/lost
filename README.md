@@ -2,7 +2,7 @@
 
 Lost is my most elegant grid system.
 
-It makes use of [calc](http://caniuse.com/#search=calc) to create stunning grids based on fractions you define, and falls back to percentage-based [Jeet](http://jeet.gs/) on older browsers.
+It makes use of [calc](http://caniuse.com/#feat=calc) to create stunning grids based on fractions you define, and falls back to percentage-based [Jeet](http://jeet.gs/) on older browsers.
 
 To support [Isotope](http://isotope.metafizzy.co/) and similar plugins, it mimics Bootstrap's [grid](http://getbootstrap.com/css/#grid) markup.
 
@@ -178,7 +178,7 @@ Set a color to be lightened for your editable areas.
 
 
 ## Browser Support
-- [`calc` grids](https://webdesign.tutsplus.com/tutorials/calc-grids-are-the-best-grids--cms-22902) are IE9+ with poor support on old Android browsers ([calc browser support](http://caniuse.com/#search=calc)), however the fallback grid system based on Jeet has support all the way back to IE7 with a proper HTML [boilerplate](https://github.com/corysimmons/boy).
+- [`calc` grids](https://webdesign.tutsplus.com/tutorials/calc-grids-are-the-best-grids--cms-22902) are IE9+ with poor support on old Android browsers ([calc browser support](http://caniuse.com/#feat=calc)), however the fallback grid system based on Jeet has support all the way back to IE7 with a proper HTML [boilerplate](https://github.com/corysimmons/boy).
 - Flexbox is required for the `align()` mixin, although there is a fall back that is IE9+. ([Flexbox browser support](http://caniuse.com/#search=flexbox))
 
 
