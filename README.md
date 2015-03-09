@@ -67,8 +67,8 @@ Nesting is simple if you are using the default `calc()` version of the grid syst
 figure
   column(1/3)
 
-figure
-  column(1/2)
+  figure
+    column(1/2)
 ```
 
 If you need to support older browsers, you need to pass *parent ratios*.
