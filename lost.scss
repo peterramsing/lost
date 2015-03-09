@@ -172,27 +172,29 @@ $rtl: false;
 
 // Private
 @function _reverse($list) {
+  @if length($list) == 1 {
+    @return $list;
+  }
+
   // Sass 3.2
   @if function-exists('set-nth') != true {
     $result: ();
+
     @for $i from length($list) * -1 through -1 {
       $item: nth($list, abs($i));
-      @if length($item) > 1 and $recursive {
-        $result: append($result, _reverse($item, $recursive));
-      }
-      @else {
-        $result: append($result, $item);
-      }
+      $result: append($result, _reverse($item));
     }
+
     @return $result;
   }
+
   // Sass 3.3+
   @for $i from 1 through ceil(length($list)/2) {
-    $tmp: nth($list, $i);
-    $tmp: if(length($tmp) > 1 and $recursive, reverse($tmp, $recursive), $tmp);
+    $tmp: reverse(nth($list, $i)); // Recursive
     $list: set-nth($list, $i, nth($list, -$i));
     $list: set-nth($list, -$i, $tmp);
   }
+
   @return $list;
 }
 
