@@ -66,7 +66,6 @@ Nesting is simple if you are using the default `calc()` version of the grid syst
 ```stylus
 figure
   column(1/3)
-
   figure
     column(1/2)
 ```
