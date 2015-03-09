@@ -87,6 +87,7 @@ column(ratios = 1, gut = gutter)
     if gut is 0
       width: (100% * ratios)
   else
+    ratios = ratios[0]
     if gut > 0
       width: s('calc(100% * %s - %s)', ratios, gut)
       margin-left: (gut / 2)
@@ -108,6 +109,7 @@ offset(ratios = false, gut = gutter)
       if ratios < 0
         margin-right: (-100% * ratios)
   else
+    ratios = ratios[0]
     if gut > 0
       if ratios > 0
         margin-left: s('calc(100% * %s + (%s / 2))', ratios, gut)
@@ -124,6 +126,7 @@ shift(ratios = false, gut = gutter)
   if old
     left: (100% * ratios)
   else
+    ratios = ratios[0]
     left: s('calc(100% * %s)', ratios)
 
 // Private
