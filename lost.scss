@@ -1,9 +1,9 @@
 // lost v0.0.1 - https://github.com/corysimmons/lost
 
-$gutter: 30px;
-$breakpoint: 1000px;
-$old: false;
-$rtl: false;
+$gutter: 30px !default;
+$breakpoint: 1000px !default;
+$old: false !default;
+$rtl: false !default;
 
 @mixin edit($bg: blue) {
   * {
