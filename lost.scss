@@ -1,0 +1,219 @@
+// lost v0.0.1 - https://github.com/corysimmons/lost
+
+$gutter: 30px;
+$breakpoint: 1000px;
+$old: false;
+$rtl: false;
+
+@mixin edit($bg: blue) {
+  * {
+    background: rgba($bg, .1);
+  }
+}
+
+@mixin cf() {
+  *zoom: 1;
+  &:before, &:after {
+    content: '';
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+@mixin align($direction: both) {
+  @if ($old) {
+    position: relative;
+    > * {
+      position: absolute;
+      transform-style: preserve-3d;
+      @if ($direction == 'horizontal') or ($direction == 'h') {
+        left: 50%;
+        transform: translateX(-50%);
+      } @else if ($direction == 'vertical') or ($direction == 'v') {
+        top: 50%;
+        transform: translateY(-50%);
+      } @else if ($direction == 'reset') {
+        top: auto;
+        left: auto;
+        transform: translate(0, 0);
+      } @else {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  } @else {
+    display: flex;
+    @if ($direction == 'horizontal') or ($direction == 'h') {
+      justify-content: center;
+    } @else if ($direction == 'vertical') or ($direction == 'v') {
+      align-items: center;
+    } @else if ($direction == 'reset') {
+      justify-content: inherit;
+      align-items: inherit;
+    } @else {
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+
+@mixin center($pad: $gutter, $mw: $breakpoint) {
+  max-width: $mw;
+  margin-right: auto;
+  margin-left: auto;
+  @if ($old) {
+    $pad: _strip-units($pad) * .1;
+    padding-left: $pad * 1%;
+    padding-right: $pad * 1%;
+  } @else {
+    padding-left: $pad;
+    padding-right: $pad;
+  }
+}
+
+@mixin row($ratios: 1, $gut: $gutter) {
+  @include cf;
+  @if ($old) {
+    $gut: $gut * .1;
+    $margin-width: _strip-units(nth(_get-column($ratios, $gut), 2)) / 2 * -1%;
+    @if ($gut > 0) {
+      margin-left: $margin-width;
+      margin-right: $margin-width;
+    }
+  } @else {
+    margin-left: -($gut / 2);
+    margin-right: -($gut / 2);
+  }
+}
+
+@mixin column($ratios: 1, $gut: $gutter) {
+  @if ($rtl) {
+    float: right;
+  } @else {
+    float: left;
+  }
+  @if ($old) {
+    $gut: $gut * .1;
+    @if ($gut > 0) {
+      width: _strip-units(nth(_get-column($ratios, $gut), 1)) * 1%;
+      margin-left: _strip-units(nth(_get-column($ratios, $gut), 2)) / 2 * 1%;
+      margin-right: _strip-units(nth(_get-column($ratios, $gut), 2)) / 2 * 1%;
+    }
+    @if ($gut == 0) {
+      width: (100% * $ratios);
+    }
+  } @else {
+    $ratios: nth($ratios, 1);
+    @if ($gut > 0) {
+      width: calc(100% * #{$ratios} - #{$gut});
+      margin-left: ($gut / 2);
+      margin-right: ($gut / 2);
+    }
+    @if ($gut == 0) {
+      width: calc(100% * #{$ratios});
+    }
+  }
+}
+
+@mixin offset($ratios: false, $gut: $gutter) {
+  @if ($old) {
+    $gut: $gut * .1;
+    $col-width: nth(_get-column($ratios, $gut), 1);
+    $col-gutter: nth(_get-column($ratios, $gut), 2);
+    @if ($gut > 0) {
+      @if ($ratios > 0) {
+        margin-left: _strip-units(($col-width + $col-gutter) + ($gut / 2)) * 1%;
+      }
+      @if ($ratios < 0) {
+        margin-right: _strip-units($col-width + ($col-gutter / 2)) * -1%;
+      }
+    }
+    @if ($gut == 0) {
+      @if ($ratios > 0) {
+        margin-left: (100% * ratios);
+      }
+      @if ($ratios < 0) {
+        margin-right: (-100% * ratios);
+      }
+    }
+  } @else {
+    $ratios: nth($ratios, 1);
+    @if ($gut > 0) {
+      @if ($ratios > 0) {
+        margin-left: calc(100% * #{$ratios} + (#{$gut} / 2));
+      }
+      @if ($ratios < 0) {
+        margin-right: calc(-100% * #{$ratios} + (#{$gut} / 2));
+      }
+    }
+    @if ($gut == 0) {
+      @if ($ratios > 0) {
+        margin-left: calc(100% * #{$ratios});
+      }
+      @if ($ratios < 0) {
+        margin-right: calc(-100% * #{$ratios});
+      }
+    }
+  }
+}
+
+@mixin shift($ratios: false, $gut: $gutter) {
+  position: relative;
+  @if ($old) {
+    left: 100% * $ratios;
+  } @else {
+    $ratios: nth($ratios, 1);
+    left: calc(100% * #{$ratios});
+  }
+}
+
+// Private
+@function _reverse($list) {
+  // Sass 3.2
+  @if function-exists('set-nth') != true {
+    $result: ();
+    @for $i from length($list) * -1 through -1 {
+      $item: nth($list, abs($i));
+      @if length($item) > 1 and $recursive {
+        $result: append($result, _reverse($item, $recursive));
+      }
+      @else {
+        $result: append($result, $item);
+      }
+    }
+    @return $result;
+  }
+  // Sass 3.3+
+  @for $i from 1 through ceil(length($list)/2) {
+    $tmp: nth($list, $i);
+    $tmp: if(length($tmp) > 1 and $recursive, reverse($tmp, $recursive), $tmp);
+    $list: set-nth($list, $i, nth($list, -$i));
+    $list: set-nth($list, -$i, $tmp);
+  }
+  @return $list;
+}
+
+@function _get-column($ratios: 1, $gut: $gutter) {
+  $ratios: _reverse($ratios);
+  $width: 100;
+  @each $ratio in $ratios {
+    $gut: ($gut) / $width * 100;
+    $width: 100 * ($ratio) - $gut;
+  }
+  @return $width $gut;
+}
+
+@function _strip-units($number) {
+  @return $number / ($number * 0 + 1);
+}
+
+.center {
+  @include center;
+}
+
+.row {
+  @include row;
+}

@@ -1,6 +1,6 @@
 # lost
 
-lost is my most elegant grid system.
+lost is a grid system for SCSS or Stylus.
 
 It makes use of [`calc()`](http://caniuse.com/#feat=calc) to create stunning grids based on fractions you define, and falls back to percentage-based [Jeet](http://jeet.gs/) on older browsers.
 
