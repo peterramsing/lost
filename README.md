@@ -1,4 +1,4 @@
-# lost
+<img src="http://corysimmons.github.io/lost/lost-grid.svg">
 
 lost is a grid system for SCSS or Stylus.
 
