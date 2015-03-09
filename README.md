@@ -177,6 +177,10 @@ Set a color to be lightened for your editable areas.
 - `ratios` (a positive or negative fraction to adjust the `left` property of a relatively positioned element)
 
 
+## Example Code
+- https://github.com/corysimmons/lost/tree/gh-pages
+
+
 ## Browser Support
 - [`calc()` grids](https://webdesign.tutsplus.com/tutorials/calc-grids-are-the-best-grids--cms-22902) are IE9+ with poor support on old Android browsers ([`calc()` browser support](http://caniuse.com/#feat=calc)), however the fallback grid system based on Jeet has support all the way back to IE7 with a proper HTML [boilerplate](https://github.com/corysimmons/boy).
 - Flexbox is required for the `align()` mixin, although there is a fall back that is IE9+. ([Flexbox browser support](http://caniuse.com/#search=flexbox))
