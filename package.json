@@ -1,0 +1,21 @@
+{
+  "name": "lost-grid",
+  "version": "0.0.1",
+  "description": "Fractional grid system in Stylus with Jeet fallback.",
+  "main": "lost.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/corysimmons/lost.git"
+  },
+  "keywords": [
+    "grid",
+    "stylus",
+    "fraction"
+  ],
+  "author": "Cory Simmons",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/corysimmons/lost/issues"
+  },
+  "homepage": "https://github.com/corysimmons/lost"
+}
