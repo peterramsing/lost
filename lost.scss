@@ -1,4 +1,4 @@
-// Lost Grid v0.0.1 - https://github.com/corysimmons/lost
+// Lost Grid v0.0.2 - https://github.com/corysimmons/lost
 
 $gutter: 30px !default;
 $breakpoint: 1000px !default;
@@ -69,7 +69,7 @@ $rtl: false !default;
 }
 
 
-@mixin center($pad: $gutter, $mw: $breakpoint) {
+@mixin center($pad: 0, $mw: $breakpoint) {
   max-width: $mw;
   margin-right: auto;
   margin-left: auto;
