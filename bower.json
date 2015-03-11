@@ -1,0 +1,33 @@
+{
+  "name": "lost-grid",
+  "main": [
+    "lost.scss",
+    "lost.styl"
+  ],
+  "version": "0.0.2",
+  "homepage": "https://github.com/corysimmons/lost",
+  "authors": [
+    "Cory Simmons <cory@launchboxhq.com>"
+  ],
+  "description": "SCSS or Stylus fractional grid system built with calc(), based on Bootstrap, with a modified Jeet fallback.",
+  "keywords": [
+    "grid",
+    "stylus",
+    "scss",
+    "sass",
+    "fraction",
+    "ratio"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "LICENSE",
+    "README.md",
+    "lost.js",
+    "package.json"
+  ]
+}
