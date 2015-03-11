@@ -159,7 +159,7 @@ Set a color to be lightened for your editable areas.
 - `horizontal` or `h`
 - `reset`
 
-##### `center(pad = gutter, mw = breakpoint)`
+##### `center(pad = 0, mw = breakpoint)`
 - `pad` (padding on the left and right)
 - `mw` (max width)
 
