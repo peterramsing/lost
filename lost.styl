@@ -1,4 +1,4 @@
-// Lost Grid v0.0.2 - https://github.com/corysimmons/lost
+// Lost Grid v0.0.3 - https://github.com/corysimmons/lost
 
 gutter = 30px
 breakpoint = 1000px
@@ -128,6 +128,12 @@ shift(ratios = false, gut = gutter)
   else
     ratios = ratios[0]
     left: s('calc(100% * %s)', ratios)
+
+cycle(item = -1)
+  &:nth-child(n)
+    clear: none
+  &:nth-child({item}n + 1)
+    clear: both
 
 // Private
 _reverse(list)

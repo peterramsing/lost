@@ -1,4 +1,4 @@
-// Lost Grid v0.0.2 - https://github.com/corysimmons/lost
+// Lost Grid v0.0.3 - https://github.com/corysimmons/lost
 
 $gutter: 30px !default;
 $breakpoint: 1000px !default;
@@ -198,6 +198,16 @@ $rtl: false !default;
     $ratios: nth($ratios, 1);
 
     left: calc(100% * #{$ratios});
+  }
+}
+
+
+@mixin cycle($item: -1) {
+  &:nth-child(n) {
+    clear: none;
+  }
+  &:nth-child(#{$item}n + 1) {
+    clear: both;
   }
 }
 
