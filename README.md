@@ -175,6 +175,9 @@ Set a color to be lightened for your editable areas.
 ##### `shift(ratios = false)`
 - `ratios` (a positive or negative fraction to adjust the `left` property of a relatively positioned element)
 
+##### `cycle(item = -1)`
+- `item` (`nth-child` to `clear: both` on - useful for clearing items of uneven height, even within media queries)
+
 
 ## Example Code
 - https://github.com/corysimmons/lost/tree/gh-pages
