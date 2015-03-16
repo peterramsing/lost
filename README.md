@@ -150,32 +150,32 @@ section
 ## Mixin Options
 I've only outlined the options you might want to use to prevent confusion. Feel free to browse the [source](lost.styl) to see all options.
 
-##### `edit(bg = blue)`
+##### `edit($bg = blue)`
 Set a color to be lightened for your editable areas.
 
-##### `align(direction = both)`
+##### `align($direction = both)`
 - `both`
 - `vertical` or `v`
 - `horizontal` or `h`
 - `reset`
 
-##### `center(pad = 0, mw = breakpoint)`
+##### `center($pad = 0, $mw = breakpoint)`
 - `pad` (padding on the left and right)
 - `mw` (max width)
 
-##### `row(ratios = 1)`
+##### `row($ratios = 1)`
 - `ratios` (only used if you're nesting rows for older browsers)
 
-##### `column(ratios = 1)`
+##### `column($ratios = 1)`
 - `ratios` (fractional width of the containing element - if nesting on older browsers, you will need to pass parent ratios to keep gutters consistent)
 
-##### `offset(ratios = false)`
+##### `offset($ratios = false)`
 - `ratios` (a positive or negative fractional margin to the left or right respectively)
 
-##### `move(ratios = false)`
+##### `move($ratios = false)`
 - `ratios` (a positive or negative fraction to adjust the `left` property of a relatively positioned element)
 
-##### `cycle(item = -1)`
+##### `cycle($item = -1)`
 - `item` (`nth-child` to `clear: both` on - useful for clearing items of uneven height, even within media queries)
 
 

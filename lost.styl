@@ -1,13 +1,14 @@
-// Lost Grid v0.0.4 - https://github.com/corysimmons/lost
+// Lost Grid v0.0.5 - https://github.com/corysimmons/lost
 
-gutter = 30px
-breakpoint = 1000px
-old = false
-rtl = false
+$gutter = 30px
+$breakpoint = 1000px
+$old = false
+$rtl = false
 
-edit(bg = blue)
+
+edit($bg = blue)
   *
-    background: rgba(bg, 10%)
+    background: rgba($bg, 10%)
 
 cf()
   *zoom: 1
@@ -17,19 +18,19 @@ cf()
   &:after
     clear: both
 
-align(direction = both)
-  if old
+align($direction = both)
+  if $old
     position: relative
     > *
       position: absolute
       transform-style: preserve-3d
-      if (direction == horizontal) or (direction == h)
+      if ($direction == horizontal) or ($direction == h)
         left: 50%
         transform: translateX(-50%)
-      else if (direction == vertical) or (direction == v)
+      else if ($direction == vertical) or ($direction == v)
         top: 50%
         transform: translateY(-50%)
-      else if (direction == reset)
+      else if ($direction == reset)
         top: auto
         left: auto
         transform: translate(0, 0)
@@ -39,116 +40,116 @@ align(direction = both)
         transform: translate(-50%, -50%)
   else
     display: flex
-    if (direction == horizontal) or (direction == h)
+    if ($direction == horizontal) or ($direction == h)
       justify-content: center
-    else if (direction == vertical) or (direction == v)
+    else if ($direction == vertical) or ($direction == v)
       align-items: center
-    else if (direction == reset)
+    else if ($direction == reset)
       justify-content: inherit
       align-items: inherit
     else
       justify-content: center
       align-items: center
 
-center(pad = 0, mw = breakpoint)
-  max-width: mw
+center($pad = 0, $mw = $breakpoint)
+  max-width: $mw
   margin-right: auto
   margin-left: auto
-  if old
-    pad = pad * .1
-    padding-left: (pad)%
-    padding-right: (pad)%
+  if $old
+    $pad = $pad * .1
+    padding-left: ($pad)%
+    padding-right: ($pad)%
   else
-    padding-left: pad
-    padding-right: pad
+    padding-left: $pad
+    padding-right: $pad
 
-row(ratios = 1, gut = gutter)
+row($ratios = 1, $gut = $gutter)
   cf()
-  if old
-    gut = gut * .1
-    if gut > 0
-      margin-left: -(_get-column(ratios, gut)[1])%
-      margin-right: -(_get-column(ratios, gut)[1])%
+  if $old
+    $gut = $gut * .1
+    if $gut > 0
+      margin-left: -(_get-column($ratios, $gut)[1])%
+      margin-right: -(_get-column($ratios, $gut)[1])%
   else
-    margin-left: -(gut / 2)
-    margin-right: -(gut / 2)
+    margin-left: -($gut / 2)
+    margin-right: -($gut / 2)
 
-column(ratios = 1, gut = gutter)
-  if rtl
+column($ratios = 1, $gut = $gutter)
+  if $rtl
     float: right
   else
     float: left
-  if old
-    gut = gut * .1
-    if gut > 0
-      width: (_get-column(ratios, gut)[0])%
-      margin-left: (_get-column(ratios, gut)[1])%
-      margin-right: (_get-column(ratios, gut)[1])%
-    if gut is 0
-      width: (100% * ratios)
+  if $old
+    $gut = $gut * .1
+    if $gut > 0
+      width: (_get-column($ratios, $gut)[0])%
+      margin-left: (_get-column($ratios, $gut)[1])%
+      margin-right: (_get-column($ratios, $gut)[1])%
+    if $gut is 0
+      width: (100% * $ratios)
   else
-    ratios = ratios[0]
-    if gut > 0
-      width: s('calc(100% * %s - %s)', ratios, gut)
-      margin-left: (gut / 2)
-      margin-right: (gut / 2)
-    if gut is 0
-      width: s('calc(100% * %s)', ratios)
+    $ratios = $ratios[0]
+    if $gut > 0
+      width: s('calc(100% * %s - %s)', $ratios, $gut)
+      margin-left: ($gut / 2)
+      margin-right: ($gut / 2)
+    if $gut is 0
+      width: s('calc(100% * %s)', $ratios)
 
-offset(ratios = false, gut = gutter)
-  if old
-    gut = gut * .1
-    if gut > 0
-      if ratios > 0
-        margin-left: ((_get-column(ratios, gut)[0]) + ((_get-column(ratios, gut)[1]) * 3))%
-      if ratios < 0
-        margin-right: (-1 * ((_get-column(ratios, gut)[0]) + (_get-column(ratios, gut)[1])))%
-    if gut is 0
-      if ratios > 0
-        margin-left: (100% * ratios)
-      if ratios < 0
-        margin-right: (-100% * ratios)
+offset($ratios = false, $gut = $gutter)
+  if $old
+    $gut = $gut * .1
+    if $gut > 0
+      if $ratios > 0
+        margin-left: ((_get-column($ratios, $gut)[0]) + ((_get-column($ratios, $gut)[1]) * 3))%
+      if $ratios < 0
+        margin-right: (-1 * ((_get-column($ratios, $gut)[0]) + (_get-column($ratios, $gut)[1])))%
+    if $gut is 0
+      if $ratios > 0
+        margin-left: (100% * $ratios)
+      if $ratios < 0
+        margin-right: (-100% * $ratios)
   else
-    ratios = ratios[0]
-    if gut > 0
-      if ratios > 0
-        margin-left: s('calc(100% * %s + (%s / 2))', ratios, gut)
-      if ratios < 0
-        margin-right: s('calc(-100% * %s + (%s / 2))', ratios, gut)
-    if gut is 0
-      if ratios > 0
-        margin-left: s('calc(100% * %s)', ratios)
-      if ratios < 0
-        margin-right: s('calc(-100% * %s)', ratios)
+    $ratios = $ratios[0]
+    if $gut > 0
+      if $ratios > 0
+        margin-left: s('calc(100% * %s + (%s / 2))', $ratios, $gut)
+      if $ratios < 0
+        margin-right: s('calc(-100% * %s + (%s / 2))', $ratios, $gut)
+    if $gut is 0
+      if $ratios > 0
+        margin-left: s('calc(100% * %s)', $ratios)
+      if $ratios < 0
+        margin-right: s('calc(-100% * %s)', $ratios)
 
-move(ratios = false, gut = gutter)
+move($ratios = false)
   position: relative
-  if old
-    left: (100% * ratios)
+  if $old
+    left: (100% * $ratios)
   else
-    ratios = ratios[0]
-    left: s('calc(100% * %s)', ratios)
+    $ratios = $ratios[0]
+    left: s('calc(100% * %s)', $ratios)
 
-cycle(item = -1)
+cycle($item = -1)
   &:nth-child(n)
     clear: none
-  &:nth-child({item}n + 1)
+  &:nth-child({$item}n + 1)
     clear: both
 
 // Private
-_reverse(list)
+_reverse($list)
   result = ()
-  for item in list
+  for item in $list
     prepend(result, item)
   return result
 
-_get-column(ratios = 1, gut = gutter)
-  ratios = _reverse(ratios)
+_get-column($ratios = 1, $gut = $gutter)
+  $ratios = _reverse($ratios)
   width = 100
-  for ratio in ratios
-    gut = gut / width * 100
-    width = 100 * ratio - gut
-  return width (gut / 2)
+  for $ratio in $ratios
+    $gut = $gut / width * 100
+    width = 100 * $ratio - $gut
+  return width ($gut / 2)
 
 .center
   center()
