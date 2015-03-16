@@ -79,7 +79,7 @@ figure
     column(1/2 1/3)
 ```
 
-You can `offset` columns and perform source ordering with `shift`.
+You can `offset` columns and perform source ordering with `move`.
 
 ```html
 <div class="row">
@@ -93,7 +93,7 @@ You can `offset` columns and perform source ordering with `shift`.
 figure
   column(1/3)
   &:first-child
-    offset(1/3) // or shift(1/3)
+    offset(1/3) // or move(1/3)
 ```
 
 Easily vertically or horizontally center children elements with the `align()` mixin.
@@ -172,7 +172,7 @@ Set a color to be lightened for your editable areas.
 ##### `offset(ratios = false)`
 - `ratios` (a positive or negative fractional margin to the left or right respectively)
 
-##### `shift(ratios = false)`
+##### `move(ratios = false)`
 - `ratios` (a positive or negative fraction to adjust the `left` property of a relatively positioned element)
 
 ##### `cycle(item = -1)`

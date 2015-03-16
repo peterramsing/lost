@@ -1,4 +1,4 @@
-// Lost Grid v0.0.3 - https://github.com/corysimmons/lost
+// Lost Grid v0.0.4 - https://github.com/corysimmons/lost
 
 gutter = 30px
 breakpoint = 1000px
@@ -121,7 +121,7 @@ offset(ratios = false, gut = gutter)
       if ratios < 0
         margin-right: s('calc(-100% * %s)', ratios)
 
-shift(ratios = false, gut = gutter)
+move(ratios = false, gut = gutter)
   position: relative
   if old
     left: (100% * ratios)

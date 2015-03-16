@@ -1,4 +1,4 @@
-// Lost Grid v0.0.3 - https://github.com/corysimmons/lost
+// Lost Grid v0.0.4 - https://github.com/corysimmons/lost
 
 $gutter: 30px !default;
 $breakpoint: 1000px !default;
@@ -189,7 +189,7 @@ $rtl: false !default;
 }
 
 
-@mixin shift($ratios: false, $gut: $gutter) {
+@mixin move($ratios: false, $gut: $gutter) {
   position: relative;
 
   @if ($old) {
