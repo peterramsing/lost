@@ -391,6 +391,8 @@ $rtl: false !default;
 
 /// Strip a number of whatever units are applied to it.
 ///
+/// @param {number} $number - A number to have the units stripped from.
+///
 /// @example
 ///   _strip-units('90em');
 ///
