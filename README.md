@@ -16,10 +16,10 @@ To support [Isotope](http://isotope.metafizzy.co/) and similar plugins, it mimic
 
 
 ## Better than X
-Lost is better than any grid system out there.
+Lost is better than any grid system out there and it can prove it.
 
-Feature | Lost | Bootstrap | Foundation | Jeet | Neat | Susy
-:------:|:----:|:---------:|:----------:|:----:|:----:|:----:
+Feature | Lost | [Bootstrap](http://getbootstrap.com/css/#grid) | [Foundation](http://foundation.zurb.com/grid.html) | [Jeet](http://jeet.gs/) | [Neat](http://neat.bourbon.io/) | [Susy](http://susy.oddbird.net/)
+:-:|:-:|:-:|:-:|:-:|:-:|:-:
 [Responsive](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#responsive) | :+1: | :+1: | :+1: | :+1: | :+1: | :+1:
 [Small learning curve](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#small-learning-curve) | :+1: | :+1: | :+1: | :+1: | :+1:
 [Easy-to-implement](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#easy-to-implement) | :+1: | :+1: | :+1:
