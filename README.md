@@ -1,6 +1,12 @@
-<img src="http://corysimmons.github.io/lost/lost-grid.svg">
+<p align="center">
+  <img src="http://corysimmons.github.io/lost/lost-grid.svg">
+</p>
 
-![NPM version](https://img.shields.io/npm/v/lost-grid.svg) ![Bower version](https://img.shields.io/bower/v/lost-grid.svg) ![Downloads per month](http://img.shields.io/npm/dm/lost-grid.svg)
+<p align="center">
+  <img src="https://img.shields.io/npm/v/lost-grid.svg">
+  <img src="https://img.shields.io/bower/v/lost-grid.svg">
+  <img src="http://img.shields.io/npm/dm/lost-grid.svg">
+</p>
 
 Lost Grid is a grid system for SCSS or Stylus.
 
