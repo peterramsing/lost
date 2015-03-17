@@ -20,18 +20,18 @@ Lost is better than any grid system out there.
 
 Feature | Lost | Bootstrap | Foundation | Jeet | Neat | Susy
 :------:|:----:|:---------:|:----------:|:----:|:----:|:----:
-Responsive | :+1: | :+1: | :+1: | :+1: | :+1: | :+1:
-Small learning curve | :+1: | :+1: | :+1: | :+1: | :+1:
-Easy-to-implement | :+1: | :+1: | :+1:
-Works with Masonry | :+1: | :+1: | :+1:
-On-the-fly grids | :+1: | | | :+1: | :+1: | :+1:
-Clean markup | :+1: | | | :+1: | :+1: | :+1:
-Real gutters | :+1: | | | :+1: | :+1: | :+1:
-Stylus support | :+1: | | | :+1:
-No Additional Ratio Context | :+1:
-Consistent Horizontal Gutters | :+1:
-Lightweight | :+1:
-Old browser fallback | :+1:
+[Responsive](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#responsive) | :+1: | :+1: | :+1: | :+1: | :+1: | :+1:
+[Small learning curve](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#small-learning-curve) | :+1: | :+1: | :+1: | :+1: | :+1:
+[Easy-to-implement](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#easy-to-implement) | :+1: | :+1: | :+1:
+[Works with Masonry](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#works-with-masonry) | :+1: | :+1: | :+1:
+[On-the-fly grids](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#on-the-fly-grids) | :+1: | | | :+1: | :+1: | :+1:
+[Clean markup](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#clean-markup) | :+1: | | | :+1: | :+1: | :+1:
+[Real gutters](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#real-gutters) | :+1: | | | :+1: | :+1: | :+1:
+[Stylus support](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#stylus-support) | :+1: | | | :+1:
+[No Additional Ratio Context](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#no-additional-ratio-context) | :+1:
+[Consistent Horizontal Gutters](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#consistent-horizontal-gutters) | :+1:
+[Lightweight](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#lightweight) | :+1:
+[Old browser fallback](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#old-browser-fallback) | :+1:
 
 ## Getting Started
 
