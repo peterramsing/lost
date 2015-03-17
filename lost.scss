@@ -6,12 +6,31 @@ $old: false !default;
 $rtl: false !default;
 
 
+/// Sets a translucent background color to all elements it affects. Helpful while setting up, or debugging, the structure of your site to make sure all items are cleared correctly.
+///
+/// @param {string} $bg - A color to be lightened, so make sure you pick a darkish color.
+///
+/// @example
+///   section {
+///     @include edit(red);
+///   }
+
 @mixin edit($bg: blue) {
   * {
     background: rgba($bg, 0.1);
   }
 }
 
+
+/// Clearfix used to clear floated children columns. http://nicolasgallagher.com/micro-clearfix-hack
+///
+/// @example
+///   .parent {
+///     @include cf;
+///     .child {
+///       @include column(1/2);
+///     }
+///   }
 
 @mixin cf() {
   *zoom: 1;
@@ -26,6 +45,21 @@ $rtl: false !default;
   }
 }
 
+
+/// Vertically and/or horizontally align nested elements.
+///
+/// @param {string} $direction - Either vertical, v, horizontal, or h. Defaults to both.
+///
+/// @example
+///   .parent {
+///     @include align(vertical);
+///     width: 600px;
+///     height: 400px;
+///     .child {
+///       width: 300px;
+///       height: 150px;
+///     }
+///   }
 
 @mixin align($direction: both) {
   @if ($old) {
@@ -69,6 +103,16 @@ $rtl: false !default;
 }
 
 
+/// Create a container that is centered in the middle of the page with some padding on the left and right sides of it.
+///
+/// @param {number} $pad - Padding on the left and right side of the element. 0 by default, but feel free to increase it so containers don't touch the edge of the viewport.
+/// @param {number} $mw - The max-width of the element.
+///
+/// @example
+///   section {
+///     @include center(45px);
+///   }
+
 @mixin center($pad: 0, $mw: $breakpoint) {
   max-width: $mw;
   margin-right: auto;
@@ -84,6 +128,19 @@ $rtl: false !default;
   }
 }
 
+
+/// Apply a negative margin on each side of the element. This is required when adding columns and such to negate their outer margins. This mixin automatically applies clearfix as it's assumed floated elements will be nested within it.
+///
+/// @param {number} $ratios - If $old is false, a single fraction used to determine the negative left and right margins of the element. If $old is true, a collection of container ratios (fractions).
+/// @param {number} $gut - The gutter width. This is typically left alone, but if you want a specific row/column combination to have a larger or smaller gutter, you need to specify the same $gut on both types of elements.
+///
+/// @example
+///   .parent {
+///     @include row();
+///     .children {
+///       @include column(1/2);
+///     }
+///   }
 
 @mixin row($ratios: 1, $gut: $gutter) {
   @include cf;
@@ -102,6 +159,33 @@ $rtl: false !default;
   }
 }
 
+
+/// Creates a column that is a fraction of the size of it's containing element with a margin on each side of the element. If $old is set to false, you don't need to pass any additional ratios (fractions), as the grid system will make use of calc(). If $old is set to true, the grid system will support more browsers, but you will need to pass additional ratios for each nested container. It's highly recommended you use the calc() syntax to avoid confusion.
+///
+/// @param {number} $ratios - If $old is false, this is a simple fraction of the containing element's width. If $old is true, this is a collection of fractions with the containing element's fraction passed each time it is nested.
+/// @param {number} $gut - The margin on each side of the element used to create a gutter. Typically this is left alone, but if you need to have a specifically large or small gutter, you will need to alter this along with the containing row's gutter so they are the same.
+///
+/// @example
+///   .parent {
+///     @include row();
+///     .children {
+///       @include column(1/4);
+///     }
+///   }
+///
+/// @example
+///   .parent {
+///     @include row();
+///     .child {
+///       @include column(1/2);
+///       .nested-parent {
+///         @include row(1/2);
+///         .nested-child {
+///           @include column(1/4 1/2);
+///         }
+///       }
+///     }
+///   }
 
 @mixin column($ratios: 1, $gut: $gutter) {
   @if ($rtl) {
@@ -137,6 +221,19 @@ $rtl: false !default;
   }
 }
 
+
+/// Margin to the left or right of an elements depending on if the fraction passed is positive or negative.
+///
+/// @param {number} $ratios - Fraction of the container to be offset.
+/// @param {number} $gut - How large the gutter involved is, typically this won't be adjusted, but if you have set the columns for that row to have different gutters than default, you will need to match that gutter here as well.
+///
+/// @example
+///   .two-elements {
+///     @include column(1/3);
+///     &:nth-child(2) {
+///       @include offset(1/3);
+///     }
+///   }
 
 @mixin offset($ratios: false, $gut: $gutter) {
   @if ($old) {
@@ -189,6 +286,25 @@ $rtl: false !default;
 }
 
 
+/// Source ordering. Useful for having an element appear above or below another element on mobile devices, and then to the opposite side on larger devices. For instance, a sidebar and article. You might want the sidebar to appear before the article on mobile, but be to the right of the article on desktop. This is how that is achieved.
+///
+/// @param {number} $ratios - Fraction of the container to be moved by it's left value.
+/// @param {number} $gut - Gutter to be involved in the math needed to generate the correct left positioning. This need not be changed unless you are specifying sibling columns have a different gutter than default, in which case, it would need to match.
+///
+/// @example
+///   .sidebar {
+///     @media (min-width: 800px) {
+///       @include column(1/3);
+///       @include move(2/3);
+///     }
+///    }
+///   .article {
+///     @media (min-width: 800px) {
+///       @include column(2/3);
+///       @include move(-1/3);
+///     }
+///   }
+
 @mixin move($ratios: false, $gut: $gutter) {
   position: relative;
 
@@ -202,6 +318,18 @@ $rtl: false !default;
 }
 
 
+/// Since columns are floated, when they are of unequal height, they will misalign easily. By setting cycle() you can make sure elements are being cleared on appropriate rows.
+///
+/// @param {number} $item - The nth-child + 1 element to clear on. If you want a row to be 3 elements wide, then you'd pass 3.
+///
+/// @example
+///   .gallery {
+///     img {
+///       @include column(1/3);
+///       @include cycle(3);
+///     }
+///   }
+
 @mixin cycle($item: -1) {
   &:nth-child(n) {
     clear: none;
@@ -212,7 +340,16 @@ $rtl: false !default;
 }
 
 
-// Private
+/// Reverses a list of numbers (or in our case, fractions)
+///
+/// @param {number} $list - A list of numbers or fractions to be reversed.
+///
+/// @example
+///   $foo: 1 2 3;
+///   _reverse($foo);
+///
+/// @access private
+
 @function _reverse($list) {
   @if length($list) == 1 {
     @return $list;
@@ -228,6 +365,18 @@ $rtl: false !default;
 }
 
 
+/// Gets a column's width and gutter size as an integer.
+///
+/// @param {number} $ratios - A list of fractions to be used in calculating the appropriate width and gutter size returned.
+/// @param {number} $gut - The gutter size used to generate an appropriate width and gutter size to be returned by the function.
+///
+/// @example
+///   .third {
+///     width: _strip-units(nth(_get-column(1/3, '30px'), 1)) * 1%;
+///   }
+///
+/// @access private
+
 @function _get-column($ratios: 1, $gut: $gutter) {
   $ratios: _reverse($ratios);
   $width: 100;
@@ -241,15 +390,30 @@ $rtl: false !default;
 }
 
 
+/// Strip a number of whatever units are applied to it.
+///
+/// @example
+///   _strip-units('90em');
+///
+/// @access private
+
 @function _strip-units($number) {
   @return $number / ($number * 0 + 1);
 }
 
 
+/// A helper class used for centering by default values.
+///
+/// @see {center}
+
 .center {
   @include center;
 }
 
+
+/// A helper class used to create rows with default values.
+///
+/// @see {row}
 
 .row {
   @include row;
