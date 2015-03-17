@@ -162,13 +162,35 @@ Sets a translucent background color to all elements it affects. Helpful while se
 
 - `$bg = blue` - A color to be lightened, so make sure you pick a darkish color.
 
+```stylus
+section
+  edit(red)
+```
+
 ##### `cf()`
 Clearfix used to clear floated children columns. http://nicolasgallagher.com/micro-clearfix-hack
+
+```stylus
+.parent
+  cf()
+  .child
+    column(1/2)
+```
 
 ##### `align()`
 Vertically and/or horizontally align nested elements.
 
 - `$direction = both` - Either `vertical`, `v`, `horizontal`, or `h`. Defaults to `both`.
+
+```stylus
+.parent
+  align(vertical)
+  width: 600px
+  height: 400px
+  .child
+    width: 300px
+    height: 150px
+```
 
 ##### `center()`
 Create a container that is centered in the middle of the page with some padding on the left and right sides of it.
@@ -176,11 +198,23 @@ Create a container that is centered in the middle of the page with some padding 
 - `$pad = 0` - Padding on the left and right side of the element. `0` by default, but feel free to increase it so containers don't touch the edge of the viewport.
 - `$mw = $breakpoint` - The `max-width` of the element.
 
+```stylus
+section
+  center(45px)
+```
+
 ##### `row()`
 Apply a negative margin on each side of the element. This is required when adding columns and such to negate their outer margins. This mixin automatically applies clearfix as it's assumed floated elements will be nested within it.
 
 - `$ratios = 1` - If `$old` is `false`, a single fraction used to determine the negative left and right margins of the element. If `$old` is `true`, a collection of container ratios (fractions).
 - `$gut = $gutter` - The gutter width. This is typically left alone, but if you want a specific row/column combination to have a larger or smaller gutter, you need to specify the same `$gut` on both types of elements.
+
+```stylus
+.parent
+  row()
+  .children
+    column(1/2)
+```
 
 ##### `column()`
 Creates a column that is a fraction of the size of it's containing element with a margin on each side of the element. If `$old` is set to `false`, you don't need to pass any additional ratios (fractions), as the grid system will make use of `calc()`. If `$old` is set to `true`, the grid system will support more browsers, but you will need to pass additional ratios for each nested container. It's highly recommended you use the `calc()` syntax to avoid confusion.
@@ -188,21 +222,66 @@ Creates a column that is a fraction of the size of it's containing element with 
 - `$ratios = 1` - If `$old` is `false`, this is a simple fraction of the containing element's width. If `$old` is `true`, this is a collection of fractions with the containing element's fraction passed each time it is nested.
 - `$gut = $gutter` - The margin on each side of the element used to create a gutter. Typically this is left alone, but if you need to have a specifically large or small gutter, you will need to alter this along with the containing row's gutter so they are the same.
 
+```stylus
+// Clean calc() syntax
+.parent
+  row()
+  .children
+    column(1/4)
+```
+
+```stylus
+// Supports old browsers syntax
+.parent
+  row()
+  .child
+    column(1/2)
+    .nested-parent
+      row(1/2)
+      .nested-child
+        column(1/4 1/2)
+```
+
 ##### `offset()`
 Margin to the left or right of an elements depending on if the fraction passed is positive or negative.
 
 - `$ratios = false` - Fraction of the container to be offset.
 - `$gut = $gutter` - How large the gutter involved is, typically this won't be adjusted, but if you have set the columns for that row to have different gutters than default, you will need to match that gutter here as well.
 
+```stylus
+.two-elements
+  column(1/3)
+  &:nth-child(2)
+    offset(1/3)
+```
+
 ##### `move()`
 Source ordering. Useful for having an element appear above or below another element on mobile devices, and then to the opposite side on larger devices. For instance, a sidebar and article. You might want the sidebar to appear before the article on mobile, but be to the right of the article on desktop. This is how that is achieved.
 
 - `$ratios = false` - Fraction of the container to be moved by it's `left` value.
 
+```stylus
+.sidebar
+  @media (min-width: 800px)
+    column(1/3)
+    move(2/3)
+.article
+  @media (min-width: 800px)
+    column(2/3)
+    move(-1/3)
+```
+
 ##### `cycle()`
 Since columns are floated, when they are of unequal height, they will misalign easily. By setting `cycle()` you can make sure elements are being cleared on appropriate rows.
 
 - `$item = -1` - The `nth-child + 1` element to clear on. If you want a row to be 3 elements wide, then you'd pass 3.
+
+```stylus
+.gallery
+  img
+    column(1/3)
+    cycle(3)
+```
 
 ##### `.center`
 A helper class used for centering by default values.
