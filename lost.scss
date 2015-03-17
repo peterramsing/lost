@@ -289,7 +289,6 @@ $rtl: false !default;
 /// Source ordering. Useful for having an element appear above or below another element on mobile devices, and then to the opposite side on larger devices. For instance, a sidebar and article. You might want the sidebar to appear before the article on mobile, but be to the right of the article on desktop. This is how that is achieved.
 ///
 /// @param {number} $ratios - Fraction of the container to be moved by it's left value.
-/// @param {number} $gut - Gutter to be involved in the math needed to generate the correct left positioning. This need not be changed unless you are specifying sibling columns have a different gutter than default, in which case, it would need to match.
 ///
 /// @example
 ///   .sidebar {
@@ -305,7 +304,7 @@ $rtl: false !default;
 ///     }
 ///   }
 
-@mixin move($ratios: false, $gut: $gutter) {
+@mixin move($ratios: false) {
   position: relative;
 
   @if ($old) {
