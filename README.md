@@ -14,6 +14,25 @@ It makes use of [`calc()`](http://caniuse.com/#feat=calc) to create stunning gri
 
 To support [Isotope](http://isotope.metafizzy.co/) and similar plugins, it mimics Bootstrap's [grid](http://getbootstrap.com/css/#grid) markup.
 
+
+## Better than X
+Lost is better than any grid system out there.
+
+Feature | Lost | Bootstrap | Foundation | Jeet | Neat | Susy
+:------:|:----:|:---------:|:----------:|:----:|:----:|:----:
+Responsive | :+1: | :+1: | :+1: | :+1: | :+1: | :+1:
+Small learning curve | :+1: | :+1: | :+1: | :+1: | :+1:
+Easy-to-implement | :+1: | :+1: | :+1:
+Works with Masonry | :+1: | :+1: | :+1:
+On-the-fly grids | :+1: | | | :+1: | :+1: | :+1:
+Clean markup | :+1: | | | :+1: | :+1: | :+1:
+Real gutters | :+1: | | | :+1: | :+1: | :+1:
+Stylus support | :+1: | | | :+1:
+No Additional Ratio Context | :+1:
+Consistent Horizontal Gutters | :+1:
+Lightweight | :+1:
+Old browser fallback | :+1:
+
 ## Getting Started
 
 You can either use the `row()` mixin or the helper class.
