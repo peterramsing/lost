@@ -156,35 +156,59 @@ section
 
 
 ## Mixin Options
-I've only outlined the options you might want to use to prevent confusion. Feel free to browse the [source](lost.styl) to see all options.
 
-##### `edit($bg = blue)`
-Set a color to be lightened for your editable areas.
+##### `edit()`
+Sets a translucent background color to all elements it affects. Helpful while setting up, or debugging, the structure of your site to make sure all items are cleared correctly.
 
-##### `align($direction = both)`
-- `both`
-- `vertical` or `v`
-- `horizontal` or `h`
-- `reset`
+- `$bg = blue` - A color to be lightened, so make sure you pick a darkish color.
 
-##### `center($pad = 0, $mw = breakpoint)`
-- `pad` (padding on the left and right)
-- `mw` (max width)
+##### `cf()`
+Clearfix used to clear floated children columns. http://nicolasgallagher.com/micro-clearfix-hack
 
-##### `row($ratios = 1)`
-- `ratios` (only used if you're nesting rows for older browsers)
+##### `align()`
+Vertically and/or horizontally align nested elements.
 
-##### `column($ratios = 1)`
-- `ratios` (fractional width of the containing element - if nesting on older browsers, you will need to pass parent ratios to keep gutters consistent)
+- `$direction = both` - Either `vertical`, `v`, `horizontal`, or `h`. Defaults to `both`.
 
-##### `offset($ratios = false)`
-- `ratios` (a positive or negative fractional margin to the left or right respectively)
+##### `center()`
+Create a container that is centered in the middle of the page with some padding on the left and right sides of it.
 
-##### `move($ratios = false)`
-- `ratios` (a positive or negative fraction to adjust the `left` property of a relatively positioned element)
+- `$pad = 0` - Padding on the left and right side of the element. `0` by default, but feel free to increase it so containers don't touch the edge of the viewport.
+- `$mw = $breakpoint` - The `max-width` of the element.
 
-##### `cycle($item = -1)`
-- `item` (`nth-child` to `clear: both` on - useful for clearing items of uneven height, even within media queries)
+##### `row()`
+Apply a negative margin on each side of the element. This is required when adding columns and such to negate their outer margins. This mixin automatically applies clearfix as it's assumed floated elements will be nested within it.
+
+- `$ratios = 1` - If `$old` is `false`, a single fraction used to determine the negative left and right margins of the element. If `$old` is `true`, a collection of container ratios (fractions).
+- `$gut = $gutter` - The gutter width. This is typically left alone, but if you want a specific row/column combination to have a larger or smaller gutter, you need to specify the same `$gut` on both types of elements.
+
+##### `column()`
+Creates a column that is a fraction of the size of it's containing element with a margin on each side of the element. If `$old` is set to `false`, you don't need to pass any additional ratios (fractions), as the grid system will make use of `calc()`. If `$old` is set to `true`, the grid system will support more browsers, but you will need to pass additional ratios for each nested container. It's highly recommended you use the `calc()` syntax to avoid confusion.
+
+- `$ratios = 1` - If `$old` is `false`, this is a simple fraction of the containing element's width. If `$old` is `true`, this is a collection of fractions with the containing element's fraction passed each time it is nested.
+- `$gut = $gutter` - The margin on each side of the element used to create a gutter. Typically this is left alone, but if you need to have a specifically large or small gutter, you will need to alter this along with the containing row's gutter so they are the same.
+
+##### `offset()`
+Margin to the left or right of an elements depending on if the fraction passed is positive or negative.
+
+- `$ratios = false` - Fraction of the container to be offset.
+- `$gut = $gutter` - How large the gutter involved is, typically this won't be adjusted, but if you have set the columns for that row to have different gutters than default, you will need to match that gutter here as well.
+
+##### `move()`
+Source ordering. Useful for having an element appear above or below another element on mobile devices, and then to the opposite side on larger devices. For instance, a sidebar and article. You might want the sidebar to appear before the article on mobile, but be to the right of the article on desktop. This is how that is achieved.
+
+- `$ratios = false` - Fraction of the container to be moved by it's `left` value.
+
+##### `cycle()`
+Since columns are floated, when they are of unequal height, they will misalign easily. By setting `cycle()` you can make sure elements are being cleared on appropriate rows.
+
+- `$item = -1` - The `nth-child + 1` element to clear on. If you want a row to be 3 elements wide, then you'd pass 3.
+
+##### `.center`
+A helper class used for centering by default values.
+
+##### `.row`
+A helper class used to create rows with default values.
 
 
 ## Example Code
