@@ -8,7 +8,7 @@ $rtl: false !default;
 
 /// Sets a translucent background color to all elements it affects. Helpful while setting up, or debugging, the structure of your site to make sure all items are cleared correctly.
 ///
-/// @param {string} $bg [blue] - A color to be lightened, so make sure you pick a darkish color.
+/// @param {color} $bg [blue] - A color to be lightened, so make sure you pick a darkish color.
 ///
 /// @example
 ///   section {
@@ -131,7 +131,7 @@ $rtl: false !default;
 
 /// Apply a negative margin on each side of the element. This is required when adding columns and such to negate their outer margins. This mixin automatically applies clearfix as it's assumed floated elements will be nested within it.
 ///
-/// @param {number} $ratios [1] - If $old is false, a single fraction used to determine the negative left and right margins of the element. If $old is true, a collection of container ratios (fractions).
+/// @param {fraction} $ratios [1] - If $old is false, a single fraction used to determine the negative left and right margins of the element. If $old is true, a collection of container ratios (fractions).
 /// @param {number} $gut [$gutter] - The gutter width. This is typically left alone, but if you want a specific row/column combination to have a larger or smaller gutter, you need to specify the same $gut on both types of elements.
 ///
 /// @example
@@ -162,7 +162,7 @@ $rtl: false !default;
 
 /// Creates a column that is a fraction of the size of it's containing element with a margin on each side of the element. If $old is set to false, you don't need to pass any additional ratios (fractions), as the grid system will make use of calc(). If $old is set to true, the grid system will support more browsers, but you will need to pass additional ratios for each nested container. It's highly recommended you use the calc() syntax to avoid confusion.
 ///
-/// @param {number} $ratios [1] - If $old is false, this is a simple fraction of the containing element's width. If $old is true, this is a collection of fractions with the containing element's fraction passed each time it is nested.
+/// @param {fraction} $ratios [1] - If $old is false, this is a simple fraction of the containing element's width. If $old is true, this is a collection of fractions with the containing element's fraction passed each time it is nested.
 /// @param {number} $gut [$gutter] - The margin on each side of the element used to create a gutter. Typically this is left alone, but if you need to have a specifically large or small gutter, you will need to alter this along with the containing row's gutter so they are the same.
 ///
 /// @example
@@ -224,7 +224,7 @@ $rtl: false !default;
 
 /// Margin to the left or right of an elements depending on if the fraction passed is positive or negative.
 ///
-/// @param {number} $ratios [false] - Fraction of the container to be offset.
+/// @param {fraction} $ratios [false] - Fraction of the container to be offset.
 /// @param {number} $gut [$gutter] - How large the gutter involved is, typically this won't be adjusted, but if you have set the columns for that row to have different gutters than default, you will need to match that gutter here as well.
 ///
 /// @example
@@ -288,7 +288,7 @@ $rtl: false !default;
 
 /// Source ordering. Useful for having an element appear above or below another element on mobile devices, and then to the opposite side on larger devices. For instance, a sidebar and article. You might want the sidebar to appear before the article on mobile, but be to the right of the article on desktop. This is how that is achieved.
 ///
-/// @param {number} $ratios [false] - Fraction of the container to be moved by it's left value.
+/// @param {fraction} $ratios [false] - Fraction of the container to be moved by it's left value.
 ///
 /// @example
 ///   .sidebar {
@@ -341,11 +341,13 @@ $rtl: false !default;
 
 /// Reverses a list of numbers (or in our case, fractions)
 ///
-/// @param {number} $list - A list of numbers or fractions to be reversed.
+/// @param {fractions} $list - A list of numbers or fractions to be reversed.
 ///
 /// @example
-///   $foo: 1 2 3;
+///   $foo: 1/2 1/3 1/4;
 ///   _reverse($foo);
+///
+/// @return {fractions}
 ///
 /// @access private
 
@@ -366,13 +368,15 @@ $rtl: false !default;
 
 /// Gets a column's width and gutter size as an integer.
 ///
-/// @param {number} $ratios [1] - A list of fractions to be used in calculating the appropriate width and gutter size returned.
+/// @param {fraction} $ratios [1] - A list of fractions to be used in calculating the appropriate width and gutter size returned.
 /// @param {number} $gut [$gutter] - The gutter size used to generate an appropriate width and gutter size to be returned by the function.
 ///
 /// @example
 ///   .third {
 ///     width: _strip-units(nth(_get-column(1/3, '30px'), 1)) * 1%;
 ///   }
+///
+/// @return {fraction | number}
 ///
 /// @access private
 
@@ -396,6 +400,8 @@ $rtl: false !default;
 /// @example
 ///   _strip-units('90em');
 ///
+/// @return {number}
+///
 /// @access private
 
 @function _strip-units($number) {
@@ -403,18 +409,14 @@ $rtl: false !default;
 }
 
 
-/// A helper class used for centering by default values.
-///
-/// @see {center}
+// A helper class used for centering by default values.
 
 .center {
   @include center;
 }
 
 
-/// A helper class used to create rows with default values.
-///
-/// @see {row}
+// A helper class used to create rows with default values.
 
 .row {
   @include row;
