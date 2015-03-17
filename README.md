@@ -8,11 +8,13 @@
   <img src="http://img.shields.io/npm/dm/lost-grid.svg">
 </p>
 
-Lost Grid is a grid system for SCSS or Stylus.
+Lost Grid is a grid system for SCSS or Stylus. It is built upon years of studying grid systems and building dozens of grid systems with tons of community feedback.
 
-It makes use of [`calc()`](http://caniuse.com/#feat=calc) to create stunning grids based on fractions you define, and falls back to percentage-based [Jeet](http://jeet.gs/) on older browsers.
+It makes use of [`calc()`](http://caniuse.com/#feat=calc) to create stunning grids based on fractions you define, and falls back to a heavily modified, much cleaner version of [Jeet](http://jeet.gs/) on older browsers.
 
 To support [Isotope](http://isotope.metafizzy.co/) and similar plugins, it mimics Bootstrap's [grid](http://getbootstrap.com/css/#grid) markup.
+
+## Getting Started
 
 You can either use the `row()` mixin or the helper class.
 
