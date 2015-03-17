@@ -1,5 +1,7 @@
 <img src="http://corysimmons.github.io/lost/lost-grid.svg">
 
+![NPM version](https://img.shields.io/npm/v/lost-grid.svg) ![Bower version](https://img.shields.io/bower/v/lost-grid.svg) ![Downloads per month](http://img.shields.io/npm/dm/lost-grid.svg)
+
 Lost Grid is a grid system for SCSS or Stylus.
 
 It makes use of [`calc()`](http://caniuse.com/#feat=calc) to create stunning grids based on fractions you define, and falls back to percentage-based [Jeet](http://jeet.gs/) on older browsers.
