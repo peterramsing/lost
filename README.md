@@ -149,10 +149,10 @@ section
 
 
 ## Grid Settings
-- `gutter = 30px`
-- `breakpoint = 1000px`
-- `old = false`
-- `rtl = false`
+- `$gutter = 30px`
+- `$breakpoint = 1000px`
+- `$old = false`
+- `$rtl = false`
 
 
 ## Mixin Options
