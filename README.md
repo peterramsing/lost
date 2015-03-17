@@ -35,7 +35,7 @@ Feature | Lost | [Bootstrap](http://getbootstrap.com/css/#grid) | [Foundation](h
 
 ## Getting Started
 
-You can either use the `row()` mixin or the helper class.
+You can either use the `row()` mixin or the helper class. Then just specify with a fraction how large you'd like each element to be.
 
 ```html
 <div class="row">
@@ -48,6 +48,25 @@ You can either use the `row()` mixin or the helper class.
 ```stylus
 figure
   column(1/3)
+```
+
+Want to add a ton of items to your row? Use `cycle()` to make sure each group of elements is cleared (for uneven height elements).
+
+```html
+<div class="row">
+  <figure>...</figure>
+  <figure>...</figure>
+  <figure>...</figure>
+  <figure>...</figure>
+  <figure>...</figure>
+  <figure>...</figure>
+</div>
+```
+
+```stylus
+figure
+  column(1/3)
+  cycle(3)
 ```
 
 To give your grid a background color simply wrap your `.row` in another element.
