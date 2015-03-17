@@ -1,6 +1,6 @@
 {
   "name": "lost-grid",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Fractional grid system in Stylus with Jeet fallback.",
   "main": "lost.js",
   "repository": {
