@@ -33,7 +33,12 @@ Feature | Lost | [Bootstrap](http://getbootstrap.com/css/#grid) | [Foundation](h
 [Lightweight](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#lightweight) | :+1:
 [Old browser fallback](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#old-browser-fallback) | :+1:
 
+<sup>If you notice anything in this table is incorrect or unfair, please don't hesitate to [open an issue](https://github.com/corysimmons/lost/issues/new).</sup>
+
+
 ## Getting Started
+
+Feel free to follow along by forking a CodePen demo in either [SCSS](http://codepen.io/corysimmons/pen/emQQPV?editors=110) or [Stylus](http://codepen.io/corysimmons/pen/XJyyBE?editors=110).
 
 You can either use the `row()` mixin or the helper class. Then just specify with a fraction how large you'd like each element to be.
 
