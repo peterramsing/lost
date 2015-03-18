@@ -10,7 +10,10 @@
   "keywords": [
     "grid",
     "stylus",
-    "fraction"
+    "scss",
+    "sass",
+    "fraction",
+    "ratio"
   ],
   "author": "Cory Simmons",
   "license": "MIT",
