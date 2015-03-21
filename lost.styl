@@ -1,4 +1,4 @@
-// Lost Grid v0.0.6 - https://github.com/corysimmons/lost
+// Lost Grid v0.0.7 - https://github.com/corysimmons/lost
 
 $gutter = 30px
 $breakpoint = 1000px
@@ -97,10 +97,10 @@ align($direction = both)
  *
  * @example
  *   section
- *     center(45px)
+ *     container(45px)
  */
 
-center($pad = 0, $mw = $breakpoint)
+container($pad = 0, $mw = $breakpoint)
   max-width: $mw
   margin-right: auto
   margin-left: auto
@@ -315,8 +315,8 @@ _get-column($ratios = 1, $gut = $gutter)
 
 // A helper class used for centering by default values.
 
-.center
-  center()
+.container
+  container()
 
 
 // A helper class used to create rows with default values.

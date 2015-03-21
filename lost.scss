@@ -1,4 +1,4 @@
-// Lost Grid v0.0.6 - https://github.com/corysimmons/lost
+// Lost Grid v0.0.7 - https://github.com/corysimmons/lost
 
 $gutter: 30px !default;
 $breakpoint: 1000px !default;
@@ -110,10 +110,10 @@ $rtl: false !default;
 ///
 /// @example
 ///   section {
-///     @include center(45px);
+///     @include container(45px);
 ///   }
 
-@mixin center($pad: 0, $mw: $breakpoint) {
+@mixin container($pad: 0, $mw: $breakpoint) {
   max-width: $mw;
   margin-right: auto;
   margin-left: auto;
@@ -411,8 +411,8 @@ $rtl: false !default;
 
 // A helper class used for centering by default values.
 
-.center {
-  @include center;
+.container {
+  @include container;
 }
 
 

@@ -94,11 +94,11 @@ figure
   column(1/3)
 ```
 
-You can center that `section` with a mixin or the helper class `.center`.
+You can center that `section` with a mixin or the helper class `.container`.
 
 ```stylus
 section
-  center()
+  container()
 ```
 
 Nesting is simple if you are using the default `calc()` version of the grid system.
@@ -237,7 +237,7 @@ Vertically and/or horizontally align nested elements.
     height: 150px
 ```
 
-##### `center()`
+##### `container()`
 Create a container that is centered in the middle of the page with some padding on the left and right sides of it.
 
 - `$pad = 0` - Padding on the left and right side of the element. `0` by default, but feel free to increase it so containers don't touch the edge of the viewport.
@@ -245,7 +245,7 @@ Create a container that is centered in the middle of the page with some padding 
 
 ```stylus
 section
-  center(45px)
+  container(45px)
 ```
 
 ##### `row()`
@@ -328,7 +328,7 @@ Since columns are floated, when they are of unequal height, they will misalign e
     cycle(3)
 ```
 
-##### `.center`
+##### `.container`
 A helper class used for centering by default values.
 
 ##### `.row`
