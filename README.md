@@ -346,3 +346,7 @@ A helper class used to create rows with default values.
 
 ## Caveats
 - Nesting in the fallback grid system creates gaps a few pixels wide on each side of the nested elements. This is due to a rounding issue that affects a lot of fluid grid systems.
+
+
+## Something Neat
+- [lost-grid.js](https://github.com/corysimmons/lost-grid.js) - A purely JavaScript version of this grid system. You can create your grid system directly in your markup without ever touching a line of preprocessor code.
