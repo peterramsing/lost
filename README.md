@@ -335,6 +335,28 @@ A helper class used for centering by default values.
 A helper class used to create rows with default values.
 
 
+## Usage with Node
+```javascript
+var fs = require('fs'),
+    stylus = require('stylus'),
+    lost = require('lost-grid');
+
+stylus(fs.readFileSync('./foo.styl', 'utf8'))
+  .use(lost())
+  .render(function(err, css){
+    if (err) return console.error(err);
+    console.log(css);
+  });
+```
+
+```stylus
+@import 'lost'
+
+.element
+  column(1/3)
+```
+
+
 ## Example Code
 - https://github.com/corysimmons/lost/tree/gh-pages
 
