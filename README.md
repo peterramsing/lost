@@ -194,6 +194,8 @@ section
 
 
 ## Grid Settings
+Just set any of these in a settings file after you `@import` Lost and before you use a Lost mixin.
+
 - `$gutter = 30px`
 - `$breakpoint = 1000px`
 - `$old = false`
@@ -341,7 +343,7 @@ var fs = require('fs'),
     stylus = require('stylus'),
     lost = require('lost-grid');
 
-stylus(fs.readFileSync('./foo.styl', 'utf8'))
+stylus(fs.readFileSync('./css/style.styl', 'utf8'))
   .use(lost())
   .render(function(err, css){
     if (err) return console.error(err);
