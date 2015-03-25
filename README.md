@@ -23,9 +23,10 @@ Feature | Lost | [Bootstrap](http://getbootstrap.com/css/#grid) | [Foundation](h
 [Responsive](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#responsive) | :+1: | :+1: | :+1: | :+1: | :+1: | :+1:
 [Small learning curve](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#small-learning-curve) | :+1: | :+1: | :+1: | :+1: | :+1:
 [Easy-to-implement](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#easy-to-implement) | :+1: | :+1: | :+1:
-[Works with Masonry](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#works-with-masonry) | :+1: | :+1: | :+1:
+[Works with Masonry](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#works-with-masonry) | :+1: | :+1: | :+1: | | | :+1:
 [On-the-fly grids](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#on-the-fly-grids) | :+1: | | | :+1: | :+1: | :+1:
 [Clean markup](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#clean-markup) | :+1: | | | :+1: | :+1: | :+1:
+[Terse markup](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#terse-markup) | | | | :+1: | :+1: | :+1:
 [Real gutters](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#real-gutters) | :+1: | | | :+1: | :+1: | :+1:
 [Stylus support](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#stylus-support) | :+1: | | | :+1:
 [No Additional Ratio Context](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#no-additional-ratio-context) | :+1:
