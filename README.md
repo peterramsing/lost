@@ -372,5 +372,9 @@ stylus(fs.readFileSync('./css/style.styl', 'utf8'))
 - Nesting in the fallback grid system creates gaps a few pixels wide on each side of the nested elements. This is due to a rounding issue that affects a lot of fluid grid systems.
 
 
-## Something Neat
-- [lost-grid.js](https://github.com/corysimmons/lost-grid.js) - A purely JavaScript version of this grid system. You can create your grid system directly in your markup without ever touching a line of preprocessor code.
+### Other Projects
+If you like this project then I encourage you to check out a few of my other hand-selected projects.
+
+- [lost-grid.js](https://github.com/corysimmons/lost-grid.js) - A purely JavaScript version of this grid system. You can create your grid system directly in your markup without ever touching a line of preprocessor code. A pretty cool concept that works great for prototypes.
+- [Boy](https://github.com/corysimmons/boy) - A super lightweight, old-browser-friendly, HTML5 boilerplate with tons of features that make it a great start to any project.
+- [Typographic](https://github.com/corysimmons/typographic) - Insanely powerful yet easy-to-use responsive typography. Includes vertical rhythm, font stacks, modular scale, and more.
