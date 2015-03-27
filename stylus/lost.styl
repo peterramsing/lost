@@ -1,4 +1,4 @@
-// Lost Grid v1.0.1 - https://github.com/corysimmons/lost
+// Lost Grid v1.1.0 - https://github.com/corysimmons/lost
 
 $gutter = 30px
 $breakpoint = 1000px
@@ -143,7 +143,7 @@ row($ratios = 1, $gut = $gutter)
  *
  * @param {fraction} [$ratios=1] - If $old is false, this is a simple fraction of the containing element's width. If $old is true, this is a collection of fractions with the containing element's fraction passed each time it is nested.
  * @param {number} [$gut=$gutter] - The margin on each side of the element used to create a gutter. Typically this is left alone, but if you need to have a specifically large or small gutter, you will need to alter this along with the containing row's gutter so they are the same.
- * @param {boolean} [$init=true] - If true, the mixin will create initial stylings (the float). Useful for creating CSS grids with Lost.
+ * @param {boolean} [$output=normal] - Determines what type of code to output. Accepts normal (all styles for a column), init (the initial styles of any column), or bare (just the width of the column). Useful for creating CSS classes with Lost.
  *
  * @example
  *   .parent
@@ -162,28 +162,37 @@ row($ratios = 1, $gut = $gutter)
  *           column(1/4 1/2)
  */
 
-column($ratios = 1, $gut = $gutter, $init = true)
-  if $init is true
+column($ratios = 1, $gut = $gutter, $output = normal)
+
+  if $output is init or $output is normal
     if $rtl
       float: right
     else
       float: left
+
   if $old
     $gut = $gut * .1
     if $gut > 0
-      width: (_get-column($ratios, $gut)[0])%
-      margin-left: (_get-column($ratios, $gut)[1])%
-      margin-right: (_get-column($ratios, $gut)[1])%
+      if $output is normal or $output is bare
+        width: (_get-column($ratios, $gut)[0])%
+      if $output is normal or $output is init
+        margin-left: (_get-column($ratios, $gut)[1])%
+        margin-right: (_get-column($ratios, $gut)[1])%
     if $gut is 0
-      width: (100% * $ratios)
+      if $output is normal or $output is bare
+        width: (100% * $ratios)
+
   else
     $ratios = $ratios[0]
     if $gut > 0
-      width: s('calc(100% * %s - %s)', $ratios, $gut)
-      margin-left: ($gut / 2)
-      margin-right: ($gut / 2)
+      if $output is normal or $output is bare
+        width: s('calc(100% * %s - %s)', $ratios, $gut)
+      if $output is normal or $output is init
+        margin-left: ($gut / 2)
+        margin-right: ($gut / 2)
     if $gut is 0
-      width: s('calc(100% * %s)', $ratios)
+      if $output is normal or $output is bare
+        width: s('calc(100% * %s)', $ratios)
 
 
 /**
