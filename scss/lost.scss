@@ -1,4 +1,4 @@
-// Lost Grid v1.0.0 - https://github.com/corysimmons/lost
+// Lost Grid v1.0.1 - https://github.com/corysimmons/lost
 
 $gutter: 30px !default;
 $breakpoint: 1000px !default;
@@ -164,6 +164,7 @@ $rtl: false !default;
 ///
 /// @param {fraction} $ratios [1] - If $old is false, this is a simple fraction of the containing element's width. If $old is true, this is a collection of fractions with the containing element's fraction passed each time it is nested.
 /// @param {number} $gut [$gutter] - The margin on each side of the element used to create a gutter. Typically this is left alone, but if you need to have a specifically large or small gutter, you will need to alter this along with the containing row's gutter so they are the same.
+/// @param {boolean} $init [true] - If true, the mixin will create initial stylings (the float). Useful for creating CSS grids with Lost.
 ///
 /// @example
 ///   .parent {
@@ -187,11 +188,13 @@ $rtl: false !default;
 ///     }
 ///   }
 
-@mixin column($ratios: 1, $gut: $gutter) {
-  @if ($rtl) {
-    float: right;
-  } @else {
-    float: left;
+@mixin column($ratios: 1, $gut: $gutter, $init: true) {
+  @if ($init) {
+    @if ($rtl) {
+      float: right;
+    } @else {
+      float: left;
+    }
   }
 
   @if ($old) {
