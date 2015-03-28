@@ -1,4 +1,4 @@
-// Lost Grid v1.1.0 - https://github.com/corysimmons/lost
+// Lost Grid v1.1.1 - https://github.com/corysimmons/lost
 
 $gutter = 30px
 $breakpoint = 1000px
@@ -208,7 +208,7 @@ column($ratios = 1, $gut = $gutter, $output = normal)
  *       offset(1/3)
  */
 
-offset($ratios = false, $gut = $gutter)
+offset($ratios = false, $gut = $gutter, $output = normal)
   if $old
     $gut = $gut * .1
     if $gut > 0
@@ -239,6 +239,7 @@ offset($ratios = false, $gut = $gutter)
  * Source ordering. Useful for having an element appear above or below another element on mobile devices, and then to the opposite side on larger devices. For instance, a sidebar and article. You might want the sidebar to appear before the article on mobile, but be to the right of the article on desktop. This is how that is achieved.
  *
  * @param {fraction} [$ratios=false] - Fraction of the container to be moved by it's left value.
+ * @param {string} [$output=normal] - Determines what styles are compiled. Accepts normal (all styles), init (only initialization styles), or bare (just the left position).
  *
  * @example
  *   .sidebar
@@ -251,13 +252,15 @@ offset($ratios = false, $gut = $gutter)
  *       move(-1/3)
  */
 
-move($ratios = false)
-  position: relative
-  if $old
-    left: (100% * $ratios)
-  else
-    $ratios = $ratios[0]
-    left: s('calc(100% * %s)', $ratios)
+move($ratios = false, $output = normal)
+  if $output is normal or $output is init
+    position: relative
+  if $output is normal or $output is bare
+    if $old
+      left: (100% * $ratios)
+    else
+      $ratios = $ratios[0]
+      left: s('calc(100% * %s)', $ratios)
 
 
 /**

@@ -1,4 +1,4 @@
-// Lost Grid v1.1.0 - https://github.com/corysimmons/lost
+// Lost Grid v1.1.1 - https://github.com/corysimmons/lost
 
 $gutter: 30px !default;
 $breakpoint: 1000px !default;
@@ -307,6 +307,7 @@ $rtl: false !default;
 /// Source ordering. Useful for having an element appear above or below another element on mobile devices, and then to the opposite side on larger devices. For instance, a sidebar and article. You might want the sidebar to appear before the article on mobile, but be to the right of the article on desktop. This is how that is achieved.
 ///
 /// @param {fraction} $ratios [false] - Fraction of the container to be moved by it's left value.
+/// @param {string} $output [normal] - Determines what styles are compiled. Accepts normal (all styles), init (only initialization styles), or bare (just the left position).
 ///
 /// @example
 ///   .sidebar {
@@ -322,15 +323,17 @@ $rtl: false !default;
 ///     }
 ///   }
 
-@mixin move($ratios: false) {
-  position: relative;
-
-  @if ($old) {
-    left: (100% * $ratios);
-  } @else {
-    $ratios: nth($ratios, 1);
-
-    left: calc(100% * #{$ratios});
+@mixin move($ratios: false, $output: normal) {
+  @if ($output == normal) or ($output == init) {
+    position: relative;
+  }
+  @if ($output == normal) or ($output == bare) {
+    @if ($old) {
+      left: (100% * $ratios);
+    } @else {
+      $ratios: nth($ratios, 1);
+      left: calc(100% * #{$ratios});
+    }
   }
 }
 
