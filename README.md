@@ -169,7 +169,7 @@ div
   height: 100px
 ```
 
-And finally, use the `edit()` mixin at base level to visualize the entire structure of your site, or just specify the areas you're working on.
+Use the `edit()` mixin at base level to visualize the entire structure of your site, or just specify the areas you're working on.
 
 ```html
 <section>
@@ -191,6 +191,32 @@ section
     edit()
   &:last-child
     edit(green)
+```
+
+Lost even lets you create your own custom CSS grids in just a few lines of code with the `$output` parameter which accepts `normal` (compiles all `column` styles), `init` (only initial styles), and `bare` (just the `width`).
+
+```stylus
+[class*="col-"]
+  column($output: init)
+
+for $i in 1..12
+  .col-{$i}
+    column($i/12, $output: bare)
+```
+
+```css
+[class*="col-"] {
+  float: left;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+.col-1 {
+  width: calc(100% * 0.083333333333333 - 30px);
+}
+.col-2 {
+  width: calc(100% * 0.166666666666667 - 30px);
+}
+...
 ```
 
 
@@ -269,6 +295,7 @@ Creates a column that is a fraction of the size of it's containing element with 
 
 - `$ratios = 1` - If `$old` is `false`, this is a simple fraction of the containing element's width. If `$old` is `true`, this is a collection of fractions with the containing element's fraction passed each time it is nested.
 - `$gut = $gutter` - The margin on each side of the element used to create a gutter. Typically this is left alone, but if you need to have a specifically large or small gutter, you will need to alter this along with the containing row's gutter so they are the same.
+- `$output =normal` - Determines what type of code to output. Accepts normal (all styles for a column), init (the initial styles of any column), or bare (just the width of the column). Useful for creating CSS classes with Lost.
 
 ```stylus
 // Clean calc() syntax
@@ -307,6 +334,7 @@ Margin to the left or right of an elements depending on if the fraction passed i
 Source ordering. Useful for having an element appear above or below another element on mobile devices, and then to the opposite side on larger devices. For instance, a sidebar and article. You might want the sidebar to appear before the article on mobile, but be to the right of the article on desktop. This is how that is achieved.
 
 - `$ratios = false` - Fraction of the container to be moved by it's `left` value.
+- `$output = normal` - Determines what styles are compiled. Accepts normal (all styles), init (only initialization styles), or bare (just the left position).
 
 ```stylus
 .sidebar
