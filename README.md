@@ -10,7 +10,7 @@
 
 Lost Grid is a grid system for SCSS or Stylus. It is built upon years of studying grid systems and building dozens of grid systems with tons of community feedback.
 
-It makes use of [`calc()`](http://caniuse.com/#feat=calc) to create stunning grids based on fractions you define, and falls back to a heavily modified, much cleaner version of [Jeet](http://jeet.gs/) on older browsers.
+It makes use of [`calc()`](http://caniuse.com/#feat=calc) to create stunning grids based on fractions you define.
 
 To support [Isotope](http://isotope.metafizzy.co/) and similar plugins, it mimics Bootstrap's [grid](http://getbootstrap.com/css/#grid) markup.
 
@@ -24,128 +24,125 @@ Feature | Lost | [Bootstrap](http://getbootstrap.com/css/#grid) | [Foundation](h
 [Small learning curve](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#small-learning-curve) | :+1: | :+1: | :+1: | :+1: | :+1:
 [Easy-to-implement](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#easy-to-implement) | :+1: | :+1: | :+1:
 [Works with Masonry](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#works-with-masonry) | :+1: | :+1: | :+1: |
+[Terse markup](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#terse-markup) | | | | :+1: | :+1: | :+1:
 [On-the-fly grids](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#on-the-fly-grids) | :+1: | | | :+1: | :+1: | :+1:
 [Clean markup](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#clean-markup) | :+1: | | | :+1: | :+1: | :+1:
-[Terse markup](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#terse-markup) | | | | :+1: | :+1: | :+1:
 [Real gutters](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#real-gutters) | :+1: | | | :+1: | :+1: | :+1:
 [Stylus support](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#stylus-support) | :+1: | | | :+1:
 [No Additional Ratio Context](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#no-additional-ratio-context) | :+1:
 [Consistent Horizontal Gutters](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#consistent-horizontal-gutters) | :+1:
 [Lightweight](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#lightweight) | :+1:
-[Old browser fallback](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#old-browser-fallback) | :+1:
+[Vertical Grids](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#vertical-grids) | :+1:
 
 <sup>If you notice anything in this table is incorrect or unfair, please don't hesitate to [open an issue](https://github.com/corysimmons/lost/issues/new).</sup>
 
 
 ## Getting Started
 
-Feel free to follow along by forking a CodePen demo in either [SCSS](http://codepen.io/corysimmons/pen/emQQPV?editors=110) or [Stylus](http://codepen.io/corysimmons/pen/XJyyBE?editors=110).
-
-You can either use the `row()` mixin or the helper class. Then just specify with a fraction how large you'd like each element to be.
-
-```html
-<div class="row">
-  <figure>...</figure>
-  <figure>...</figure>
-  <figure>...</figure>
-</div>
-```
-
-```stylus
-figure
-  column(1/3)
-```
-
-Want to add a ton of items to your row? Use `cycle()` to make sure each group of elements is cleared (for uneven height elements).
-
-```html
-<div class="row">
-  <figure>...</figure>
-  <figure>...</figure>
-  <figure>...</figure>
-  <figure>...</figure>
-  <figure>...</figure>
-  <figure>...</figure>
-</div>
-```
-
-```stylus
-figure
-  column(1/3)
-  cycle(3)
-```
-
-To give your grid a background color simply wrap your `.row` in another element.
+Lost works by putting **blocks** into **boxes**. Imagine blocks are your columns, and boxes are your rows - except you can use them to create vertical grids so we've opted to use the terms `block` and `box`.
 
 ```html
 <section>
-  <div class="row">
-    <figure>...</figure>
-    <figure>...</figure>
-    <figure>...</figure>
-  </div>
+  <figure>...</figure>
+  <figure>...</figure>
+  <figure>...</figure>
 </section>
 ```
 
 ```stylus
 section
-  background: tomato
+  box()
 
 figure
-  column(1/3)
+  block(1/3)
 ```
 
-You can center that `section` with a mixin or the helper class `.container`.
+Want to add a ton of items to your row? Use `cycle()` to make sure each group of elements is cleared (for uneven height elements).
+
+```html
+<section>
+  <figure>...</figure>
+  <figure>...</figure>
+  <figure>...</figure>
+  <figure>...</figure>
+  <figure>...</figure>
+  <figure>...</figure>
+</section>
+```
 
 ```stylus
 section
-  container()
+  box()
+
+figure
+  block(1/3)
+  cycle(3)
 ```
 
-Nesting is simple if you are using the default `calc()` version of the grid system.
+To give your grid a background color simply wrap your box in another element.
 
 ```html
-<div class="row">
-  <figure>
-    <div class="row">
-      <figure>...</figure>
-      <figure>...</figure>
-    </div>
-  </figure>
-  <figure>...</figure>
-  <figure>...</figure>
+<div class="wrap">
+  <section>
+    <figure>...</figure>
+    <figure>...</figure>
+    <figure>...</figure>
+  </section>
 </div>
 ```
 
 ```stylus
+.wrap
+  background: tomato
+
+section
+  box()
+
 figure
-  column(1/3)
-  figure
-    column(1/2)
+  block(1/3)
+  background: darken(tomato, 10%)
 ```
 
-If you need to support older browsers, you need to pass *parent ratios*.
+Nesting is simple and requires [no extra fractions](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#no-additional-ratio-context) like in other preprocessor grid systems.
+
+```html
+<section>
+  <figure>
+    <section>
+      <figure>...</figure>
+      <figure>...</figure>
+    </section>
+  </figure>
+  <figure>...</figure>
+  <figure>...</figure>
+</section>
+```
 
 ```stylus
+section
+  box()
+
 figure
-  column(1/3)
+  block(1/3)
   figure
-    column(1/2 1/3)
+    block(1/2)
 ```
 
 You can `offset` columns and perform source ordering with `move`.
 
 ```html
-<div class="row">
+<section>
   <figure>...</figure>
-
   <figure>...</figure>
-</div>
+</section>
 ```
 
 ```stylus
+section
+  box()
+
 figure
-  column(1/3)
+  block(1/3)
   &:first-child
     offset(1/3) // or move(1/3)
 ```
@@ -187,9 +184,9 @@ Use the `edit()` mixin at base level to visualize the entire structure of your s
 
 ```stylus
 section
-  &:first-child
+  &:nth-of-type(1)
     edit()
-  &:last-child
+  &:nth-of-type(2)
     edit(green)
 ```
 
@@ -197,11 +194,11 @@ Lost even lets you create your own custom CSS grids in just a few lines of code 
 
 ```stylus
 [class*="col-"]
-  column($output: init)
+  block($output: init)
 
 for $i in 1..12
   .col-{$i}
-    column($i/12, $output: bare)
+    block($i/12, $output: bare)
 ```
 
 ```css
@@ -219,13 +216,67 @@ for $i in 1..12
 ...
 ```
 
+Once you've mastered the basic horizontal grid system (it shouldn't take long), you can start to make vertical grids that have the same vertical gutters as your horizontal grids. Just pass `$dir: column` to both your `box()` and `block()` mixins.
+
+```html
+<section>
+  <figure>...</figure>
+  <figure>...</figure>
+  <figure>...</figure>
+</section>
+```
+
+```stylus
+section
+  box(column)
+
+figure
+  block(1/3, column)
+```
+
+No other grid system in the world supports vertical grids. You can even use both at the same time to create a horizontal/vertical grid (which resembles a tic-tac-toe board).
+
+```html
+<section>
+  <figure>...</figure>
+  <figure>...</figure>
+  <figure>...</figure>
+  <figure>...</figure>
+</section>
+```
+
+```stylus
+section
+  box(both)
+
+figure
+  block(1/2, both)
+```
+
+Lost also provides some helper functions for complete control over your grids.
+
+```html
+<section>
+  <figure>...</figure>
+  <figure>...</figure>
+</section>
+```
+
+```stylus
+section
+  box()
+
+figure
+  float: left
+  width: size(1/2)
+  gutters()
+```
+
 
 ## Grid Settings
 Just set any of these in a settings file after you `@import` Lost and before you use a Lost mixin.
 
 - `$gutter = 30px`
-- `$breakpoint = 1000px`
-- `$old = false`
 - `$rtl = false`
 
 
@@ -242,19 +293,19 @@ section
 ```
 
 ##### `cf()`
-Clearfix used to clear floated children columns. http://nicolasgallagher.com/micro-clearfix-hack
+Clearfix used to clear floated children boxes. http://nicolasgallagher.com/micro-clearfix-hack
 
 ```stylus
 .parent
   cf()
   .child
-    column(1/2)
+    box(1/2)
 ```
 
 ##### `align()`
 Vertically and/or horizontally align nested elements.
 
-- `$direction = both` - Either `vertical`, `v`, `horizontal`, or `h`. Defaults to `both`.
+- `$dir = both` - Direction. Either `vertical`, `v`, `horizontal`, or `h`. Defaults to `both`.
 
 ```stylus
 .parent
@@ -266,89 +317,66 @@ Vertically and/or horizontally align nested elements.
     height: 150px
 ```
 
-##### `container()`
-Create a container that is centered in the middle of the page with some padding on the left and right sides of it.
+##### `box()`
+Creates a horizontal or vertical container for blocks. Applies a negative margin on each side of the element depending on it's direction. This is required when adding blocks to negate their outer margins. The row version of this mixin automatically applies clearfix as it's assumed floated elements will be nested within it.
 
-- `$pad = 0` - Padding on the left and right side of the element. `0` by default, but feel free to increase it so containers don't touch the edge of the viewport.
-- `$mw = $breakpoint` - The `max-width` of the element.
-
-```stylus
-section
-  container(45px)
-```
-
-##### `row()`
-Apply a negative margin on each side of the element. This is required when adding columns and such to negate their outer margins. This mixin automatically applies clearfix as it's assumed floated elements will be nested within it.
-
-- `$ratios = 1` - If `$old` is `false`, a single fraction used to determine the negative left and right margins of the element. If `$old` is `true`, a collection of container ratios (fractions).
-- `$gut = $gutter` - The gutter width. This is typically left alone, but if you want a specific row/column combination to have a larger or smaller gutter, you need to specify the same `$gut` on both types of elements.
+- `$dir = row` - The direction of the nested grid system. Accepts row, column, or both.
+- `$gut = $gutter` - The gutter width. This is typically left alone, but if you want a specific box/block combination to have a larger or smaller gutter, you need to specify the same $gut on both types of elements.
 
 ```stylus
 .parent
-  row()
+  box()
   .children
-    column(1/2)
+    box(1/2)
 ```
 
-##### `column()`
-Creates a column that is a fraction of the size of it's containing element with a margin on each side of the element. If `$old` is set to `false`, you don't need to pass any additional ratios (fractions), as the grid system will make use of `calc()`. If `$old` is set to `true`, the grid system will support more browsers, but you will need to pass additional ratios for each nested container. It's highly recommended you use the `calc()` syntax to avoid confusion.
+##### `block()`
+Creates a box that is a fraction of the size of it's containing element with a margin on each side of the element. You don't need to pass any additional ratios (fractions), as the grid system will make use of calc().
 
-- `$ratios = 1` - If `$old` is `false`, this is a simple fraction of the containing element's width. If `$old` is `true`, this is a collection of fractions with the containing element's fraction passed each time it is nested.
+- `$fraction = 1` - This is a simple fraction of the containing element's width or height depending on $dir.
+- `$dir = row` - The direction of the containing grid. Can be row (horizontal grid), column (vertical grid), or both.
 - `$gut = $gutter` - The margin on each side of the element used to create a gutter. Typically this is left alone, but if you need to have a specifically large or small gutter, you will need to alter this along with the containing row's gutter so they are the same.
-- `$output =normal` - Determines what type of code to output. Accepts normal (all styles for a column), init (the initial styles of any column), or bare (just the width of the column). Useful for creating CSS classes with Lost.
+- `$output = normal` - Determines what type of code to output. Accepts normal (all styles for a box), init (the initial styles of any box), or bare (just the width of the box). Useful for creating CSS classes with Lost.
 
 ```stylus
-// Clean calc() syntax
 .parent
-  row()
+  box()
   .children
-    column(1/4)
-```
-
-```stylus
-// Supports old browsers syntax
-.parent
-  row()
-  .child
-    column(1/2)
-    .nested-parent
-      row(1/2)
-      .nested-child
-        column(1/4 1/2)
+    block(1/4)
 ```
 
 ##### `offset()`
-Margin to the left or right of an elements depending on if the fraction passed is positive or negative.
+Margin to the left or right of an elements depending on if the fraction passed is positive or negative. Unfortunately it only works for horizontal grids as percentages are determined by container width exclusively.
 
-- `$ratios = false` - Fraction of the container to be offset.
-- `$gut = $gutter` - How large the gutter involved is, typically this won't be adjusted, but if you have set the columns for that row to have different gutters than default, you will need to match that gutter here as well.
+- `$fraction = false` - Fraction of the container to be offset.
+- `$gut = $gutter` - How large the gutter involved is, typically this won't be adjusted, but if you have set the boxes for that row to have different gutters than default, you will need to match that gutter here as well.
 
 ```stylus
 .two-elements
-  column(1/3)
+  block(1/3)
   &:nth-child(2)
     offset(1/3)
 ```
 
 ##### `move()`
-Source ordering. Useful for having an element appear above or below another element on mobile devices, and then to the opposite side on larger devices. For instance, a sidebar and article. You might want the sidebar to appear before the article on mobile, but be to the right of the article on desktop. This is how that is achieved.
+Source ordering. Useful for having an element appear above or below another element on mobile devices, and then to the opposite side on larger devices. For instance, a sidebar and article. You might want the sidebar to appear before the article on mobile, but be to the right of the article on desktop. This is how that is achieved. Unfortunately it only works for horizontal grids as percentages are determined by container width exclusively.
 
-- `$ratios = false` - Fraction of the container to be moved by it's `left` value.
+- `$fraction = false` - Fraction of the container to be moved by it's left value.
 - `$output = normal` - Determines what styles are compiled. Accepts normal (all styles), init (only initialization styles), or bare (just the left position).
 
 ```stylus
 .sidebar
   @media (min-width: 800px)
-    column(1/3)
+    block(1/3)
     move(2/3)
 .article
   @media (min-width: 800px)
-    column(2/3)
+    block(2/3)
     move(-1/3)
 ```
 
 ##### `cycle()`
-Since columns are floated, when they are of unequal height, they will misalign easily. By setting `cycle()` you can make sure elements are being cleared on appropriate rows.
+Since row boxes are floated, when they are of unequal height, they will misalign easily. By setting `cycle()` you can make sure elements are being cleared on appropriate rows.
 
 - `$item = -1` - The `nth-child + 1` element to clear on. If you want a row to be 3 elements wide, then you'd pass 3.
 
@@ -359,11 +387,29 @@ Since columns are floated, when they are of unequal height, they will misalign e
     cycle(3)
 ```
 
-##### `.container`
-A helper class used for centering by default values.
+##### `size()`
+Helper function for returning the width or height of an element.
 
-##### `.row`
-A helper class used to create rows with default values.
+- `$fraction = false` - Fraction of the container.
+- `$gut = $gutter` - Gutter unit to be used in the calculation.
+
+```stylus
+.element
+  width: size(1/2)
+  height: size(1/3)
+```
+
+##### `gutters()`
+Helper mixin for setting the gutters of an element.
+
+- `$dir = row` - Whether this is a horizontal (row) or vertical (column) grid.
+- `$gut = $gutter` - Gutter unit to be used in the calculation.
+
+```stylus
+.element
+  width: size(1/2)
+  height: size(1/3)
+```
 
 
 ## Usage with Node
@@ -393,17 +439,13 @@ stylus(fs.readFileSync('./css/style.styl', 'utf8'))
 
 
 ## Browser Support
-- [`calc()` grids](https://webdesign.tutsplus.com/tutorials/calc-grids-are-the-best-grids--cms-22902) are IE9+ with poor support on old Android browsers ([`calc()` browser support](http://caniuse.com/#feat=calc)), however the fallback grid system based on Jeet has support all the way back to IE7 with a proper HTML [boilerplate](https://github.com/corysimmons/boy).
-- Flexbox is required for the `align()` mixin, although there is a fall back that is IE9+. ([Flexbox browser support](http://caniuse.com/#search=flexbox))
-
-
-## Caveats
-- Nesting in the fallback grid system creates gaps a few pixels wide on each side of the nested elements. This is due to a rounding issue that affects a lot of fluid grid systems.
+- [`calc()` grids](https://webdesign.tutsplus.com/tutorials/calc-grids-are-the-best-grids--cms-22902) are IE9+ with poor support on old Android browsers ([`calc()` browser support](http://caniuse.com/#feat=calc)). With the [calc() Polyfill](https://github.com/closingtag/calc-polyfill) the grid works perfect in IE8 as well.
+- Flexbox is required for the `align()` mixin. ([Flexbox browser support](http://caniuse.com/#search=flexbox))
 
 
 ### Other Projects
 If you like this project then I encourage you to check out a few of my other hand-selected projects.
 
-- [lost-grid.js](https://github.com/corysimmons/lost-grid.js) - A purely JavaScript version of this grid system. You can create your grid system directly in your markup without ever touching a line of preprocessor code. A pretty cool concept that works great for prototypes.
 - [Boy](https://github.com/corysimmons/boy) - A super lightweight, old-browser-friendly, HTML5 boilerplate with tons of features that make it a great start to any project.
 - [Typographic](https://github.com/corysimmons/typographic) - Insanely powerful yet easy-to-use responsive typography. Includes vertical rhythm, font stacks, modular scale, and more.
+- [lost-grid.js](https://github.com/corysimmons/lost-grid.js) - A purely JavaScript version of Lost v1. You can create your grid system directly in your markup without ever touching a line of preprocessor code. A pretty cool concept that works great for prototypes.

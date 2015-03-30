@@ -1,8 +1,6 @@
-// Lost Grid v1.1.1 - https://github.com/corysimmons/lost
+// Lost Grid v2.0.0 - https://github.com/corysimmons/lost
 
 $gutter: 30px !default;
-$breakpoint: 1000px !default;
-$old: false !default;
 $rtl: false !default;
 
 
@@ -22,13 +20,13 @@ $rtl: false !default;
 }
 
 
-/// Clearfix used to clear floated children columns. http://nicolasgallagher.com/micro-clearfix-hack
+/// Clearfix used to clear floated children boxes. http://nicolasgallagher.com/micro-clearfix-hack
 ///
 /// @example
 ///   .parent {
 ///     @include cf;
 ///     .child {
-///       @include column(1/2);
+///       @include box(1/2);
 ///     }
 ///   }
 
@@ -48,7 +46,7 @@ $rtl: false !default;
 
 /// Vertically and/or horizontally align nested elements.
 ///
-/// @param {string} $direction [both] - Either vertical, v, horizontal, or h. Defaults to both.
+/// @param {string} $dir [both] - Direction. Either vertical, v, horizontal, or h. Defaults to both.
 ///
 /// @example
 ///   .parent {
@@ -61,291 +59,232 @@ $rtl: false !default;
 ///     }
 ///   }
 
-@mixin align($direction: both) {
-  @if ($old) {
-    position: relative;
-
-    > * {
-      position: absolute;
-      transform-style: preserve-3d;
-
-      @if ($direction == 'horizontal') or ($direction == 'h') {
-        left: 50%;
-        transform: translateX(-50%);
-      } @else if ($direction == 'vertical') or ($direction == 'v') {
-        top: 50%;
-        transform: translateY(-50%);
-      } @else if ($direction == 'reset') {
-        top: auto;
-        left: auto;
-        transform: translate(0, 0);
-      } @else {
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
-    }
+@mixin align($dir: both) {
+  display: flex;
+  @if ($dir == 'horizontal') or ($dir == 'h') {
+    justify-content: center;
+  } @else if ($dir == 'vertical') or ($dir == 'v') {
+    align-items: center;
+  } @else if ($dir == 'reset') {
+    justify-content: inherit;
+    align-items: inherit;
   } @else {
-    display: flex;
-
-    @if ($direction == 'horizontal') or ($direction == 'h') {
-      justify-content: center;
-    } @else if ($direction == 'vertical') or ($direction == 'v') {
-      align-items: center;
-    } @else if ($direction == 'reset') {
-      justify-content: inherit;
-      align-items: inherit;
-    } @else {
-      justify-content: center;
-      align-items: center;
-    }
+    justify-content: center;
+    align-items: center;
   }
 }
 
 
-/// Create a container that is centered in the middle of the page with some padding on the left and right sides of it.
+/// Creates a horizontal or vertical container for blocks. Applies a negative margin on each side of the element depending on it's direction. This is required when adding blocks to negate their outer margins. The row version of this mixin automatically applies clearfix as it's assumed floated elements will be nested within it.
 ///
-/// @param {number} $pad [0] - Padding on the left and right side of the element. 0 by default, but feel free to increase it so containers don't touch the edge of the viewport.
-/// @param {number} $mw [$breakpoint] - The max-width of the element.
-///
-/// @example
-///   section {
-///     @include container(45px);
-///   }
-
-@mixin container($pad: 0, $mw: $breakpoint) {
-  max-width: $mw;
-  margin-right: auto;
-  margin-left: auto;
-
-  @if ($old) {
-    $pad: _strip-units($pad) * 0.1;
-    padding-left: $pad * 1%;
-    padding-right: $pad * 1%;
-  } @else {
-    padding-left: $pad;
-    padding-right: $pad;
-  }
-}
-
-
-/// Apply a negative margin on each side of the element. This is required when adding columns and such to negate their outer margins. This mixin automatically applies clearfix as it's assumed floated elements will be nested within it.
-///
-/// @param {fraction} $ratios [1] - If $old is false, a single fraction used to determine the negative left and right margins of the element. If $old is true, a collection of container ratios (fractions).
-/// @param {number} $gut [$gutter] - The gutter width. This is typically left alone, but if you want a specific row/column combination to have a larger or smaller gutter, you need to specify the same $gut on both types of elements.
+/// @param {string} $dir [row] - The direction of the nested grid system. Accepts row, column, or both.
+/// @param {number} $gut [$gutter] - The gutter width. This is typically left alone, but if you want a specific box/block combination to have a larger or smaller gutter, you need to specify the same $gut on both types of elements.
 ///
 /// @example
 ///   .parent {
-///     @include row();
+///     @include box;
 ///     .children {
-///       @include column(1/2);
+///       @include block(1/2);
 ///     }
 ///   }
 
-@mixin row($ratios: 1, $gut: $gutter) {
-  @include cf;
-
-  @if ($old) {
-    $gut: $gut * 0.1;
-    $margin-width: _strip-units(nth(_get-column($ratios, $gut), 2)) / 2 * -1%;
-
-    @if ($gut > 0) {
-      margin-left: $margin-width;
-      margin-right: $margin-width;
-    }
-  } @else {
+@mixin box($dir: row, $gut: $gutter) {
+  @if ($dir == row) {
+    @include cf;
     margin-left: -($gut / 2);
     margin-right: -($gut / 2);
+    overflow-x: hidden;
+    overflow-y: inherit;
+    height: auto;
+    @if ($gut != 0) {
+      width: calc(100% + #{$gut});
+    } @else {
+      width: 100%;
+    }
+  } @else if ($dir == column) {
+    margin-top: -($gut / 2);
+    margin-bottom: -($gut / 2);
+    overflow-x: inherit;
+    overflow-y: hidden;
+    @if ($gut != 0) {
+      height: calc(100% + #{$gut});
+    } @else {
+      height: 100%;
+    }
+  } @else {
+    margin: -($gut / 2);
+    overflow: hidden;
+    @if ($gut != 0) {
+      width: calc(100% + #{$gut});
+      height: calc(100% + #{$gut});
+    } @else {
+      width: 100%;
+      height: 100%;
+    }
   }
 }
 
 
-/// Creates a column that is a fraction of the size of it's containing element with a margin on each side of the element. If $old is set to false, you don't need to pass any additional ratios (fractions), as the grid system will make use of calc(). If $old is set to true, the grid system will support more browsers, but you will need to pass additional ratios for each nested container. It's highly recommended you use the calc() syntax to avoid confusion.
+/// Creates a box that is a fraction of the size of it's containing element with a margin on each side of the element. You don't need to pass any additional ratios (fractions), as the grid system will make use of calc().
 ///
-/// @param {fraction} $ratios [1] - If $old is false, this is a simple fraction of the containing element's width. If $old is true, this is a collection of fractions with the containing element's fraction passed each time it is nested.
+/// @param {fraction} $fraction [1] - This is a simple fraction of the containing element's width or height depending on $dir.
+/// @param {string} $dir [row] - The direction of the containing grid. Can be row (horizontal grid), column (vertical grid), or both.
 /// @param {number} $gut [$gutter] - The margin on each side of the element used to create a gutter. Typically this is left alone, but if you need to have a specifically large or small gutter, you will need to alter this along with the containing row's gutter so they are the same.
-/// @param {boolean} $output [normal] - Determines what type of code to output. Accepts normal (all styles for a column), init (the initial styles of any column), or bare (just the width of the column). Useful for creating CSS classes with Lost.
+/// @param {boolean} $output [normal] - Determines what type of code to output. Accepts normal (all styles for a box), init (the initial styles of any box), or bare (just the width of the box). Useful for creating CSS classes with Lost.
 ///
 /// @example
 ///   .parent {
-///     @include row();
+///     @include box;
 ///     .children {
-///       @include column(1/4);
-///     }
-///   }
-///
-/// @example
-///   .parent {
-///     @include row();
-///     .child {
-///       @include column(1/2);
-///       .nested-parent {
-///         @include row(1/2);
-///         .nested-child {
-///           @include column(1/4 1/2);
-///         }
-///       }
+///       @include block(1/4);
 ///     }
 ///   }
 
-@mixin column($ratios: 1, $gut: $gutter, $output: normal) {
-
-  @if ($output == init) or ($output == normal)  {
-    @if ($rtl) {
-      float: right;
-    } @else {
-      float: left;
+@mixin block($fraction: 1, $dir: row, $gut: $gutter, $output: normal) {
+  @if ($dir == row) {
+    @if ($output == init) or ($output == normal) {
+      @if ($rtl) {
+        float: right;
+      } @else {
+        float: left;
+      }
     }
-  }
-
-  @if ($old) {
-
-    $gut: $gut * 0.1;
     @if ($gut > 0) {
       @if ($output == normal) or ($output == bare) {
-        width: _strip-units(nth(_get-column($ratios, $gut), 1)) * 1%;
+        width: calc(100% * #{$fraction} - #{$gut});
       }
       @if ($output == normal) or ($output == init) {
-        margin-left: _strip-units(nth(_get-column($ratios, $gut), 2)) / 2 * 1%;
-        margin-right: _strip-units(nth(_get-column($ratios, $gut), 2)) / 2 * 1%;
-      }
-    }
-    @if ($gut == 0) {
-      @if ($output == normal) or ($output == bare) {
-        width: (100% * $ratios);
-      }
-    }
-
-  } @else {
-
-    $ratios: nth($ratios, 1);
-
-    @if ($gut > 0) {
-      @if ($output == normal) or ($output == bare) {
-        width: calc(100% * #{$ratios} - #{$gut});
-      }
-      @if ($output == normal) or ($output == init) {
+        height: inherit;
         margin-left: ($gut / 2);
         margin-right: ($gut / 2);
       }
-    }
-
-    @if ($gut == 0) {
-      @if ($output == normal) or ($output == bare) {
-        width: calc(100% * #{$ratios});
+      @if ($gut == 0) {
+        @if ($output == normal) or ($output == bare) {
+          width: calc(100% * #{$fraction});
+        }
       }
     }
-
+  } @else if ($dir == column) {
+    @if ($output == init) or ($output == normal) {
+      width: 100%;
+      @if ($rtl) {
+        float: right;
+      } @else {
+        float: left;
+      }
+    }
+    @if ($gut > 0) {
+      @if ($output == normal) or ($output == bare) {
+        height: calc(100% * #{$fraction} - #{$gut});
+      }
+      @if ($output == normal) or ($output == init) {
+        margin-top: ($gut / 2);
+        margin-bottom: ($gut / 2);
+      }
+    }
+    @if ($gut == 0) {
+      @if ($output == normal) or ($output == bare) {
+        height: calc(100% * #{$fraction});
+      }
+    }
+  } @else {
+    @if ($output == init) or ($output == normal) {
+      width: 100%;
+      @if ($rtl) {
+        float: right;
+      } @else {
+        float: left;
+      }
+    }
+    @if ($gut > 0) {
+      @if ($output == normal) or ($output == bare) {
+        width: calc(100% * #{$fraction} - #{$gut});
+        height: calc(100% * #{$fraction} - #{$gut});
+      }
+      @if ($output == normal) or ($output == init) {
+        margin: ($gut / 2);
+      }
+    }
+    @if ($gut == 0) {
+      @if ($output == normal) or ($output == bare) {
+        width: calc(100% * #{$fraction});
+        height: calc(100% * #{$fraction});
+      }
+    }
   }
 }
 
 
-/// Margin to the left or right of an elements depending on if the fraction passed is positive or negative.
+/// Margin to the left or right of an elements depending on if the fraction passed is positive or negative. Unfortunately it only works for horizontal grids as percentages are determined by container width exclusively.
 ///
-/// @param {fraction} $ratios [false] - Fraction of the container to be offset.
-/// @param {number} $gut [$gutter] - How large the gutter involved is, typically this won't be adjusted, but if you have set the columns for that row to have different gutters than default, you will need to match that gutter here as well.
+/// @param {fraction} $fraction [false] - Fraction of the container to be offset.
+/// @param {number} $gut [$gutter] - How large the gutter involved is, typically this won't be adjusted, but if you have set the boxes for that row to have different gutters than default, you will need to match that gutter here as well.
 ///
 /// @example
 ///   .two-elements {
-///     @include column(1/3);
-///     &:nth-child(2) {
+///     @include block(1/3);
+///     &:first-child {
 ///       @include offset(1/3);
 ///     }
 ///   }
 
-@mixin offset($ratios: false, $gut: $gutter) {
-  @if ($old) {
-    $gut: $gut * 0.1;
-    $col-width: nth(_get-column($ratios, $gut), 1);
-    $col-gutter: nth(_get-column($ratios, $gut), 2);
-
-    @if ($gut > 0) {
-      @if ($ratios > 0) {
-        margin-left: _strip-units(($col-width + $col-gutter) + ($gut / 2)) * 1%;
-      }
-
-      @if ($ratios < 0) {
-        margin-right: _strip-units($col-width + ($col-gutter / 2)) * -1%;
-      }
+@mixin offset($fraction: false, $gut: $gutter) {
+  @if ($gut > 0) {
+    @if ($fraction > 0) {
+      margin-left: calc(100% * #{$fraction} + (#{$gut} / 2));
     }
-
-    @if ($gut == 0) {
-      @if ($ratios > 0) {
-        margin-left: (100% * ratios);
-      }
-
-      @if ($ratios < 0) {
-        margin-right: (-100% * ratios);
-      }
+    @if ($fraction < 0) {
+      margin-right: calc(-100% * #{$fraction} + (#{$gut} / 2));
     }
-  } @else {
-    $ratios: nth($ratios, 1);
-
-    @if ($gut > 0) {
-      @if ($ratios > 0) {
-        margin-left: calc(100% * #{$ratios} + (#{$gut} / 2));
-      }
-
-      @if ($ratios < 0) {
-        margin-right: calc(-100% * #{$ratios} + (#{$gut} / 2));
-      }
+  }
+  @if ($gut == 0) {
+    @if ($fraction > 0) {
+      margin-left: calc(100% * #{$fraction});
     }
-
-    @if ($gut == 0) {
-      @if ($ratios > 0) {
-        margin-left: calc(100% * #{$ratios});
-      }
-
-      @if ($ratios < 0) {
-        margin-right: calc(-100% * #{$ratios});
-      }
+    @if ($fraction < 0) {
+      margin-right: calc(-100% * #{$fraction});
     }
   }
 }
 
 
-/// Source ordering. Useful for having an element appear above or below another element on mobile devices, and then to the opposite side on larger devices. For instance, a sidebar and article. You might want the sidebar to appear before the article on mobile, but be to the right of the article on desktop. This is how that is achieved.
+/// Source ordering. Useful for having an element appear above or below another element on mobile devices, and then to the opposite side on larger devices. For instance, a sidebar and article. You might want the sidebar to appear before the article on mobile, but be to the right of the article on desktop. This is how that is achieved. Unfortunately it only works for horizontal grids as percentages are determined by container width exclusively.
 ///
-/// @param {fraction} $ratios [false] - Fraction of the container to be moved by it's left value.
+/// @param {fraction} $fraction [false] - Fraction of the container to be moved by it's left value.
 /// @param {string} $output [normal] - Determines what styles are compiled. Accepts normal (all styles), init (only initialization styles), or bare (just the left position).
 ///
 /// @example
 ///   .sidebar {
 ///     @media (min-width: 800px) {
-///       @include column(1/3);
+///       @include block(1/3);
 ///       @include move(2/3);
 ///     }
 ///    }
 ///   .article {
 ///     @media (min-width: 800px) {
-///       @include column(2/3);
+///       @include block(2/3);
 ///       @include move(-1/3);
 ///     }
 ///   }
 
-@mixin move($ratios: false, $output: normal) {
+@mixin move($fraction: false, $output: normal) {
   @if ($output == normal) or ($output == init) {
     position: relative;
   }
   @if ($output == normal) or ($output == bare) {
-    @if ($old) {
-      left: (100% * $ratios);
-    } @else {
-      $ratios: nth($ratios, 1);
-      left: calc(100% * #{$ratios});
-    }
+    left: calc(100% * #{$fraction});
   }
 }
 
 
-/// Since columns are floated, when they are of unequal height, they will misalign easily. By setting cycle() you can make sure elements are being cleared on appropriate rows.
+/// Since boxes are floated, when they are of unequal height, they will misalign easily. By setting cycle() you can make sure elements are being cleared on appropriate rows.
 ///
 /// @param {number} $item [-1] - The nth-child + 1 element to clear on. If you want a row to be 3 elements wide, then you'd pass 3.
 ///
 /// @example
 ///   .gallery {
 ///     img {
-///       @include column(1/3);
+///       @include block(1/3);
 ///       @include cycle(3);
 ///     }
 ///   }
@@ -360,85 +299,55 @@ $rtl: false !default;
 }
 
 
-/// Reverses a list of numbers (or in our case, fractions)
+/// Helper function for returning the width or height of an element.
 ///
-/// @param {fractions} $list - A list of numbers or fractions to be reversed.
-///
-/// @example
-///   $foo: 1/2 1/3 1/4;
-///   _reverse($foo);
-///
-/// @return {fractions}
-///
-/// @access private
-
-@function _reverse($list) {
-  @if length($list) == 1 {
-    @return $list;
-  }
-
-  @for $i from 1 through ceil(length($list)/2) {
-    $tmp: _reverse(nth($list, $i));
-    $list: set-nth($list, $i, nth($list, -$i));
-    $list: set-nth($list, -$i, $tmp);
-  }
-
-  @return $list;
-}
-
-
-/// Gets a column's width and gutter size as an integer.
-///
-/// @param {fraction} $ratios [1] - A list of fractions to be used in calculating the appropriate width and gutter size returned.
-/// @param {number} $gut [$gutter] - The gutter size used to generate an appropriate width and gutter size to be returned by the function.
+/// @param {fraction} $fraction [false] - Fraction of the container.
+/// @param {number} $gut [$gutter] - Gutter unit to be used in the calculation.
 ///
 /// @example
-///   .third {
-///     width: _strip-units(nth(_get-column(1/3, '30px'), 1)) * 1%;
+///   .element {
+///     width: size(1/2);
+///     height: size(1/3);
 ///   }
-///
-/// @return {fraction | number}
-///
-/// @access private
 
-@function _get-column($ratios: 1, $gut: $gutter) {
-  $ratios: _reverse($ratios);
-  $width: 100;
-
-  @each $ratio in $ratios {
-    $gut: $gut / $width * 100;
-    $width: 100 * $ratio - $gut;
+@function size($fraction: false, $gut: $gutter) {
+  @if ($gut != 0) {
+    @return calc(100% * #{$fraction} - #{$gut});
+  } @else {
+    @return calc(100% * #{$fraction});
   }
-
-  @return $width $gut;
 }
 
 
-/// Strip a number of whatever units are applied to it.
+/// Helper mixin for setting the gutters of an element.
 ///
-/// @param {number} $number - A number to have the units stripped from.
+/// @param {string} [$dir=row] - Whether this is a horizontal (row) or vertical (column) grid.
+/// @param {number} [$gut=$gutter] - Gutter unit to be used in the calculation.
 ///
 /// @example
-///   _strip-units('90em');
-///
-/// @return {number}
-///
-/// @access private
+///   .element {
+///     @include gutters;
+///   }
 
-@function _strip-units($number) {
-  @return $number / ($number * 0 + 1);
+@mixin gutters($dir: row, $gut: $gutter) {
+  @if ($dir == row) {
+    @if ($gut != 0) {
+      margin-left: ($gut / 2);
+      margin-right: ($gut / 2);
+    }
+  } @else if ($dir == column) {
+    @if ($gut != 0) {
+      margin-top: ($gut / 2);
+      margin-bottom: ($gut / 2);
+    }
+  } @else {
+    @if ($gut != 0) {
+      margin: ($gut / 2);
+    }
+  }
 }
 
 
-// A helper class used for centering by default values.
-
-.container {
-  @include container;
-}
-
-
-// A helper class used to create rows with default values.
-
-.row {
-  @include row;
+html, body {
+  height: 100%;
 }
