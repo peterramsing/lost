@@ -1,4 +1,4 @@
-// Lost Grid v2.0.1 - https://github.com/corysimmons/lost
+// Lost Grid v2.0.2 - https://github.com/corysimmons/lost
 
 $gutter = 30px
 $rtl = false
@@ -151,7 +151,7 @@ block($fraction = 1, $dir = row, $gut = $gutter, $output = normal)
         width: s('calc(100% * %s)', $fraction)
   else if $dir is column
     if $output is init or $output is normal
-      width: 100%
+      width: calc(100% - 30px)
       if $rtl
         float: right
       else
@@ -160,14 +160,13 @@ block($fraction = 1, $dir = row, $gut = $gutter, $output = normal)
       if $output is normal or $output is bare
         height: s('calc(100% * %s - %s)', $fraction, $gut)
       if $output is normal or $output is init
-        margin-top: ($gut / 2)
-        margin-bottom: ($gut / 2)
+        margin: ($gut / 2)
     if $gut is 0
       if $output is normal or $output is bare
         height: s('calc(100% * %s)', $fraction)
   else
     if $output is init or $output is normal
-      width: 100%
+      width: calc(100% - 30px)
       if $rtl
         float: right
       else
