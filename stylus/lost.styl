@@ -1,4 +1,4 @@
-// Lost Grid v2.0.0 - https://github.com/corysimmons/lost
+// Lost Grid v2.0.1 - https://github.com/corysimmons/lost
 
 $gutter = 30px
 $rtl = false
@@ -54,17 +54,24 @@ cf()
  */
 
 align($dir = both)
-  display: flex
-  if ($dir == horizontal) or ($dir == h)
-    justify-content: center
-  else if ($dir == vertical) or ($dir == v)
-    align-items: center
-  else if ($dir == reset)
-    justify-content: inherit
-    align-items: inherit
-  else
-    justify-content: center
-    align-items: center
+  position: relative
+  > *
+    position: absolute
+    transform-style: preserve-3d
+    if ($direction == horizontal) or ($direction == h)
+      left: 50%
+      transform: translateX(-50%)
+    else if ($direction == vertical) or ($direction == v)
+      top: 50%
+      transform: translateY(-50%)
+    else if ($direction == reset)
+      top: auto
+      left: auto
+      transform: translate(0, 0)
+    else
+      top: 50%
+      left: 50%
+      transform: translate(-50%, -50%)
 
 
 /**
@@ -85,8 +92,7 @@ box($dir = row, $gut = $gutter)
     cf()
     margin-left: -($gut / 2)
     margin-right: -($gut / 2)
-    overflow-x: hidden
-    overflow-y: inherit
+    overflow-y: auto
     height: auto
     if $gut is not 0
       width: s('calc(100% + %s)', $gut)
@@ -95,7 +101,6 @@ box($dir = row, $gut = $gutter)
   else if $dir is column
     margin-top: -($gut / 2)
     margin-bottom: -($gut / 2)
-    overflow-x: inherit
     overflow-y: hidden
     if $gut is not 0
       height: s('calc(100% + %s)', $gut)
@@ -103,7 +108,7 @@ box($dir = row, $gut = $gutter)
       height: 100%
   else
     margin: -($gut / 2)
-    overflow: hidden
+    overflow-y: hidden
     if $gut is not 0
       width: s('calc(100% + %s)', $gut)
       height: s('calc(100% + %s)', $gut)
@@ -138,7 +143,7 @@ block($fraction = 1, $dir = row, $gut = $gutter, $output = normal)
       if $output is normal or $output is bare
         width: s('calc(100% * %s - %s)', $fraction, $gut)
       if $output is normal or $output is init
-        height: inherit
+        height: auto
         margin-left: ($gut / 2)
         margin-right: ($gut / 2)
     if $gut is 0

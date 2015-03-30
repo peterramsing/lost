@@ -1,4 +1,4 @@
-// Lost Grid v2.0.0 - https://github.com/corysimmons/lost
+// Lost Grid v2.0.1 - https://github.com/corysimmons/lost
 
 $gutter: 30px !default;
 $rtl: false !default;
@@ -60,17 +60,26 @@ $rtl: false !default;
 ///   }
 
 @mixin align($dir: both) {
-  display: flex;
-  @if ($dir == 'horizontal') or ($dir == 'h') {
-    justify-content: center;
-  } @else if ($dir == 'vertical') or ($dir == 'v') {
-    align-items: center;
-  } @else if ($dir == 'reset') {
-    justify-content: inherit;
-    align-items: inherit;
-  } @else {
-    justify-content: center;
-    align-items: center;
+  position: relative;
+  > * {
+    position: absolute;
+    transform-style: preserve-3d;
+
+    @if ($direction == 'horizontal') or ($direction == 'h') {
+      left: 50%;
+      transform: translateX(-50%);
+    } @else if ($direction == 'vertical') or ($direction == 'v') {
+      top: 50%;
+      transform: translateY(-50%);
+    } @else if ($direction == 'reset') {
+      top: auto;
+      left: auto;
+      transform: translate(0, 0);
+    } @else {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
   }
 }
 
@@ -93,8 +102,7 @@ $rtl: false !default;
     @include cf;
     margin-left: -($gut / 2);
     margin-right: -($gut / 2);
-    overflow-x: hidden;
-    overflow-y: inherit;
+    overflow-y: auto;
     height: auto;
     @if ($gut != 0) {
       width: calc(100% + #{$gut});
@@ -104,7 +112,6 @@ $rtl: false !default;
   } @else if ($dir == column) {
     margin-top: -($gut / 2);
     margin-bottom: -($gut / 2);
-    overflow-x: inherit;
     overflow-y: hidden;
     @if ($gut != 0) {
       height: calc(100% + #{$gut});
@@ -113,7 +120,7 @@ $rtl: false !default;
     }
   } @else {
     margin: -($gut / 2);
-    overflow: hidden;
+    overflow-y: hidden;
     @if ($gut != 0) {
       width: calc(100% + #{$gut});
       height: calc(100% + #{$gut});
@@ -154,7 +161,7 @@ $rtl: false !default;
         width: calc(100% * #{$fraction} - #{$gut});
       }
       @if ($output == normal) or ($output == init) {
-        height: inherit;
+        height: auto;
         margin-left: ($gut / 2);
         margin-right: ($gut / 2);
       }
