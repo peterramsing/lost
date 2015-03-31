@@ -440,7 +440,6 @@ stylus(fs.readFileSync('./css/style.styl', 'utf8'))
 
 ## Browser Support
 - [`calc()` grids](https://webdesign.tutsplus.com/tutorials/calc-grids-are-the-best-grids--cms-22902) are IE9+ with poor support on old Android browsers ([`calc()` browser support](http://caniuse.com/#feat=calc)). With the [calc() Polyfill](https://github.com/closingtag/calc-polyfill) the grid works perfect in IE8 as well.
-- Flexbox is required for the `align()` mixin. ([Flexbox browser support](http://caniuse.com/#search=flexbox))
 
 
 ### Other Projects
