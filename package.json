@@ -1,6 +1,6 @@
 {
   "name": "lost-grid",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "SCSS or Stylus fractional grid system built with calc(), based on Bootstrap, with a modified Jeet fallback.",
   "main": "stylus/lost.js",
   "repository": {
