@@ -1,4 +1,4 @@
-// Lost Grid v2.0.2 - https://github.com/corysimmons/lost
+// Lost Grid v2.0.3 - https://github.com/corysimmons/lost
 
 $gutter: 30px !default;
 $rtl: false !default;
@@ -65,13 +65,13 @@ $rtl: false !default;
     position: absolute;
     transform-style: preserve-3d;
 
-    @if ($direction == 'horizontal') or ($direction == 'h') {
+    @if ($dir == 'horizontal') or ($dir == 'h') {
       left: 50%;
       transform: translateX(-50%);
-    } @else if ($direction == 'vertical') or ($direction == 'v') {
+    } @else if ($dir == 'vertical') or ($dir == 'v') {
       top: 50%;
       transform: translateY(-50%);
-    } @else if ($direction == 'reset') {
+    } @else if ($dir == 'reset') {
       top: auto;
       left: auto;
       transform: translate(0, 0);
@@ -165,10 +165,10 @@ $rtl: false !default;
         margin-left: ($gut / 2);
         margin-right: ($gut / 2);
       }
-      @if ($gut == 0) {
-        @if ($output == normal) or ($output == bare) {
-          width: calc(100% * #{$fraction});
-        }
+    }
+    @if ($gut == 0) {
+      @if ($output == normal) or ($output == bare) {
+        width: calc(100% * #{$fraction});
       }
     }
   } @else if ($dir == column) {
