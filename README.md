@@ -60,6 +60,16 @@ figure
 
 `cf()` is just a [clearfix](http://nicolasgallagher.com/micro-clearfix-hack/) mixin since blocks are floated. It's a good idea to give this to the element wrapping your blocks every time.
 
+You can also make use of the `center()` mixin to assign a `max-width` and `margin: auto` to an element and center it on the page. `cf()` will automatically be applied in this case.
+
+```stylus
+section
+  cf($max-size: 1200px, $pad: $gutter)
+
+figure
+  block('1/2')
+```
+
 Every element gets a `float: left` and `margin-right: $gutter` applied to them except the last one in the row. Lost will automatically detect the last item in a row (based on the denominator you passed) and apply a `margin-right: 0` to it by default.
 
 To override this behavior simply pass a `$cycle` param to your `block()`.
