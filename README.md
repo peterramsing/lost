@@ -383,7 +383,7 @@ stylus(fs.readFileSync('./css/style.styl', 'utf8'))
 @import 'lost'
 
 figure
-  block(1/3)
+  block('1/3')
 ```
 
 
