@@ -1,4 +1,4 @@
-// Lost Grid v3.0.1 - https://github.com/corysimmons/lost
+// Lost Grid v3.0.2 - https://github.com/corysimmons/lost
 
 $gutter = 30px
 $rtl = false
@@ -36,6 +36,24 @@ cf()
     display: table
   &:after
     clear: both
+
+
+/**
+ * Horizontally center a container element and apply padding to it.
+ *
+ * @example
+ *   section
+ *     center(900px)
+ */
+
+center($max-size = 980px, $pad = 0, $output = normal)
+  if $output is normal or $output is init
+    margin-left: auto
+    margin-right: auto
+  if $output is normal or $output is bare
+    max-width: $max-size
+    padding-left: $pad
+    padding-right: $pad
 
 
 /**
