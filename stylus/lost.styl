@@ -1,4 +1,4 @@
-// Lost Grid v3.0.0 - https://github.com/corysimmons/lost
+// Lost Grid v3.0.1 - https://github.com/corysimmons/lost
 
 $gutter = 30px
 $rtl = false
@@ -99,19 +99,11 @@ block($fraction = '1/1', $dir = row, $cycle = 1, $gut = $gutter, $output = norma
         float: right
       else
         float: left
-      &:last-child
-        margin-right: 0
-      &:nth-child(n)
-        clear: none
-      if $cycle != 1
-        &:nth-child({$cycle}n + 1)
-          clear: both
-      else
-        &:nth-child({$denominator}n + 1)
-          clear: both
       if $masonry-friendly is false
         if $rtl
-          margin-left: $gut
+          &:nth-child(n)
+            float: right
+            margin-left: $gut
           if $cycle != 1
             &:nth-child({$cycle}n)
               margin-left: 0
@@ -121,7 +113,9 @@ block($fraction = '1/1', $dir = row, $cycle = 1, $gut = $gutter, $output = norma
               margin-left: 0
               float: left
         else
-          margin-right: $gut
+          &:nth-child(n)
+            float: left
+            margin-right: $gut
           if $cycle != 1
             &:nth-child({$cycle}n)
               margin-right: 0
@@ -133,11 +127,21 @@ block($fraction = '1/1', $dir = row, $cycle = 1, $gut = $gutter, $output = norma
       else
         margin-left: ($gut / 2)
         margin-right: ($gut / 2)
+      &:last-child
+        margin-right: 0
+      &:nth-child(n)
+        clear: none
+      if $cycle != 1
+        &:nth-child({$cycle}n + 1)
+          clear: both
+      else
+        &:nth-child({$denominator}n + 1)
+          clear: both
     if $output is normal or $output is bare
       if $masonry-friendly is false
         if $gut != 0
           if $cycle != 1
-            width: s('calc(100% * %s - (%s - %s / %s))', $fraction, $gut, $gut, $cycle)
+            width: s('calc(100% * %s - (%s - %s / %s))', unquote($fraction), $gut, $gut, $cycle)
           else
             width: s('calc(100% * %s - (%s - %s / %s))', unquote($fraction), $gut, $gut, $denominator)
         else
