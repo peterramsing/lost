@@ -346,6 +346,22 @@ Margin to the left, right, bottom, or top, of an element depending on if the fra
     offset('1/3')
 ```
 
+##### `move()`
+Source ordering. Shift elements left or right by their left position. Not very happy with this implementation: https://github.com/corysimmons/lost/issues/33
+
+- `$fraction = '1/1'` - Fraction of the container to be shifted. Must be a string.
+- `$spots = 1` - Number of spots to shift. So if you have 1/3 and shift it 2 spots to the right, it will end up on the 3/3 location. Can be negative. You might need to tweak these a bit for various sized objects.
+- `$cycle = 1` - If you have elements of unequal width, you can pass the number of items in the row to the $cycle param to help with the mathz involved.
+- `$gut = $gutter` - Adjust the size of the gutter for this movement. Should match the block's $gut.
+- `$output = normal` - Determines the type of output to produce. Accepts 3 options, normal (all the code), init (just the initialization code), and bare (just the left offset).
+
+
+```stylus
+figure
+  block('1/3')
+  move('1/3')
+```
+
 
 ## Usage with Node
 - `npm i lost-grid --save-dev`
