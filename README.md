@@ -388,6 +388,7 @@ If you like this project then I encourage you to check out a few of my other han
 ### Thanks
 
 - [Alex Bass](https://twitter.com/flip4bytes) for being my friend during this process and letting me bounce every idea off you.
+- [Maria Keller](https://dribbble.com/mariakeller) for the amazing logo. Be sure to hire her for all your design and motion graphic needs.
 - [Hugo Giraudel](https://twitter.com/HugoGiraudel) for contributions to code quality and for polyfilling Sass.
 - [Roman Komarov](https://twitter.com/kizmarh) for helping with Stylus hiccups.
 - [Huy Hong](https://twitter.com/huy) for helping with Sass hiccups.
