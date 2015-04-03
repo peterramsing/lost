@@ -366,17 +366,30 @@ figure
 
 
 ## Example Code
+
 - https://github.com/corysimmons/lost/tree/gh-pages
 
 
 ## Browser Support
+
 - [`calc()` grids](https://webdesign.tutsplus.com/tutorials/calc-grids-are-the-best-grids--cms-22902) work perfect on IE9+ with poor support on old Android browsers ([`calc()` browser support](http://caniuse.com/#feat=calc)).
 - Currently awaiting this [Issue](https://github.com/closingtag/calc-polyfill/issues/10) to be fixed in order to support IE8 (with a polyfill obviously). If it's not fixed rather quickly, I will add support for IE8 manually.
 
 
 ### Other Projects
+
 If you like this project then I encourage you to check out a few of my other hand-selected projects.
 
 - [Boy](https://github.com/corysimmons/boy) - A super lightweight, old-browser-friendly, HTML5 boilerplate with tons of features that make it a great start to any project.
 - [Typographic](https://github.com/corysimmons/typographic) - Insanely powerful yet easy-to-use responsive typography. Includes vertical rhythm, font stacks, modular scale, and more.
 - [lost-grid.js](https://github.com/corysimmons/lost-grid.js) - A purely JavaScript version of Lost v1. You can create your grid system directly in your markup without ever touching a line of preprocessor code. A pretty cool **concept**.
+
+
+### Thanks
+
+- [Alex Bass](https://twitter.com/flip4bytes) for being my friend during this process and letting me bounce every idea off you.
+- [Hugo Giraudel](https://twitter.com/HugoGiraudel) for contributions to code quality and for polyfilling Sass.
+- [Roman Komarov](https://twitter.com/kizmarh) for helping with Stylus hiccups.
+- [Huy Hong](https://twitter.com/huy) for helpig with Sass hiccups.
+- Everyone who files an [Issue](https://github.com/corysimmons/lost/issues) when something isn't working as expected.
+- Everyone who is *actually* interested in my work on grids.
