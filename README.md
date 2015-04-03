@@ -390,6 +390,6 @@ If you like this project then I encourage you to check out a few of my other han
 - [Alex Bass](https://twitter.com/flip4bytes) for being my friend during this process and letting me bounce every idea off you.
 - [Hugo Giraudel](https://twitter.com/HugoGiraudel) for contributions to code quality and for polyfilling Sass.
 - [Roman Komarov](https://twitter.com/kizmarh) for helping with Stylus hiccups.
-- [Huy Hong](https://twitter.com/huy) for helpig with Sass hiccups.
+- [Huy Hong](https://twitter.com/huy) for helping with Sass hiccups.
 - Everyone who files an [Issue](https://github.com/corysimmons/lost/issues) when something isn't working as expected.
 - Everyone who is *actually* interested in my work on grids.
