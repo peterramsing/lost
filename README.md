@@ -8,13 +8,15 @@
   <img src="http://img.shields.io/npm/dm/lost-grid.svg?style=flat-square">
 </p>
 
-Lost Grid is a grid system for SCSS or Stylus. It is built upon years of studying grid systems and building dozens of grid systems with tons of community feedback.
+Lost Grid is a grid system for SCSS or Stylus. It is built upon years of studying and [building](http://jeet.gs) grid systems with **tons** of community feedback.
 
-It makes use of [`calc()`](http://caniuse.com/#feat=calc) to create stunning grids based on fractions you define.
+It makes use of [`calc()`](https://webdesign.tutsplus.com/tutorials/calc-grids-are-the-best-grids--cms-22902) to create stunning grids based on fractions you define.
+
+I can tell you with no ego, this is [my finest grid](https://www.youtube.com/watch?v=EnjtQQQaDKo).
 
 
 ## Better than X
-Lost is better than any grid system out there and it can prove it.
+Lost is better than any grid system out there and can prove it.
 
 Feature | Lost | [Bootstrap](http://getbootstrap.com/css/#grid) | [Foundation](http://foundation.zurb.com/grid.html) | [Jeet](http://jeet.gs/) | [Neat](http://neat.bourbon.io/) | [Susy](http://susy.oddbird.net/)
 :-:|:-:|:-:|:-:|:-:|:-:|:-:
@@ -39,7 +41,7 @@ Feature | Lost | [Bootstrap](http://getbootstrap.com/css/#grid) | [Foundation](h
 
 ## Getting Started
 
-Lost works by creating **blocks**. Think of these blocks as columns in a traditional grid system, except they can go vertical as well. To create a basic horizontal grid, just insert some blocks into an element like so and pass a fraction (**as a string**) to `block()`.
+Lost works by creating **blocks**. Think of these blocks as columns in a traditional grid system, except they can go vertical as well. To create a basic horizontal grid, just insert some blocks into any element like so and pass a fraction (**as a string**) to `block()`.
 
 ```html
 <section>
@@ -64,7 +66,7 @@ You can also make use of the `center()` mixin to assign a `max-width` and `margi
 
 ```stylus
 section
-  cf($max-size: 1200px, $pad: $gutter)
+  center(980px)
 
 figure
   block('1/2')
@@ -104,7 +106,7 @@ You can `offset` columns easily. To offset in the other direction, pass a negati
 ```html
 <section>
   <figure>1</figure>
-  <figure>3</figure>
+  <figure>2</figure>
 </section>
 ```
 
@@ -169,33 +171,6 @@ for $i in 1..12
     block(s('%s/12', $i), $output: bare)
 ```
 
-```css
-[class*="col-"] {
-  float: left;
-  margin-right: 30px;
-}
-[class*="col-"]:last-child {
-  margin-right: 0;
-}
-[class*="col-"]:nth-child(n) {
-  clear: none;
-}
-[class*="col-"]:nth-child(1n + 1) {
-  clear: both;
-}
-[class*="col-"]:nth-child(1n) {
-  margin-right: 0;
-  float: right;
-}
-.col-1 {
-  width: calc(100% * 1/12 - (30px - 30px / 12));
-}
-.col-2 {
-  width: calc(100% * 2/12 - (30px - 30px / 12));
-}
-...
-```
-
 Once you've mastered the basic horizontal grid system (it shouldn't take long), you can start to make vertical grids that have the same vertical gutters as your horizontal grids. Just pass `$dir: column` to your `block()` mixin. The blocks will stretch to fill their container's height, so if you'd like to see them take up the full height of the page, set `height: 100%` on your container.
 
 No other grid system in the world supports vertical grids.
@@ -247,7 +222,6 @@ Lost supports masonry plugins like [Isotope](http://isotope.metafizzy.co/). To a
   <figure>1</figure>
   <figure>2</figure>
   <figure>3</figure>
-  ...
 </section>
 ```
 
@@ -261,7 +235,8 @@ figure
 
 
 ## Grid Settings
-Just set any of these in a settings file after you `@import` Lost and before you use a Lost mixin.
+
+Just set either of these in a settings file after you `@import` Lost and before you use a Lost mixin.
 
 - `$gutter = 30px`
 - `$rtl = false`
@@ -279,6 +254,7 @@ section
   edit(red)
 ```
 
+
 ##### `cf()`
 Clearfix used to clear floated children blocks. http://nicolasgallagher.com/micro-clearfix-hack
 
@@ -288,6 +264,7 @@ Clearfix used to clear floated children blocks. http://nicolasgallagher.com/micr
   .child
     block('1/2')
 ```
+
 
 ##### `align()`
 Vertically and/or horizontally align nested elements.
@@ -304,20 +281,52 @@ Vertically and/or horizontally align nested elements.
     height: 150px
 ```
 
+
 ##### `block()`
 Creates a block that is a fraction of the size of it's containing element with a gutter. Think of this like a column except it can go vertical as well by setting $dir to 'column' or 'both'. You don't need to pass any additional ratios (fractions) as the grid system will make use of calc(). Note that fractions must always be wrapped in quotes.
 
 - `$fraction = '1/1'` - This is a simple fraction of the containing element's width or height depending on $dir. This must be a string written as a fraction.
 - `$dir = row` - The direction of the grid. Can be row (horizontal grid), column (vertical grid), or both (waffle grid).
-- `$cycle = 1` - Lost works by assigning a margin-right to all elements except the last in the row. It does this by default by using the denominator of the fraction you pick. To override this default use this param.
+- `$cycle = convert(unquote(split('/', $fraction)[1]))` (gets the denominator) - Lost works by assigning a margin-right to all elements except the last in the row. It does this by default by using the denominator of the fraction you pick. To override this default use this param. e.g. block('2/4', $cycle: 2)
 - `$gut = $gutter` - The margin on the side of the element used to create a gutter. Typically this is left alone and the global $gutter will be used, but you can override it here if you want certain elements to have a particularly large or small gutter (pass 0 for no gutter at all).
-- `$output = normal` - Determines what type of code to output. Accepts normal (all styles for a block), init (the initial styles of any block), or bare (just the width of the block). Useful for creating CSS grid classes like .col-x with Lost.
 - `$masonry-friendly = false` - Dictates whether this particular group of elements will work well with JS masonry plugins. This will assign a margin on each side of the element and you will need to wrap this group of elements in a masonry-row().
+- `$output = normal` - Determines what type of code to output. Accepts normal (all styles for a block), init (the initial styles of any block), or bare (just the width of the block). Useful for creating CSS grid classes like .col-x with Lost.
 
 ```stylus
 figure
   block('1/3')
 ```
+
+
+##### `offset()`
+Margin to the left, right, bottom, or top, of an element depending on if the fraction passed is positive or negative. It works for both horizontal and vertical grids but not both.
+
+- `$fraction = '1/1'` - Fraction of the container to be offset. Must be a string.
+- `$dir = row` - Direction the grid is going. Should match the block() it's being used on.
+- `$gut = $gutter` - How large the gutter involved is, typically this won't be adjusted, but if you have set the blocks for that row to have different gutters than default, you will need to match that gutter here as well.
+
+```stylus
+.two-elements
+  block('1/3')
+  &:first-child
+    offset('1/3')
+```
+
+
+##### `move()`
+Source ordering. Shift elements left, right, up, or down, by their left or top position by passing a positive or negative fraction.
+
+- `$fraction = '1/1'` - Fraction of the container to be shifted. Must be a string.
+- `$dir = row` - Direction the grid is going. Should match the block() it's being used on.
+- `$gut = $gutter` - Adjust the size of the gutter for this movement. Should match the block's $gut.
+- `$output = normal` - Determines the type of output to produce. Accepts 3 options, normal (all the code), init (just the initialization code), and bare (just the left offset).
+
+```stylus
+figure
+  block('1/3')
+  move('1/3')
+```
+
 
 ##### `masonry-row()`
 Creates a row element for working with JS masonry libraries like Isotope. Assigns a negative margin on each side of this wrapping element.
@@ -329,37 +338,6 @@ section
   masonry-row()
 figure
   block('1/3', $masonry-friendly: true)
-```
-
-##### `offset()`
-Margin to the left, right, bottom, or top, of an element depending on if the fraction passed is positive or negative. It works for both horizontal and vertical grids but not both. On vertical grids, the margin-top will create a gap on the bottom of the containing element the size of the margin-top. To get past this, apply overflow-y: hidden to your containing element.
-
-- `$fraction = '1/1'` - Fraction of the container to be offset. Must be a string.
-- `$dir = row` - Direction the grid is going. Should match the block() it's being used on.
-- `$gut = $gutter` - How large the gutter involved is, typically this won't be adjusted, but if you have set the blocks for that row to have different gutters than default, you will need to match that gutter here as well.
-- `$masonry-friendly = false` - Determines whether this offset will work well with masonry friendly grids.
-
-```stylus
-.two-elements
-  block('1/3')
-  &:first-child
-    offset('1/3')
-```
-
-##### `move()`
-Source ordering. Shift elements left or right by their left position. Not very happy with this implementation: https://github.com/corysimmons/lost/issues/33
-
-- `$fraction = '1/1'` - Fraction of the container to be shifted. Must be a string.
-- `$spots = 1` - Number of spots to shift. So if you have 1/3 and shift it 2 spots to the right, it will end up on the 3/3 location. Can be negative. You might need to tweak these a bit for various sized objects.
-- `$cycle = 1` - If you have elements of unequal width, you can pass the number of items in the row to the $cycle param to help with the mathz involved.
-- `$gut = $gutter` - Adjust the size of the gutter for this movement. Should match the block's $gut.
-- `$output = normal` - Determines the type of output to produce. Accepts 3 options, normal (all the code), init (just the initialization code), and bare (just the left offset).
-
-
-```stylus
-figure
-  block('1/3')
-  move('1/3')
 ```
 
 
@@ -392,9 +370,8 @@ figure
 
 
 ## Browser Support
-- [`calc()` grids](https://webdesign.tutsplus.com/tutorials/calc-grids-are-the-best-grids--cms-22902) are IE9+ with poor support on old Android browsers ([`calc()` browser support](http://caniuse.com/#feat=calc)). With the [calc() Polyfill](https://github.com/closingtag/calc-polyfill) the grid works perfect in IE8 as well.
-- The vertical grids work perfect on IE9+ but even with polyfills elements are taller than they should be on IE8.
-- Nesting works perfect in IE9+ but breaks on IE8.
+- [`calc()` grids](https://webdesign.tutsplus.com/tutorials/calc-grids-are-the-best-grids--cms-22902) work perfect on IE9+ with poor support on old Android browsers ([`calc()` browser support](http://caniuse.com/#feat=calc)).
+- Currently awaiting this [Issue](https://github.com/closingtag/calc-polyfill/issues/10) to be fixed in order to support IE8 (with a polyfill obviously). If it's not fixed rather quickly, I will add support for IE8 manually.
 
 
 ### Other Projects

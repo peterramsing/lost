@@ -1,4 +1,4 @@
-// Lost Grid v3.0.6 - https://github.com/corysimmons/lost
+// Lost Grid v4.0.0 - https://github.com/corysimmons/lost
 
 $gutter: 30px !default;
 $rtl: false !default;
@@ -32,12 +32,10 @@ $rtl: false !default;
 
 @mixin cf() {
   *zoom: 1;
-
   &:before, &:after {
     content: '';
     display: table;
   }
-
   &:after {
     clear: both;
   }
@@ -89,7 +87,6 @@ $rtl: false !default;
   > * {
     position: absolute;
     transform-style: preserve-3d;
-
     @if ($dir == 'horizontal') or ($dir == 'h') {
       left: 50%;
       transform: translateX(-50%);
@@ -154,9 +151,9 @@ $rtl: false !default;
 ///
 /// @param {string} $fraction ['1/1'] - This is a simple fraction of the containing element's width or height depending on $dir. This must be a string written as a fraction.
 /// @param {string} $dir [row] - The direction of the grid. Can be row (horizontal grid), column (vertical grid), or both (waffle grid).
-/// @param {number} $cycle [1] - Lost works by assigning a margin-right to all elements except the last in the row. It does this by default by using the denominator of the fraction you pick. To override this default use this param.
+/// @param {number} $cycle [1] - Lost works by assigning a margin-right to all elements except the last in the row. It does this by default by using the denominator of the fraction you pick. To override this default use this param. e.g. block('2/4', $cycle: 2)
 /// @param {number} $gut [$gutter] - The margin on the side of the element used to create a gutter. Typically this is left alone and the global $gutter will be used, but you can override it here if you want certain elements to have a particularly large or small gutter (pass 0 for no gutter at all).
-/// @param {string} $output [normal] - Determines what type of code to output. Accepts normal (all styles for a block), init (the initial styles of any block), or bare (just the width of the block). Useful for creating CSS grid classes like .col-x with Lost.
+/// @param {string} $output [normal] - Determines what type of code to output. Accepts normal (all styles for a block), init (the initial styles of any block), or bare (just the essentials of the block). Useful for creating CSS grid classes like .col-x with Lost.
 /// @param {boolean} $masonry-friendly [false] - Dictates whether this particular group of elements will work well with JS masonry plugins. This will assign a margin on each side of the element and you will need to wrap this group of elements in a masonry-row().
 ///
 /// @example
@@ -164,215 +161,180 @@ $rtl: false !default;
 ///     @include block('1/3');
 ///   }
 
-@mixin block($fraction: '1/1', $dir: row, $cycle: 1, $gut: $gutter, $output: normal, $masonry-friendly: false) {
-
-  $denominator: nth(sl-explode($fraction, '/'), 2);
-
+@mixin block($fraction: '1/1', $dir: row, $cycle: nth(sl-explode($fraction, '/'), 2), $gut: $gutter, $masonry-friendly: false, $output: normal) {
   @if ($dir == row) {
     @if ($output == normal) or ($output == init) {
-
-      @if $rtl {
-        float: right;
-      } @else {
-        float: left;
-      }
-
-      @if ($masonry-friendly is false) {
-        @if $rtl {
-          &:nth-child(n) {
-            float: right;
-            margin-left: $gut;
-          }
-          @if ($cycle != 1) {
-            &:nth-child(#{$cycle}n) {
-              margin-left: 0;
-              float: left;
-            }
-          } @else {
-            &:nth-child(#{$denominator}n) {
-              margin-left: 0;
-              float: left;
-            }
-          }
-        } @else {
-          &:nth-child(n) {
-            float: left;
-            margin-right: $gut;
-          }
-          @if ($cycle != 1) {
-            &:nth-child(#{$cycle}n) {
-              margin-right: 0;
-              float: right;
-            }
-          } @else {
-            &:nth-child(#{$denominator}n) {
-              margin-right: 0;
-              float: right;
-            }
-          }
-        }
-      } @else {
+      float: left;
+    }
+    @if $masonry-friendly {
+      @if ($output == normal) or ($output == init) {
         margin-left: ($gut / 2);
         margin-right: ($gut / 2);
-      }
-
-      &:last-child {
-        margin-right: 0;
-      }
-
-      &:nth-child(n) {
-        clear: none;
-      }
-
-      @if ($cycle != 1) {
+        &:nth-child(#{$cycle}n) {
+          clear: none;
+        }
         &:nth-child(#{$cycle}n + 1) {
-          clear: both;
-        }
-      } @else {
-        &:nth-child(#{$denominator}n + 1) {
-          clear: both;
-        }
-      }
-
-    }
-
-    @if ($output == normal) or ($output == bare) {
-
-      @if ($masonry-friendly == false) {
-        @if ($gut != 0) {
-          @if ($cycle != 1) {
-            width: calc((100% - 0.01px) * #{$fraction} - (#{$gut} - #{$gut} / #{$cycle}));
+          @if $rtl {
+            clear: right;
           } @else {
-            width: calc((100% - 0.01px) * #{$fraction} - (#{$gut} - #{$gut} / #{$denominator}));
+            clear: left;
           }
-        } @else {
-          width: calc((100% - 0.01px) * #{$fraction});
         }
-
-      } @else {
-        @if ($gut != 0) {
-          width: calc((100% - 0.01px) * #{$fraction} - #{$gut});
+      }
+      @if ($output == normal) or ($output == bare) {
+        @if ($gut == 0) {
+          width: calc(99.999999% * #{$fraction});
         } @else {
-          width: calc((100% - 0.01px) * #{$fraction});
+          @if $masonry-friendly {
+            width: calc(99.99% * #{$fraction} - #{$gut});
+          } @else {
+            width: calc(99.99% * #{$fraction} - (#{$gut} - #{$gut} * #{$fraction}));
+          }
+        }
+      }
+    } @else {
+      @if $rtl {
+        @if ($output == normal) or ($output == init) {
+          margin-left: $gut;
+        }
+      } @else {
+        @if ($output == normal) or ($output == init) {
+          float: left;
+          margin-right: $gut;
+        }
+      }
+      @if ($output == normal) or ($output == bare) {
+        @if ($gut == 0) {
+          width: calc(99.999999% * #{$fraction});
+        } @else {
+          @if $masonry-friendly {
+            width: calc(99.99% * #{$fraction} - #{$gut});
+          } @else {
+            width: calc(99.99% * #{$fraction} - (#{$gut} - #{$gut} * #{$fraction}));
+          }
+        }
+      }
+      @if $rtl {
+        @if ($output == normal) or ($output == init) {
+          &:nth-child(n) {
+            margin-left: $gut;
+            float: right;
+            clear: none;
+          }
+          &:last-child {
+            margin-left: 0;
+          }
+        }
+        @if ($output == normal) or ($output == bare) {
+          &:nth-child(#{$cycle}n) {
+            margin-left: 0;
+            float: left;
+          }
+          &:nth-child(#{$cycle}n + 1) {
+            clear: right;
+          }
+        }
+      } @else {
+        @if ($output == normal) or ($output == init) {
+          &:nth-child(n) {
+            margin-right: $gut;
+            float: left;
+            clear: none;
+          }
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+        @if ($output == normal) or ($output == bare) {
+          &:nth-child(#{$cycle}n) {
+            margin-right: 0;
+            float: right;
+          }
+          &:nth-child(#{$cycle}n + 1) {
+            clear: left;
+          }
         }
       }
     }
-  }
-
-  @if ($dir == column) {
-
+  } @else if ($dir == column) {
+    @if ($output == normal) or ($output == bare) {
+      @if ($gut == 0) {
+        height: calc(99.999999% * #{$fraction});
+      } @else {
+        @if $masonry-friendly {
+          height: calc(99.99% * #{$fraction} - #{$gut});
+        } @else {
+          height: calc(99.99% * #{$fraction} - (#{$gut} - #{$gut} * #{$fraction}));
+        }
+      }
+    }
     @if ($output == normal) or ($output == init) {
       margin-bottom: $gut;
       &:last-child {
         margin-bottom: 0;
       }
     }
-
-    @if ($output == normal) or ($output == bare) {
-      @if ($gut != 0) {
-        height: calc((100% - 0.01px) * #{$fraction} - (#{$gut} - #{$gut} / #{$denominator}));
-      } @else {
-        height: calc((100% - 0.01px) * #{$fraction});
-      }
-    }
-  }
-
-  @if ($dir == both) {
-
-    @if ($output == normal) or ($output == init) {
-
-      margin-bottom: $gut;
-
-      &:last-child {
-        margin-right: 0;
-        margin-bottom: 0;
-      }
-
-      &:nth-child(n) {
-        clear: none;
-      }
-
-      @if ($cycle != 1) {
-        &:nth-child(#{$cycle}n + 1) {
-          clear: both;
-        }
-      } @else {
-        &:nth-last-child(-n + #{$denominator}) {
-          margin-bottom: 0;
-        }
-        &:nth-child(#{$denominator}n + 1) {
-          clear: both;
-        }
-      }
-
-      @if ($rtl) {
-        float: right;
-        margin-left: $gut;
-        @if ($cycle != 1) {
-          &:nth-child(#{$cycle}n) {
-            margin-left: 0;
-            float: left;
-          }
-        } @else {
-          &:nth-child(#{$denominator}n) {
-            margin-left: 0;
-            float: left;
-          }
-        }
-      } @else {
-        float: left;
-        margin-right: $gut;
-        @if ($cycle != 1) {
-          &:nth-child(#{$cycle}n) {
-            margin-right: 0;
-            float: right;
-          }
-        } @else {
-          &:nth-child(#{$denominator}n) {
-            margin-right: 0;
-            float: right;
-          }
-        }
-      }
-    }
-
-    @if ($output == normal) or ($output == bare) {
-      @if ($gut != 0) {
-        @if ($cycle != 1) {
-          width: calc((100% - 0.01px) * #{$fraction} - (#{$gut} - #{$gut} / #{$cycle}));
-        } @else {
-          width: calc((100% - 0.01px) * #{$fraction} - (#{$gut} - #{$gut} / #{$denominator}));
-        }
-        height: calc((100% - 0.01px) * #{$fraction} - (#{$gut} - #{$gut} / #{$denominator}));
-      } @else {
-        width: calc((100% - 0.01px) * #{$fraction});
-        height: calc((100% - 0.01px) * #{$fraction});
-      }
-    }
-  }
-}
-
-
-/// Creates a row element for working with JS masonry libraries like Isotope. Assigns a negative margin on each side of this wrapping element.
-///
-/// @param {number} $gut [$gutter] - How large the gutter involved is, typically this won't be adjusted and will inherit the global $gutter setting, but it's made available if you want your masonry grid to have a special $gut, it should match your blocks' $guts.
-///
-/// @example
-///   section {
-///     @include masonry-row;
-///   }
-///   figure {
-///     @include block('1/3', $masonry-friendly: true);
-///   }
-
-@mixin masonry-row($gut: $gutter) {
-  @include cf;
-  margin-left: -($gut / 2);
-  margin-right: -($gut / 2);
-  @if ($gut != 0) {
-    width: calc((100% - 0.01px) + #{$gut});
   } @else {
-    width: (100% - 0.01px);
+    @if ($output == normal) or ($output == init) {
+      float: left;
+      margin-right: $gut;
+    }
+    @if ($output == normal) or ($output == bare) {
+      @if ($gut == 0) {
+        width: calc(99.999999% * #{$fraction});
+        height: calc(99.999999% * #{$fraction});
+      } @else {
+        @if $masonry-friendly {
+          width: calc(99.99% * #{$fraction} - #{$gut});
+          height: calc(99.99% * #{$fraction} - #{$gut});
+        } @else {
+          width: calc(99.99% * #{$fraction} - (#{$gut} - #{$gut} * #{$fraction}));
+          height: calc(99.99% * #{$fraction} - (#{$gut} - #{$gut} * #{$fraction}));
+        }
+      }
+    }
+    @if $rtl {
+      @if ($output == normal) or ($output == init) {
+        &:nth-child(n) {
+          margin-left: $gut;
+          clear: none;
+        }
+      }
+      @if ($output == normal) or ($output == bare) {
+        &:nth-child(#{$cycle}n), &:last-child {
+          margin-left: 0;
+        }
+        &:nth-child(#{$cycle}n + 1) {
+          clear: right;
+        }
+      }
+    } @else {
+      @if ($output == normal) or ($output == init) {
+        &:nth-child(n) {
+          margin-right: $gut;
+          clear: none;
+        }
+      }
+      @if ($output == normal) or ($output == bare) {
+        &:nth-child(#{$cycle}n), &:last-child {
+          margin-right: 0;
+        }
+        &:nth-child(#{$cycle}n + 1) {
+          clear: left;
+        }
+      }
+    }
+    @if ($output == normal) or ($output == init) {
+      margin-bottom: $gut;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+    @if ($output == normal) or ($output == bare) {
+      &:nth-last-child(-n + #{$cycle}) {
+        margin-bottom: 0;
+      }
+    }
   }
 }
 
@@ -430,12 +392,11 @@ $rtl: false !default;
 }
 
 
-/// Margin to the left, right, bottom, or top, of an element depending on if the fraction passed is positive or negative. It works for both horizontal and vertical grids but not both. On vertical grids, the margin-top will create a gap on the bottom of the containing element the size of the margin-top. To get past this, apply overflow-y: hidden to your containing element.
+/// Margin to the left, right, bottom, or top, of an element depending on if the fraction passed is positive or negative. It works for both horizontal and vertical grids but not both.
 ///
 /// @param {string} $fraction ['1/1'] - Fraction of the container to be offset. Must be a string.
 /// @param {string} $dir [row] - Direction the grid is going. Should match the block() it's being used on.
 /// @param {number} $gut [$gutter] - How large the gutter involved is, typically this won't be adjusted, but if you have set the blocks for that row to have different gutters than default, you will need to match that gutter here as well.
-/// @param {boolean} $masonry-friendly [false] - Determines whether this offset will work well with masonry friendly grids.
 ///
 /// @example
 ///   .two-elements {
@@ -445,91 +406,106 @@ $rtl: false !default;
 ///     }
 ///   }
 
-@mixin offset($fraction: '1/1', $dir: row, $gut: $gutter, $masonry-friendly: false) {
-
+@mixin offset($fraction: '1/1', $dir: row, $gut: $gutter) {
   $numerator: number(nth(sl-explode($fraction, '/'), 1));
-  $denominator: number(nth(sl-explode($fraction, '/'), 2));
-
   @if ($dir == row) {
-    @if ($gut > 0) {
-      @if ($numerator > 0) {
-        @if ($masonry-friendly) {
-          margin-left: calc((100% - 0.01px) * #{$fraction} + (#{$gut} / 2));
-        } @else {
-          margin-left: calc((100% - 0.01px) * #{$fraction} - (#{$gut} - #{$gut} / #{$denominator}) + #{$gut});
-        }
+    @if ($numerator > 0) {
+      @if ($gut == 0) {
+        margin-right: calc(99.999999% * #{$fraction}) !important;
+      } @else {
+        margin-right: calc(99.99% * #{$fraction} - (#{$gut} - #{$gut} * #{$fraction}) + (#{$gut} * 2)) !important;
       }
-      @if ($numerator < 0) {
-        $fraction: nth(sl-explode($fraction, '-'), 2);
-        @if ($masonry-friendly) {
-          margin-right: calc((100% - 0.01px) * #{$fraction} + (#{$gut} / 2));
-        } @else {
-          margin-right: calc((100% - 0.01px) * #{$fraction} - (#{$gut} - #{$gut} / #{$denominator}) + (#{$gut} * 2));
-        }
+    } @else if ($numerator < 0) {
+      @if ($gut == 0) {
+        margin-left: calc(99.999999% * (#{$fraction} * -1)) !important;
+      } @else {
+        margin-left: calc(99.99% * (#{$fraction} * -1) - (#{$gut} - #{$gut} * (#{$fraction} * -1)) + #{$gut}) !important;
       }
+    } @else {
+      margin-left: 0 !important;
+      margin-right: $gut !important;
     }
-    @if ($gut == 0) {
-      @if ($numerator > 0) {
-        margin-left: calc((100% - 0.01px) * #{$fraction});
+  } @else {
+    @if ($numerator > 0) {
+      @if ($gut == 0) {
+        margin-bottom: calc(100% * #{$fraction}) !important;
+      } @else {
+        margin-bottom: calc(100% * #{$fraction} - (#{$gut} - #{$gut} * #{$fraction}) + (#{$gut} * 2)) !important;
       }
-      @if ($numerator < 0) {
-        margin-right: calc((-100% - 0.01px) * #{$fraction});
+    } @else if ($numerator < 0) {
+      @if ($gut == 0) {
+        margin-top: calc(100% * (#{$fraction} * -1)) !important;
+      } @else {
+        margin-top: calc(100% * (#{$fraction} * -1) - (#{$gut} - #{$gut} * (#{$fraction} * -1)) + (#{$gut} * 2)) !important;
       }
-    }
-  }
-
-  @if ($dir == column) {
-    @if ($gut > 0) {
-      @if ($numerator > 0) {
-        margin-bottom: calc(100vh * #{$fraction} - (0px - #{$gut} / #{$denominator}) + #{$gut});
-      }
-      @if ($numerator < 0) {
-        $fraction: nth(sl-explode($fraction, '-'), 2);
-        margin-top: calc(100vh * #{$fraction} - (0px - #{$gut} / #{$denominator}));
-      }
-    }
-    @if ($gut == 0) {
-      @if ($numerator > 0) {
-        margin-bottom: calc(100vh * #{$fraction});
-      }
-      @if ($numerator < 0) {
-        margin-top: calc(-100vh * #{$fraction});
-      }
+    } @else {
+      margin-top: 0 !important;
+      margin-bottom: $gut !important;
     }
   }
 }
 
 
-/// Source ordering. Shift elements left or right by their left position. Not very happy with this implementation: https://github.com/corysimmons/lost/issues/33
+/// Source ordering. Shift elements left, right, up, or down, by their left or top position by passing a positive or negative fraction.
 ///
 /// @param {string} $fraction ['1/1'] - Fraction of the container to be shifted. Must be a string.
-/// @param {number} $spots [1] - Number of spots to shift. So if you have 1/3 and shift it 2 spots to the right, it will end up on the 3/3 location. Can be negative. You might need to tweak these a bit for various sized objects.
-/// @param {number} $cycle [1] - If you have elements of unequal width, you can pass the number of items in the row to the $cycle param to help with the mathz involved.
+/// @param {string} $dir [row] - Direction the grid is going. Should match the block() it's being used on.
 /// @param {number} $gut [$gutter] - Adjust the size of the gutter for this movement. Should match the block's $gut.
-/// @param {string} $output [normal] - Determines the type of output to produce. Accepts 3 options, normal (all the code), init (just the initialization code), and bare (just the left offset).
+/// @param {string} $output [normal] - Determines the type of output to produce. Accepts 3 options, normal (all the code), init (just the initialization code), and bare (just the offset).
 ///
 /// @example
 ///   figure {
-///     @include block('1/3');
-///     @include move('1/3');
+///     @include block('1/2');
+///     &:first-child {
+///       @include move('1/2');
+///     }
+///     &:last-child {
+///       @include move('-1/2');
+///     }
 ///   }
 
-@mixin move($fraction: '1/1', $spots: 1, $cycle: 1, $gut: $gutter, $output: normal) {
-
-  $denominator: number(nth(sl-explode($fraction, '/'), 2));
-
+@mixin move($fraction: '1/1', $dir: row, $gut: $gutter, $output: normal) {
   @if ($output == normal) or ($output == init) {
     position: relative;
   }
   @if ($output == normal) or ($output == bare) {
-    @if ($cycle != 1) {
-      left: calc(#{$spots} * ((100% - 0.01px) * #{$fraction} - (#{$gut} - #{$gut} / #{$cycle}) + #{$gut}));
+    @if ($dir == row) {
+      @if ($gut == 0) {
+        left: calc(99.999999% * #{$fraction});
+      } @else {
+        left: calc(99.99% * #{$fraction} - (#{$gut} - #{$gut} * #{$fraction}) + #{$gut});
+      }
     } @else {
-      left: calc(#{$spots} * ((100% - 0.01px) * #{$fraction} - (#{$gut} - #{$gut} / #{$denominator}) + #{$gut}));
+      @if ($gut == 0) {
+        top: calc(99.999999% * #{$fraction});
+      } @else {
+        top: calc(99.99% * #{$fraction} - (#{$gut} - #{$gut} * #{$fraction}) + #{$gut});
+      }
     }
   }
 }
 
+
+/// Creates a row element for working with JS masonry libraries like Isotope. Assigns a negative margin on each side of this wrapping element.
+///
+/// @param {number} $gut [$gutter] - How large the gutter involved is, typically this won't be adjusted and will inherit the global $gutter setting, but it's made available if you want your masonry grid to have a special $gut, it should match your blocks' $guts.
+///
+/// @example
+///   section {
+///     @include masonry-row;
+///   }
+///   figure {
+///     @include block('1/3', $masonry-friendly: true);
+///   }
+
+@mixin masonry-row($gut: $gutter) {
+  @include cf;
+  margin-left: -($gut / 2);
+  margin-right: -($gut / 2);
+}
+
+
+/// Reset so vertical grids work well.
 
 html, body {
   height: 100%;

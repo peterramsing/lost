@@ -1,4 +1,4 @@
-// Lost Grid v3.0.6 - https://github.com/corysimmons/lost
+// Lost Grid v4.0.0 - https://github.com/corysimmons/lost
 
 $gutter = 30px
 $rtl = false
@@ -102,9 +102,9 @@ align($dir = both)
  *
  * @param {string} [$fraction='1/1'] - This is a simple fraction of the containing element's width or height depending on $dir. This must be a string written as a fraction.
  * @param {string} [$dir=row] - The direction of the grid. Can be row (horizontal grid), column (vertical grid), or both (waffle grid).
- * @param {number} [$cycle=1] - Lost works by assigning a margin-right to all elements except the last in the row. It does this by default by using the denominator of the fraction you pick. To override this default use this param.
+ * @param {number} [$cycle=1] - Lost works by assigning a margin-right to all elements except the last in the row. It does this by default by using the denominator of the fraction you pick. To override this default use this param. e.g. block('2/4', $cycle: 2)
  * @param {number} [$gut=$gutter] - The margin on the side of the element used to create a gutter. Typically this is left alone and the global $gutter will be used, but you can override it here if you want certain elements to have a particularly large or small gutter (pass 0 for no gutter at all).
- * @param {string} [$output=normal] - Determines what type of code to output. Accepts normal (all styles for a block), init (the initial styles of any block), or bare (just the width of the block). Useful for creating CSS grid classes like .col-x with Lost.
+ * @param {string} [$output=normal] - Determines what type of code to output. Accepts normal (all styles for a block), init (the initial styles of any block), or bare (just the essentials of the block). Useful for creating CSS grid classes like .col-x with Lost.
  * @param {boolean} [$masonry-friendly=false] - Dictates whether this particular group of elements will work well with JS masonry plugins. This will assign a margin on each side of the element and you will need to wrap this group of elements in a masonry-row().
  *
  * @example
@@ -112,128 +112,197 @@ align($dir = both)
  *     block('1/3')
  */
 
-block($fraction = '1/1', $dir = row, $cycle = 1, $gut = $gutter, $output = normal, $masonry-friendly = false)
-
-  $denominator = unquote(split('/', $fraction)[1])
-
+block($fraction = '1/1', $dir = row, $cycle = convert(unquote(split('/', $fraction)[1])), $gut = $gutter, $masonry-friendly = false, $output = normal)
+  _get-size()
+    if $gut is 0
+      return s('calc(99.999999% * %s)', unquote($fraction))
+    else
+      if $masonry-friendly
+        return s('calc(99.99% * %s - %s)', unquote($fraction), $gut)
+      else
+        return s('calc(99.99% * %s - (%s - %s * %s))', unquote($fraction), $gut, $gut, unquote($fraction))
   if $dir is row
     if $output is normal or $output is init
-      if $rtl
-        float: right
-      else
-        float: left
-      if $masonry-friendly is false
-        if $rtl
-          &:nth-child(n)
-            float: right
-            margin-left: $gut
-          if $cycle != 1
-            &:nth-child({$cycle}n)
-              margin-left: 0
-              float: left
-          else
-            &:nth-child({$denominator}n)
-              margin-left: 0
-              float: left
-        else
-          &:nth-child(n)
-            float: left
-            margin-right: $gut
-          if $cycle != 1
-            &:nth-child({$cycle}n)
-              margin-right: 0
-              float: right
-          else
-            &:nth-child({$denominator}n)
-              margin-right: 0
-              float: right
-      else
+      float: left
+    if $masonry-friendly
+      if $output is normal or $output is init
         margin-left: ($gut / 2)
         margin-right: ($gut / 2)
-      &:last-child
-        margin-right: 0
-      &:nth-child(n)
-        clear: none
-      if $cycle != 1
+        &:nth-child({$cycle}n)
+          clear: none
         &:nth-child({$cycle}n + 1)
-          clear: both
-      else
-        &:nth-child({$denominator}n + 1)
-          clear: both
-    if $output is normal or $output is bare
-      if $masonry-friendly is false
-        if $gut != 0
-          if $cycle != 1
-            width: s('calc((100% - 0.01px) * %s - (%s - %s / %s))', unquote($fraction), $gut, $gut, $cycle)
+          if $rtl
+            clear: right
           else
-            width: s('calc((100% - 0.01px) * %s - (%s - %s / %s))', unquote($fraction), $gut, $gut, $denominator)
-        else
-          width: s('calc((100% - 0.01px) * %s)', unquote($fraction))
-      else
-        if $gut != 0
-          width: s('calc((100% - 0.01px) * %s - %s)', unquote($fraction), $gut)
-        else
-          width: s('calc((100% - 0.01px) * %s)', unquote($fraction))
-
-  if $dir is column
-    if $output is normal or $output is init
-      margin-bottom: $gut
-      &:last-child
-        margin-bottom: 0
-    if $output is normal or $output is bare
-      if $gut != 0
-        height: s('calc((100% - 0.01px) * %s - (%s - %s / %s))', unquote($fraction), $gut, $gut, $denominator)
-      else
-        height: s('calc((100% - 0.01px) * %s)', unquote($fraction))
-
-  if $dir is both
-    if $output is normal or $output is init
-      margin-bottom: $gut
-      &:last-child
-        margin-right: 0
-        margin-bottom: 0
-      &:nth-child(n)
-        clear: none
-      if $cycle != 1
-        &:nth-child({$cycle}n + 1)
-          clear: both
-      else
-        &:nth-last-child(-n + {$denominator})
-          margin-bottom: 0
-        &:nth-child({$denominator}n + 1)
-          clear: both
+            clear: left
+      if $output is normal or $output is bare
+        width: _get-size()
+    else
       if $rtl
-        float: right
-        margin-left: $gut
-        if $cycle != 1
-          &:nth-child({$cycle}n)
-            margin-left: 0
-            float: left
-        else
-          &:nth-child({$denominator}n)
-            margin-left: 0
-            float: left
+        if $output is normal or $output is init
+          margin-left: $gut
       else
-        float: left
-        margin-right: $gut
-        if $cycle != 1
+        if $output is normal or $output is init
+          float: left
+          margin-right: $gut
+      if $output is normal or $output is bare
+        width: _get-size()
+      if $rtl
+        if $output is normal or $output is init
+          &:nth-child(n)
+            margin-left: $gut
+            float: right
+            clear: none
+          &:last-child
+            margin-left: 0
+        if $output is normal or $output is bare
+          &:nth-child({$cycle}n)
+            margin-left: 0
+            float: left
+          &:nth-child({$cycle}n + 1)
+            clear: right
+      else
+        if $output is normal or $output is init
+          &:nth-child(n)
+            margin-right: $gut
+            float: left
+            clear: none
+          &:last-child
+            margin-right: 0
+        if $output is normal or $output is bare
           &:nth-child({$cycle}n)
             margin-right: 0
             float: right
-        else
-          &:nth-child({$denominator}n)
-            margin-right: 0
-            float: right
+          &:nth-child({$cycle}n + 1)
+            clear: left
+  else if $dir is column
     if $output is normal or $output is bare
-      if $gut != 0
-        if $cycle != 1
-          width: s('calc((100% - 0.01px) * %s - (%s - %s / %s))', $fraction, $gut, $gut, $cycle)
+      height: _get-size()
+    if $output is normal or $output is init
+      margin-bottom: $gut
+      &:last-child
+        margin-bottom: 0
+  else
+    if $output is normal or $output is init
+      float: left
+      margin-right: $gut
+    if $output is normal or $output is bare
+      width: _get-size()
+      height: _get-size()
+    if $rtl
+      if $output is normal or $output is init
+        &:nth-child(n)
+          margin-left: $gut
+          clear: none
+      if $output is normal or $output is bare
+        &:nth-child({$cycle}n), &:last-child
+          margin-left: 0
+        &:nth-child({$cycle}n + 1)
+          clear: right
+    else
+      if $output is normal or $output is init
+        &:nth-child(n)
+          margin-right: $gut
+          clear: none
+      if $output is normal or $output is bare
+        &:nth-child({$cycle}n), &:last-child
+          margin-right: 0
+        &:nth-child({$cycle}n + 1)
+          clear: left
+    if $output is normal or $output is init
+      margin-bottom: $gut
+      &:last-child
+        margin-bottom: 0
+    if $output is normal or $output is bare
+      &:nth-last-child(-n + {$cycle})
+        margin-bottom: 0
+
+
+/**
+ * Margin to the left, right, bottom, or top, of an element depending on if the fraction passed is positive or negative. It works for both horizontal and vertical grids but not both.
+ *
+ * @param {string} [$fraction='1/1'] - Fraction of the container to be offset. Must be a string.
+ * @param {string} [$dir=row] - Direction the grid is going. Should match the block() it's being used on.
+ * @param {number} [$gut=$gutter] - How large the gutter involved is, typically this won't be adjusted, but if you have set the blocks for that row to have different gutters than default, you will need to match that gutter here as well.
+ *
+ * @example
+ *   .two-elements
+ *     block('1/3')
+ *     &:first-child
+ *       offset('1/3')
+ */
+
+offset($fraction = '1/1', $dir = row, $gut = $gutter)
+  $numerator = convert(unquote(split('/', $fraction)[0]))
+  _get-size()
+    if $dir is row
+      if $numerator > 0
+        if $gut is 0
+          return s('calc(99.999999% * %s)', unquote($fraction))
         else
-          width: s('calc((100% - 0.01px) * %s - (%s - %s / %s))', unquote($fraction), $gut, $gut, $denominator)
-        height: s('calc((100% - 0.01px) * %s - (%s - %s / %s))', unquote($fraction), $gut, $gut, $denominator)
-      else
-        width: s('calc((100% - 0.01px) * %s)', unquote($fraction))
-        height: s('calc((100% - 0.01px) * %s)', unquote($fraction))
+          return s('calc(99.99% * %s - (%s - %s * %s) + (%s * 2))', unquote($fraction), $gut, $gut, unquote($fraction), $gut)
+      if $numerator < 0
+        if $gut is 0
+          return s('calc(99.999999% * (%s * -1))', unquote($fraction))
+        else
+          return s('calc(99.99% * (%s * -1) - (%s - %s * (%s * -1)) + %s)', unquote($fraction), $gut, $gut, unquote($fraction), $gut)
+    else
+      if $numerator > 0
+        if $gut is 0
+          return s('calc(100% * %s)', unquote($fraction))
+        else
+          return s('calc(100% * %s - (%s - %s * %s) + (%s * 2))', unquote($fraction), $gut, $gut, unquote($fraction), $gut)
+      if $numerator < 0
+        if $gut is 0
+          return s('calc(100% * (%s * -1))', unquote($fraction))
+        else
+          return s('calc(100% * (%s * -1) - (%s - %s * (%s * -1)) + (%s * 2))', unquote($fraction), $gut, $gut, unquote($fraction), $gut)
+  if $dir is row
+    if $numerator > 0
+      margin-right: _get-size() !important
+    else if $numerator < 0
+      margin-left: _get-size() !important
+    else
+      margin-left: 0 !important
+      margin-right: $gut !important
+  else
+    if $numerator > 0
+      margin-bottom: _get-size() !important
+    else if $numerator < 0
+      margin-top: _get-size() !important
+    else
+      margin-top: 0 !important
+      margin-bottom: $gut !important
+
+
+/**
+ * Source ordering. Shift elements left, right, up, or down, by their left or top position by passing a positive or negative fraction.
+ *
+ * @param {string} [$fraction='1/1'] - Fraction of the container to be shifted. Must be a string.
+ * @param {string} [$dir=row] - Direction the grid is going. Should match the block() it's being used on.
+ * @param {number} [$gut=$gutter] - Adjust the size of the gutter for this movement. Should match the block's $gut.
+ * @param {string} [$output=normal] - Determines the type of output to produce. Accepts 3 options, normal (all the code), init (just the initialization code), and bare (just the offset).
+ *
+ * @example
+ *   figure
+ *     block('1/2')
+ *     &:first-child
+ *       move('1/2')
+ */
+
+move($fraction = '1/1', $dir = row, $gut = $gutter, $output = normal)
+  _get-size()
+    if $gut is 0
+      return s('calc(99.999999% * %s)', unquote($fraction))
+    else
+      return s('calc(99.99% * %s - (%s - %s * %s) + %s)', unquote($fraction), $gut, $gut, unquote($fraction), $gut)
+  if $output is normal or $output is init
+    position: relative
+  if $output is normal or $output is bare
+    if $dir is row
+      left: _get-size()
+    else
+      top: _get-size()
 
 
 /**
@@ -252,92 +321,11 @@ masonry-row($gut = $gutter)
   cf()
   margin-left: -($gut / 2)
   margin-right: -($gut / 2)
-  if $gut is not 0
-    width: s('calc((100% - 0.01px) + %s)', $gut)
-  else
-    width: (100% - 0.01px)
 
 
 /**
- * Margin to the left, right, bottom, or top, of an element depending on if the fraction passed is positive or negative. It works for both horizontal and vertical grids but not both. On vertical grids, the margin-top will create a gap on the bottom of the containing element the size of the margin-top. To get past this, apply overflow-y: hidden to your containing element.
- *
- * @param {string} [$fraction='1/1'] - Fraction of the container to be offset. Must be a string.
- * @param {string} [$dir=row] - Direction the grid is going. Should match the block() it's being used on.
- * @param {number} [$gut=$gutter] - How large the gutter involved is, typically this won't be adjusted, but if you have set the blocks for that row to have different gutters than default, you will need to match that gutter here as well.
- * @param {boolean} [$masonry-friendly=false] - Determines whether this offset will work well with masonry friendly grids.
- *
- * @example
- *   .two-elements
- *     block('1/3')
- *     &:first-child
- *       offset('1/3')
+ * Reset so vertical grids work well.
  */
-
-offset($fraction = '1/1', $dir = row, $gut = $gutter, $masonry-friendly = false)
-
-  $numerator = unquote(split('/', $fraction)[0])
-  $denominator = unquote(split('/', $fraction)[1])
-
-  if $dir is row
-    if $gut > 0
-      if $numerator > 0
-        if $masonry-friendly
-          margin-left: s('calc((100% - 0.01px) * %s + (%s / 2))', unquote($fraction), $gut)
-        else
-          margin-left: s('calc((100% - 0.01px) * %s - (%s - %s / %s) + %s)', unquote($fraction), $gut, $gut, $denominator, $gut)
-      if $numerator < 0
-        $fraction = split('-', $fraction)[1]
-        if $masonry-friendly
-          margin-right: s('calc((100% - 0.01px) * %s + (%s / 2))', unquote($fraction), $gut)
-        else
-          margin-right: s('calc((100% - 0.01px) * %s - (%s - %s / %s) + (%s * 2))', unquote($fraction), $gut, $gut, $denominator, $gut)
-    if $gut is 0
-      if $numerator > 0
-        margin-left: s('calc((100% - 0.01px) * %s)', unquote($fraction))
-      if $numerator < 0
-        margin-right: s('calc((-100% - 0.01px) * %s)', unquote($fraction))
-
-  if $dir is column
-    if $gut > 0
-      if $numerator > 0
-        margin-bottom: s('calc(100vh * %s - (0px - %s / %s) + %s)', unquote($fraction), $gut, $denominator, $gut)
-      if $numerator < 0
-        $fraction = split('-', $fraction)[1]
-        margin-top: s('calc(100vh * %s - (0px - %s / %s))', unquote($fraction), $gut, $denominator)
-    if $gut is 0
-      if $numerator > 0
-        margin-bottom: s('calc(100vh * %s)', unquote($fraction))
-      if $numerator < 0
-        margin-top: s('calc(-100vh * %s)', unquote($fraction))
-
-
-/**
- * Source ordering. Shift elements left or right by their left position. Not very happy with this implementation: https://github.com/corysimmons/lost/issues/33
- *
- * @param {string} [$fraction='1/1'] - Fraction of the container to be shifted. Must be a string.
- * @param {number} [$spots=1] - Number of spots to shift. So if you have 1/3 and shift it 2 spots to the right, it will end up on the 3/3 location. Can be negative. You might need to tweak these a bit for various sized objects.
- * @param {number} [$cycle=1] - If you have elements of unequal width, you can pass the number of items in the row to the $cycle param to help with the mathz involved.
- * @param {number} [$gut=$gutter] - Adjust the size of the gutter for this movement. Should match the block's $gut.
- * @param {string} [$output=normal] - Determines the type of output to produce. Accepts 3 options, normal (all the code), init (just the initialization code), and bare (just the left offset).
- *
- * @example
- *   figure
- *     block('1/3')
- *     move('1/3')
- */
-
-move($fraction = '1/1', $spots = 1, $cycle = 1, $gut = $gutter, $output = normal)
-
-  $denominator = unquote(split('/', $fraction)[1])
-
-  if $output is normal or $output is init
-    position: relative
-  if $output is normal or $output is bare
-    if $cycle != 1
-      left: s('calc(%s * ((100% - 0.01px) * %s - (%s - %s / %s) + %s))', $spots, unquote($fraction), $gut, $gut, $cycle, $gut)
-    else
-      left: s('calc(%s * ((100% - 0.01px) * %s - (%s - %s / %s) + %s))', $spots, unquote($fraction), $gut, $gut, $denominator, $gut)
-
 
 html, body
   height: 100%
