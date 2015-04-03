@@ -1,4 +1,4 @@
-// Lost Grid v3.0.5 - https://github.com/corysimmons/lost
+// Lost Grid v3.0.6 - https://github.com/corysimmons/lost
 
 $gutter = 30px
 $rtl = false
@@ -164,16 +164,16 @@ block($fraction = '1/1', $dir = row, $cycle = 1, $gut = $gutter, $output = norma
       if $masonry-friendly is false
         if $gut != 0
           if $cycle != 1
-            width: s('calc(99.999% * %s - (%s - %s / %s))', unquote($fraction), $gut, $gut, $cycle)
+            width: s('calc((100% - 0.01px) * %s - (%s - %s / %s))', unquote($fraction), $gut, $gut, $cycle)
           else
-            width: s('calc(99.999% * %s - (%s - %s / %s))', unquote($fraction), $gut, $gut, $denominator)
+            width: s('calc((100% - 0.01px) * %s - (%s - %s / %s))', unquote($fraction), $gut, $gut, $denominator)
         else
-          width: s('calc(99.999% * %s)', unquote($fraction))
+          width: s('calc((100% - 0.01px) * %s)', unquote($fraction))
       else
         if $gut != 0
-          width: s('calc(99.999% * %s - %s)', unquote($fraction), $gut)
+          width: s('calc((100% - 0.01px) * %s - %s)', unquote($fraction), $gut)
         else
-          width: s('calc(99.999% * %s)', unquote($fraction))
+          width: s('calc((100% - 0.01px) * %s)', unquote($fraction))
 
   if $dir is column
     if $output is normal or $output is init
@@ -182,9 +182,9 @@ block($fraction = '1/1', $dir = row, $cycle = 1, $gut = $gutter, $output = norma
         margin-bottom: 0
     if $output is normal or $output is bare
       if $gut != 0
-        height: s('calc(99.999% * %s - (%s - %s / %s))', unquote($fraction), $gut, $gut, $denominator)
+        height: s('calc((100% - 0.01px) * %s - (%s - %s / %s))', unquote($fraction), $gut, $gut, $denominator)
       else
-        height: s('calc(99.999% * %s)', unquote($fraction))
+        height: s('calc((100% - 0.01px) * %s)', unquote($fraction))
 
   if $dir is both
     if $output is normal or $output is init
@@ -227,13 +227,13 @@ block($fraction = '1/1', $dir = row, $cycle = 1, $gut = $gutter, $output = norma
     if $output is normal or $output is bare
       if $gut != 0
         if $cycle != 1
-          width: s('calc(99.999% * %s - (%s - %s / %s))', $fraction, $gut, $gut, $cycle)
+          width: s('calc((100% - 0.01px) * %s - (%s - %s / %s))', $fraction, $gut, $gut, $cycle)
         else
-          width: s('calc(99.999% * %s - (%s - %s / %s))', unquote($fraction), $gut, $gut, $denominator)
-        height: s('calc(99.999% * %s - (%s - %s / %s))', unquote($fraction), $gut, $gut, $denominator)
+          width: s('calc((100% - 0.01px) * %s - (%s - %s / %s))', unquote($fraction), $gut, $gut, $denominator)
+        height: s('calc((100% - 0.01px) * %s - (%s - %s / %s))', unquote($fraction), $gut, $gut, $denominator)
       else
-        width: s('calc(99.999% * %s)', unquote($fraction))
-        height: s('calc(99.999% * %s)', unquote($fraction))
+        width: s('calc((100% - 0.01px) * %s)', unquote($fraction))
+        height: s('calc((100% - 0.01px) * %s)', unquote($fraction))
 
 
 /**
@@ -253,9 +253,9 @@ masonry-row($gut = $gutter)
   margin-left: -($gut / 2)
   margin-right: -($gut / 2)
   if $gut is not 0
-    width: s('calc(99.999% + %s)', $gut)
+    width: s('calc((100% - 0.01px) + %s)', $gut)
   else
-    width: 99.999%
+    width: (100% - 0.01px)
 
 
 /**
@@ -282,20 +282,20 @@ offset($fraction = '1/1', $dir = row, $gut = $gutter, $masonry-friendly = false)
     if $gut > 0
       if $numerator > 0
         if $masonry-friendly
-          margin-left: s('calc(99.999% * %s + (%s / 2))', unquote($fraction), $gut)
+          margin-left: s('calc((100% - 0.01px) * %s + (%s / 2))', unquote($fraction), $gut)
         else
-          margin-left: s('calc(99.999% * %s - (%s - %s / %s) + %s)', unquote($fraction), $gut, $gut, $denominator, $gut)
+          margin-left: s('calc((100% - 0.01px) * %s - (%s - %s / %s) + %s)', unquote($fraction), $gut, $gut, $denominator, $gut)
       if $numerator < 0
         $fraction = split('-', $fraction)[1]
         if $masonry-friendly
-          margin-right: s('calc(99.999% * %s + (%s / 2))', unquote($fraction), $gut)
+          margin-right: s('calc((100% - 0.01px) * %s + (%s / 2))', unquote($fraction), $gut)
         else
-          margin-right: s('calc(99.999% * %s - (%s - %s / %s) + (%s * 2))', unquote($fraction), $gut, $gut, $denominator, $gut)
+          margin-right: s('calc((100% - 0.01px) * %s - (%s - %s / %s) + (%s * 2))', unquote($fraction), $gut, $gut, $denominator, $gut)
     if $gut is 0
       if $numerator > 0
-        margin-left: s('calc(99.999% * %s)', unquote($fraction))
+        margin-left: s('calc((100% - 0.01px) * %s)', unquote($fraction))
       if $numerator < 0
-        margin-right: s('calc(-99.999% * %s)', unquote($fraction))
+        margin-right: s('calc((-100% - 0.01px) * %s)', unquote($fraction))
 
   if $dir is column
     if $gut > 0
@@ -334,9 +334,9 @@ move($fraction = '1/1', $spots = 1, $cycle = 1, $gut = $gutter, $output = normal
     position: relative
   if $output is normal or $output is bare
     if $cycle != 1
-      left: s('calc(%s * (99.999% * %s - (%s - %s / %s) + %s))', $spots, unquote($fraction), $gut, $gut, $cycle, $gut)
+      left: s('calc(%s * ((100% - 0.01px) * %s - (%s - %s / %s) + %s))', $spots, unquote($fraction), $gut, $gut, $cycle, $gut)
     else
-      left: s('calc(%s * (99.999% * %s - (%s - %s / %s) + %s))', $spots, unquote($fraction), $gut, $gut, $denominator, $gut)
+      left: s('calc(%s * ((100% - 0.01px) * %s - (%s - %s / %s) + %s))', $spots, unquote($fraction), $gut, $gut, $denominator, $gut)
 
 
 html, body

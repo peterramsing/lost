@@ -1,4 +1,4 @@
-// Lost Grid v3.0.5 - https://github.com/corysimmons/lost
+// Lost Grid v3.0.6 - https://github.com/corysimmons/lost
 
 $gutter: 30px !default;
 $rtl: false !default;
@@ -241,19 +241,19 @@ $rtl: false !default;
       @if ($masonry-friendly == false) {
         @if ($gut != 0) {
           @if ($cycle != 1) {
-            width: calc(99.999% * #{$fraction} - (#{$gut} - #{$gut} / #{$cycle}));
+            width: calc((100% - 0.01px) * #{$fraction} - (#{$gut} - #{$gut} / #{$cycle}));
           } @else {
-            width: calc(99.999% * #{$fraction} - (#{$gut} - #{$gut} / #{$denominator}));
+            width: calc((100% - 0.01px) * #{$fraction} - (#{$gut} - #{$gut} / #{$denominator}));
           }
         } @else {
-          width: calc(99.999% * #{$fraction});
+          width: calc((100% - 0.01px) * #{$fraction});
         }
 
       } @else {
         @if ($gut != 0) {
-          width: calc(99.999% * #{$fraction} - #{$gut});
+          width: calc((100% - 0.01px) * #{$fraction} - #{$gut});
         } @else {
-          width: calc(99.999% * #{$fraction});
+          width: calc((100% - 0.01px) * #{$fraction});
         }
       }
     }
@@ -270,9 +270,9 @@ $rtl: false !default;
 
     @if ($output == normal) or ($output == bare) {
       @if ($gut != 0) {
-        height: calc(99.999% * #{$fraction} - (#{$gut} - #{$gut} / #{$denominator}));
+        height: calc((100% - 0.01px) * #{$fraction} - (#{$gut} - #{$gut} / #{$denominator}));
       } @else {
-        height: calc(99.999% * #{$fraction});
+        height: calc((100% - 0.01px) * #{$fraction});
       }
     }
   }
@@ -339,14 +339,14 @@ $rtl: false !default;
     @if ($output == normal) or ($output == bare) {
       @if ($gut != 0) {
         @if ($cycle != 1) {
-          width: calc(99.999% * #{$fraction} - (#{$gut} - #{$gut} / #{$cycle}));
+          width: calc((100% - 0.01px) * #{$fraction} - (#{$gut} - #{$gut} / #{$cycle}));
         } @else {
-          width: calc(99.999% * #{$fraction} - (#{$gut} - #{$gut} / #{$denominator}));
+          width: calc((100% - 0.01px) * #{$fraction} - (#{$gut} - #{$gut} / #{$denominator}));
         }
-        height: calc(99.999% * #{$fraction} - (#{$gut} - #{$gut} / #{$denominator}));
+        height: calc((100% - 0.01px) * #{$fraction} - (#{$gut} - #{$gut} / #{$denominator}));
       } @else {
-        width: calc(99.999% * #{$fraction});
-        height: calc(99.999% * #{$fraction});
+        width: calc((100% - 0.01px) * #{$fraction});
+        height: calc((100% - 0.01px) * #{$fraction});
       }
     }
   }
@@ -370,9 +370,9 @@ $rtl: false !default;
   margin-left: -($gut / 2);
   margin-right: -($gut / 2);
   @if ($gut != 0) {
-    width: calc(99.999% + #{$gut});
+    width: calc((100% - 0.01px) + #{$gut});
   } @else {
-    width: 99.999%;
+    width: (100% - 0.01px);
   }
 }
 
@@ -454,26 +454,26 @@ $rtl: false !default;
     @if ($gut > 0) {
       @if ($numerator > 0) {
         @if ($masonry-friendly) {
-          margin-left: calc(99.999% * #{$fraction} + (#{$gut} / 2));
+          margin-left: calc((100% - 0.01px) * #{$fraction} + (#{$gut} / 2));
         } @else {
-          margin-left: calc(99.999% * #{$fraction} - (#{$gut} - #{$gut} / #{$denominator}) + #{$gut});
+          margin-left: calc((100% - 0.01px) * #{$fraction} - (#{$gut} - #{$gut} / #{$denominator}) + #{$gut});
         }
       }
       @if ($numerator < 0) {
         $fraction: nth(sl-explode($fraction, '-'), 2);
         @if ($masonry-friendly) {
-          margin-right: calc(99.999% * #{$fraction} + (#{$gut} / 2));
+          margin-right: calc((100% - 0.01px) * #{$fraction} + (#{$gut} / 2));
         } @else {
-          margin-right: calc(99.999% * #{$fraction} - (#{$gut} - #{$gut} / #{$denominator}) + (#{$gut} * 2));
+          margin-right: calc((100% - 0.01px) * #{$fraction} - (#{$gut} - #{$gut} / #{$denominator}) + (#{$gut} * 2));
         }
       }
     }
     @if ($gut == 0) {
       @if ($numerator > 0) {
-        margin-left: calc(99.999% * #{$fraction});
+        margin-left: calc((100% - 0.01px) * #{$fraction});
       }
       @if ($numerator < 0) {
-        margin-right: calc(-99.999% * #{$fraction});
+        margin-right: calc((-100% - 0.01px) * #{$fraction});
       }
     }
   }
@@ -523,9 +523,9 @@ $rtl: false !default;
   }
   @if ($output == normal) or ($output == bare) {
     @if ($cycle != 1) {
-      left: calc(#{$spots} * (99.999% * #{$fraction} - (#{$gut} - #{$gut} / #{$cycle}) + #{$gut}));
+      left: calc(#{$spots} * ((100% - 0.01px) * #{$fraction} - (#{$gut} - #{$gut} / #{$cycle}) + #{$gut}));
     } @else {
-      left: calc(#{$spots} * (99.999% * #{$fraction} - (#{$gut} - #{$gut} / #{$denominator}) + #{$gut}));
+      left: calc(#{$spots} * ((100% - 0.01px) * #{$fraction} - (#{$gut} - #{$gut} / #{$denominator}) + #{$gut}));
     }
   }
 }
