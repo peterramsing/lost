@@ -271,6 +271,8 @@ for $i in 1..12
     block(s('%s/12', $i), $output: bare)
 ```
 
+> **Note** We're aware these don't produce the cleanest CSS classes or work very well with media queries and are currently working on a solution. Please [help](https://github.com/corysimmons/lost/issues/46) if you can.
+
 Once you've mastered the basic horizontal grid system (it shouldn't take long), you can start to make vertical grids that have the same vertical gutters as your horizontal grids. Just pass `$dir: column` to your `block()` mixin. The blocks will stretch to fill their container's height, so if you'd like to see them take up the full height of the page, set `height: 100%` on your container.
 
 No other grid system in the world supports vertical grids.
