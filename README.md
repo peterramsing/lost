@@ -14,6 +14,8 @@ It makes use of [`calc()`](https://webdesign.tutsplus.com/tutorials/calc-grids-a
 
 I can tell you with no ego, this is [my finest grid](https://www.youtube.com/watch?v=EnjtQQQaDKo).
 
+See for yourself! **Fork a demo** on CodePen: [SCSS](http://codepen.io/corysimmons/pen/RNOvpN?editors=110) or [Stylus](http://codepen.io/corysimmons/pen/zxXeNJ?editors=110)
+
 
 ## Better than X
 Lost is better than any grid system out there and can prove it.
