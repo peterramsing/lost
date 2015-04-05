@@ -568,7 +568,6 @@ figure
 ## Browser Support
 
 - [`calc()` grids](https://webdesign.tutsplus.com/tutorials/calc-grids-are-the-best-grids--cms-22902) work perfect on IE9+ with poor support on old Android browsers ([`calc()` browser support](http://caniuse.com/#feat=calc)).
-- Currently awaiting this [Issue](https://github.com/closingtag/calc-polyfill/issues/10) to be fixed in order to support IE8 (with a polyfill obviously). If it's not fixed rather quickly, I will add support for IE8 manually.
 
 
 ### Other Projects
