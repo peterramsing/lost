@@ -1,4 +1,4 @@
-// Lost Grid v4.0.1 - https://github.com/corysimmons/lost
+// Lost Grid v4.0.2 - https://github.com/corysimmons/lost
 
 $gutter: 30px !default;
 $rtl: false !default;
@@ -70,6 +70,7 @@ $rtl: false !default;
 /// Vertically and/or horizontally align nested elements.
 ///
 /// @param {string} $location [middle-center] - The position the nested element takes relative to the containing element.
+/// @param {boolean} $flex [false] - Whether align() will use Flexbox to perform centering or not. Options are false or flex (for readability).
 ///
 /// - reset
 /// - top-left
@@ -92,70 +93,106 @@ $rtl: false !default;
 ///     }
 ///   }
 
-@mixin align($location: middle-center) {
-  position: relative;
-  > * {
-    position: absolute;
+@mixin align($location: middle-center, $flex: false) {
+  @if ($flex == false) {
+    position: relative;
+    > * {
+      position: absolute;
+      @if ($location == reset) {
+        top: auto;
+        right: auto;
+        bottom: auto;
+        left: auto;
+        transform: translate3d(0, 0, 0);
+      } @else if ($location == top-left) {
+        top: 0;
+        right: auto;
+        bottom: auto;
+        left: 0;
+        transform: translate3d(0, 0, 0);
+      } @else if ($location == top-center) or ($location == top) {
+        top: 0;
+        right: auto;
+        bottom: auto;
+        left: 50%;
+        transform: translate3d(-50%, 0, 0);
+      } @else if ($location == top-right) {
+        top: 0;
+        right: 0;
+        bottom: auto;
+        left: auto;
+        transform: translate3d(0, 0, 0);
+      } @else if ($location == middle-left) or ($location == left) {
+        top: 50%;
+        right: auto;
+        bottom: auto;
+        left: 0;
+        transform: translate3d(0, -50%, 0);
+      } @else if ($location == middle-right) or ($location == right) {
+        top: 50%;
+        right: 0;
+        bottom: auto;
+        left: auto;
+        transform: translate3d(0, -50%, 0);
+      } @else if ($location == bottom-left) {
+        top: auto;
+        right: auto;
+        bottom: 0;
+        left: 0;
+        transform: translate3d(0, 0, 0);
+      } @else if ($location == bottom-center) or ($location == bottom) {
+        top: auto;
+        right: auto;
+        bottom: 0;
+        left: 50%;
+        transform: translate3d(-50%, 0, 0);
+      } @else if ($location == bottom-right) {
+        top: auto;
+        right: 0;
+        bottom: 0;
+        left: auto;
+        transform: translate3d(0, 0, 0);
+      } @else {
+        top: 50%;
+        right: auto;
+        bottom: auto;
+        left: 50%;
+        transform: translate3d(-50%, -50%, 0);
+      }
+    }
+  }
+  @if ($flex == flex) {
+    display: flex;
     @if ($location == reset) {
-      top: auto;
-      right: auto;
-      bottom: auto;
-      left: auto;
-      transform: translate3d(0, 0, 0);
+      justify-content: inherit;
+      align-items: inherit;
     } @else if ($location == top-left) {
-      top: 0;
-      right: auto;
-      bottom: auto;
-      left: 0;
-      transform: translate3d(0, 0, 0);
+      justify-content: flex-start;
+      align-items: flex-start;
     } @else if ($location == top-center) or ($location == top) {
-      top: 0;
-      right: auto;
-      bottom: auto;
-      left: 50%;
-      transform: translate3d(-50%, 0, 0);
+      justify-content: center;
+      align-items: flex-start;
     } @else if ($location == top-right) {
-      top: 0;
-      right: 0;
-      bottom: auto;
-      left: auto;
-      transform: translate3d(0, 0, 0);
+      justify-content: flex-end;
+      align-items: flex-start;
     } @else if ($location == middle-left) or ($location == left) {
-      top: 50%;
-      right: auto;
-      bottom: auto;
-      left: 0;
-      transform: translate3d(0, -50%, 0);
+      justify-content: flex-start;
+      align-items: center;
     } @else if ($location == middle-right) or ($location == right) {
-      top: 50%;
-      right: 0;
-      bottom: auto;
-      left: auto;
-      transform: translate3d(0, -50%, 0);
+      justify-content: flex-end;
+      align-items: center;
     } @else if ($location == bottom-left) {
-      top: auto;
-      right: auto;
-      bottom: 0;
-      left: 0;
-      transform: translate3d(0, 0, 0);
+      justify-content: flex-start;
+      align-items: flex-end;
     } @else if ($location == bottom-center) or ($location == bottom) {
-      top: auto;
-      right: auto;
-      bottom: 0;
-      left: 50%;
-      transform: translate3d(-50%, 0, 0);
+      justify-content: center;
+      align-items: flex-end;
     } @else if ($location == bottom-right) {
-      top: auto;
-      right: 0;
-      bottom: 0;
-      left: auto;
-      transform: translate3d(0, 0, 0);
+      justify-content: flex-end;
+      align-items: flex-end;
     } @else {
-      top: 50%;
-      right: auto;
-      bottom: auto;
-      left: 50%;
-      transform: translate3d(-50%, -50%, 0);
+      justify-content: center;
+      align-items: center;
     }
   }
 }
