@@ -1,4 +1,4 @@
-// Lost Grid v4.1.0 - https://github.com/corysimmons/lost
+// Lost Grid v4.1.1 - https://github.com/corysimmons/lost
 
 $gutter: 30px !default;
 $rtl: false !default;
@@ -472,15 +472,15 @@ $rtl: false !default;
   } @else {
     @if ($numerator > 0) {
       @if ($gut == 0) {
-        margin-bottom: calc(100% * #{$fraction}) !important;
+        margin-bottom: calc(99.999999% * #{$fraction}) !important;
       } @else {
-        margin-bottom: calc(100% * #{$fraction} - (#{$gut} - #{$gut} * #{$fraction}) + (#{$gut} * 2)) !important;
+        margin-bottom: calc(99.99% * #{$fraction} - (#{$gut} - #{$gut} * #{$fraction}) + (#{$gut} * 2)) !important;
       }
     } @else if ($numerator < 0) {
       @if ($gut == 0) {
-        margin-top: calc(100% * (#{$fraction} * -1)) !important;
+        margin-top: calc(99.999999% * (#{$fraction} * -1)) !important;
       } @else {
-        margin-top: calc(100% * (#{$fraction} * -1) - (#{$gut} - #{$gut} * (#{$fraction} * -1)) + (#{$gut} * 2)) !important;
+        margin-top: calc(99.99% * (#{$fraction} * -1) - (#{$gut} - #{$gut} * (#{$fraction} * -1)) + (#{$gut} * 2)) !important;
       }
     } @else {
       margin-top: 0 !important;

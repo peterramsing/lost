@@ -1,4 +1,4 @@
-// Lost Grid v4.1.0 - https://github.com/corysimmons/lost
+// Lost Grid v4.1.1 - https://github.com/corysimmons/lost
 
 $gutter = 30px
 $rtl = false
@@ -308,14 +308,14 @@ offset($fraction = '1/1', $dir = row, $gut = $gutter)
     else
       if $numerator > 0
         if $gut is 0
-          return s('calc(100% * %s)', unquote($fraction))
+          return s('calc(99.999999% * %s)', unquote($fraction))
         else
-          return s('calc(100% * %s - (%s - %s * %s) + (%s * 2))', unquote($fraction), $gut, $gut, unquote($fraction), $gut)
+          return s('calc(99.99% * %s - (%s - %s * %s) + (%s * 2))', unquote($fraction), $gut, $gut, unquote($fraction), $gut)
       if $numerator < 0
         if $gut is 0
-          return s('calc(100% * (%s * -1))', unquote($fraction))
+          return s('calc(99.999999% * (%s * -1))', unquote($fraction))
         else
-          return s('calc(100% * (%s * -1) - (%s - %s * (%s * -1)) + (%s * 2))', unquote($fraction), $gut, $gut, unquote($fraction), $gut)
+          return s('calc(99.99% * (%s * -1) - (%s - %s * (%s * -1)) + (%s * 2))', unquote($fraction), $gut, $gut, unquote($fraction), $gut)
   if $dir is row
     if $numerator > 0
       margin-right: _get-size() !important
