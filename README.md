@@ -246,33 +246,6 @@ section
     edit(green)
 ```
 
-Lost even lets you create your own custom CSS grids in just a few lines of code with the `$output` parameter which accepts `normal` (compiles all `column` styles), `init` (only initial styles), and `bare` (just the `width` or `height`).
-
-<h6 align="right">SCSS</h6>
-```scss
-[class*="col-"] {
-  @include block($output: init);
-}
-
-@for $i from 1 through 12 {
-  .col-#{$i} {
-    @include block(#{$i}/12, $output: bare);
-  }
-}
-```
-
-<h6 align="right">Stylus</h6>
-```stylus
-[class*="col-"]
-  block($output: init)
-
-for $i in 1..12
-  .col-{$i}
-    block(s('%s/12', $i), $output: bare)
-```
-
-> **Note** We're aware these don't produce the cleanest CSS classes or work very well with media queries and are currently working on a solution. Please [help](https://github.com/corysimmons/lost/issues/46) if you can.
-
 Once you've mastered the basic horizontal grid system (it shouldn't take long), you can start to make vertical grids that have the same vertical gutters as your horizontal grids. Just pass `$dir: column` to your `block()` mixin. The blocks will stretch to fill their container's height, so if you'd like to see them take up the full height of the page, set `height: 100%` on your container.
 
 No other grid system in the world supports vertical grids.
