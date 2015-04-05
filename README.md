@@ -22,21 +22,21 @@ Lost is better than any grid system out there and can prove it.
 
 Feature | Lost | [Bootstrap](http://getbootstrap.com/css/#grid) | [Foundation](http://foundation.zurb.com/grid.html) | [Jeet](http://jeet.gs/) | [Neat](http://neat.bourbon.io/) | [Susy](http://susy.oddbird.net/)
 :-:|:-:|:-:|:-:|:-:|:-:|:-:
-[Responsive](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#responsive) | :+1: | :+1: | :+1: | :+1: | :+1: | :+1:
-[Small learning curve](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#small-learning-curve) | :+1: | :+1: | :+1: | :+1: | :+1:
-[Easy-to-implement](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#easy-to-implement) | :+1: | :+1: | :+1:
-[Works with Masonry](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#works-with-masonry) | :+1: | :+1: | :+1: |
-[Terse markup](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#terse-markup) | :+1: | | | :+1: | :+1: | :+1:
-[On-the-fly grids](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#on-the-fly-grids) | :+1: | | | :+1: | :+1: | :+1:
-[Clean markup](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#clean-markup) | :+1: | | | :+1: | :+1: | :+1:
-[Real gutters](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#real-gutters) | :+1: | | | :+1: | :+1: | :+1:
-[Stylus support](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#stylus-support) | :+1: | | | :+1:
-[No Additional Ratio Context](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#no-additional-ratio-context) | :+1:
-[Consistent Horizontal Gutters](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#consistent-horizontal-gutters) | :+1:
-[Lightweight](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#lightweight) | :+1:
-[Vertical Grids](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#vertical-grids) | :+1:
-[Waffle Grids](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#waffle-grids) | :+1:
-[Fixed Gutters](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#fixed-gutters) | :+1:
+[Responsive](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#responsive) | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg">
+[Small learning curve](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#small-learning-curve) | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg">
+[Easy-to-implement](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#easy-to-implement) | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg">
+[Works with Masonry](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#works-with-masonry) | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg"> |
+[Terse markup](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#terse-markup) | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | | | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg">
+[On-the-fly grids](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#on-the-fly-grids) | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | | | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg">
+[Clean markup](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#clean-markup) | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | | | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg">
+[Real gutters](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#real-gutters) | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | | | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg">
+[Stylus support](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#stylus-support) | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | | | <img src="http://corysimmons.github.io/lost/checkmark.svg">
+[No Additional Ratio Context](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#no-additional-ratio-context) | <img src="http://corysimmons.github.io/lost/checkmark.svg">
+[Consistent Horizontal Gutters](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#consistent-horizontal-gutters) | <img src="http://corysimmons.github.io/lost/checkmark.svg">
+[Lightweight](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#lightweight) | <img src="http://corysimmons.github.io/lost/checkmark.svg">
+[Vertical Grids](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#vertical-grids) | <img src="http://corysimmons.github.io/lost/checkmark.svg">
+[Waffle Grids](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#waffle-grids) | <img src="http://corysimmons.github.io/lost/checkmark.svg">
+[Fixed Gutters](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#fixed-gutters) | <img src="http://corysimmons.github.io/lost/checkmark.svg">
 
 <sup>If you notice anything in this table is incorrect or unfair, please don't hesitate to [open an issue](https://github.com/corysimmons/lost/issues/new).</sup>
 
