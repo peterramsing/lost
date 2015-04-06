@@ -1,4 +1,4 @@
-// Lost Grid v4.1.1 - https://github.com/corysimmons/lost
+// Lost Grid v4.2.0 - https://github.com/corysimmons/lost
 
 $gutter: 30px !default;
 $rtl: false !default;
@@ -238,7 +238,7 @@ $rtl: false !default;
 ///
 /// @param {string} $fraction ['1/1'] - This is a simple fraction of the containing element's width or height depending on $dir. This must be a string written as a fraction.
 /// @param {string} $dir [row] - The direction of the grid. Can be row (horizontal grid), column (vertical grid), or both (waffle grid).
-/// @param {number} $cycle [1] - Lost works by assigning a margin-right to all elements except the last in the row. It does this by default by using the denominator of the fraction you pick. To override this default use this param. e.g. block('2/4', $cycle: 2)
+/// @param {number} $cycle [nth(sl-explode($fraction, '/'), 2)] - Lost works by assigning a margin-right to all elements except the last in the row. It does this by default by using the denominator of the fraction you pick. To override this default use this param. e.g. block('2/4', $cycle: 2)
 /// @param {number} $gut [$gutter] - The margin on the side of the element used to create a gutter. Typically this is left alone and the global $gutter will be used, but you can override it here if you want certain elements to have a particularly large or small gutter (pass 0 for no gutter at all).
 /// @param {boolean} $masonry-friendly [false] - Dictates whether this particular group of elements will work well with JS masonry plugins. This will assign a margin on each side of the element and you will need to wrap this group of elements in a masonry-row().
 ///
@@ -265,11 +265,7 @@ $rtl: false !default;
       @if ($gut == 0) {
         width: calc(99.999999% * #{$fraction});
       } @else {
-        @if $masonry-friendly {
-          width: calc(99.99% * #{$fraction} - #{$gut});
-        } @else {
-          width: calc(99.99% * #{$fraction} - (#{$gut} - #{$gut} * #{$fraction}));
-        }
+        width: calc(99.99% * #{$fraction} - #{$gut});
       }
     } @else {
       @if $rtl {
