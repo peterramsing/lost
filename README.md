@@ -14,7 +14,7 @@ It makes use of [`calc()`](https://webdesign.tutsplus.com/tutorials/calc-grids-a
 
 I can tell you with no ego, this is [my finest grid](https://www.youtube.com/watch?v=EnjtQQQaDKo).
 
-See for yourself! **Fork a demo** on CodePen and [follow along](#getting-started): [SCSS](http://codepen.io/corysimmons/pen/RNOvpN?editors=110) or [Stylus](http://codepen.io/corysimmons/pen/zxXeNJ?editors=110)
+See for yourself! **Fork a demo** on CodePen and [follow along](#getting-started): [SCSS](http://codepen.io/corysimmons/pen/RNOvpN?editors=110), [LESS](http://codepen.io/corysimmons/pen/pvmwQm?editors=110), or [Stylus](http://codepen.io/corysimmons/pen/zxXeNJ?editors=110)
 
 
 ## Better than X
@@ -31,6 +31,7 @@ Feature | Lost | [Bootstrap](http://getbootstrap.com/css/#grid) | [Foundation](h
 [Clean markup](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#clean-markup) | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | | | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg">
 [Real gutters](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#real-gutters) | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | | | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg">
 [Stylus support](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#stylus-support) | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | | | <img src="http://corysimmons.github.io/lost/checkmark.svg">
+[LESS support](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#less-support) | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg">
 [No Additional Ratio Context](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#no-additional-ratio-context) | <img src="http://corysimmons.github.io/lost/checkmark.svg">
 [Consistent Horizontal Gutters](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#consistent-horizontal-gutters) | <img src="http://corysimmons.github.io/lost/checkmark.svg">
 [Lightweight](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#lightweight) | <img src="http://corysimmons.github.io/lost/checkmark.svg">
@@ -43,7 +44,7 @@ Feature | Lost | [Bootstrap](http://getbootstrap.com/css/#grid) | [Foundation](h
 
 ## Getting Started
 
-Lost works by creating **blocks**. Think of these blocks as columns in a traditional grid system, except they can go vertical as well. To create a basic horizontal grid, just insert some blocks into any element like so and pass a fraction (**as a string**) to `block()`.
+Lost works by creating **blocks**. Think of these blocks as columns in a traditional grid system, except they can go vertical as well. To create a basic horizontal grid, just insert some blocks into any element like so and pass a fraction (**as a string** if you're using SCSS or Stylus) to `block()`.
 
 <h6 align="right">HTML</h6>
 ```html
@@ -63,6 +64,17 @@ section {
 
 figure {
   @include block('1/2');
+}
+```
+
+<h6 align="right">LESS</h6>
+```less
+section {
+  .cf();
+}
+
+figure {
+  .block(1 of 2);
 }
 ```
 
@@ -90,6 +102,17 @@ figure {
 }
 ```
 
+<h6 align="right">LESS</h6>
+```less
+section {
+  .center(980px);
+}
+
+figure {
+  .block(1 of 2);
+}
+```
+
 <h6 align="right">Stylus</h6>
 ```stylus
 section
@@ -107,6 +130,13 @@ To override this behavior simply pass a `$cycle` param to your `block()`.
 ```scss
 figure {
   @include block('2/4', $cycle: 2);
+}
+```
+
+<h6 align="right">LESS</h6>
+```less
+figure {
+  .block(2 of 4, @cycle: 2);
 }
 ```
 
@@ -139,6 +169,13 @@ figure {
 }
 ```
 
+<h6 align="right">LESS</h6>
+```less
+figure {
+  .block(1 of 2);
+}
+```
+
 <h6 align="right">Stylus</h6>
 ```stylus
 figure
@@ -165,6 +202,16 @@ figure {
 }
 ```
 
+<h6 align="right">LESS</h6>
+```less
+figure {
+  .block(1 of 3);
+  &:first-child {
+    .offset(1 of 3);
+  }
+}
+```
+
 <h6 align="right">Stylus</h6>
 ```stylus
 figure
@@ -186,6 +233,20 @@ Easily vertically or horizontally center children elements with the `align()` mi
 ```scss
 section {
   @include align;
+  width: 600px;
+  height: 400px;
+}
+
+figure {
+  width: 100px;
+  height: 100px;
+}
+```
+
+<h6 align="right">LESS</h6>
+```less
+section {
+  .align();
   width: 600px;
   height: 400px;
 }
@@ -237,6 +298,18 @@ section {
 }
 ```
 
+<h6 align="right">LESS</h6>
+```less
+section {
+  &:nth-of-type(1) {
+    .edit();
+  }
+  &:nth-of-type(2) {
+    .edit(green);
+  }
+}
+```
+
 <h6 align="right">Stylus</h6>
 ```stylus
 section
@@ -267,6 +340,17 @@ section {
 
 figure {
   @include block('1/3', $dir: column);
+}
+```
+
+<h6 align="right">LESS</h6>
+```less
+section {
+  height: 100%;
+}
+
+figure {
+  .block(1 of 3, @dir: column);
 }
 ```
 
@@ -307,6 +391,17 @@ figure {
 }
 ```
 
+<h6 align="right">LESS</h6>
+```less
+section {
+  height: 100%;
+}
+
+figure {
+  .block(1 of 3, @dir: both);
+}
+```
+
 <h6 align="right">Stylus</h6>
 ```stylus
 section
@@ -338,6 +433,17 @@ figure {
 }
 ```
 
+<h6 align="right">LESS</h6>
+```less
+section {
+  .masonry-row();
+}
+
+figure {
+  .block(1 of 3, @masonry-friendly: true);
+}
+```
+
 <h6 align="right">Stylus</h6>
 ```stylus
 section
@@ -356,6 +462,10 @@ Just set either of these in a settings file after you `@import` Lost and before 
 - `$gutter: 30px !default;`
 - `$rtl: false !default;`
 
+<h6 align="right">LESS</h6>
+- `@gutter: 30px;`
+- `@rtl: false;`
+
 <h6 align="right">Stylus</h6>
 - `$gutter = 30px`
 - `$rtl = false`
@@ -372,6 +482,13 @@ Sets a translucent background color to all elements it affects. Helpful while se
 ```scss
 section {
   @include edit(red);
+}
+```
+
+<h6 align="right">LESS</h6>
+```less
+section {
+  .edit(red);
 }
 ```
 
@@ -395,6 +512,16 @@ Clearfix used to clear floated children blocks. http://nicolasgallagher.com/micr
 }
 ```
 
+<h6 align="right">LESS</h6>
+```less
+.parent {
+  .cf();
+  .child {
+    .block(1 of 2);
+  }
+}
+```
+
 <h6 align="right">Stylus</h6>
 ```stylus
 .parent
@@ -407,12 +534,35 @@ Clearfix used to clear floated children blocks. http://nicolasgallagher.com/micr
 ##### `align()`
 Vertically and/or horizontally align nested elements.
 
-- `$dir: both` - Direction. Either `vertical`, `v`, `horizontal`, or `h`. Defaults to `both`.
+- `$location: middle-center` - The position the nested element takes relative to the containing element.
+  - reset
+  - top-left
+  - top-center or top
+  - top-right
+  - middle-left or left
+  - middle-right or right
+  - bottom-left
+  - bottom-center or bottom
+  - bottom-right
+- `$flex: false` - Whether align() will use Flexbox to perform centering or not. Options are false or flex (for readability).
 
 <h6 align="right">SCSS</h6>
 ```scss
 .parent {
-  @include align(vertical);
+  @include align(right);
+  width: 600px;
+  height: 400px;
+  .child {
+    width: 300px;
+    height: 150px;
+  }
+}
+```
+
+<h6 align="right">LESS</h6>
+```less
+.parent {
+  .align(right);
   width: 600px;
   height: 400px;
   .child {
@@ -425,7 +575,7 @@ Vertically and/or horizontally align nested elements.
 <h6 align="right">Stylus</h6>
 ```stylus
 .parent
-  align(vertical)
+  align(right)
   width: 600px
   height: 400px
   .child
@@ -437,7 +587,7 @@ Vertically and/or horizontally align nested elements.
 ##### `block()`
 Creates a block that is a fraction of the size of it's containing element with a gutter. Think of this like a column except it can go vertical as well by setting $dir to 'column' or 'both'. You don't need to pass any additional ratios (fractions) as the grid system will make use of calc(). Note that fractions must always be wrapped in quotes.
 
-- `$fraction: '1/1'` - This is a simple fraction of the containing element's width or height depending on $dir. This must be a string written as a fraction.
+- `$fraction: '1/1'` - This is a simple fraction of the containing element's width or height depending on $dir. This must be a string written as a fraction (if you're using SCSS or Stylus).
 - `$dir: row` - The direction of the grid. Can be row (horizontal grid), column (vertical grid), or both (waffle grid).
 - `$cycle: nth(sl-explode($fraction, '/'), 2)` (gets the denominator) - Lost works by assigning a margin-right to all elements except the last in the row. It does this by default by using the denominator of the fraction you pick. To override this default use this param. e.g. block('2/4', $cycle: 2)
 - `$gut: $gutter` - The margin on the side of the element used to create a gutter. Typically this is left alone and the global $gutter will be used, but you can override it here if you want certain elements to have a particularly large or small gutter (pass 0 for no gutter at all).
@@ -451,6 +601,13 @@ figure {
 }
 ```
 
+<h6 align="right">LESS</h6>
+```less
+figure {
+  .block(1 of 3);
+}
+```
+
 <h6 align="right">Stylus</h6>
 ```stylus
 figure
@@ -461,7 +618,7 @@ figure
 ##### `offset()`
 Margin to the left, right, bottom, or top, of an element depending on if the fraction passed is positive or negative. It works for both horizontal and vertical grids but not both.
 
-- `$fraction: '1/1'` - Fraction of the container to be offset. Must be a string.
+- `$fraction: '1/1'` - Fraction of the container to be offset. Must be a string (if you're using SCSS or Stylus).
 - `$dir: row` - Direction the grid is going. Should match the block() it's being used on.
 - `$gut: $gutter` - How large the gutter involved is, typically this won't be adjusted, but if you have set the blocks for that row to have different gutters than default, you will need to match that gutter here as well.
 
@@ -471,6 +628,16 @@ Margin to the left, right, bottom, or top, of an element depending on if the fra
   @include block('1/3');
   &:first-child {
     @include offset('1/3');
+  }
+}
+```
+
+<h6 align="right">LESS</h6>
+```less
+.two-elements {
+  .block(1 of 3);
+  &:first-child {
+    .offset(1 of 3);
   }
 }
 ```
@@ -487,7 +654,7 @@ Margin to the left, right, bottom, or top, of an element depending on if the fra
 ##### `move()`
 Source ordering. Shift elements left, right, up, or down, by their left or top position by passing a positive or negative fraction.
 
-- `$fraction: '1/1'` - Fraction of the container to be shifted. Must be a string.
+- `$fraction: '1/1'` - Fraction of the container to be shifted. Must be a string (if you're using SCSS or Stylus).
 - `$dir: row` - Direction the grid is going. Should match the block() it's being used on.
 - `$gut: $gutter` - Adjust the size of the gutter for this movement. Should match the block's $gut.
 - `$output: normal` - Determines the type of output to produce. Accepts 3 options, normal (all the code), init (just the initialization code), and bare (just the left offset).
@@ -497,6 +664,14 @@ Source ordering. Shift elements left, right, up, or down, by their left or top p
 figure {
   @include block('1/3');
   @include move('1/3');
+}
+```
+
+<h6 align="right">LESS</h6>
+```less
+figure {
+  .block(1 of 3);
+  .move(1 of 3);
 }
 ```
 
@@ -520,6 +695,16 @@ section {
 }
 figure {
   @include block('1/3', $masonry-friendly: true);
+}
+```
+
+<h6 align="right">LESS</h6>
+```less
+section {
+  .masonry-row();
+}
+figure {
+  .block(1 of 3, @masonry-friendly: true);
 }
 ```
 

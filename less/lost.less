@@ -238,7 +238,7 @@
 /**
  * Creates a block that is a fraction of the size of it's containing element with a gutter. Think of this like a column except it can go vertical as well by setting @dir to 'column' or 'both'. You don't need to pass any additional ratios (fractions) as the grid system will make use of calc(). Note that fractions must always be wrapped in quotes.
  *
- * @param {string} [@fraction='1/1'] - This is a simple fraction of the containing element's width or height depending on @dir. This must be a string written as a fraction.
+ * @param {string} [@fraction=1 of 1] - This is a simple fraction of the containing element's width or height depending on @dir. This must be a string written X of Y.
  * @param {string} [@dir=row] - The direction of the grid. Can be row (horizontal grid), column (vertical grid), or both (waffle grid).
  * @param {number} [@cycle=extract(@fraction, 3)] - Lost works by assigning a margin-right to all elements except the last in the row. It does this by default by using the denominator of the fraction you pick. To override this default use this param. e.g. block('2/4', @cycle: 2)
  * @param {number} [@gut=@gutter] - The margin on the side of the element used to create a gutter. Typically this is left alone and the global @gutter will be used, but you can override it here if you want certain elements to have a particularly large or small gutter (pass 0 for no gutter at all).
@@ -406,7 +406,7 @@
 /**
  * Margin to the left, right, bottom, or top, of an element depending on if the fraction passed is positive or negative. It works for both horizontal and vertical grids but not both.
  *
- * @param {string} [@fraction='1/1'] - Fraction of the container to be offset. Must be a string.
+ * @param {string} [@fraction=1 of 1] - Fraction of the container to be offset. Must be a string written as X of Y.
  * @param {string} [@dir=row] - Direction the grid is going. Should match the block() it's being used on.
  * @param {number} [@gut=@gutter] - How large the gutter involved is, typically this won't be adjusted, but if you have set the blocks for that row to have different gutters than default, you will need to match that gutter here as well.
  *
@@ -473,7 +473,7 @@
 /**
  * Source ordering. Shift elements left, right, up, or down, by their left or top position by passing a positive or negative fraction.
  *
- * @param {string} [@fraction='1/1'] - Fraction of the container to be shifted. Must be a string.
+ * @param {string} [@fraction=1 of 1] - Fraction of the container to be shifted. Must be a string written as X of Y.
  * @param {string} [@dir=row] - Direction the grid is going. Should match the block() it's being used on.
  * @param {number} [@gut=@gutter] - Adjust the size of the gutter for this movement. Should match the block's @gut.
  *
