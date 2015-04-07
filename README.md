@@ -20,16 +20,16 @@ See for yourself! **Fork a demo** on CodePen and [follow along](#getting-started
 ## Table of Contents
 - [Comparison Table](#better-than-x)
 - [Getting Started](#getting-started)
-  - [Basic Columns](#html)
-  - [Centering Elements](#scss-1)
-  - [Controlling Cycle](#scss-2)
-  - [Nesting](#html-1)
-  - [Offseting Elements](#html-2)
-  - [Alignment](#html-3)
-  - [Edit Mode](#html-4)
-  - [Vertical Grids](#html-5)
-  - [Waffle Grids](#html-6)
-  - [Masonry Support](#html-7)
+  - [Basic Columns](#basic-columns)
+  - [Centering Elements](#centering-elements)
+  - [Controlling Cycle](#controlling-cycle)
+  - [Nesting](#nesting)
+  - [Offseting Elements](#offseting-elements)
+  - [Alignment](#alignment)
+  - [Edit Mode](#edit-mode)
+  - [Vertical Grids](#vertical-grids)
+  - [Waffle Grids](#waffle-grids)
+  - [Masonry Support](#masonry-support)
 - [Grid Settings](#grid-settings)
 - [Mixin Options](#mixin-options)
   - [`edit()`](#edit)
@@ -76,6 +76,8 @@ Feature | Lost | [Bootstrap](http://getbootstrap.com/css/#grid) | [Foundation](h
 
 ## Getting Started
 
+###### Basic Columns
+
 To create a basic horizontal grid, just insert some columns into any element like so and pass a fraction (**as a string**) to `column()`.
 
 <h6 align="right">HTML</h6>
@@ -121,6 +123,9 @@ figure
 
 `cf()` is just a [clearfix](http://nicolasgallagher.com/micro-clearfix-hack/) mixin since grid elements are floated. It's a good idea to give this to the element wrapping your grid elements every time.
 
+
+###### Centering Elements
+
 You can also make use of the `center()` mixin to assign a `max-width` and `margin: auto` to an element and center it on the page. `cf()` will automatically be applied in this case.
 
 <h6 align="right">SCSS</h6>
@@ -154,6 +159,9 @@ figure
   column('1/2')
 ```
 
+
+###### Controlling Cycle
+
 Every element gets a `float: left` and `margin-right: $gutter` applied to them except the last one in the row. Lost will automatically detect the last item in a row (based on the denominator you passed) and apply a `margin-right: 0` to it by default.
 
 To override this behavior simply pass a `cycle` param to your `column()`.
@@ -177,6 +185,9 @@ figure {
 figure
   column('2/4', $cycle: 2)
 ```
+
+
+###### Nesting
 
 Nesting is simple and **requires [no extra fractions](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#no-additional-ratio-context)** unlike other preprocessor grid systems.
 
@@ -213,6 +224,9 @@ figure {
 figure
   column('1/2')
 ```
+
+
+###### Offseting Elements
 
 You can `offset` columns easily. To offset in the other direction, pass a negative fraction.
 
@@ -251,6 +265,9 @@ figure
   &:first-child
     offset('1/3')
 ```
+
+
+###### Alignment
 
 Easily align children elements with the `align()` mixin. It accepts options like `top-left`, `right`, `center`, [etc](#align).
 
@@ -300,6 +317,9 @@ figure
   width: 100px
   height: 100px
 ```
+
+
+###### Edit Mode
 
 Use the `edit()` mixin at base level to visualize the entire structure of your site, or just specify the areas you're working on. You can pass it any color (pick a darkish one because `edit()` will lighten it).
 
@@ -351,6 +371,9 @@ section
     edit(green)
 ```
 
+
+###### Vertical Grids
+
 Once you've mastered the basic horizontal grid system (it shouldn't take long), you can start to make vertical grids that have the same vertical gutters as your horizontal grids. Just use the `row()` mixin in place of `column()`. These rows will stretch to fill their container's height, so if you'd like to see them take up the full height of the page, set `height: 100%` on your container.
 
 No other grid system in the world supports vertical grids.
@@ -394,6 +417,9 @@ section
 figure
   row('1/3')
 ```
+
+
+###### Waffle Grids
 
 You can even make a horizontal/vertical grid (a **waffle grid**) which resembles a tic-tac-toe board.
 
@@ -442,6 +468,9 @@ section
 figure
   waffle('1/3')
 ```
+
+
+###### Masonry Support
 
 Lost supports masonry plugins like [Isotope](http://isotope.metafizzy.co/). To accomplish this we need to change how the margins work. Instead of applying a `margin-right` to everything, we need to apply it to both sides. We've made a couple special mixins to help with this: `masonry-column()` which creates a margin on the left and right of each element it's applied to, and `masonry-wrap()` which wraps your columns and applies a negative margin to the left and right to them to help line them up with containing elements.
 
