@@ -1,4 +1,4 @@
-// Lost Grid v4.2.0 - https://github.com/corysimmons/lost
+// Lost Grid v5.0.0 - https://github.com/corysimmons/lost
 
 @gutter: 30px;
 @rtl: false;
@@ -23,13 +23,13 @@
 
 
 /**
- * Clearfix used to clear floated children blocks. http://nicolasgallagher.com/micro-clearfix-hack
+ * Clearfix used to clear floated children elements. http://nicolasgallagher.com/micro-clearfix-hack
  *
  * @example
  *   .parent {
  *     .cf();
  *     .child {
- *       .block(1 of 2);
+ *       .column(1 of 2);
  *     }
  *   }
  */
@@ -69,7 +69,7 @@
 
 
 /**
- * Vertically and/or horizontally align nested elements.
+ * Align nested elements.
  *
  * @param {string} [@location=middle-center] - The position the nested element takes relative to the containing element.
  * @param {boolean} [@flex=false] - Whether align() will use Flexbox to perform centering or not. Options are false or flex (for readability).
@@ -86,7 +86,7 @@
  *
  * @example
  *   .parent {
- *     .align();
+ *     .align(right);
  *     width: 600px;
  *     height: 400px;
  *     .child {
@@ -236,169 +236,151 @@
 
 
 /**
- * Creates a block that is a fraction of the size of it's containing element with a gutter. Think of this like a column except it can go vertical as well by setting @dir to 'column' or 'both'. You don't need to pass any additional ratios (fractions) as the grid system will make use of calc(). Note that fractions must always be wrapped in quotes.
+ * Creates a column that is a fraction of the size of it's containing element with a gutter. You don't need to pass any additional ratios (fractions) as the grid system will make use of calc(). Note that fractions must always be wrapped in quotes.
  *
- * @param {string} [@fraction=1 of 1] - This is a simple fraction of the containing element's width or height depending on @dir. This must be a string written X of Y.
- * @param {string} [@dir=row] - The direction of the grid. Can be row (horizontal grid), column (vertical grid), or both (waffle grid).
- * @param {number} [@cycle=extract(@fraction, 3)] - Lost works by assigning a margin-right to all elements except the last in the row. It does this by default by using the denominator of the fraction you pick. To override this default use this param. e.g. block('2/4', @cycle: 2)
- * @param {number} [@gut=@gutter] - The margin on the side of the element used to create a gutter. Typically this is left alone and the global @gutter will be used, but you can override it here if you want certain elements to have a particularly large or small gutter (pass 0 for no gutter at all).
- * @param {boolean} [@masonry-friendly=false] - Dictates whether this particular group of elements will work well with JS masonry plugins. This will assign a margin on each side of the element and you will need to wrap this group of elements in a masonry-row().
+ * @param {string} [@fraction=1 of 1] - This is a simple fraction of the containing element's width. This must be a string written as a fraction.
+ * @param {number} [@cycle=extract(@fraction, 3)] - Lost works by assigning a margin-right to all elements except the last in the row. It does this by default by using the denominator of the fraction you pick. To override this default use this param. e.g. column(2 of 4, @cycle: 2)
+ * @param {number} [@gut=@gutter] - The margin on the right side of the element used to create a gutter. Typically this is left alone and the global @gutter will be used, but you can override it here if you want certain elements to have a particularly large or small gutter (pass 0 for no gutter at all).
  *
  * @example
  *   figure {
- *     .block(1 of 3);
+ *     .column(1 of 3);
  *   }
  */
 
-.block(@fraction: 1 of 1, @dir: row, @cycle: extract(@fraction, 3), @gut: @gutter, @masonry-friendly: false) {
-
+.column(@fraction: 1 of 1, @cycle: extract(@fraction, 3), @gut: @gutter) {
   @numerator: extract(@fraction, 1);
   @denominator: extract(@fraction, 3);
   @_fraction: e('@{numerator}/@{denominator}');
-
-  & when (@dir = row) {
-    & when (@masonry-friendly) {
-      margin-left: (@gut / 2);
-      margin-right: (@gut / 2);
-      &:nth-child(@{cycle}n) {
-        clear: none;
-      }
-      &:nth-child(@{cycle}n + 1) {
-        & when (@rtl = true) {
-          clear: right;
-        }
-        & when not (@rtl = true) {
-          clear: left;
-        }
-      }
-      & when (@gut = 0) {
-        width: e(%('calc(99.999999% * %s)', @_fraction));
-      }
-      & when not (@gut = 0) {
-        width: e(%('calc(99.99% * %s - %s)', @_fraction, @gut));
-      }
+  & when (@gut = 0) {
+    width: e(%('calc(99.999999% * %s)', @_fraction));
+  }
+  & when not (@gut = 0) {
+    width: e(%('calc(99.99% * %s - (%s - %s * %s))', @_fraction, @gut, @gut, @_fraction));
+  }
+  & when (@rtl = true) {
+    &:nth-child(n) {
+      margin-left: @gut;
+      float: right;
+      clear: none;
     }
-    & when not (@masonry-friendly = true) {
-      & when (@rtl = true) {
-        margin-left: @gut;
-      }
-      & when not (@rtl = true) {
-        margin-right: @gut;
-      }
-      & when (@gut = 0) {
-        width: e(%('calc(99.999999% * %s)', @_fraction));
-      }
-      & when not (@gut = 0) {
-        & when (@masonry-friendly = true) {
-          width: e(%('calc(99.99% * %s - %s)', @_fraction, @gut));
-        }
-        & when not (@masonry-friendly = true) {
-          width: e(%('calc(99.99% * %s - (%s - %s * %s))', @_fraction, @gut, @gut, @_fraction));
-        }
-      }
-      & when (@rtl = true) {
-        &:nth-child(n) {
-          margin-left: @gut;
-          float: right;
-          clear: none;
-        }
-        &:last-child {
-          margin-left: 0;
-        }
-        &:nth-child(@{cycle}n) {
-          margin-left: 0;
-          float: left;
-        }
-        &:nth-child(@{cycle}n + 1) {
-          clear: right;
-        }
-      }
-      & when not (@rtl = true) {
-        &:nth-child(n) {
-          margin-right: @gut;
-          float: left;
-          clear: none;
-        }
-        &:last-child {
-          margin-right: 0;
-        }
-        &:nth-child(@{cycle}n) {
-          margin-right: 0;
-          float: right;
-        }
-        &:nth-child(@{cycle}n + 1) {
-          clear: left;
-        }
-      }
+    &:last-child {
+      margin-left: 0;
+    }
+    &:nth-child(@{cycle}n) {
+      margin-left: 0;
+      float: left;
+    }
+    &:nth-child(@{cycle}n + 1) {
+      clear: right;
     }
   }
-
-  & when (@dir = column) {
-    & when (@gut = 0) {
-      height: e(%('calc(99.999999% * %s)', @_fraction));
+  & when not (@rtl = true) {
+    &:nth-child(n) {
+      margin-right: @gut;
+      float: left;
+      clear: none;
     }
-    & when not (@gut = 0) {
-      & when (@masonry-friendly = true) {
-        height: e(%('calc(99.99% * %s - %s)', @_fraction, @gut));
-      }
-      & when not (@masonry-friendly = true) {
-        height: e(%('calc(99.99% * %s - (%s - %s * %s))', @_fraction, @gut, @gut, @_fraction));
-      }
-    }
-    margin-bottom: @gut;
     &:last-child {
-      margin-bottom: 0;
+      margin-right: 0;
+    }
+    &:nth-child(@{cycle}n) {
+      margin-right: 0;
+      float: right;
+    }
+    &:nth-child(@{cycle}n + 1) {
+      clear: left;
     }
   }
+}
 
-  & when (@dir = both) {
-    float: left;
-    margin-right: @gut;
-    & when (@gut = 0) {
-      width: e(%('calc(99.999999% * %s)', @_fraction));
-      height: e(%('calc(99.999999% * %s)', @_fraction));
+
+/**
+ * Creates a row that is a fraction of the size of it's containing element with a gutter. You don't need to pass any additional ratios (fractions) as the grid system will make use of calc(). Note that fractions must always be wrapped in quotes.
+ *
+ * @param {string} [@fraction=1 of 1] - This is a simple fraction of the containing element's height. This must be a string written as a fraction.
+ * @param {number} [@gut=@gutter] - The margin on the bottom of the element used to create a gutter. Typically this is left alone and the global @gutter will be used, but you can override it here if you want certain elements to have a particularly large or small gutter (pass 0 for no gutter at all).
+ *
+ * @example
+ *   figure {
+ *     .row(1 of 3);
+ *   }
+ */
+
+.row(@fraction: 1 of 1, @gut: @gutter) {
+  @numerator: extract(@fraction, 1);
+  @denominator: extract(@fraction, 3);
+  @_fraction: e('@{numerator}/@{denominator}');
+  & when (@gut = 0) {
+    height: e(%('calc(99.999999% * %s)', @_fraction));
+  }
+  & when not (@gut = 0) {
+    height: e(%('calc(99.99% * %s - (%s - %s * %s))', @_fraction, @gut, @gut, @_fraction));
+  }
+  margin-bottom: @gut;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+
+/**
+ * Creates a block that is a fraction of the size of it's containing element with a gutter on the right and bottom. You don't need to pass any additional ratios (fractions) as the grid system will make use of calc(). Note that fractions must always be wrapped in quotes.
+ *
+ * @param {string} [@fraction=1 of 1] - This is a simple fraction of the containing element's width/height. This must be a string written as a fraction.
+ * @param {number} [@cycle=extract(@fraction, 3)] - Lost works by assigning a margin-right/bottom to all elements except the last row (no margin-bottom) and the last column (no margin-right). It does this by default by using the denominator of the fraction you pick. To override this default use this param. e.g. waffle(2 of 4, @cycle: 2)
+ * @param {number} [@gut=@gutter] - The margin on the right and bottom side of the element used to create a gutter. Typically this is left alone and the global @gutter will be used, but you can override it here if you want certain elements to have a particularly large or small gutter (pass 0 for no gutter at all).
+ *
+ * @example
+ *   figure {
+ *     .waffle(1 of 3);
+ *   }
+ */
+
+.waffle(@fraction: 1 of 1, @cycle: extract(@fraction, 3), @gut: @gutter) {
+  @numerator: extract(@fraction, 1);
+  @denominator: extract(@fraction, 3);
+  @_fraction: e('@{numerator}/@{denominator}');
+  & when (@gut = 0) {
+    width: e(%('calc(99.999999% * %s)', @_fraction));
+    height: e(%('calc(99.999999% * %s)', @_fraction));
+  }
+  & when not (@gut = 0) {
+    width: e(%('calc(99.99% * %s - (%s - %s * %s))', @_fraction, @gut, @gut, @_fraction));
+    height: e(%('calc(99.99% * %s - (%s - %s * %s))', @_fraction, @gut, @gut, @_fraction));
+  }
+  & when (@rtl = true) {
+    &:nth-child(n) {
+      float: right;
+      margin-left: @gut;
+      clear: none;
     }
-    & when not (@gut = 0) {
-      & when (@masonry-friendly = true) {
-        width: e(%('calc(99.99% * %s - %s)', @_fraction, @gut));
-        height: e(%('calc(99.99% * %s - %s)', @_fraction, @gut));
-      }
-      & when not (@masonry-friendly = true) {
-        width: e(%('calc(99.99% * %s - (%s - %s * %s))', @_fraction, @gut, @gut, @_fraction));
-        height: e(%('calc(99.99% * %s - (%s - %s * %s))', @_fraction, @gut, @gut, @_fraction));
-      }
+    &:nth-child(@{cycle}n), &:last-child {
+      margin-left: 0;
     }
-    & when (@rtl = true) {
-      &:nth-child(n) {
-        margin-left: @gut;
-        clear: none;
-      }
-      &:nth-child(@{cycle}n), &:last-child {
-        margin-left: 0;
-      }
-      &:nth-child(@{cycle}n + 1) {
-        clear: right;
-      }
+    &:nth-child(@{cycle}n + 1) {
+      clear: right;
     }
-    & when not (@rtl = true) {
-      &:nth-child(n) {
-        margin-right: @gut;
-        clear: none;
-      }
-      &:nth-child(@{cycle}n), &:last-child {
-        margin-right: 0;
-      }
-      &:nth-child(@{cycle}n + 1) {
-        clear: left;
-      }
+  }
+  & when not (@rtl = true) {
+    &:nth-child(n) {
+      float: left;
+      margin-right: @gut;
+      clear: none;
     }
-    margin-bottom: @gut;
-    &:last-child {
-      margin-bottom: 0;
+    &:nth-child(@{cycle}n), &:last-child {
+      margin-right: 0;
     }
-    &:nth-last-child(-n + @{cycle}) {
-      margin-bottom: 0;
+    &:nth-child(@{cycle}n + 1) {
+      clear: left;
     }
+  }
+  margin-bottom: @gut;
+  &:last-child {
+    margin-bottom: 0;
+  }
+  &:nth-last-child(-n + @{cycle}) {
+    margin-bottom: 0;
   }
 }
 
@@ -406,13 +388,13 @@
 /**
  * Margin to the left, right, bottom, or top, of an element depending on if the fraction passed is positive or negative. It works for both horizontal and vertical grids but not both.
  *
- * @param {string} [@fraction=1 of 1] - Fraction of the container to be offset. Must be a string written as X of Y.
- * @param {string} [@dir=row] - Direction the grid is going. Should match the block() it's being used on.
- * @param {number} [@gut=@gutter] - How large the gutter involved is, typically this won't be adjusted, but if you have set the blocks for that row to have different gutters than default, you will need to match that gutter here as well.
+ * @param {string} [@fraction=1 of 1] - Fraction of the container to be offset. Must be a string.
+ * @param {string} [@dir=row] - Direction the grid is going. Should be the opposite of the column() or row() it's being used on.
+ * @param {number} [@gut=@gutter] - How large the gutter involved is, typically this won't be adjusted, but if you have set the elements for that container to have different gutters than default, you will need to match that gutter here as well.
  *
  * @example
  *   .two-elements {
- *     .block(1 of 3);
+ *     .column(1 of 3);
  *     &:first-child {
  *       .offset(1 of 3);
  *     }
@@ -436,7 +418,7 @@
       & when (@gut = 0) {
         margin-left: e(%('calc(99.999999% * (%s * -1))', @_fraction)) !important;
       }
-      & when (@numerator > 0) {
+      & when not (@gut = 0) {
         margin-left: e(%('calc(99.99% * (%s * -1) - (%s - %s * (%s * -1)) + %s)', @_fraction, @gut, @gut, @_fraction, @gut)) !important;
       }
     }
@@ -473,13 +455,13 @@
 /**
  * Source ordering. Shift elements left, right, up, or down, by their left or top position by passing a positive or negative fraction.
  *
- * @param {string} [@fraction=1 of 1] - Fraction of the container to be shifted. Must be a string written as X of Y.
- * @param {string} [@dir=row] - Direction the grid is going. Should match the block() it's being used on.
- * @param {number} [@gut=@gutter] - Adjust the size of the gutter for this movement. Should match the block's @gut.
+ * @param {string} [@fraction=1 of 1] - Fraction of the container to be shifted. Must be a string.
+ * @param {string} [@dir=row] - Direction the grid is going. Should be the opposite of the column() or row() it's being used on.
+ * @param {number} [@gut=@gutter] - Adjust the size of the gutter for this movement. Should match the element's @gut.
  *
  * @example
  *   figure {
- *     .block(1 of 2);
+ *     .column(1 of 2);
  *     &:first-child {
  *       .move(1 of 2);
  *     }
@@ -512,19 +494,45 @@
 /**
  * Creates a row element for working with JS masonry libraries like Isotope. Assigns a negative margin on each side of this wrapping element.
  *
- * @param {number} [@gut=@gutter] - How large the gutter involved is, typically this won't be adjusted and will inherit the global @gutter setting, but it's made available if you want your masonry grid to have a special @gut, it should match your blocks' @guts.
+ * @param {number} [@gut=@gutter] - How large the gutter involved is, typically this won't be adjusted and will inherit the global @gutter setting, but it's made available if you want your masonry grid to have a special @gut, it should match your masonry-column's @gut.
  *
  * @example
  *   section {
- *     .masonry-row();
+ *     .masonry-wrap();
  *   }
  *   figure {
- *     .block(1 of 3, @masonry-friendly: true);
+ *     .masonry-column(1 of 3);
  *   }
  */
 
-.masonry-row(@gut: @gutter) {
+.masonry-wrap(@gut: @gutter) {
   .cf();
   margin-left: -(@gut / 2);
   margin-right: -(@gut / 2);
+}
+
+
+/**
+ * Creates a column for working with JS masonry libraries like Isotope. Assigns a margin to each side of the element.
+ *
+ * @param {number} [@gut=@gutter] - How large the gutter involved is, typically this won't be adjusted and will inherit the global @gutter setting, but it's made available if you want your masonry grid to have a special @gut, it should match your masonry-row's @gut.
+ *
+ * @example
+ *   section {
+ *     .masonry-wrap();
+ *   }
+ *   figure {
+ *     .masonry-column(1 of 3');
+ *   }
+ */
+
+.masonry-column(@gut: @gutter) {
+  margin-left: (@gut / 2);
+  margin-right: (@gut / 2);
+  & when (@gut = 0) {
+    width: e(%('calc(99.999999% * %s)', @_fraction));
+  }
+  & when not (@gut = 0) {
+    width: e(%('calc(99.99% * %s - %s)', @_fraction, @gut));
+  }
 }

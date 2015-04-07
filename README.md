@@ -44,7 +44,7 @@ Feature | Lost | [Bootstrap](http://getbootstrap.com/css/#grid) | [Foundation](h
 
 ## Getting Started
 
-Lost works by creating **blocks**. Think of these blocks as columns in a traditional grid system, except they can go vertical as well. To create a basic horizontal grid, just insert some blocks into any element like so and pass a fraction (**as a string** if you're using SCSS or Stylus) to `block()`.
+To create a basic horizontal grid, just insert some columns into any element like so and pass a fraction (**as a string**) to `column()`.
 
 <h6 align="right">HTML</h6>
 ```html
@@ -63,7 +63,7 @@ section {
 }
 
 figure {
-  @include block('1/2');
+  @include column('1/2');
 }
 ```
 
@@ -74,7 +74,7 @@ section {
 }
 
 figure {
-  .block(1 of 2);
+  .column(1 of 2);
 }
 ```
 
@@ -84,10 +84,10 @@ section
   cf()
 
 figure
-  block('1/2')
+  column('1/2')
 ```
 
-`cf()` is just a [clearfix](http://nicolasgallagher.com/micro-clearfix-hack/) mixin since blocks are floated. It's a good idea to give this to the element wrapping your blocks every time.
+`cf()` is just a [clearfix](http://nicolasgallagher.com/micro-clearfix-hack/) mixin since grid elements are floated. It's a good idea to give this to the element wrapping your grid elements every time.
 
 You can also make use of the `center()` mixin to assign a `max-width` and `margin: auto` to an element and center it on the page. `cf()` will automatically be applied in this case.
 
@@ -98,7 +98,7 @@ section {
 }
 
 figure {
-  @include block('1/2');
+  @include column('1/2');
 }
 ```
 
@@ -109,7 +109,7 @@ section {
 }
 
 figure {
-  .block(1 of 2);
+  .column(1 of 2);
 }
 ```
 
@@ -119,31 +119,31 @@ section
   center(980px)
 
 figure
-  block('1/2')
+  column('1/2')
 ```
 
 Every element gets a `float: left` and `margin-right: $gutter` applied to them except the last one in the row. Lost will automatically detect the last item in a row (based on the denominator you passed) and apply a `margin-right: 0` to it by default.
 
-To override this behavior simply pass a `$cycle` param to your `block()`.
+To override this behavior simply pass a `cycle` param to your `column()`.
 
 <h6 align="right">SCSS</h6>
 ```scss
 figure {
-  @include block('2/4', $cycle: 2);
+  @include column('2/4', $cycle: 2);
 }
 ```
 
 <h6 align="right">LESS</h6>
 ```less
 figure {
-  .block(2 of 4, @cycle: 2);
+  .column(2 of 4, @cycle: 2);
 }
 ```
 
 <h6 align="right">Stylus</h6>
 ```stylus
 figure
-  block('2/4', $cycle: 2)
+  column('2/4', $cycle: 2)
 ```
 
 Nesting is simple and **requires [no extra fractions](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#no-additional-ratio-context)** unlike other preprocessor grid systems.
@@ -165,21 +165,21 @@ Nesting is simple and **requires [no extra fractions](https://github.com/corysim
 <h6 align="right">SCSS</h6>
 ```scss
 figure {
-  @include block('1/2');
+  @include column('1/2');
 }
 ```
 
 <h6 align="right">LESS</h6>
 ```less
 figure {
-  .block(1 of 2);
+  .column(1 of 2);
 }
 ```
 
 <h6 align="right">Stylus</h6>
 ```stylus
 figure
-  block('1/2')
+  column('1/2')
 ```
 
 You can `offset` columns easily. To offset in the other direction, pass a negative fraction.
@@ -195,7 +195,7 @@ You can `offset` columns easily. To offset in the other direction, pass a negati
 <h6 align="right">SCSS</h6>
 ```scss
 figure {
-  @include block('1/3');
+  @include column('1/3');
   &:first-child {
     @include offset('1/3');
   }
@@ -205,7 +205,7 @@ figure {
 <h6 align="right">LESS</h6>
 ```less
 figure {
-  .block(1 of 3);
+  .column(1 of 3);
   &:first-child {
     .offset(1 of 3);
   }
@@ -215,12 +215,12 @@ figure {
 <h6 align="right">Stylus</h6>
 ```stylus
 figure
-  block('1/3')
+  column('1/3')
   &:first-child
     offset('1/3')
 ```
 
-Easily vertically or horizontally center children elements with the `align()` mixin.
+Easily align children elements with the `align()` mixin. It accepts options like `top-left`, `right`, `center`, [etc](#align).
 
 <h6 align="right">HTML</h6>
 ```html
@@ -319,7 +319,7 @@ section
     edit(green)
 ```
 
-Once you've mastered the basic horizontal grid system (it shouldn't take long), you can start to make vertical grids that have the same vertical gutters as your horizontal grids. Just pass `$dir: column` to your `block()` mixin. The blocks will stretch to fill their container's height, so if you'd like to see them take up the full height of the page, set `height: 100%` on your container.
+Once you've mastered the basic horizontal grid system (it shouldn't take long), you can start to make vertical grids that have the same vertical gutters as your horizontal grids. Just use the `row()` mixin in place of `column()`. These rows will stretch to fill their container's height, so if you'd like to see them take up the full height of the page, set `height: 100%` on your container.
 
 No other grid system in the world supports vertical grids.
 
@@ -339,7 +339,7 @@ section {
 }
 
 figure {
-  @include block('1/3', $dir: column);
+  @include row('1/3');
 }
 ```
 
@@ -350,7 +350,7 @@ section {
 }
 
 figure {
-  .block(1 of 3, @dir: column);
+  .row(1 of 3);
 }
 ```
 
@@ -360,10 +360,10 @@ section
   height: 100%
 
 figure
-  block('1/3', $dir: column)
+  row('1/3')
 ```
 
-You can even make a horizontal/vertical grid (a *waffle grid*) which resembles a tic-tac-toe board.
+You can even make a horizontal/vertical grid (a **waffle grid**) which resembles a tic-tac-toe board.
 
 <h6 align="right">HTML</h6>
 ```html
@@ -387,7 +387,7 @@ section {
 }
 
 figure {
-  @include block('1/3', $dir: both);
+  @include waffle('1/3');
 }
 ```
 
@@ -398,7 +398,7 @@ section {
 }
 
 figure {
-  .block(1 of 3, @dir: both);
+  .waffle(1 of 3);
 }
 ```
 
@@ -408,10 +408,10 @@ section
   height: 100%
 
 figure
-  block('1/3', $dir: both)
+  waffle('1/3')
 ```
 
-Lost supports masonry plugins like [Isotope](http://isotope.metafizzy.co/). To accomplish this we need to change how the margins work. Instead of applying a `margin-right` to everything, if we pass `$masonry-friendly: true` to our `block()` mixin they will have a margin on each side of them half the size of the original margin. To contain them, wrap them in an element that has the `masonry-row()` mixin applied to it. The `masonry-row()` mixin will apply negative offsets to each side of the containing element and make your grids look good.
+Lost supports masonry plugins like [Isotope](http://isotope.metafizzy.co/). To accomplish this we need to change how the margins work. Instead of applying a `margin-right` to everything, we need to apply it to both sides. We've made a couple special mixins to help with this: `masonry-column()` which creates a margin on the left and right of each element it's applied to, and `masonry-wrap()` which wraps your columns and applies a negative margin to the left and right to them to help line them up with containing elements.
 
 <h6 align="right">HTML</h6>
 ```html
@@ -425,32 +425,32 @@ Lost supports masonry plugins like [Isotope](http://isotope.metafizzy.co/). To a
 <h6 align="right">SCSS</h6>
 ```scss
 section {
-  @include masonry-row;
+  @include masonry-wrap;
 }
 
 figure {
-  @include block('1/3', $masonry-friendly: true);
+  @include masonry-column('1/3');
 }
 ```
 
 <h6 align="right">LESS</h6>
 ```less
 section {
-  .masonry-row();
+  .masonry-wrap();
 }
 
 figure {
-  .block(1 of 3, @masonry-friendly: true);
+  .masonry-column(1 of 3);
 }
 ```
 
 <h6 align="right">Stylus</h6>
 ```stylus
 section
-  masonry-row()
+  masonry-wrap()
 
 figure
-  block('1/3', $masonry-friendly: true)
+  masonry-column('1/3')
 ```
 
 
@@ -500,14 +500,14 @@ section
 
 
 ##### `cf()`
-Clearfix used to clear floated children blocks. http://nicolasgallagher.com/micro-clearfix-hack
+Clearfix used to clear floated children elements. http://nicolasgallagher.com/micro-clearfix-hack
 
 <h6 align="right">SCSS</h6>
 ```scss
 .parent {
   @include cf;
   .child {
-    @include block('1/2');
+    @include column('1/2');
   }
 }
 ```
@@ -517,7 +517,7 @@ Clearfix used to clear floated children blocks. http://nicolasgallagher.com/micr
 .parent {
   .cf();
   .child {
-    .block(1 of 2);
+    .column(1 of 2);
   }
 }
 ```
@@ -527,14 +527,14 @@ Clearfix used to clear floated children blocks. http://nicolasgallagher.com/micr
 .parent
   cf()
   .child
-    block('1/2')
+    column('1/2')
 ```
 
 
 ##### `align()`
-Vertically and/or horizontally align nested elements.
+Align nested elements.
 
-- `$location: middle-center` - The position the nested element takes relative to the containing element.
+- `location: middle-center` - The position the nested element takes relative to the containing element.
   - reset
   - top-left
   - top-center or top
@@ -584,48 +584,100 @@ Vertically and/or horizontally align nested elements.
 ```
 
 
-##### `block()`
-Creates a block that is a fraction of the size of it's containing element with a gutter. Think of this like a column except it can go vertical as well by setting $dir to 'column' or 'both'. You don't need to pass any additional ratios (fractions) as the grid system will make use of calc(). Note that fractions must always be wrapped in quotes.
+##### `column()`
+Creates a column that is a fraction of the size of it's containing element with a gutter. You don't need to pass any additional ratios (fractions) as the grid system will make use of calc(). Note that fractions must always be wrapped in quotes.
 
-- `$fraction: '1/1'` - This is a simple fraction of the containing element's width or height depending on $dir. This must be a string written as a fraction (if you're using SCSS or Stylus).
-- `$dir: row` - The direction of the grid. Can be row (horizontal grid), column (vertical grid), or both (waffle grid).
-- `$cycle: nth(sl-explode($fraction, '/'), 2)` (gets the denominator) - Lost works by assigning a margin-right to all elements except the last in the row. It does this by default by using the denominator of the fraction you pick. To override this default use this param. e.g. block('2/4', $cycle: 2)
-- `$gut: $gutter` - The margin on the side of the element used to create a gutter. Typically this is left alone and the global $gutter will be used, but you can override it here if you want certain elements to have a particularly large or small gutter (pass 0 for no gutter at all).
-- `$masonry-friendly: false` - Dictates whether this particular group of elements will work well with JS masonry plugins. This will assign a margin on each side of the element and you will need to wrap this group of elements in a masonry-row().
-- `$output: normal` - Determines what type of code to output. Accepts normal (all styles for a block), init (the initial styles of any block), or bare (just the width of the block). Useful for creating CSS grid classes like .col-x with Lost.
+- `$fraction: '1/1'` - This is a simple fraction of the containing element's width. This must be a string written as a fraction.
+- `$cycle: DENOMINATOR` - Lost works by assigning a margin-right to all elements except the last in the row. It does this by default by using the denominator of the fraction you pick. To override this default use this param. e.g. column('2/4', $cycle: 2)
+- `$gut: $gutter` - The margin on the right side of the element used to create a gutter. Typically this is left alone and the global $gutter will be used, but you can override it here if you want certain elements to have a particularly large or small gutter (pass 0 for no gutter at all).
 
 <h6 align="right">SCSS</h6>
 ```scss
 figure {
-  @include block('1/3');
+  @include column('1/3');
 }
 ```
 
 <h6 align="right">LESS</h6>
 ```less
 figure {
-  .block(1 of 3);
+  .column(1 of 3);
 }
 ```
 
 <h6 align="right">Stylus</h6>
 ```stylus
 figure
-  block('1/3')
+  column('1/3')
+```
+
+
+##### `row()`
+Creates a row that is a fraction of the size of it's containing element with a gutter. You don't need to pass any additional ratios (fractions) as the grid system will make use of calc(). Note that fractions must always be wrapped in quotes.
+
+- `$fraction: '1/1'` - This is a simple fraction of the containing element's height. This must be a string written as a fraction.
+- `$gut: $gutter` - The margin on the bottom of the element used to create a gutter. Typically this is left alone and the global $gutter will be used, but you can override it here if you want certain elements to have a particularly large or small gutter (pass 0 for no gutter at all).
+
+<h6 align="right">SCSS</h6>
+```scss
+figure {
+  @include row('1/3');
+}
+```
+
+<h6 align="right">LESS</h6>
+```less
+figure {
+  .row(1 of 3);
+}
+```
+
+<h6 align="right">Stylus</h6>
+```stylus
+figure
+  row('1/3')
+```
+
+
+##### `waffle()`
+Creates a block that is a fraction of the size of it's containing element with a gutter on the right and bottom. You don't need to pass any additional ratios (fractions) as the grid system will make use of calc(). Note that fractions must always be wrapped in quotes.
+
+- `$fraction: '1/1'` - This is a simple fraction of the containing element's width/height. This must be a string written as a fraction.
+- `$cycle: DENOMINATOR` - Lost works by assigning a margin-right/bottom to all elements except the last row (no margin-bottom) and the last column (no margin-right). It does this by default by using the denominator of the fraction you pick. To override this default use this param. e.g. waffle('2/4', $cycle: 2)
+- `$gut: $gutter` - The margin on the right and bottom side of the element used to create a gutter. Typically this is left alone and the global $gutter will be used, but you can override it here if you want certain elements to have a particularly large or small gutter (pass 0 for no gutter at all).
+
+<h6 align="right">SCSS</h6>
+```scss
+figure {
+  @include waffle('1/3');
+}
+```
+
+<h6 align="right">LESS</h6>
+```less
+figure {
+  .waffle(1 of 3);
+}
+```
+
+<h6 align="right">Stylus</h6>
+```stylus
+figure
+  waffle('1/3')
 ```
 
 
 ##### `offset()`
 Margin to the left, right, bottom, or top, of an element depending on if the fraction passed is positive or negative. It works for both horizontal and vertical grids but not both.
 
-- `$fraction: '1/1'` - Fraction of the container to be offset. Must be a string (if you're using SCSS or Stylus).
-- `$dir: row` - Direction the grid is going. Should match the block() it's being used on.
-- `$gut: $gutter` - How large the gutter involved is, typically this won't be adjusted, but if you have set the blocks for that row to have different gutters than default, you will need to match that gutter here as well.
+- `$fraction: '1/1'` - Fraction of the container to be offset. Must be a string.
+- `$dir: row` - Direction the grid is going. Should be the opposite of the column() or row() it's being used on.
+- `$gut: $gutter` - How large the gutter involved is, typically this won't be adjusted, but if you have set the elements for that container to have different gutters than default, you will need to match that gutter here as well.
 
 <h6 align="right">SCSS</h6>
 ```scss
 .two-elements {
-  @include block('1/3');
+  @include column('1/3');
   &:first-child {
     @include offset('1/3');
   }
@@ -635,7 +687,7 @@ Margin to the left, right, bottom, or top, of an element depending on if the fra
 <h6 align="right">LESS</h6>
 ```less
 .two-elements {
-  .block(1 of 3);
+  .column(1 of 3);
   &:first-child {
     .offset(1 of 3);
   }
@@ -645,7 +697,7 @@ Margin to the left, right, bottom, or top, of an element depending on if the fra
 <h6 align="right">Stylus</h6>
 ```stylus
 .two-elements
-  block('1/3')
+  column('1/3')
   &:first-child
     offset('1/3')
 ```
@@ -654,15 +706,14 @@ Margin to the left, right, bottom, or top, of an element depending on if the fra
 ##### `move()`
 Source ordering. Shift elements left, right, up, or down, by their left or top position by passing a positive or negative fraction.
 
-- `$fraction: '1/1'` - Fraction of the container to be shifted. Must be a string (if you're using SCSS or Stylus).
-- `$dir: row` - Direction the grid is going. Should match the block() it's being used on.
-- `$gut: $gutter` - Adjust the size of the gutter for this movement. Should match the block's $gut.
-- `$output: normal` - Determines the type of output to produce. Accepts 3 options, normal (all the code), init (just the initialization code), and bare (just the left offset).
+- `$fraction: '1/1'` - Fraction of the container to be shifted. Must be a string.
+- `$dir: row` - Direction the grid is going. Should be the opposite of the column() or row() it's being used on.
+- `$gut: $gutter` - Adjust the size of the gutter for this movement. Should match the element's $gut.
 
 <h6 align="right">SCSS</h6>
 ```scss
 figure {
-  @include block('1/3');
+  @include column('1/3');
   @include move('1/3');
 }
 ```
@@ -670,7 +721,7 @@ figure {
 <h6 align="right">LESS</h6>
 ```less
 figure {
-  .block(1 of 3);
+  .column(1 of 3);
   .move(1 of 3);
 }
 ```
@@ -678,42 +729,48 @@ figure {
 <h6 align="right">Stylus</h6>
 ```stylus
 figure
-  block('1/3')
+  column('1/3')
   move('1/3')
 ```
 
 
-##### `masonry-row()`
-Creates a row element for working with JS masonry libraries like Isotope. Assigns a negative margin on each side of this wrapping element.
+##### `masonry-wrap()`
+Creates a wrapping element for working with JS masonry libraries like Isotope. Assigns a negative margin on each side of this wrapping element.
 
-- `$gut: $gutter` - How large the gutter involved is, typically this won't be adjusted and will inherit the global $gutter setting, but it's made available if you want your masonry grid to have a special $gut, it should match your blocks' $guts.
+- `$gut: $gutter` - How large the gutter involved is, typically this won't be adjusted and will inherit the global $gutter setting, but it's made available if you want your masonry grid to have a special $gut, it should match your masonry-column's $gut.
+
+
+##### `masonry-column()`
+Creates a column for working with JS masonry libraries like Isotope. Assigns a margin to each side of the element.
+
+- `$gut: $gutter` - How large the gutter involved is, typically this won't be adjusted and will inherit the global $gutter setting, but it's made available if you want your masonry grid to have a special $gut, it should match your masonry-row's $gut.
 
 <h6 align="right">SCSS</h6>
 ```scss
 section {
-  @include masonry-row;
+  @include masonry-wrap;
 }
 figure {
-  @include block('1/3', $masonry-friendly: true);
+  @include masonry-column('1/3');
 }
 ```
 
 <h6 align="right">LESS</h6>
 ```less
 section {
-  .masonry-row();
+  .masonry-wrap();
 }
 figure {
-  .block(1 of 3, @masonry-friendly: true);
+  .masonry-column(1 of 3);
 }
 ```
 
 <h6 align="right">Stylus</h6>
 ```stylus
 section
-  masonry-row()
+  masonry-wrap()
 figure
-  block('1/3', $masonry-friendly: true)
+  masonry-column('1/3')
 ```
 
 
@@ -741,7 +798,7 @@ stylus(fs.readFileSync('./css/style.styl', 'utf8'))
 $gutter = 20px
 
 figure
-  block('1/3')
+  column('1/3')
 ```
 
 
@@ -766,7 +823,7 @@ If you like this project then I encourage you to check out a few of my other han
 
 ### Thanks
 
-- [Alex Bass](https://twitter.com/flip4bytes) for being my friend during this process and letting me bounce every idea off you.
+- [Alex Bass](http://abass.co) for being my friend during this process and letting me bounce every idea off you.
 - [Maria Keller](https://dribbble.com/mariakeller) for the amazing logo. Be sure to hire her for all your design and motion graphic needs.
 - [Hugo Giraudel](https://twitter.com/HugoGiraudel) for contributions to code quality and for polyfilling Sass.
 - [Roman Komarov](https://twitter.com/kizmarh) for helping with Stylus hiccups.
