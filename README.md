@@ -20,6 +20,7 @@ See for yourself! **Fork a demo** on CodePen and [follow along](#getting-started
 ## Table of Contents
 - [Comparison Table](#better-than-x)
 - [Getting Started](#getting-started)
+  - [Installation](#installation)
   - [Basic Columns](#basic-columns)
   - [Centering Elements](#centering-elements)
   - [Controlling Cycle](#controlling-cycle)
@@ -76,7 +77,16 @@ Feature | Lost | [Bootstrap](http://getbootstrap.com/css/#grid) | [Foundation](h
 
 ## Getting Started
 
-###### Basic Columns
+##### Installation
+
+Installing Lost is easy. Just `bower install lost-grid` in your project directory, then add `@import '/bower_components/lost-grid/PREPROCESSOR/lost.styl'` to the top of your preprocessor stylesheet.
+
+- To modify global settings, look at the [Grid Settings](#grid-settings) section.
+- For Node usage, please check out the [Usage with Node](#usage-with-node) section.
+
+&nbsp;
+
+##### Basic Columns
 
 To create a basic horizontal grid, just insert some columns into any element like so and pass a fraction (**as a string**) to `column()`.
 
@@ -123,8 +133,9 @@ figure
 
 `cf()` is just a [clearfix](http://nicolasgallagher.com/micro-clearfix-hack/) mixin since grid elements are floated. It's a good idea to give this to the element wrapping your grid elements every time.
 
+&nbsp;
 
-###### Centering Elements
+##### Centering Elements
 
 You can also make use of the `center()` mixin to assign a `max-width` and `margin: auto` to an element and center it on the page. `cf()` will automatically be applied in this case.
 
@@ -159,8 +170,9 @@ figure
   column('1/2')
 ```
 
+&nbsp;
 
-###### Controlling Cycle
+##### Controlling Cycle
 
 Every element gets a `float: left` and `margin-right: $gutter` applied to them except the last one in the row. Lost will automatically detect the last item in a row (based on the denominator you passed) and apply a `margin-right: 0` to it by default.
 
@@ -186,8 +198,9 @@ figure
   column('2/4', $cycle: 2)
 ```
 
+&nbsp;
 
-###### Nesting
+##### Nesting
 
 Nesting is simple and **requires [no extra fractions](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#no-additional-ratio-context)** unlike other preprocessor grid systems.
 
@@ -225,8 +238,9 @@ figure
   column('1/2')
 ```
 
+&nbsp;
 
-###### Offseting Elements
+##### Offseting Elements
 
 You can `offset` columns easily. To offset in the other direction, pass a negative fraction.
 
@@ -266,8 +280,9 @@ figure
     offset('1/3')
 ```
 
+&nbsp;
 
-###### Alignment
+##### Alignment
 
 Easily align children elements with the `align()` mixin. It accepts options like `top-left`, `right`, `center`, [etc](#align).
 
@@ -318,8 +333,9 @@ figure
   height: 100px
 ```
 
+&nbsp;
 
-###### Edit Mode
+##### Edit Mode
 
 Use the `edit()` mixin at base level to visualize the entire structure of your site, or just specify the areas you're working on. You can pass it any color (pick a darkish one because `edit()` will lighten it).
 
@@ -371,8 +387,9 @@ section
     edit(green)
 ```
 
+&nbsp;
 
-###### Vertical Grids
+##### Vertical Grids
 
 Once you've mastered the basic horizontal grid system (it shouldn't take long), you can start to make vertical grids that have the same vertical gutters as your horizontal grids. Just use the `row()` mixin in place of `column()`. These rows will stretch to fill their container's height, so if you'd like to see them take up the full height of the page, set `height: 100%` on your container.
 
@@ -418,8 +435,9 @@ figure
   row('1/3')
 ```
 
+&nbsp;
 
-###### Waffle Grids
+##### Waffle Grids
 
 You can even make a horizontal/vertical grid (a **waffle grid**) which resembles a tic-tac-toe board.
 
@@ -469,8 +487,9 @@ figure
   waffle('1/3')
 ```
 
+&nbsp;
 
-###### Masonry Support
+##### Masonry Support
 
 Lost supports masonry plugins like [Isotope](http://isotope.metafizzy.co/). To accomplish this we need to change how the margins work. Instead of applying a `margin-right` to everything, we need to apply it to both sides. We've made a couple special mixins to help with this: `masonry-column()` which creates a margin on the left and right of each element it's applied to, and `masonry-wrap()` which wraps your columns and applies a negative margin to the left and right to them to help line them up with containing elements.
 
@@ -559,6 +578,7 @@ section
   edit(red)
 ```
 
+&nbsp;
 
 ##### `cf()`
 Clearfix used to clear floated children elements. http://nicolasgallagher.com/micro-clearfix-hack
@@ -591,6 +611,7 @@ Clearfix used to clear floated children elements. http://nicolasgallagher.com/mi
     column('1/2')
 ```
 
+&nbsp;
 
 ##### `align()`
 Align nested elements.
@@ -644,6 +665,7 @@ Align nested elements.
     height: 150px
 ```
 
+&nbsp;
 
 ##### `column()`
 Creates a column that is a fraction of the size of it's containing element with a gutter. You don't need to pass any additional ratios (fractions) as the grid system will make use of calc(). Note that fractions must always be wrapped in quotes.
@@ -672,6 +694,7 @@ figure
   column('1/3')
 ```
 
+&nbsp;
 
 ##### `row()`
 Creates a row that is a fraction of the size of it's containing element with a gutter. You don't need to pass any additional ratios (fractions) as the grid system will make use of calc(). Note that fractions must always be wrapped in quotes.
@@ -699,6 +722,7 @@ figure
   row('1/3')
 ```
 
+&nbsp;
 
 ##### `waffle()`
 Creates a block that is a fraction of the size of it's containing element with a gutter on the right and bottom. You don't need to pass any additional ratios (fractions) as the grid system will make use of calc(). Note that fractions must always be wrapped in quotes.
@@ -727,6 +751,7 @@ figure
   waffle('1/3')
 ```
 
+&nbsp;
 
 ##### `offset()`
 Margin to the left, right, bottom, or top, of an element depending on if the fraction passed is positive or negative. It works for both horizontal and vertical grids but not both.
@@ -763,6 +788,7 @@ Margin to the left, right, bottom, or top, of an element depending on if the fra
     offset('1/3')
 ```
 
+&nbsp;
 
 ##### `move()`
 Source ordering. Shift elements left, right, up, or down, by their left or top position by passing a positive or negative fraction.
@@ -794,6 +820,7 @@ figure
   move('1/3')
 ```
 
+&nbsp;
 
 ##### `masonry-wrap()`
 Creates a wrapping element for working with JS masonry libraries like Isotope. Assigns a negative margin on each side of this wrapping element.
