@@ -17,6 +17,38 @@ I can tell you with no ego, this is [my finest grid](https://www.youtube.com/wat
 See for yourself! **Fork a demo** on CodePen and [follow along](#getting-started): [SCSS](http://codepen.io/corysimmons/pen/RNOvpN?editors=110), [LESS](http://codepen.io/corysimmons/pen/pvmwQm?editors=110), or [Stylus](http://codepen.io/corysimmons/pen/zxXeNJ?editors=110)
 
 
+## Table of Contents
+- [Comparison Table](#better-than-x)
+- [Getting Started](#getting-started)
+  - [Basic Columns](#html)
+  - [Centering Elements](#scss-1)
+  - [Controlling Cycle](#scss-2)
+  - [Nesting](#html-1)
+  - [Offseting Elements](#html-2)
+  - [Alignment](#html-3)
+  - [Edit Mode](#html-4)
+  - [Vertical Grids](#html-5)
+  - [Waffle Grids](#html-6)
+  - [Masonry Support](#html-7)
+- [Grid Settings](#grid-settings)
+- [Mixin Options](#mixin-options)
+  - [`edit()`](#edit)
+  - [`cf()`](#cf)
+  - [`align()`](#align)
+  - [`column()`](#column)
+  - [`row()`](#row)
+  - [`waffle()`](#waffle)
+  - [`offset()`](#offset)
+  - [`move()`](#move)
+  - [`masonry-wrap()`](#masonry-wrap)
+  - [`masonry-column()`](#masonry-column)
+- [Usage with Node](#usage-with-node)
+- [Example Code](#example-code)
+- [Browser Support](#browser-support)
+- [Other Projects](#other-projects)
+- [Thanks](#thanks)
+
+
 ## Better than X
 Lost is better than any grid system out there and can prove it.
 
