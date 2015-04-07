@@ -14,7 +14,7 @@ It makes use of [`calc()`](https://webdesign.tutsplus.com/tutorials/calc-grids-a
 
 I can tell you with no ego, this is [my finest grid](https://www.youtube.com/watch?v=EnjtQQQaDKo).
 
-See for yourself! **Fork a demo** on CodePen and [follow along](#getting-started): [SCSS](http://codepen.io/corysimmons/pen/RNOvpN?editors=110), [LESS](http://codepen.io/corysimmons/pen/pvmwQm?editors=110), or [Stylus](http://codepen.io/corysimmons/pen/zxXeNJ?editors=110)
+See for yourself! **Fork a demo** on CodePen and [follow along](#getting-started): [SCSS](http://codepen.io/corysimmons/pen/RNOvpN?editors=110), ~~[LESS](https://github.com/corysimmons/lost/issues/57)~~, or [Stylus](http://codepen.io/corysimmons/pen/zxXeNJ?editors=110)
 
 
 ## Table of Contents
