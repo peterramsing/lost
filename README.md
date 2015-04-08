@@ -36,6 +36,8 @@ See for yourself! **Fork a demo** on CodePen and [follow along](#getting-started
 - [Mixin Options](#mixin-options)
   - [`edit()`](#edit)
   - [`clearfix()`](#clearfix)
+  - [`flex-container()`](#flex-container)
+  - [`center()`](#center)
   - [`align()`](#align)
   - [`column()`](#column)
   - [`row()`](#row)
