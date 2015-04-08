@@ -1,4 +1,4 @@
-// Lost Grid v5.1.1 - https://github.com/corysimmons/lost
+// Lost Grid v5.1.2 - https://github.com/corysimmons/lost
 
 $gutter = 30px
 $rtl = false
@@ -291,6 +291,7 @@ row($fraction = '1/1', $gut = $gutter, $flex = $flexbox)
       return s('calc(99.999999% * %s)', unquote($fraction))
     else
       return s('calc(99.99% * %s - (%s - %s * %s))', unquote($fraction), $gut, $gut, unquote($fraction))
+  width: 100%
   height: _get-size()
   margin-bottom: $gut
   if $flex is true
@@ -351,7 +352,8 @@ waffle($fraction = '1/1', $cycle = convert(unquote(split('/', $fraction)[1])), $
         margin-right: $gut
       &:nth-child({$cycle}n), &:last-child
         margin-right: 0
-  margin-bottom: $gut
+  &:nth-child(n)
+    margin-bottom: $gut
   &:last-child
     margin-bottom: 0
   &:nth-last-child(-n + {$cycle})

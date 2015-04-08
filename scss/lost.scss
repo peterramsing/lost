@@ -1,4 +1,4 @@
-// Lost Grid v5.1.1 - https://github.com/corysimmons/lost
+// Lost Grid v5.1.2 - https://github.com/corysimmons/lost
 
 $gutter: 30px !default;
 $rtl: false !default;
@@ -355,6 +355,7 @@ $flexbox: false !default;
 ///   }
 
 @mixin row($fraction: '1/1', $gut: $gutter, $flex: $flexbox) {
+  width: 100%;
   @if ($gut == 0) {
     height: calc(99.999999% * #{$fraction});
   } @else {
@@ -434,7 +435,9 @@ $flexbox: false !default;
       }
     }
   }
-  margin-bottom: $gut;
+  &:nth-child(n) {
+    margin-bottom: $gut;
+  }
   &:last-child {
     margin-bottom: 0;
   }

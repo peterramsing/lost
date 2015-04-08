@@ -1,4 +1,4 @@
-// Lost Grid v5.1.1 - https://github.com/corysimmons/lost
+// Lost Grid v5.1.2 - https://github.com/corysimmons/lost
 
 @gutter: 30px;
 @rtl: false;
@@ -374,6 +374,7 @@
   @numerator: extract(@fraction, 1);
   @denominator: extract(@fraction, 3);
   @_fraction: e('@{numerator}/@{denominator}');
+  width: 100%;
   & when (@gut = 0) {
     height: e(%('calc(99.999999% * %s)', @_fraction));
   }
@@ -462,7 +463,9 @@
       }
     }
   }
-  margin-bottom: @gut;
+  &:nth-child(n) {
+    margin-bottom: @gut;
+  }
   &:last-child {
     margin-bottom: 0;
   }
