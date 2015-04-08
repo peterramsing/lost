@@ -1,7 +1,8 @@
-// Lost Grid v5.0.0 - https://github.com/corysimmons/lost
+// Lost Grid v5.1.0 - https://github.com/corysimmons/lost
 
 $gutter: 30px !default;
 $rtl: false !default;
+$flexbox: false !default;
 
 
 /// Sets a translucent background color to all elements it affects. Helpful while setting up, or debugging, the structure of your site to make sure all items are cleared correctly.
@@ -24,13 +25,13 @@ $rtl: false !default;
 ///
 /// @example
 ///   .parent {
-///     @include cf;
+///     @include clearfix;
 ///     .child {
 ///       @include column('1/2');
 ///     }
 ///   }
 
-@mixin cf() {
+@mixin clearfix() {
   *zoom: 1;
   &:before, &:after {
     content: '';
@@ -42,18 +43,48 @@ $rtl: false !default;
 }
 
 
+/// Creates a Flexbox container.
+///
+/// @param {string} $direction [row] - The flex-direction the container should create. This is typically opposite to the element you're creating so a row() would need flex-container(column).
+///
+/// @example
+///   $flexbox: true;
+///
+///   section {
+///     @include flex-container;
+///     figure {
+///       @include column('1/2');
+///     }
+///   }
+
+@mixin flex-container($direction: row) {
+  display: flex;
+  @if ($direction == row) {
+    flex-flow: row wrap;
+  }
+  @if ($direction == column) {
+    flex-flow: column inherit;
+  }
+}
+
+
 /// Horizontally center a container element and apply padding to it.
 ///
-/// @param {unit} $max-size [980px] - A max-width to assign. Can be any unit.
+/// @param {unit} $max-size [1140px] - A max-width to assign. Can be any unit.
 /// @param {unit} $pad [0] - Padding on the left and right of the element. Can be any unit.
+/// @param {boolean} $flex [$flexbox] - Determines whether this element should use Flexbox or not.
 ///
 /// @example
 ///   section {
 ///     @include center(900px);
 ///   }
 
-@mixin center($max-size: 980px, $pad: 0) {
-  @include cf;
+@mixin center($max-size: 1140px, $pad: 0, $flex: $flexbox) {
+  @if ($flex == false) {
+    @include clearfix;
+  } @else {
+    @include flex-container;
+  }
   max-width: $max-size;
   padding-left: $pad;
   padding-right: $pad;
@@ -65,7 +96,7 @@ $rtl: false !default;
 /// Align nested elements.
 ///
 /// @param {string} $location [middle-center] - The position the nested element takes relative to the containing element.
-/// @param {boolean} $flex [false] - Whether align() will use Flexbox to perform centering or not. Options are false or flex (for readability).
+/// @param {boolean} $flex [$flexbox] - Determines whether this element should use Flexbox or not.
 ///
 /// - reset
 /// - top-left
@@ -88,7 +119,7 @@ $rtl: false !default;
 ///     }
 ///   }
 
-@mixin align($location: middle-center, $flex: false) {
+@mixin align($location: middle-center, $flex: $flexbox) {
   @if ($flex == false) {
     position: relative;
     > * {
@@ -155,8 +186,7 @@ $rtl: false !default;
         transform: translate3d(-50%, -50%, 0);
       }
     }
-  }
-  @if ($flex == flex) {
+  } @else {
     display: flex;
     @if ($location == reset) {
       justify-content: inherit;
@@ -239,49 +269,75 @@ $rtl: false !default;
 /// @param {string} $fraction ['1/1'] - This is a simple fraction of the containing element's width. This must be a string written as a fraction.
 /// @param {number} $cycle [nth(sl-explode($fraction, '/'), 2)] - Lost works by assigning a margin-right to all elements except the last in the row. It does this by default by using the denominator of the fraction you pick. To override this default use this param. e.g. column('2/4', $cycle: 2)
 /// @param {number} $gut [$gutter] - The margin on the right side of the element used to create a gutter. Typically this is left alone and the global $gutter will be used, but you can override it here if you want certain elements to have a particularly large or small gutter (pass 0 for no gutter at all).
+/// @param {boolean} $flex [$flexbox] - Determines whether this element should use Flexbox or not.
 ///
 /// @example
 ///   figure {
 ///     @include column('1/3');
 ///   }
 
-@mixin column($fraction: '1/1', $cycle: nth(sl-explode($fraction, '/'), 2), $gut: $gutter) {
+@mixin column($fraction: '1/1', $cycle: nth(sl-explode($fraction, '/'), 2), $gut: $gutter, $flex: $flexbox) {
   @if ($gut == 0) {
     width: calc(99.999999% * #{$fraction});
   } @else {
     width: calc(99.99% * #{$fraction} - (#{$gut} - #{$gut} * #{$fraction}));
   }
-  @if $rtl {
-    &:nth-child(n) {
-      margin-left: $gut;
-      float: right;
-      clear: none;
-    }
-    &:last-child {
-      margin-left: 0;
-    }
-    &:nth-child(#{$cycle}n) {
-      margin-left: 0;
-      float: left;
-    }
-    &:nth-child(#{$cycle}n + 1) {
-      clear: right;
+  @if ($flex == false) {
+    @if $rtl {
+      &:nth-child(n) {
+        margin-left: $gut;
+        float: right;
+        clear: none;
+      }
+      &:last-child {
+        margin-left: 0;
+      }
+      &:nth-child(#{$cycle}n) {
+        margin-left: 0;
+        float: left;
+      }
+      &:nth-child(#{$cycle}n + 1) {
+        clear: right;
+      }
+    } @else {
+      &:nth-child(n) {
+        margin-right: $gut;
+        float: left;
+        clear: none;
+      }
+      &:last-child {
+        margin-right: 0;
+      }
+      &:nth-child(#{$cycle}n) {
+        margin-right: 0;
+        float: right;
+      }
+      &:nth-child(#{$cycle}n + 1) {
+        clear: left;
+      }
     }
   } @else {
-    &:nth-child(n) {
-      margin-right: $gut;
-      float: left;
-      clear: none;
-    }
-    &:last-child {
-      margin-right: 0;
-    }
-    &:nth-child(#{$cycle}n) {
-      margin-right: 0;
-      float: right;
-    }
-    &:nth-child(#{$cycle}n + 1) {
-      clear: left;
+    flex: 0 0 auto;
+    @if $rtl {
+      &:nth-child(n) {
+        margin-left: $gut;
+      }
+      &:last-child {
+        margin-left: 0;
+      }
+      &:nth-child(#{$cycle}n) {
+        margin-left: 0;
+      }
+    } @else {
+      &:nth-child(n) {
+        margin-right: $gut;
+      }
+      &:last-child {
+        margin-right: 0;
+      }
+      &:nth-child(#{$cycle}n) {
+        margin-right: 0;
+      }
     }
   }
 }
@@ -291,19 +347,23 @@ $rtl: false !default;
 ///
 /// @param {string} $fraction ['1/1'] - This is a simple fraction of the containing element's height. This must be a string written as a fraction.
 /// @param {number} $gut [$gutter] - The margin on the bottom of the element used to create a gutter. Typically this is left alone and the global $gutter will be used, but you can override it here if you want certain elements to have a particularly large or small gutter (pass 0 for no gutter at all).
+/// @param {boolean} $flex [$flexbox] - Determines whether this element should use Flexbox or not.
 ///
 /// @example
 ///   figure {
 ///     @include row('1/3');
 ///   }
 
-@mixin row($fraction: '1/1', $gut: $gutter) {
+@mixin row($fraction: '1/1', $gut: $gutter, $flex: $flexbox) {
   @if ($gut == 0) {
     height: calc(99.999999% * #{$fraction});
   } @else {
     height: calc(99.99% * #{$fraction} - (#{$gut} - #{$gut} * #{$fraction}));
   }
   margin-bottom: $gut;
+  @if ($flex == true) {
+    flex: 0 0 auto;
+  }
   &:last-child {
     margin-bottom: 0;
   }
@@ -315,13 +375,14 @@ $rtl: false !default;
 /// @param {string} $fraction ['1/1'] - This is a simple fraction of the containing element's width/height. This must be a string written as a fraction.
 /// @param {number} $cycle [nth(sl-explode($fraction, '/'), 2)] - Lost works by assigning a margin-right/bottom to all elements except the last row (no margin-bottom) and the last column (no margin-right). It does this by default by using the denominator of the fraction you pick. To override this default use this param. e.g. waffle('2/4', $cycle: 2)
 /// @param {number} $gut [$gutter] - The margin on the right and bottom side of the element used to create a gutter. Typically this is left alone and the global $gutter will be used, but you can override it here if you want certain elements to have a particularly large or small gutter (pass 0 for no gutter at all).
+/// @param {boolean} $flex [$flexbox] - Determines whether this element should use Flexbox or not.
 ///
 /// @example
 ///   figure {
 ///     @include waffle('1/3');
 ///   }
 
-@mixin waffle($fraction: '1/1', $cycle: nth(sl-explode($fraction, '/'), 2), $gut: $gutter) {
+@mixin waffle($fraction: '1/1', $cycle: nth(sl-explode($fraction, '/'), 2), $gut: $gutter, $flex: $flexbox) {
   @if ($gut == 0) {
     width: calc(99.999999% * #{$fraction});
     height: calc(99.999999% * #{$fraction});
@@ -329,29 +390,48 @@ $rtl: false !default;
     width: calc(99.99% * #{$fraction} - (#{$gut} - #{$gut} * #{$fraction}));
     height: calc(99.99% * #{$fraction} - (#{$gut} - #{$gut} * #{$fraction}));
   }
-  @if $rtl {
-    &:nth-child(n) {
-      float: right;
-      margin-left: $gut;
-      clear: none;
-    }
-    &:nth-child(#{$cycle}n), &:last-child {
-      margin-left: 0;
-    }
-    &:nth-child(#{$cycle}n + 1) {
-      clear: right;
+  @if ($flex == false) {
+    @if $rtl {
+      &:nth-child(n) {
+        float: right;
+        margin-left: $gut;
+        clear: none;
+      }
+      &:nth-child(#{$cycle}n), &:last-child {
+        margin-left: 0;
+      }
+      &:nth-child(#{$cycle}n + 1) {
+        clear: right;
+      }
+    } @else {
+      &:nth-child(n) {
+        float: left;
+        margin-right: $gut;
+        clear: none;
+      }
+      &:nth-child(#{$cycle}n), &:last-child {
+        margin-right: 0;
+      }
+      &:nth-child(#{$cycle}n + 1) {
+        clear: left;
+      }
     }
   } @else {
-    &:nth-child(n) {
-      float: left;
-      margin-right: $gut;
-      clear: none;
-    }
-    &:nth-child(#{$cycle}n), &:last-child {
-      margin-right: 0;
-    }
-    &:nth-child(#{$cycle}n + 1) {
-      clear: left;
+    flex: 0 0 auto;
+    @if ($rtl) {
+      &:nth-child(n) {
+        margin-left: $gut;
+      }
+      &:nth-child(#{$cycle}n), &:last-child {
+        margin-left: 0;
+      }
+    } @else {
+      &:nth-child(n) {
+        margin-right: $gut;
+      }
+      &:nth-child(#{$cycle}n), &:last-child {
+        margin-right: 0;
+      }
     }
   }
   margin-bottom: $gut;
@@ -509,6 +589,7 @@ $rtl: false !default;
 /// Creates a row element for working with JS masonry libraries like Isotope. Assigns a negative margin on each side of this wrapping element.
 ///
 /// @param {number} $gut [$gutter] - How large the gutter involved is, typically this won't be adjusted and will inherit the global $gutter setting, but it's made available if you want your masonry grid to have a special $gut, it should match your masonry-column's $gut.
+/// @param {boolean} $flex [$flexbox] - Determines whether this element should use Flexbox or not.
 ///
 /// @example
 ///   section {
@@ -518,8 +599,12 @@ $rtl: false !default;
 ///     @include masonry-column('1/3');
 ///   }
 
-@mixin masonry-wrap($gut: $gutter) {
-  @include cf;
+@mixin masonry-wrap($gut: $gutter, $flex: $flexbox) {
+  @if ($flex == false) {
+    @include clearfix;
+  } @else {
+    @include flex-container;
+  }
   margin-left: -($gut / 2);
   margin-right: -($gut / 2);
 }
@@ -528,6 +613,7 @@ $rtl: false !default;
 /// Creates a column for working with JS masonry libraries like Isotope. Assigns a margin to each side of the element.
 ///
 /// @param {number} $gut [$gutter] - How large the gutter involved is, typically this won't be adjusted and will inherit the global $gutter setting, but it's made available if you want your masonry grid to have a special $gut, it should match your masonry-row's $gut.
+/// @param {boolean} $flex [$flexbox] - Determines whether this element should use Flexbox or not.
 ///
 /// @example
 ///   section {
@@ -537,12 +623,15 @@ $rtl: false !default;
 ///     @include masonry-column('1/3');
 ///   }
 
-@mixin masonry-column($gut: $gutter) {
-  margin-left: ($gut / 2);
-  margin-right: ($gut / 2);
+@mixin masonry-column($gut: $gutter, $flex: $flexbox) {
+  @if ($flex == true) {
+    flex: 0 0 auto;
+  }
   @if ($gut == 0) {
     width: calc(99.999999% * #{$fraction});
   } @else {
     width: calc(99.99% * #{$fraction} - #{$gut});
   }
+  margin-left: ($gut / 2);
+  margin-right: ($gut / 2);
 }

@@ -30,11 +30,12 @@ See for yourself! **Fork a demo** on CodePen and [follow along](#getting-started
   - [Edit Mode](#edit-mode)
   - [Vertical Grids](#vertical-grids)
   - [Waffle Grids](#waffle-grids)
+  - [Flexbox Grids](#flexbox-grids)
   - [Masonry Support](#masonry-support)
 - [Grid Settings](#grid-settings)
 - [Mixin Options](#mixin-options)
   - [`edit()`](#edit)
-  - [`cf()`](#cf)
+  - [`clearfix()`](#clearfix)
   - [`align()`](#align)
   - [`column()`](#column)
   - [`row()`](#row)
@@ -71,6 +72,7 @@ Feature | Lost | [Bootstrap](http://getbootstrap.com/css/#grid) | [Foundation](h
 [Vertical Grids](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#vertical-grids) | <img src="http://corysimmons.github.io/lost/checkmark.svg">
 [Waffle Grids](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#waffle-grids) | <img src="http://corysimmons.github.io/lost/checkmark.svg">
 [Fixed Gutters](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#fixed-gutters) | <img src="http://corysimmons.github.io/lost/checkmark.svg">
+[Flexbox Grids](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#flexbox-grids) | <img src="http://corysimmons.github.io/lost/checkmark.svg">
 
 <sup>If you notice anything in this table is incorrect or unfair, please don't hesitate to [open an issue](https://github.com/corysimmons/lost/issues/new).</sup>
 
@@ -103,7 +105,7 @@ To create a basic horizontal grid, just insert some columns into any element lik
 <h6 align="right">SCSS</h6>
 ```scss
 section {
-  @include cf;
+  @include clearfix;
 }
 
 figure {
@@ -114,7 +116,7 @@ figure {
 <h6 align="right">LESS</h6>
 ```less
 section {
-  .cf();
+  .clearfix();
 }
 
 figure {
@@ -125,19 +127,19 @@ figure {
 <h6 align="right">Stylus</h6>
 ```stylus
 section
-  cf()
+  clearfix()
 
 figure
   column('1/2')
 ```
 
-`cf()` is just a [clearfix](http://nicolasgallagher.com/micro-clearfix-hack/) mixin since grid elements are floated. It's a good idea to give this to the element wrapping your grid elements every time.
+`clearfix()` is just a [clearfix](http://nicolasgallagher.com/micro-clearfix-hack/) mixin since grid elements are floated. It's a good idea to give this to the element wrapping your grid elements every time.
 
 &nbsp;
 
 ##### Centering Elements
 
-You can also make use of the `center()` mixin to assign a `max-width` and `margin: auto` to an element and center it on the page. `cf()` will automatically be applied in this case.
+You can also make use of the `center()` mixin to assign a `max-width` and `margin: auto` to an element and center it on the page. `clearfix()` will automatically be applied in this case.
 
 <h6 align="right">SCSS</h6>
 ```scss
@@ -489,6 +491,63 @@ figure
 
 &nbsp;
 
+##### Flexbox Grids
+
+You can easily change your grids to support Flexbox by altering the global variable: `$flexbox` to `true`. Once you do this, all grids throughout your site will use flexed elements. To make sure they are displayed as flexed elements, you need to wrap them in `flex-container()` or `center()` (which includes `flex-container()` by default).
+
+<h6 align="right">HTML</h6>
+```html
+<section>
+  <figure>1</figure>
+  <figure>2</figure>
+  <figure>3</figure>
+</section>
+```
+
+<h6 align="right">SCSS</h6>
+```scss
+$flexbox: true;
+
+section {
+  @include center();
+}
+
+figure {
+  @include column('1/3');
+}
+```
+
+<h6 align="right">LESS</h6>
+```less
+@flexbox: true;
+
+section {
+  .center();
+}
+
+figure {
+  .column(1 of 3);
+}
+```
+
+<h6 align="right">Stylus</h6>
+```stylus
+$flexbox = true
+
+section
+  center()
+
+figure
+  column('1/3')
+```
+
+Flexbox offers cleaner output and avoids the use of `clearfix` and other issues with float-based layouts. It also allows you to have elements of even height rather easily, and [much more](https://github.com/philipwalton/flexbugs/issues/32#issuecomment-90789645). The downside is, Flexbox doesn't work in IE9 or below, so keep that in mind if you have a client that needs that kind of support.
+
+Also note that waffle grids work well for the most part, but are somewhat finicky in fringe situations where Flexbox tries to act smarter than it is. All mixins provide a way to disable or enable Flexbox per element with the `flex` parameter.
+
+
+&nbsp;
+
 ##### Masonry Support
 
 Lost supports masonry plugins like [Isotope](http://isotope.metafizzy.co/). To accomplish this we need to change how the margins work. Instead of applying a `margin-right` to everything, we need to apply it to both sides. We've made a couple special mixins to help with this: `masonry-column()` which creates a margin on the left and right of each element it's applied to, and `masonry-wrap()` which wraps your columns and applies a negative margin to the left and right to them to help line them up with containing elements.
@@ -580,13 +639,13 @@ section
 
 &nbsp;
 
-##### `cf()`
+##### `clearfix()`
 Clearfix used to clear floated children elements. http://nicolasgallagher.com/micro-clearfix-hack
 
 <h6 align="right">SCSS</h6>
 ```scss
 .parent {
-  @include cf;
+  @include clearfix;
   .child {
     @include column('1/2');
   }
@@ -596,7 +655,7 @@ Clearfix used to clear floated children elements. http://nicolasgallagher.com/mi
 <h6 align="right">LESS</h6>
 ```less
 .parent {
-  .cf();
+  .clearfix();
   .child {
     .column(1 of 2);
   }
@@ -606,9 +665,79 @@ Clearfix used to clear floated children elements. http://nicolasgallagher.com/mi
 <h6 align="right">Stylus</h6>
 ```stylus
 .parent
-  cf()
+  clearfix()
   .child
     column('1/2')
+```
+
+&nbsp;
+
+##### `flex-container()`
+Creates a Flexbox container.
+
+- `$direction: row` - The flex-direction the container should create. This is typically opposite to the element you're creating so a `row()` would need `flex-container(column)`.
+
+<h6 align="right">SCSS</h6>
+```scss
+$flexbox: true;
+
+section {
+  @include flex-container();
+  figure {
+    @include column('1/2');
+  }
+}
+```
+
+<h6 align="right">LESS</h6>
+```less
+@flexbox: true;
+
+section {
+  .flex-container();
+  figure {
+    .column('1/2');
+  }
+}
+```
+
+<h6 align="right">Stylus</h6>
+```stylus
+$flexbox = true
+
+section
+  flex-container()
+  figure
+    column('1/2')
+```
+
+&nbsp;
+
+##### `center()`
+Horizontally center a container element and apply padding to it.
+
+- `$max-size: 1140px` - A max-width to assign. Can be any unit.
+- `$pad: 0` - Padding on the left and right of the element. Can be any unit.
+- `$flex: $flexbox` - Determines whether this element should use Flexbox or not.
+
+<h6 align="right">SCSS</h6>
+```scss
+section {
+  @include center(900px);
+}
+```
+
+<h6 align="right">LESS</h6>
+```less
+section {
+  .center(900px);
+}
+```
+
+<h6 align="right">Stylus</h6>
+```stylus
+section
+  center(900px)
 ```
 
 &nbsp;
@@ -616,7 +745,7 @@ Clearfix used to clear floated children elements. http://nicolasgallagher.com/mi
 ##### `align()`
 Align nested elements.
 
-- `location: middle-center` - The position the nested element takes relative to the containing element.
+- `$location: middle-center` - The position the nested element takes relative to the containing element.
   - reset
   - top-left
   - top-center or top
@@ -626,7 +755,7 @@ Align nested elements.
   - bottom-left
   - bottom-center or bottom
   - bottom-right
-- `$flex: false` - Whether align() will use Flexbox to perform centering or not. Options are false or flex (for readability).
+- `$flex: $flexbox` - Determines whether this element should use Flexbox or not.
 
 <h6 align="right">SCSS</h6>
 ```scss
@@ -673,6 +802,7 @@ Creates a column that is a fraction of the size of it's containing element with 
 - `$fraction: '1/1'` - This is a simple fraction of the containing element's width. This must be a string written as a fraction.
 - `$cycle: DENOMINATOR` - Lost works by assigning a margin-right to all elements except the last in the row. It does this by default by using the denominator of the fraction you pick. To override this default use this param. e.g. column('2/4', $cycle: 2)
 - `$gut: $gutter` - The margin on the right side of the element used to create a gutter. Typically this is left alone and the global $gutter will be used, but you can override it here if you want certain elements to have a particularly large or small gutter (pass 0 for no gutter at all).
+- `$flex: $flexbox` - Determines whether this element should use Flexbox or not.
 
 <h6 align="right">SCSS</h6>
 ```scss
@@ -701,6 +831,7 @@ Creates a row that is a fraction of the size of it's containing element with a g
 
 - `$fraction: '1/1'` - This is a simple fraction of the containing element's height. This must be a string written as a fraction.
 - `$gut: $gutter` - The margin on the bottom of the element used to create a gutter. Typically this is left alone and the global $gutter will be used, but you can override it here if you want certain elements to have a particularly large or small gutter (pass 0 for no gutter at all).
+- `$flex: $flexbox` - Determines whether this element should use Flexbox or not.
 
 <h6 align="right">SCSS</h6>
 ```scss
@@ -730,6 +861,7 @@ Creates a block that is a fraction of the size of it's containing element with a
 - `$fraction: '1/1'` - This is a simple fraction of the containing element's width/height. This must be a string written as a fraction.
 - `$cycle: DENOMINATOR` - Lost works by assigning a margin-right/bottom to all elements except the last row (no margin-bottom) and the last column (no margin-right). It does this by default by using the denominator of the fraction you pick. To override this default use this param. e.g. waffle('2/4', $cycle: 2)
 - `$gut: $gutter` - The margin on the right and bottom side of the element used to create a gutter. Typically this is left alone and the global $gutter will be used, but you can override it here if you want certain elements to have a particularly large or small gutter (pass 0 for no gutter at all).
+- `$flex: $flexbox` - Determines whether this element should use Flexbox or not.
 
 <h6 align="right">SCSS</h6>
 ```scss
@@ -826,12 +958,14 @@ figure
 Creates a wrapping element for working with JS masonry libraries like Isotope. Assigns a negative margin on each side of this wrapping element.
 
 - `$gut: $gutter` - How large the gutter involved is, typically this won't be adjusted and will inherit the global $gutter setting, but it's made available if you want your masonry grid to have a special $gut, it should match your masonry-column's $gut.
+- `$flex: $flexbox` - Determines whether this element should use Flexbox or not.
 
 
 ##### `masonry-column()`
 Creates a column for working with JS masonry libraries like Isotope. Assigns a margin to each side of the element.
 
 - `$gut: $gutter` - How large the gutter involved is, typically this won't be adjusted and will inherit the global $gutter setting, but it's made available if you want your masonry grid to have a special $gut, it should match your masonry-row's $gut.
+- `$flex: $flexbox` - Determines whether this element should use Flexbox or not.
 
 <h6 align="right">SCSS</h6>
 ```scss
