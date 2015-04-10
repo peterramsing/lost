@@ -1,4 +1,4 @@
-// Lost Grid v5.1.3 - https://github.com/corysimmons/lost
+// Lost Grid v5.1.4 - https://github.com/corysimmons/lost
 
 $gutter: 30px !default;
 $rtl: false !default;
@@ -85,9 +85,11 @@ $flexbox: false !default;
   } @else {
     @include flex-container;
   }
+  @if ($pad != 0) {
+    padding-left: $pad;
+    padding-right: $pad;
+  }
   max-width: $max-size;
-  padding-left: $pad;
-  padding-right: $pad;
   margin-left: auto;
   margin-right: auto;
 }

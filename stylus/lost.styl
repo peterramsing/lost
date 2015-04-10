@@ -1,4 +1,4 @@
-// Lost Grid v5.1.3 - https://github.com/corysimmons/lost
+// Lost Grid v5.1.4 - https://github.com/corysimmons/lost
 
 $gutter = 30px
 $rtl = false
@@ -78,9 +78,10 @@ center($max-size = 1140px, $pad = 0, $flex = $flexbox)
     clearfix()
   else
     flex-container()
+  if $pad is not 0
+    padding-left: $pad
+    padding-right: $pad
   max-width: $max-size
-  padding-left: $pad
-  padding-right: $pad
   margin-left: auto
   margin-right: auto
 
