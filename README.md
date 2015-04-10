@@ -618,8 +618,6 @@ Just set either of these in a settings file after you `@import` Lost and before 
 ##### `edit()`
 Sets a translucent background color to all elements it affects. Helpful while setting up, or debugging, the structure of your site to make sure all items are cleared correctly.
 
-- `$bg: blue` - A color to be lightened, so make sure you pick a darkish color.
-
 <h6 align="right">SCSS</h6>
 ```scss
 section {
