@@ -46,6 +46,7 @@ See for yourself! **Fork a demo** on CodePen and [follow along](#getting-started
   - [`move()`](#move)
   - [`masonry-wrap()`](#masonry-wrap)
   - [`masonry-column()`](#masonry-column)
+  - [`get-size()`](#get-size)
 - [Usage with Node](#usage-with-node)
 - [Example Code](#example-code)
 - [Browser Support](#browser-support)
@@ -995,6 +996,46 @@ section
   masonry-wrap()
 figure
   masonry-column('1/3')
+```
+
+&nbsp;
+
+##### `get-size()`
+A function to return the size of a column minus it's gutter if a gutter is assigned. Handy for generating CSS classes.
+
+> **Note** This feature is not currently available in the LESS version. I'm not a fan of LESS but would love a PR.
+
+- `$fraction: '1/1'` - This is a simple fraction of the containing element's width. This must be a string written as a fraction.
+- `$gut: $gutter` - The gutter assigned to this size.
+
+<h6 align="right">SCSS</h6>
+```scss
+[class*="col-"] {
+  float: left;
+  margin-right: $gutter;
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+@for $i from 1 through 12 {
+  .col-#{$i} {
+    width: get-size('#{$i}/12');
+  }
+}
+```
+
+<h6 align="right">Stylus</h6>
+```stylus
+[class*="col-"]
+  float: left
+  margin-right: $gutter
+  &:last-child
+    margin-right: 0
+
+for $i in 1..12
+  .col-{$i}
+    width: get-size(s('%s/12', $i))
 ```
 
 

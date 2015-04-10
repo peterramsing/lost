@@ -1,4 +1,4 @@
-// Lost Grid v5.1.2 - https://github.com/corysimmons/lost
+// Lost Grid v5.1.3 - https://github.com/corysimmons/lost
 
 $gutter: 30px !default;
 $rtl: false !default;
@@ -637,4 +637,33 @@ $flexbox: false !default;
   }
   margin-left: ($gut / 2);
   margin-right: ($gut / 2);
+}
+
+
+/// A function to return the size of a column minus it's gutter if a gutter is assigned. Handy for generating CSS classes.
+///
+/// @param {string} $fraction ['1/1'] - This is a simple fraction of the containing element's width. This must be a string written as a fraction.
+/// @param {number} $gut [$gutter] - The gutter assigned to this size.
+///
+/// @example
+///   [class*="col-"] {
+///     float: left;
+///     margin-right: $gutter;
+///     &:last-child {
+///       margin-right: 0;
+///     }
+///   }
+///
+///   @for $i from 1 through 12 {
+///     .col-#{$i} {
+///       width: get-size('#{$i}/12');
+///     }
+///   }
+
+@function get-size($fraction: '1/1', $gut: $gutter) {
+  @if ($gut == 0) {
+    @return calc(99.999999% * #{$fraction});
+  } @else {
+    @return calc(99.99% * #{$fraction} - (#{$gut} - #{$gut} * #{$fraction}));
+  }
 }
