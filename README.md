@@ -3,9 +3,9 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/npm/v/lost-grid.svg?style=flat-square">
-  <img src="https://img.shields.io/bower/v/lost-grid.svg?style=flat-square">
-  <img src="http://img.shields.io/npm/dm/lost-grid.svg?style=flat-square">
+  <a href="https://www.npmjs.com/package/lost-grid"><img src="https://img.shields.io/npm/v/lost-grid.svg?style=flat-square"></a>
+  <a href="http://bower.io/search/?q=lost-grid"><img src="https://img.shields.io/bower/v/lost-grid.svg?style=flat-square"></a>
+  <a href="https://github.com/corysimmons/lost/stargazers"><img src="http://img.shields.io/npm/dm/lost-grid.svg?style=flat-square"></a>
 </p>
 
 Lost Grid is a grid system for SCSS or Stylus. It is built upon years of studying and [building](http://jeet.gs) grid systems with **tons** of community feedback.
