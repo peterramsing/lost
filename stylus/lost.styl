@@ -479,7 +479,7 @@ masonry-wrap($gut = $gutter, $flex = $flexbox)
  *     masonry-column('1/3')
  */
 
-masonry-column($gut = $gutter, $flex = $flexbox)
+masonry-column($fraction = '1/1', $gut = $gutter, $flex = $flexbox)
   _get-size()
     if $gut is 0
       return s('calc(99.999999% * %s)', unquote($fraction))

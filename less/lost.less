@@ -625,12 +625,12 @@
  *   }
  */
 
-.masonry-column(@gut: @gutter, @flex: @flexbox) {
+.masonry-column(@fraction: 1 of 1, @gut: @gutter, @flex: @flexbox) {
   & when (@gut = 0) {
-    width: e(%('calc(99.999999% * %s)', @_fraction));
+    width: e(%('calc(99.999999% * %s)', @fraction));
   }
   & when not (@gut = 0) {
-    width: e(%('calc(99.99% * %s - %s)', @_fraction, @gut));
+    width: e(%('calc(99.99% * %s - %s)', @fraction, @gut));
   }
   & when (@flex = true) {
     flex: 0 0 auto;
