@@ -1,4 +1,4 @@
-// Lost Grid v5.1.5 - https://github.com/corysimmons/lost
+// Lost Grid v5.1.6 - https://github.com/corysimmons/lost
 
 $gutter = 30px
 $rtl = false
@@ -116,7 +116,10 @@ align($location = middle-center, $flex = $flexbox)
   if $flex is false
     position: relative
     > *
-      position: absolute
+      if $location is reset
+        position: static
+      else
+        position: absolute
       if $location is reset
         top: auto
         right: auto

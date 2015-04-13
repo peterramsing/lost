@@ -1,4 +1,4 @@
-// Lost Grid v5.1.5 - https://github.com/corysimmons/lost
+// Lost Grid v5.1.6 - https://github.com/corysimmons/lost
 
 @gutter: 30px;
 @rtl: false;
@@ -136,12 +136,12 @@
   & when (@flex = false) {
     position: relative;
     > * {
-      position: absolute;
-      top: 50%;
-      right: auto;
-      bottom: auto;
-      left: 50%;
-      transform: translate3d(-50%, -50%, 0);
+      & when (@location = reset) {
+        position: static;
+      }
+      & when not (@location = reset) {
+        position: absolute;
+      }
       & when (@location = reset) {
         top: auto;
         right: auto;
@@ -190,6 +190,12 @@
         bottom: auto;
         left: auto;
         transform: translate3d(0, -50%, 0);
+      } & when (@location = middle-center) {
+        top: 50%;
+        right: auto;
+        bottom: auto;
+        left: 50%;
+        transform: translate3d(-50%, -50%, 0);
       } & when (@location = right) {
         top: 50%;
         right: 0;
