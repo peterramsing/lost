@@ -1,8 +1,9 @@
 {
   "name": "lost",
   "main": [
-    "lost.scss",
-    "lost.styl"
+    "less/lost.less",
+    "scss/lost.scss",
+    "stylus/lost.styl"
   ],
   "version": "5.1.5",
   "homepage": "https://github.com/corysimmons/lost",
