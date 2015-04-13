@@ -5,7 +5,7 @@
     "scss/lost.scss",
     "stylus/lost.styl"
   ],
-  "version": "5.1.5",
+  "version": "5.1.6",
   "homepage": "https://github.com/corysimmons/lost",
   "authors": [
     "Cory Simmons <cory@launchboxhq.com>"
