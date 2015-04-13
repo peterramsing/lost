@@ -1,5 +1,5 @@
 {
-  "name": "lost-grid",
+  "name": "lost",
   "main": [
     "lost.scss",
     "lost.styl"
