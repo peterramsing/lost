@@ -3,8 +3,8 @@
 </p>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/lost-grid"><img src="https://img.shields.io/npm/v/lost-grid.svg?style=flat-square"></a>
-  <a href="http://bower.io/search/?q=lost-grid"><img src="https://img.shields.io/bower/v/lost-grid.svg?style=flat-square"></a>
+  <a href="https://www.npmjs.com/package/lost"><img src="https://img.shields.io/npm/v/lost-grid.svg?style=flat-square"></a>
+  <a href="http://bower.io/search/?q=lost"><img src="https://img.shields.io/bower/v/lost-grid.svg?style=flat-square"></a>
   <a href="https://github.com/corysimmons/lost/stargazers"><img src="http://img.shields.io/npm/dm/lost-grid.svg?style=flat-square"></a>
 </p>
 
