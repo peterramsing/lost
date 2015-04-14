@@ -89,6 +89,8 @@ Installing Lost is easy. Just `bower install lost-grid` in your project director
 - To modify global settings, look at the [Grid Settings](#grid-settings) section.
 - For Node usage, please check out the [Usage with Node](#usage-with-node) section.
 
+**[⬆ back to top](#table-of-contents)**
+
 &nbsp;
 
 ##### Basic Columns
@@ -138,6 +140,8 @@ figure
 
 `clearfix()` is just a [clearfix](http://nicolasgallagher.com/micro-clearfix-hack/) mixin since grid elements are floated. It's a good idea to give this to the element wrapping your grid elements every time.
 
+**[⬆ back to top](#table-of-contents)**
+
 &nbsp;
 
 ##### Centering Elements
@@ -175,6 +179,8 @@ figure
   column('1/2')
 ```
 
+**[⬆ back to top](#table-of-contents)**
+
 &nbsp;
 
 ##### Controlling Cycle
@@ -202,6 +208,8 @@ figure {
 figure
   column('2/4', $cycle: 2)
 ```
+
+**[⬆ back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -242,6 +250,8 @@ figure {
 figure
   column('1/2')
 ```
+
+**[⬆ back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -284,6 +294,8 @@ figure
   &:first-child
     offset('1/3')
 ```
+
+**[⬆ back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -337,6 +349,8 @@ figure
   width: 100px
   height: 100px
 ```
+
+**[⬆ back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -392,6 +406,8 @@ section
     edit(green)
 ```
 
+**[⬆ back to top](#table-of-contents)**
+
 &nbsp;
 
 ##### Vertical Grids
@@ -439,6 +455,8 @@ section
 figure
   row('1/3')
 ```
+
+**[⬆ back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -491,6 +509,8 @@ section
 figure
   waffle('1/3')
 ```
+
+**[⬆ back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -548,6 +568,7 @@ Flexbox offers cleaner output and avoids the use of `clearfix` and other issues 
 
 Also note that waffle grids work well for the most part, but are somewhat finicky in fringe situations where Flexbox tries to act smarter than it is. All mixins provide a way to disable or enable Flexbox per element with the `flex` parameter.
 
+**[⬆ back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -595,6 +616,9 @@ figure
   masonry-column('1/3')
 ```
 
+**[⬆ back to top](#table-of-contents)**
+
+&nbsp;
 
 ## Grid Settings
 
@@ -640,6 +664,8 @@ section
   edit(red)
 ```
 
+**[⬆ back to top](#table-of-contents)**
+
 &nbsp;
 
 ##### `clearfix()`
@@ -672,6 +698,8 @@ Clearfix used to clear floated children elements. http://nicolasgallagher.com/mi
   .child
     column('1/2')
 ```
+
+**[⬆ back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -714,6 +742,8 @@ section
     column('1/2')
 ```
 
+**[⬆ back to top](#table-of-contents)**
+
 &nbsp;
 
 ##### `center()`
@@ -742,6 +772,8 @@ section {
 section
   center(900px)
 ```
+
+**[⬆ back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -797,6 +829,8 @@ Align nested elements.
     height: 150px
 ```
 
+**[⬆ back to top](#table-of-contents)**
+
 &nbsp;
 
 ##### `column()`
@@ -827,6 +861,8 @@ figure
   column('1/3')
 ```
 
+**[⬆ back to top](#table-of-contents)**
+
 &nbsp;
 
 ##### `row()`
@@ -855,6 +891,8 @@ figure {
 figure
   row('1/3')
 ```
+
+**[⬆ back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -885,6 +923,8 @@ figure {
 figure
   waffle('1/3')
 ```
+
+**[⬆ back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -923,6 +963,8 @@ Margin to the left, right, bottom, or top, of an element depending on if the fra
     offset('1/3')
 ```
 
+**[⬆ back to top](#table-of-contents)**
+
 &nbsp;
 
 ##### `move()`
@@ -954,6 +996,8 @@ figure
   column('1/3')
   move('1/3')
 ```
+
+**[⬆ back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -998,6 +1042,8 @@ figure
   masonry-column('1/3')
 ```
 
+**[⬆ back to top](#table-of-contents)**
+
 &nbsp;
 
 ##### `get-size()`
@@ -1038,6 +1084,9 @@ for $i in 1..12
     width: get-size(s('%s/12', $i))
 ```
 
+**[⬆ back to top](#table-of-contents)**
+
+&nbsp;
 
 ## Usage with Node
 - `npm i lost-grid --save-dev`
