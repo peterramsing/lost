@@ -19,6 +19,8 @@ See for yourself! **Fork a demo** on CodePen and [follow along](#getting-started
 
 
 ## Table of Contents
+
+[![Join the chat at https://gitter.im/corysimmons/lost](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/corysimmons/lost?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 - [Comparison Table](#better-than-x)
 - [Getting Started](#getting-started)
   - [Installation](#installation)
