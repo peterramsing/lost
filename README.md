@@ -85,7 +85,7 @@ Feature | Lost | [Bootstrap](http://getbootstrap.com/css/#grid) | [Foundation](h
 
 ##### Installation
 
-Installing Lost is easy. Just `bower install lost-grid` in your project directory, then add `@import '/bower_components/lost-grid/PREPROCESSOR/lost.styl'` to the top of your preprocessor stylesheet.
+Installing Lost is easy. Just `bower install lost` in your project directory, then add `@import '/bower_components/lost/PREPROCESSOR/lost.styl'` to the top of your preprocessor stylesheet.
 
 - To modify global settings, look at the [Grid Settings](#grid-settings) section.
 - For Node usage, please check out the [Usage with Node](#usage-with-node) section.
@@ -1090,13 +1090,13 @@ for $i in 1..12
 &nbsp;
 
 ## Usage with Node
-- `npm i lost-grid --save-dev`
+- `npm i lost --save-dev`
 
 <h6 align="right">JavaScript</h6>
 ```javascript
 var fs = require('fs'),
     stylus = require('stylus'),
-    lost = require('lost-grid');
+    lost = require('lost');
 
 stylus(fs.readFileSync('./css/style.styl', 'utf8'))
   .use(lost())
