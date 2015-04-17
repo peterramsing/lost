@@ -1,0 +1,62 @@
+@import 'normalize.css';
+
+body,
+.cf {
+  *zoom: 1;
+}
+body:before,
+.cf:before,
+body:after,
+.cf:after {
+  content: '';
+  display: table;
+}
+body:after,
+.cf:after {
+  clear: both;
+}
+*,
+*:before,
+*:after {
+  *behavior: url("js/vendor/boxsizing.htc");
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+h1, figure, fieldset {
+  margin: 0;
+}
+html, body {
+  height: 100%;
+  overflow-x: hidden;
+}
+body {
+  width: 100%;
+  overflow-y: scroll;
+}
+img,
+video,
+audio,
+embed,
+object,
+input,
+iframe {
+  max-width: 100%;
+}
+.browsehappy {
+  width: 100%;
+  padding: 15px;
+  background: #333;
+  color: #fff;
+  font-size: 13px;
+  line-height: 21px;
+  cursor: pointer;
+  text-align: center;
+}
+.browsehappy a {
+  color: #fff;
+  font-weight: bold;
+}
+.browsehappy a:hover {
+  text-decoration: none;
+}
