@@ -46,7 +46,7 @@ var lost = postcss.plugin('lost', function() {
           };
 
       if (decl.value == 'edit') {
-        newBlock(' *', ['background'], ['rgba(0, 0, 255, .1)']);
+        newBlock(' *:not(input):not(textarea):not(select)', ['background'], ['rgba(0, 0, 255, .1)']);
       }
 
       if (decl.value == 'clearfix') {
