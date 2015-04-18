@@ -20,9 +20,10 @@ module.exports = postcss.plugin('lost', function lost() {
   return function(css, processor) {
 
     /**
-     * A general utility toolbelt for Lost. Included are mixins that require no additional input other than being called.
+     * A general utility toolbelt for Lost. Included are mixins that require no
+     * additional input other than being called.
      *
-     * @param {string} [edit, clearfix] - The mixin to create.
+     * @param {string} [edit|clearfix] - The mixin to create.
      *
      * @example
      *   body {
@@ -33,7 +34,7 @@ module.exports = postcss.plugin('lost', function lost() {
      *   .parent {
      *     lost-utility: clearfix;
      *   }
-     *   .children {
+     *   .child {
      *     lost-column: 1/2;
      *   }
      */
@@ -46,17 +47,23 @@ module.exports = postcss.plugin('lost', function lost() {
                 values = values || [];
             block.eachDecl(function(decl) { decl.removeSelf(); });
             props.forEach(function(prop, i) {
-              var rule = decl.clone({ prop: prop, value: values[i] });
+              var rule = decl.clone({
+                prop: prop,
+                value: values[i]
+              });
               rule.moveTo(block);
             });
           };
 
       if (decl.value == 'edit') {
-        newBlock(' *:not(input):not(textarea):not(select)', ['background'], ['rgba(0, 0, 255, .1)']);
+        newBlock(' *:not(input):not(textarea):not(select)', ['background-color'], ['rgba(0, 0, 255, 0.1)']);
       }
 
       if (decl.value == 'clearfix') {
-        decl.cloneBefore({ prop: '*zoom', value: '1' });
+        decl.cloneBefore({
+          prop: '*zoom',
+          value: '1'
+        });
         newBlock(':after', ['content', 'display', 'clear'], ['\'\'', 'table', 'both']);
         newBlock(':before', ['content', 'display'], ['\'\'', 'table']);
       }
@@ -73,7 +80,9 @@ module.exports = postcss.plugin('lost', function lost() {
     /**
      * Creates a Flexbox container.
      *
-     * @param {boolean} [row, column] - The flex-direction the container should create. This is typically opposite to the element you're creating so a row would need lost-flex-container: column;.
+     * @param {string} [row|column] - The flex-direction the container should
+     *   create. This is typically opposite to the element you're creating so a
+     *   row would need `lost-flex-container: column;`.
      *
      * @example
      *   section {
@@ -86,12 +95,21 @@ module.exports = postcss.plugin('lost', function lost() {
 
     css.eachDecl('lost-flex-container', function(decl) {
 
-      decl.cloneBefore({ prop: 'display', value: 'flex' });
+      decl.cloneBefore({
+        prop: 'display',
+        value: 'flex'
+      });
 
       if (decl.value == 'column') {
-        decl.cloneBefore({ prop: 'flex-flow', value: 'column nowrap' });
+        decl.cloneBefore({
+          prop: 'flex-flow',
+          value: 'column nowrap'
+        });
       } else {
-        decl.cloneBefore({ prop: 'flex-flow', value: 'row wrap' });
+        decl.cloneBefore({
+          prop: 'flex-flow',
+          value: 'row wrap'
+        });
       }
 
       decl.removeSelf();
@@ -102,9 +120,13 @@ module.exports = postcss.plugin('lost', function lost() {
     /**
      * Horizontally center a container element and apply padding to it.
      *
-     * @param {unit} [max-width] - A max-width to assign. Can be any unit.
-     * @param {unit} [padding] - Padding on the left and right of the element. Can be any unit.
-     * @param {boolean} [flex, no-flex] - Determines whether this element should use Flexbox or not.
+     * @param {length} [max-width] - A max-width to assign. Can be any unit.
+     *
+     * @param {length} [padding] - Padding on the left and right of the element.
+     *   Can be any unit.
+     *
+     * @param {string} [flex|no-flex] - Determines whether this element should
+     *   use Flexbox or not.
      *
      * @example
      *   section {
@@ -125,7 +147,10 @@ module.exports = postcss.plugin('lost', function lost() {
                 values = values || [];
             block.eachDecl(function(decl) { decl.removeSelf(); });
             props.forEach(function(prop, i) {
-              var rule = decl.clone({ prop: prop, value: values[i] });
+              var rule = decl.clone({
+                prop: prop,
+                value: values[i]
+              });
               rule.moveTo(block);
             });
           },
@@ -160,21 +185,45 @@ module.exports = postcss.plugin('lost', function lost() {
       });
 
       if (lostCenterFlexbox === 'no-flex') {
-        decl.cloneBefore({ prop: '*zoom', value: '1' });
+        decl.cloneBefore({
+          prop: '*zoom',
+          value: '1'
+        });
         newBlock(':after', ['content', 'display', 'clear'], ['\'\'', 'table', 'both']);
         newBlock(':before', ['content', 'display'], ['\'\'', 'table']);
       } else {
-        decl.cloneBefore({ prop: 'display', value: 'flex' });
-        decl.cloneBefore({ prop: 'flex-flow', value: 'row wrap' });
+        decl.cloneBefore({
+          prop: 'display',
+          value: 'flex'
+        });
+        decl.cloneBefore({
+          prop: 'flex-flow',
+          value: 'row wrap'
+        });
       }
 
-      decl.cloneBefore({ prop: 'width', value: declArr[0] });
-      decl.cloneBefore({ prop: 'margin-left', value: 'auto' });
-      decl.cloneBefore({ prop: 'margin-right', value: 'auto' });
+      decl.cloneBefore({
+        prop: 'width',
+        value: declArr[0]
+      });
+      decl.cloneBefore({
+        prop: 'margin-left',
+        value: 'auto'
+      });
+      decl.cloneBefore({
+        prop: 'margin-right',
+        value: 'auto'
+      });
 
       if (lostCenterPadding !== undefined) {
-        decl.cloneBefore({ prop: 'padding-left', value: lostCenterPadding });
-        decl.cloneBefore({ prop: 'padding-right', value: lostCenterPadding });
+        decl.cloneBefore({
+          prop: 'padding-left',
+          value: lostCenterPadding
+        });
+        decl.cloneBefore({
+          prop: 'padding-right',
+          value: lostCenterPadding
+        });
       }
 
       decl.removeSelf();
@@ -185,8 +234,11 @@ module.exports = postcss.plugin('lost', function lost() {
     /**
      * Align nested elements. Apply this to a parent container.
      *
-     * @param {string} [location] - The position the nested element takes relative to the containing element.
-     * @param {boolean} [flex, no-flex] - Determines whether this element should use Flexbox or not.
+     * @param {string} [location] - The position the nested element takes
+     *   relative to the containing element.
+     *
+     * @param {string} [flex|no-flex] - Determines whether this element should
+     *   use Flexbox or not.
      *
      * - reset
      * - horizontal
@@ -221,7 +273,10 @@ module.exports = postcss.plugin('lost', function lost() {
                 values = values || [];
             block.eachDecl(function(decl) { decl.removeSelf(); });
             props.forEach(function(prop, i) {
-              var rule = decl.clone({ prop: prop, value: values[i] });
+              var rule = decl.clone({
+                prop: prop,
+                value: values[i]
+              });
               rule.moveTo(block);
             });
           },
@@ -235,10 +290,16 @@ module.exports = postcss.plugin('lost', function lost() {
       if (declArr[1] !== 'flex') {
 
         if (lostAlign == 'reset') {
-          decl.cloneBefore({ prop: 'position', value: 'static' });
+          decl.cloneBefore({
+            prop: 'position',
+            value: 'static'
+          });
           newBlock(' > *', ['position', 'top', 'right', 'bottom', 'left', 'transform'], ['static', 'auto', 'auto', 'auto', 'auto', 'translate3d(0, 0, 0)']);
         } else {
-          decl.cloneBefore({ prop: 'position', value: 'relative' });
+          decl.cloneBefore({
+            prop: 'position',
+            value: 'relative'
+          });
 
           if (lostAlign == 'horizontal') {
             newBlock(' > *', ['position', 'top', 'right', 'bottom', 'left', 'transform'], ['absolute', 'auto', 'auto', 'auto', '50%', 'translate3d(-50%, 0, 0)']);
@@ -269,10 +330,16 @@ module.exports = postcss.plugin('lost', function lost() {
       } else {
 
         if (lostAlign == 'reset') {
-          decl.cloneBefore({ prop: 'display', value: 'initial' });
+          decl.cloneBefore({
+            prop: 'display',
+            value: 'initial'
+          });
           newBlock(' > *', ['justify-content', 'align-items'], ['inherit', 'inherit']);
         } else {
-          decl.cloneBefore({ prop: 'display', value: 'flex' });
+          decl.cloneBefore({
+            prop: 'display',
+            value: 'flex'
+          });
 
           if (lostAlign == 'horizontal') {
             newBlock(' > *', ['justify-content', 'align-items'], ['center', 'inherit']);
@@ -308,12 +375,25 @@ module.exports = postcss.plugin('lost', function lost() {
 
 
     /**
-     * Creates a column that is a fraction of the size of it's containing element's width with a gutter.
+     * Creates a column that is a fraction of the size of it's containing
+     * element's width with a gutter.
      *
-     * @param {string} [fraction] - This is a simple fraction of the containing element's width.
-     * @param {number} [cycle = fraction denominator] - Lost works by assigning a margin-right to all elements except the last in the row. It does this by default by using the denominator of the fraction you pick. To override the default use this param. e.g. .foo { lost-column: 2/4 2; }
-     * @param {unit} [gutter = settings.gutter] - The margin on the right side of the element used to create a gutter. Typically this is left alone and settings.gutter will be used, but you can override it here if you want certain elements to have a particularly large or small gutter (pass 0 for no gutter at all).
-     * @param {boolean} [flex, no-flex] - Determines whether this element should use Flexbox or not.
+     * @param {string} [fraction] - This is a simple fraction of the containing
+     *   element's width.
+     *
+     * @param {integer} [cycle] - Lost works by assigning a margin-right to all
+     *   elements except the last in the row. It does this by default by using
+     *   the denominator of the fraction you pick. To override the default use
+     *   this param., e.g.: .foo { lost-column: 2/4 2; }
+     *
+     * @param {length} [gutter] - The margin on the right side of the element
+     *   used to create a gutter. Typically this is left alone and
+     *   settings.gutter will be used, but you can override it here if you want
+     *   certain elements to have a particularly large or small gutter (pass 0
+     *   for no gutter at all).
+     *
+     * @param {string} [flex|no-flex] - Determines whether this element should
+     *   use Flexbox or not.
      *
      * @example
      *   figure {
@@ -334,7 +414,10 @@ module.exports = postcss.plugin('lost', function lost() {
                 values = values || [];
             block.eachDecl(function(decl) { decl.removeSelf(); });
             props.forEach(function(prop, i) {
-              var rule = decl.clone({ prop: prop, value: values[i] });
+              var rule = decl.clone({
+                prop: prop,
+                value: values[i]
+              });
               rule.moveTo(block);
             });
           },
@@ -388,8 +471,14 @@ module.exports = postcss.plugin('lost', function lost() {
       });
 
       if (lostColumnFlexbox === 'flex') {
-        decl.cloneBefore({ prop: 'display', value: 'flex' });
-        decl.cloneBefore({ prop: 'flex', value: '0 0 auto' });
+        decl.cloneBefore({
+          prop: 'display',
+          value: 'flex'
+        });
+        decl.cloneBefore({
+          prop: 'flex',
+          value: '0 0 auto'
+        });
         if (settings.rtl === false) {
           newBlock(':nth-child('+ lostColumnCycle +'n)', ['margin-right'], [0]);
           newBlock(':last-child', ['margin-right'], [0]);
@@ -401,15 +490,27 @@ module.exports = postcss.plugin('lost', function lost() {
         }
       } else {
         if (settings.rtl === false) {
-          decl.cloneBefore({ prop: 'float', value: 'left' });
-          decl.cloneBefore({ prop: 'margin-right', value: lostColumnGutter });
+          decl.cloneBefore({
+            prop: 'float',
+            value: 'left'
+          });
+          decl.cloneBefore({
+            prop: 'margin-right',
+            value: lostColumnGutter
+          });
           newBlock(':nth-child('+ lostColumnCycle +'n + 1)', ['clear'], ['left']);
           newBlock(':nth-child('+ lostColumnCycle +'n)', ['float', 'margin-right'], ['right', 0]);
           newBlock(':last-child', ['margin-right'], [0]);
           newBlock(':nth-child(n)', ['float', 'margin-right', 'clear'], ['left', lostColumnGutter, 'none']);
         } else {
-          decl.cloneBefore({ prop: 'float', value: 'right' });
-          decl.cloneBefore({ prop: 'margin-left', value: lostColumnGutter });
+          decl.cloneBefore({
+            prop: 'float',
+            value: 'right'
+          });
+          decl.cloneBefore({
+            prop: 'margin-left',
+            value: lostColumnGutter
+          });
           newBlock(':nth-child('+ lostColumnCycle +'n + 1)', ['clear'], ['right']);
           newBlock(':nth-child('+ lostColumnCycle +'n)', ['float', 'margin-left'], ['left', 0]);
           newBlock(':last-child', ['margin-left'], [0]);
@@ -418,9 +519,15 @@ module.exports = postcss.plugin('lost', function lost() {
       }
 
       if (lostColumnGutter !== '0') {
-        decl.cloneBefore({ prop: 'width', value: 'calc(99.99% * '+ lostColumn +' - ('+ lostColumnGutter +' - '+ lostColumnGutter +' * '+ lostColumn +'))' });
+        decl.cloneBefore({
+          prop: 'width',
+          value: 'calc(99.99% * '+ lostColumn +' - ('+ lostColumnGutter +' - '+ lostColumnGutter +' * '+ lostColumn +'))'
+        });
       } else {
-        decl.cloneBefore({ prop: 'width', value: 'calc(99.999999% * '+ lostColumn +')' });
+        decl.cloneBefore({
+          prop: 'width',
+          value: 'calc(99.999999% * '+ lostColumn +')'
+        });
       }
 
       decl.removeSelf();
@@ -429,11 +536,20 @@ module.exports = postcss.plugin('lost', function lost() {
 
 
     /**
-     * Creates a row that is a fraction of the size of it's containing element's height with a gutter.
+     * Creates a row that is a fraction of the size of it's containing element's
+     * height with a gutter.
      *
-     * @param {string} [fraction] - This is a simple fraction of the containing element's height.
-     * @param {unit} [gutter = settings.gutter] - The margin on the bottom of the element used to create a gutter. Typically this is left alone and settings.gutter will be used, but you can override it here if you want certain elements to have a particularly large or small gutter (pass 0 for no gutter at all).
-     * @param {boolean} [flex, no-flex] - Determines whether this element should use Flexbox or not.
+     * @param {string} [fraction] - This is a simple fraction of the containing
+     *   element's height.
+     *
+     * @param {length} [gutter] - The margin on the bottom of the element used
+     *   to create a gutter. Typically this is left alone and settings.gutter
+     *   will be used, but you can override it here if you want certain elements
+     *   to have a particularly large or small gutter (pass 0 for no gutter at
+     *   all).
+     *
+     * @param {string} [flex|no-flex] - Determines whether this element should
+     *   use Flexbox or not.
      *
      * @example
      *   section {
@@ -452,7 +568,10 @@ module.exports = postcss.plugin('lost', function lost() {
                 values = values || [];
             block.eachDecl(function(decl) { decl.removeSelf(); });
             props.forEach(function(prop, i) {
-              var rule = decl.clone({ prop: prop, value: values[i] });
+              var rule = decl.clone({
+                prop: prop,
+                value: values[i]
+              });
               rule.moveTo(block);
             });
           },
@@ -489,20 +608,38 @@ module.exports = postcss.plugin('lost', function lost() {
         }
       });
 
-      decl.cloneBefore({ prop: 'width', value: '100%' });
+      decl.cloneBefore({
+        prop: 'width',
+        value: '100%'
+      });
 
       if (lostRowFlexbox === 'flex') {
-        decl.cloneBefore({ prop: 'display', value: 'flex' });
-        decl.cloneBefore({ prop: 'flex', value: '0 0 auto' });
+        decl.cloneBefore({
+          prop: 'display',
+          value: 'flex'
+        });
+        decl.cloneBefore({
+          prop: 'flex',
+          value: '0 0 auto'
+        });
       }
 
       if (lostRowGutter !== '0') {
-        decl.cloneBefore({ prop: 'height', value: 'calc(99.99% * '+ lostRow +' - ('+ lostRowGutter +' - '+ lostRowGutter +' * '+ lostRow +'))' });
+        decl.cloneBefore({
+          prop: 'height',
+          value: 'calc(99.99% * '+ lostRow +' - ('+ lostRowGutter +' - '+ lostRowGutter +' * '+ lostRow +'))'
+        });
       } else {
-        decl.cloneBefore({ prop: 'height', value: 'calc(99.999999% * '+ lostRow +')' });
+        decl.cloneBefore({
+          prop: 'height',
+          value: 'calc(99.999999% * '+ lostRow +')'
+        });
       }
 
-      decl.cloneBefore({ prop: 'margin-bottom', value: lostRowGutter });
+      decl.cloneBefore({
+        prop: 'margin-bottom',
+        value: lostRowGutter
+      });
 
       newBlock(':last-child', ['margin-bottom'], [0]);
 
@@ -512,12 +649,26 @@ module.exports = postcss.plugin('lost', function lost() {
 
 
     /**
-     * Creates a block that is a fraction of the size of it's containing element's width AND height with a gutter on the right and bottom.
+     * Creates a block that is a fraction of the size of it's containing
+     * element's width AND height with a gutter on the right and bottom.
      *
-     * @param {string} [fraction] - This is a simple fraction of the containing element's width/height.
-     * @param {number} [cycle = denominator] - Lost works by assigning a margin-right/bottom to all elements except the last row (no margin-bottom) and the last column (no margin-right). It does this by default by using the denominator of the fraction you pick. To override this default use this param. e.g. .foo { lost-waffle: 2/4 2; }
-     * @param {unit} [gutter] - The margin on the right and bottom side of the element used to create a gutter. Typically this is left alone and the global $gutter will be used, but you can override it here if you want certain elements to have a particularly large or small gutter (pass 0 for no gutter at all).
-     * @param {boolean} [flex, no-flex] - Determines whether this element should use Flexbox or not.
+     * @param {string} [fraction] - This is a simple fraction of the containing
+     *   element's width/height.
+     *
+     * @param {integer} [cycle] - Lost works by assigning a margin-right/bottom
+     *   to all elements except the last row (no margin-bottom) and the last
+     *   column (no margin-right). It does this by default by using the
+     *   denominator of the fraction you pick. To override this default use this
+     *   param., e.g.: .foo { lost-waffle: 2/4 2; }
+     *
+     * @param {length} [gutter] - The margin on the right and bottom side of the
+     *   element used to create a gutter. Typically this is left alone and the
+     *   global $gutter will be used, but you can override it here if you want
+     *   certain elements to have a particularly large or small gutter (pass 0
+     *   for no gutter at all).
+     *
+     * @param {string} [flex|no-flex] - Determines whether this element should
+     *   use Flexbox or not.
      *
      * @example
      *   figure {
@@ -533,7 +684,10 @@ module.exports = postcss.plugin('lost', function lost() {
                 values = values || [];
             block.eachDecl(function(decl) { decl.removeSelf(); });
             props.forEach(function(prop, i) {
-              var rule = decl.clone({ prop: prop, value: values[i] });
+              var rule = decl.clone({
+                prop: prop,
+                value: values[i]
+              });
               rule.moveTo(block);
             });
           },
@@ -587,8 +741,14 @@ module.exports = postcss.plugin('lost', function lost() {
       });
 
       if (lostWaffleFlexbox === 'flex') {
-        decl.cloneBefore({ prop: 'display', value: 'flex' });
-        decl.cloneBefore({ prop: 'flex', value: '0 0 auto' });
+        decl.cloneBefore({
+          prop: 'display',
+          value: 'flex'
+        });
+        decl.cloneBefore({
+          prop: 'flex',
+          value: '0 0 auto'
+        });
         if (settings.rtl === false) {
           newBlock(':nth-last-child(-n + '+ lostWaffleCycle +')', ['margin-bottom'], [0]);
           newBlock(':nth-child('+ lostWaffleCycle +'n)', ['margin-right'], [0]);
@@ -602,14 +762,20 @@ module.exports = postcss.plugin('lost', function lost() {
         }
       } else {
         if (settings.rtl === false) {
-          decl.cloneBefore({ prop: 'float', value: 'left' });
+          decl.cloneBefore({
+            prop: 'float',
+            value: 'left'
+          });
           newBlock(':nth-last-child(-n + '+ lostWaffleCycle +')', ['margin-bottom'], [0]);
           newBlock(':nth-child('+ lostWaffleCycle +'n + 1)', ['clear'], ['left']);
           newBlock(':nth-child('+ lostWaffleCycle +'n)', ['float', 'margin-right'], ['right', 0]);
           newBlock(':last-child', ['margin-right', 'margin-bottom'], [0, 0]);
           newBlock(':nth-child(n)', ['float', 'margin-right', 'margin-bottom', 'clear'], ['left', lostWaffleGutter, lostWaffleGutter, 'none']);
         } else {
-          decl.cloneBefore({ prop: 'float', value: 'right' });
+          decl.cloneBefore({
+            prop: 'float',
+            value: 'right'
+          });
           newBlock(':nth-last-child(-n + '+ lostWaffleCycle +')', ['margin-bottom'], [0]);
           newBlock(':nth-child('+ lostWaffleCycle +'n + 1)', ['clear'], ['right']);
           newBlock(':nth-child('+ lostWaffleCycle +'n)', ['float', 'margin-left'], ['left', 0]);
@@ -619,11 +785,23 @@ module.exports = postcss.plugin('lost', function lost() {
       }
 
       if (lostWaffleGutter !== '0') {
-        decl.cloneBefore({ prop: 'width', value: 'calc(99.99% * '+ lostWaffle +' - ('+ lostWaffleGutter +' - '+ lostWaffleGutter +' * '+ lostWaffle +'))' });
-        decl.cloneBefore({ prop: 'height', value: 'calc(99.99% * '+ lostWaffle +' - ('+ lostWaffleGutter +' - '+ lostWaffleGutter +' * '+ lostWaffle +'))' });
+        decl.cloneBefore({
+          prop: 'width',
+          value: 'calc(99.99% * '+ lostWaffle +' - ('+ lostWaffleGutter +' - '+ lostWaffleGutter +' * '+ lostWaffle +'))'
+        });
+        decl.cloneBefore({
+          prop: 'height',
+          value: 'calc(99.99% * '+ lostWaffle +' - ('+ lostWaffleGutter +' - '+ lostWaffleGutter +' * '+ lostWaffle +'))'
+        });
       } else {
-        decl.cloneBefore({ prop: 'width', value: 'calc(99.999999% * '+ lostWaffle +')' });
-        decl.cloneBefore({ prop: 'height', value: 'calc(99.999999% * '+ lostWaffle +')' });
+        decl.cloneBefore({
+          prop: 'width',
+          value: 'calc(99.999999% * '+ lostWaffle +')'
+        });
+        decl.cloneBefore({
+          prop: 'height',
+          value: 'calc(99.999999% * '+ lostWaffle +')'
+        });
       }
 
       decl.removeSelf();
@@ -632,11 +810,19 @@ module.exports = postcss.plugin('lost', function lost() {
 
 
     /**
-     * Margin to the left, right, bottom, or top, of an element depending on if the fraction passed is positive or negative. It works for both horizontal and vertical grids but not both.
+     * Margin to the left, right, bottom, or top, of an element depending on if
+     * the fraction passed is positive or negative. It works for both horizontal
+     * and vertical grids but not both.
      *
      * @param {string} [fraction] - Fraction of the container to be offset.
-     * @param {boolean} [row, column] - Direction the grid is going. Should be the opposite of the column or row it's being used on. Defaults to row.
-     * @param {unit} [gutter = settings.gutter] - How large the gutter involved is, typically this won't be adjusted, but if you have set the elements for that container to have different gutters than default, you will need to match that gutter here as well.
+     *
+     * @param {string} [row|column] - Direction the grid is going. Should be the
+     *   opposite of the column or row it's being used on. Defaults to row.
+     *
+     * @param {length} [gutter] - How large the gutter involved is, typically
+     *   this won't be adjusted, but if you have set the elements for that
+     *   container to have different gutters than default, you will need to
+     *   match that gutter here as well.
      *
      * @example
      *   .two-elements {
@@ -685,36 +871,72 @@ module.exports = postcss.plugin('lost', function lost() {
       if (lostOffsetDirection == 'column') {
         if (lostOffsetNumerator > 0) {
           if (lostOffsetGutter !== '0') {
-            decl.cloneBefore({ prop: 'margin-bottom', value: 'calc(99.99% * '+ lostOffset +' - ('+ lostOffsetGutter +' - '+ lostOffsetGutter +' * '+ lostOffset +') + ('+ lostOffsetGutter +' * 2)) !important' });
+            decl.cloneBefore({
+              prop: 'margin-bottom',
+              value: 'calc(99.99% * '+ lostOffset +' - ('+ lostOffsetGutter +' - '+ lostOffsetGutter +' * '+ lostOffset +') + ('+ lostOffsetGutter +' * 2)) !important'
+            });
           } else {
-            decl.cloneBefore({ prop: 'margin-bottom', value: 'calc(99.999999% * '+ lostOffset +') !important' });
+            decl.cloneBefore({
+              prop: 'margin-bottom',
+              value: 'calc(99.999999% * '+ lostOffset +') !important'
+            });
           }
         } else if (lostOffsetNumerator < 0) {
           if (lostOffsetGutter !== '0') {
-            decl.cloneBefore({ prop: 'margin-top', value: 'calc(99.99% * ('+ lostOffset +' * -1) - ('+ lostOffsetGutter +' - '+ lostOffsetGutter +' * ('+ lostOffset +' * -1)) + '+ lostOffsetGutter +') !important' });
+            decl.cloneBefore({
+              prop: 'margin-top',
+              value: 'calc(99.99% * ('+ lostOffset +' * -1) - ('+ lostOffsetGutter +' - '+ lostOffsetGutter +' * ('+ lostOffset +' * -1)) + '+ lostOffsetGutter +') !important'
+            });
           } else {
-            decl.cloneBefore({ prop: 'margin-top', value: 'calc(99.999999% * '+ lostOffset +') !important' });
+            decl.cloneBefore({
+              prop: 'margin-top',
+              value: 'calc(99.999999% * '+ lostOffset +') !important'
+            });
           }
         } else {
-          decl.cloneBefore({ prop: 'margin-top', value: '0 !important' });
-          decl.cloneBefore({ prop: 'margin-bottom', value: lostOffsetGutter +' !important' });
+          decl.cloneBefore({
+            prop: 'margin-top',
+            value: '0 !important'
+          });
+          decl.cloneBefore({
+            prop: 'margin-bottom',
+            value: lostOffsetGutter +' !important'
+          });
         }
       } else {
         if (lostOffsetNumerator > 0) {
           if (lostOffsetGutter !== '0') {
-            decl.cloneBefore({ prop: 'margin-right', value: 'calc(99.99% * '+ lostOffset +' - ('+ lostOffsetGutter +' - '+ lostOffsetGutter +' * '+ lostOffset +') + ('+ lostOffsetGutter +' * 2)) !important' });
+            decl.cloneBefore({
+              prop: 'margin-right',
+              value: 'calc(99.99% * '+ lostOffset +' - ('+ lostOffsetGutter +' - '+ lostOffsetGutter +' * '+ lostOffset +') + ('+ lostOffsetGutter +' * 2)) !important'
+            });
           } else {
-            decl.cloneBefore({ prop: 'margin-right', value: 'calc(99.999999% * '+ lostOffset +') !important' });
+            decl.cloneBefore({
+              prop: 'margin-right',
+              value: 'calc(99.999999% * '+ lostOffset +') !important'
+            });
           }
         } else if (lostOffsetNumerator < 0) {
           if (lostOffsetGutter !== '0') {
-            decl.cloneBefore({ prop: 'margin-left', value: 'calc(99.99% * ('+ lostOffset +' * -1) - ('+ lostOffsetGutter +' - '+ lostOffsetGutter +' * ('+ lostOffset +' * -1)) + '+ lostOffsetGutter +') !important' });
+            decl.cloneBefore({
+              prop: 'margin-left',
+              value: 'calc(99.99% * ('+ lostOffset +' * -1) - ('+ lostOffsetGutter +' - '+ lostOffsetGutter +' * ('+ lostOffset +' * -1)) + '+ lostOffsetGutter +') !important'
+            });
           } else {
-            decl.cloneBefore({ prop: 'margin-left', value: 'calc(99.999999% * '+ lostOffset +') !important' });
+            decl.cloneBefore({
+              prop: 'margin-left',
+              value: 'calc(99.999999% * '+ lostOffset +') !important'
+            });
           }
         } else {
-          decl.cloneBefore({ prop: 'margin-left', value: '0 !important' });
-          decl.cloneBefore({ prop: 'margin-right', value: lostOffsetGutter +' !important' });
+          decl.cloneBefore({
+            prop: 'margin-left',
+            value: '0 !important'
+          });
+          decl.cloneBefore({
+            prop: 'margin-right',
+            value: lostOffsetGutter +' !important'
+          });
         }
       }
 
@@ -724,11 +946,16 @@ module.exports = postcss.plugin('lost', function lost() {
 
 
     /**
-     * Source ordering. Shift elements left, right, up, or down, by their left or top position by passing a positive or negative fraction.
+     * Source ordering. Shift elements left, right, up, or down, by their left
+     * or top position by passing a positive or negative fraction.
      *
      * @param {string} [fraction] - Fraction of the container to be shifted.
-     * @param {boolean} [row, column] - Direction the grid is going. Should be the opposite of the column or row it's being used on.
-     * @param {unit} [gutter] - Adjust the size of the gutter for this movement. Should match the element's gutter.
+     *
+     * @param {string} [row|column] - Direction the grid is going. Should be the
+     *   opposite of the column or row it's being used on.
+     *
+     * @param {length} [gutter] - Adjust the size of the gutter for this
+     *   movement. Should match the element's gutter.
      *
      * @example
      *   figure {
@@ -777,19 +1004,34 @@ module.exports = postcss.plugin('lost', function lost() {
         }
       });
 
-      decl.cloneBefore({ prop: 'position', value: 'relative' });
+      decl.cloneBefore({
+        prop: 'position',
+        value: 'relative'
+      });
 
       if (lostMoveDirection == 'column') {
         if (lostMoveGutter !== '0') {
-          decl.cloneBefore({ prop: 'top', value: 'calc(99.99% * '+ lostMove +' - ('+ lostMoveGutter +' - '+ lostMoveGutter +' * '+ lostMove +') + '+ lostMoveGutter +')' });
+          decl.cloneBefore({
+            prop: 'top',
+            value: 'calc(99.99% * '+ lostMove +' - ('+ lostMoveGutter +' - '+ lostMoveGutter +' * '+ lostMove +') + '+ lostMoveGutter +')'
+          });
         } else {
-          decl.cloneBefore({ prop: 'top', value: 'calc(99.999999% * '+ lostMove +')' });
+          decl.cloneBefore({
+            prop: 'top',
+            value: 'calc(99.999999% * '+ lostMove +')'
+          });
         }
       } else {
         if (lostMoveGutter !== '0') {
-          decl.cloneBefore({ prop: 'left', value: 'calc(99.99% * '+ lostMove +' - ('+ lostMoveGutter +' - '+ lostMoveGutter +' * '+ lostMove +') + '+ lostMoveGutter +')' });
+          decl.cloneBefore({
+            prop: 'left',
+            value: 'calc(99.99% * '+ lostMove +' - ('+ lostMoveGutter +' - '+ lostMoveGutter +' * '+ lostMove +') + '+ lostMoveGutter +')'
+          });
         } else {
-          decl.cloneBefore({ prop: 'left', value: 'calc(99.999999% * '+ lostMove +')' });
+          decl.cloneBefore({
+            prop: 'left',
+            value: 'calc(99.999999% * '+ lostMove +')'
+          });
         }
       }
 
@@ -799,10 +1041,16 @@ module.exports = postcss.plugin('lost', function lost() {
 
 
     /**
-     * Creates a wrapping element for working with JS masonry libraries like Isotope. Assigns a negative margin on each side of this wrapping element.
+     * Creates a wrapping element for working with JS masonry libraries like
+     * Isotope. Assigns a negative margin on each side of this wrapping element.
      *
-     * @param {boolean} [flex, no-flex] - Determines whether this element should use Flexbox or not.
-     * @param {unit} [gutter] - How large the gutter involved is, typically this won't be adjusted and will inherit settings.gutter, but it's made available if you want your masonry grid to have a special gutter, it should match your masonry-column's gutter.
+     * @param {string} [flex|no-flex] - Determines whether this element should
+     *   use Flexbox or not.
+     *
+     * @param {length} [gutter] - How large the gutter involved is, typically
+     *   this won't be adjusted and will inherit settings.gutter, but it's made
+     *   available if you want your masonry grid to have a special gutter, it
+     *   should match your masonry-column's gutter.
      *
      * @example
      *   section {
@@ -816,19 +1064,22 @@ module.exports = postcss.plugin('lost', function lost() {
     css.eachDecl('lost-masonry-wrap', function(decl) {
 
       var newBlock = function(selector, props, values) {
-            var block = decl.parent.cloneAfter({selector: decl.parent.selector + selector }),
-                props = props || [],
-                values = values || [];
-            block.eachDecl(function(decl) { decl.removeSelf(); });
-            props.forEach(function(prop, i) {
-              var rule = decl.clone({ prop: prop, value: values[i] });
-              rule.moveTo(block);
-            });
-          },
-          declArr = [],
-          lostMasonryWrapFlexbox,
-          lostMasonryWrapGutter = settings.gutter,
-          lostMasonryWrapGutterUnit;
+        var block = decl.parent.cloneAfter({ selector: decl.parent.selector + selector }),
+            props = props || [],
+            values = values || [];
+        block.eachDecl(function(decl) { decl.removeSelf(); });
+        props.forEach(function(prop, i) {
+          var rule = decl.clone({
+            prop: prop,
+            value: values[i]
+          });
+          rule.moveTo(block);
+        });
+      },
+      declArr = [],
+      lostMasonryWrapFlexbox,
+      lostMasonryWrapGutter = settings.gutter,
+      lostMasonryWrapGutterUnit;
 
       declArr = decl.value.split(' ');
 
@@ -857,18 +1108,33 @@ module.exports = postcss.plugin('lost', function lost() {
       });
 
       if (lostMasonryWrapFlexbox !== 'flex') {
-        decl.cloneBefore({ prop: '*zoom', value: '1' });
+        decl.cloneBefore({
+          prop: '*zoom',
+          value: '1'
+        });
         newBlock(':after', ['content', 'display', 'clear'], ['\'\'', 'table', 'both']);
         newBlock(':before', ['content', 'display'], ['\'\'', 'table']);
       } else {
-        decl.cloneBefore({ prop: 'display', value: 'flex' });
-        decl.cloneBefore({ prop: 'flex-flow', value: 'row wrap' });
+        decl.cloneBefore({
+          prop: 'display',
+          value: 'flex'
+        });
+        decl.cloneBefore({
+          prop: 'flex-flow',
+          value: 'row wrap'
+        });
       }
 
       lostMasonryWrapGutterUnit = lostMasonryWrapGutter.match(/\D/g).join('');
 
-      decl.cloneBefore({ prop: 'margin-left', value: (parseInt(lostMasonryWrapGutter) / -2) + lostMasonryWrapGutterUnit });
-      decl.cloneBefore({ prop: 'margin-right', value: (parseInt(lostMasonryWrapGutter) / -2) + lostMasonryWrapGutterUnit });
+      decl.cloneBefore({
+        prop: 'margin-left',
+        value: (parseInt(lostMasonryWrapGutter) / -2) + lostMasonryWrapGutterUnit
+      });
+      decl.cloneBefore({
+        prop: 'margin-right',
+        value: (parseInt(lostMasonryWrapGutter) / -2) + lostMasonryWrapGutterUnit
+      });
 
       decl.removeSelf();
 
@@ -876,10 +1142,16 @@ module.exports = postcss.plugin('lost', function lost() {
 
 
     /**
-     * Creates a column for working with JS masonry libraries like Isotope. Assigns a margin to each side of the element.
+     * Creates a column for working with JS masonry libraries like Isotope.
+     * Assigns a margin to each side of the element.
      *
-     * @param {unit} [gutter] - How large the gutter involved is, typically this won't be adjusted and will inherit settings.gutter, but it's made available if you want your masonry grid to have a special gutter, it should match your masonry-row's gutter.
-     * @param {boolean} [flex, no-flex] - Determines whether this element should use Flexbox or not.
+     * @param {length} [gutter] - How large the gutter involved is, typically
+     *   this won't be adjusted and will inherit settings.gutter, but it's made
+     *   available if you want your masonry grid to have a special gutter, it
+     *   should match your masonry-row's gutter.
+     *
+     * @param {string} [flex|no-flex] - Determines whether this element should
+     *   use Flexbox or not.
      *
      * @example
      *   section {
@@ -929,17 +1201,38 @@ module.exports = postcss.plugin('lost', function lost() {
       lostMasonryColumnGutterUnit = lostMasonryColumnGutter.match(/\D/g).join('');
 
       if (lostMasonryColumnFlexbox === 'flex') {
-        decl.cloneBefore({ prop: 'flex', value: '0 0 auto' });
+        decl.cloneBefore({
+          prop: 'flex',
+          value: '0 0 auto'
+        });
       }
 
       if (lostMasonryColumnGutter !== '0') {
-        decl.cloneBefore({ prop: 'width', value: 'calc(99.99% * '+ lostMasonryColumn +' - '+ lostMasonryColumnGutter +')' });
-        decl.cloneBefore({ prop: 'margin-left', value: (parseInt(lostMasonryColumnGutter) / 2) + lostMasonryColumnGutterUnit });
-        decl.cloneBefore({ prop: 'margin-right', value: (parseInt(lostMasonryColumnGutter) / 2) + lostMasonryColumnGutterUnit });
+        decl.cloneBefore({
+          prop: 'width',
+          value: 'calc(99.99% * '+ lostMasonryColumn +' - '+ lostMasonryColumnGutter +')'
+        });
+        decl.cloneBefore({
+          prop: 'margin-left',
+          value: (parseInt(lostMasonryColumnGutter) / 2) + lostMasonryColumnGutterUnit
+        });
+        decl.cloneBefore({
+          prop: 'margin-right',
+          value: (parseInt(lostMasonryColumnGutter) / 2) + lostMasonryColumnGutterUnit
+        });
       } else {
-        decl.cloneBefore({ prop: 'width', value: 'calc(99.999999% * '+ lostMasonryColumn +')' });
-        decl.cloneBefore({ prop: 'margin-left', value: (parseInt(lostMasonryColumnGutter) / 2) + lostMasonryColumnGutterUnit });
-        decl.cloneBefore({ prop: 'margin-right', value: (parseInt(lostMasonryColumnGutter) / 2) + lostMasonryColumnGutterUnit });
+        decl.cloneBefore({
+          prop: 'width',
+          value: 'calc(99.999999% * '+ lostMasonryColumn +')'
+        });
+        decl.cloneBefore({
+          prop: 'margin-left',
+          value: (parseInt(lostMasonryColumnGutter) / 2) + lostMasonryColumnGutterUnit
+        });
+        decl.cloneBefore({
+          prop: 'margin-right',
+          value: (parseInt(lostMasonryColumnGutter) / 2) + lostMasonryColumnGutterUnit
+        });
       }
 
       decl.removeSelf();
