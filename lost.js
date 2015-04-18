@@ -1,17 +1,23 @@
-var postcss = require('postcss'),
-    fs = require('fs');
+/**
+ * Module dependencies
+ */
+
+var postcss = require('postcss');
 
 
-var settings = {
-  gutter: '30px',
-  flexbox: 'no-flex',
-  rtl: false
-};
+/**
+ * Lost Grid plugin
+ */
 
+module.exports = postcss.plugin('lost', function lost() {
 
-var lost = postcss.plugin('lost', function() {
+  var settings = {
+    gutter: '30px',
+    flexbox: 'no-flex',
+    rtl: false
+  };
+
   return function(css, processor) {
-
 
     /**
      * A general utility toolbelt for Lost. Included are mixins that require no additional input other than being called.
@@ -940,17 +946,6 @@ var lost = postcss.plugin('lost', function() {
 
     });
 
-
   };
-});
 
-
-var processor = postcss([lost]);
-
-processor.process(fs.readFileSync('app.css'), {
-  from: 'app.css',
-  to: 'app.out.css'
-}).then(function(result) {
-  console.log(result.css);
-  fs.writeFileSync('app.out.css', result.css);
 });
