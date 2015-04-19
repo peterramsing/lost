@@ -17,7 +17,7 @@ module.exports = postcss.plugin('lost', function lost() {
     rtl: false
   };
 
-  return function(css, processor) {
+  return function(css) {
 
     /**
      * A general utility toolbelt for Lost. Included are mixins that require no
@@ -836,6 +836,7 @@ module.exports = postcss.plugin('lost', function lost() {
     css.eachDecl('lost-offset', function(decl) {
 
       var declArr = [],
+          lostOffset,
           lostOffsetNumerator,
           lostOffsetDirection,
           lostOffsetGutter = settings.gutter;
@@ -972,6 +973,7 @@ module.exports = postcss.plugin('lost', function lost() {
     css.eachDecl('lost-move', function(decl) {
 
       var declArr = [],
+          lostMove,
           lostMoveNumerator,
           lostMoveDirection,
           lostMoveGutter = settings.gutter;
@@ -1077,6 +1079,7 @@ module.exports = postcss.plugin('lost', function lost() {
         });
       },
       declArr = [],
+      lostMasonryWrap,
       lostMasonryWrapFlexbox,
       lostMasonryWrapGutter = settings.gutter,
       lostMasonryWrapGutterUnit;
