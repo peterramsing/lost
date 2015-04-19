@@ -2,22 +2,48 @@
  * Module dependencies
  */
 
-var postcss = require('postcss');
+var postcss = require('postcss'),
+    assign = require('object-assign');
 
 
 /**
  * Lost Grid plugin
  */
 
-module.exports = postcss.plugin('lost', function lost() {
+module.exports = postcss.plugin('lost', function lost(settings) {
 
-  var settings = {
+  settings = settings || {};
+
+  settings = assign(settings, {
     gutter: '30px',
     flexbox: 'no-flex',
     rtl: false
-  };
+  });
 
   return function(css) {
+
+    /**
+     * Override global settings from stylesheet.
+     *
+     * @example
+     *   @lost gutter 60px;
+     *
+     *   div {
+     *     lost-column: 1/3;
+     *   }
+     */
+
+    css.eachAtRule('lost', function (rule) {
+      rule.params = rule.params.split(' ');
+      if (rule.params[0] == 'gutter') {
+        settings.gutter = rule.params[1];
+      } else if (rule.params[0] == 'flexbox') {
+        settings.flexbox = rule.params[1];
+      } else if (rule.params[0] == 'rtl') {
+        settings.rtl = rule.params[1];
+      }
+      rule.removeSelf();
+    });
 
     /**
      * A general utility toolbelt for Lost. Included are mixins that require no
