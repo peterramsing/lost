@@ -44,8 +44,8 @@ gulp.task('default', ['styles']);
 ```
 
 This will watch your `src/css/` directory for any changes to CSS files and then
-process it with Autoprefixer and Lost Grid (which converts Lost Grid rules to
-vanilla CSS code), creates sourcemaps, and outputs the processed CSS and
+process them with Autoprefixer and Lost Grid (which will convert Lost Grid rules
+into vanilla CSS code), create sourcemaps, and output the processed CSS and
 sourcemaps to `dist/css/`.
 
 Lost Grid rules look like this:
