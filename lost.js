@@ -88,7 +88,7 @@ module.exports = postcss.plugin('lost', function lost() {
      *   section {
      *     lost-flex-container: row;
      *   }
-     *   figure {
+     *   div {
      *     lost-column: 1/2 flex;
      *   }
      */
@@ -396,12 +396,12 @@ module.exports = postcss.plugin('lost', function lost() {
      *   use Flexbox or not.
      *
      * @example
-     *   figure {
+     *   div {
      *     lost-column: 1/3;
      *   }
      *
      * @example
-     *   figure {
+     *   div {
      *     lost-column: 2/6 3 60px flex;
      *   }
      */
@@ -555,7 +555,7 @@ module.exports = postcss.plugin('lost', function lost() {
      *   section {
      *     height: 100%;
      *   }
-     *   figure {
+     *   div {
      *     lost-row: 1/3;
      *   }
      */
@@ -671,7 +671,7 @@ module.exports = postcss.plugin('lost', function lost() {
      *   use Flexbox or not.
      *
      * @example
-     *   figure {
+     *   div {
      *     lost-waffle: 1/3;
      *   }
      */
@@ -959,13 +959,13 @@ module.exports = postcss.plugin('lost', function lost() {
      *   movement. Should match the element's gutter.
      *
      * @example
-     *   figure {
+     *   div {
      *     lost-column: 1/2;
      *   }
-     *   figure:first-child {
+     *   div:first-child {
      *     lost-move: 1/2;
      *   }
-     *   figure:last-child {
+     *   div:last-child {
      *     lost-move: -1/2;
      *   }
      */
@@ -1058,7 +1058,7 @@ module.exports = postcss.plugin('lost', function lost() {
      *   section {
      *     lost-masonry-wrap: no-flex;
      *   }
-     *   figure {
+     *   div {
      *     lost-masonry-column: 1/3;
      *   }
      */
@@ -1160,7 +1160,7 @@ module.exports = postcss.plugin('lost', function lost() {
      *   section {
      *     lost-masonry-wrap: flex 60px;
      *   }
-     *   figure {
+     *   div {
      *     lost-masonry-column: 1/3 60px flex;
      *   }
      */
