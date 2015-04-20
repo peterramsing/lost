@@ -182,7 +182,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
       },
       declArr = [],
       lostCenterPadding,
-      lostCenterFlexbox = 'no-flex';
+      lostCenterFlexbox = settings.flexbox;
 
       declArr = decl.value.split(' ');
 
@@ -192,6 +192,10 @@ module.exports = postcss.plugin('lost', function lost(settings) {
 
       if (declArr.indexOf('flex') !== -1) {
         lostCenterFlexbox = 'flex';
+      }
+
+      if (declArr.indexOf('no-flex') !== -1) {
+        lostCenterFlexbox = 'no-flex';
       }
 
       decl.parent.nodes.forEach(function (decl) {
@@ -467,6 +471,10 @@ module.exports = postcss.plugin('lost', function lost(settings) {
         lostColumnFlexbox = 'flex';
       }
 
+      if (declArr.indexOf('no-flex') !== -1) {
+        lostColumnFlexbox = 'no-flex';
+      }
+
       decl.parent.nodes.forEach(function (decl) {
         if (decl.prop == 'lost-column-cycle') {
           lostColumnCycle = decl.value;
@@ -583,6 +591,10 @@ module.exports = postcss.plugin('lost', function lost(settings) {
 
       if (declArr.indexOf('flex') !== -1) {
         lostRowFlexbox = 'flex';
+      }
+
+      if (declArr.indexOf('no-flex') !== -1) {
+        lostRowFlexbox = 'no-flex';
       }
 
       decl.parent.nodes.forEach(function (decl) {
@@ -712,6 +724,10 @@ module.exports = postcss.plugin('lost', function lost(settings) {
 
       if (declArr.indexOf('flex') !== -1) {
         lostWaffleFlexbox = 'flex';
+      }
+
+      if (declArr.indexOf('no-flex') !== -1) {
+        lostWaffleFlexbox = 'no-flex';
       }
 
       decl.parent.nodes.forEach(function (decl) {
@@ -1052,7 +1068,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
       },
       declArr = [],
       lostMasonryWrap,
-      lostMasonryWrapFlexbox,
+      lostMasonryWrapFlexbox = settings.flexbox,
       lostMasonryWrapGutter = settings.gutter,
       lostMasonryWrapGutterUnit;
 
@@ -1060,6 +1076,14 @@ module.exports = postcss.plugin('lost', function lost(settings) {
 
       if (declArr[0] !== undefined && declArr[0] == 'flex' || declArr[0] == 'no-flex') {
         lostMasonryWrapFlexbox = declArr[0];
+      }
+
+      if (declArr.indexOf('flex') !== -1) {
+        lostMasonryWrapFlexbox = 'flex';
+      }
+
+      if (declArr.indexOf('no-flex') !== -1) {
+        lostMasonryWrapFlexbox = 'no-flex';
       }
 
       if (declArr[1] !== undefined && declArr[1].search(/^\d/) !== -1) {
@@ -1141,9 +1165,9 @@ module.exports = postcss.plugin('lost', function lost(settings) {
     css.eachDecl('lost-masonry-column', function (decl) {
       var declArr = [],
           lostMasonryColumn,
+          lostMasonryColumnFlexbox = settings.flexbox
           lostMasonryColumnGutter = settings.gutter,
-          lostMasonryColumnGutterUnit,
-          lostMasonryColumnFlexbox;
+          lostMasonryColumnGutterUnit;
 
       declArr = decl.value.split(' ');
       lostMasonryColumn = declArr[0];
@@ -1154,6 +1178,14 @@ module.exports = postcss.plugin('lost', function lost(settings) {
 
       if (declArr[2] !== undefined && declArr[2] == 'flex' || declArr[2] == 'no-flex') {
         lostMasonryColumnFlexbox = declArr[2];
+      }
+
+      if (declArr.indexOf('flex') !== -1) {
+        lostMasonryColumnFlexbox = 'flex';
+      }
+
+      if (declArr.indexOf('no-flex') !== -1) {
+        lostMasonryColumnFlexbox = 'no-flex';
       }
 
       decl.parent.nodes.forEach(function (decl) {
