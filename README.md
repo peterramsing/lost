@@ -4,18 +4,17 @@
 
 <p align="center">
   <a href="https://www.npmjs.com/package/lost"><img src="https://img.shields.io/npm/v/lost-grid.svg?style=flat-square"></a>
-  <a href="http://bower.io/search/?q=lost"><img src="https://img.shields.io/bower/v/lost-grid.svg?style=flat-square"></a>
   <a href="https://github.com/corysimmons/lost/stargazers"><img src="http://img.shields.io/npm/dm/lost-grid.svg?style=flat-square"></a>
   <a href="https://gitter.im/corysimmons/lost"><img src="https://badges.gitter.im/Join%20Chat.svg"></a>
 </p>
 
-Lost Grid is a grid system for SCSS or Stylus. It is built upon years of studying and [building](http://jeet.gs) grid systems with **tons** of community feedback.
+Lost Grid is a powerful grid system built in [PostCSS](https://github.com/postcss/postcss) that works with any preprocessor and even vanilla CSS. You can think of it like the [Autoprefixer](https://github.com/postcss/autoprefixer) of grid systems.
 
-It makes use of [`calc()`](https://webdesign.tutsplus.com/tutorials/calc-grids-are-the-best-grids--cms-22902) to create stunning grids based on fractions you define.
+It is built upon years of studying and [building](http://jeet.gs) grid systems with **tons** of community feedback.
+
+It makes use of [`calc()`](https://webdesign.tutsplus.com/tutorials/calc-grids-are-the-best-grids--cms-22902) to create stunning grids based on fractions you define without having to pass a ton of options.
 
 I can tell you with no ego, this is [my finest grid](https://www.youtube.com/watch?v=EnjtQQQaDKo).
-
-See for yourself! **Fork a demo** on CodePen and [follow along](#getting-started): [SCSS](http://codepen.io/corysimmons/pen/RNOvpN?editors=110), [LESS](http://codepen.io/corysimmons/pen/pvmwQm?editors=110), or [Stylus](http://codepen.io/corysimmons/pen/zxXeNJ?editors=110)
 
 
 ## Table of Contents
@@ -33,22 +32,19 @@ See for yourself! **Fork a demo** on CodePen and [follow along](#getting-started
   - [Waffle Grids](#waffle-grids)
   - [Flexbox Grids](#flexbox-grids)
   - [Masonry Support](#masonry-support)
-- [Grid Settings](#grid-settings)
-- [Mixin Options](#mixin-options)
-  - [`edit()`](#edit)
-  - [`clearfix()`](#clearfix)
-  - [`flex-container()`](#flex-container)
-  - [`center()`](#center)
-  - [`align()`](#align)
-  - [`column()`](#column)
-  - [`row()`](#row)
-  - [`waffle()`](#waffle)
-  - [`offset()`](#offset)
-  - [`move()`](#move)
-  - [`masonry-wrap()`](#masonry-wrap)
-  - [`masonry-column()`](#masonry-column)
-  - [`get-size()`](#get-size)
-- [Usage with Node](#usage-with-node)
+- [Global Grid Settings](#global-grid-settings)
+- [Property Options](#property-options)
+  - [`lost-utility`](#lost-utility)
+  - [`lost-flex-container`](#lost-flex-container)
+  - [`lost-center`](#lost-center)
+  - [`lost-align`](#lost-align)
+  - [`lost-column`](#lost-column)
+  - [`lost-row`](#lost-row)
+  - [`lost-waffle`](#lost-waffle)
+  - [`lost-offset`](#lost-offset)
+  - [`lost-move`](#lost-move)
+  - [`lost-masonry-wrap`](#lost-masonry-wrap)
+  - [`lost-masonry-column`](#lost-masonry-column)
 - [Example Code](#example-code)
 - [Browser Support](#browser-support)
 - [Other Projects](#other-projects)
@@ -80,15 +76,85 @@ Feature | Lost | [Bootstrap](http://getbootstrap.com/css/#grid) | [Foundation](h
 
 <sup>If you notice anything in this table is incorrect or unfair, please don't hesitate to [open an issue](https://github.com/corysimmons/lost/issues/new).</sup>
 
+**[⬆ back to top](#table-of-contents)**
+
+&nbsp;
 
 ## Getting Started
 
 ##### Installation
 
-Installing Lost is easy. Just `bower install lost` in your project directory, then add `@import '/bower_components/lost/PREPROCESSOR/lost.styl'` to the top of your preprocessor stylesheet.
+- [Install NodeJS](http://nodejs.org)
+- Install [Gulp](http://gulpjs.com): `npm install --global gulp`
+- Install dev dependencies: `npm install --save-dev gulp gulp-postcss gulp-sourcemaps gulp-autoprefixer lost`
+- Create a `gulpfile.js` with the following code:
 
-- To modify global settings, look at the [Grid Settings](#grid-settings) section.
-- For Node usage, please check out the [Usage with Node](#usage-with-node) section.
+```javascript
+var gulp = require('gulp'),
+    postcss = require('gulp-postcss'),
+    sourcemaps = require('gulp-sourcemaps'),
+    autoprefixer = require('gulp-autoprefixer'),
+    lost = require('lost');
+
+var paths = {
+  cssSource: 'src/css/',
+  cssDestination: 'dist/css/'
+};
+
+gulp.task('styles', function() {
+  return gulp.src(paths.cssSource + '**/*.css')
+    .pipe(sourcemaps.init())
+    .pipe(postcss([
+      lost()
+    ]))
+    .pipe(autoprefixer())
+    .pipe(sourcemaps.write('./'))
+    .pipe(gulp.dest(paths.cssDestination));
+});
+
+gulp.watch(paths.cssSource + '**/*.css', ['styles']);
+
+gulp.task('default', ['styles']);
+```
+- Run `gulp`
+
+This will watch your `src/css/` directory for any changes to CSS files and then
+process them with Autoprefixer and Lost Grid (which will convert Lost Grid rules
+into vanilla CSS code), create sourcemaps, and output the processed CSS and
+sourcemaps to `dist/css/`.
+
+Lost Grid rules look like this:
+
+```css
+div {
+  lost-column: 1/3;
+}
+```
+
+And the processed CSS looks like this:
+
+```css
+div {
+  width: calc(99.99% * 1/3 - (30px - 30px * 1/3));
+}
+
+div:nth-child(n) {
+  float: left;
+  margin-right: 30px;
+  clear: none;
+}
+
+div:nth-child(3n) {
+  float: right;
+  margin-right: 0;
+}
+
+div:nth-child(3n + 1) {
+  clear: left;
+}
+
+/*# sourceMappingURL=style.css.map */
+```
 
 **[⬆ back to top](#table-of-contents)**
 
@@ -96,50 +162,28 @@ Installing Lost is easy. Just `bower install lost` in your project directory, th
 
 ##### Basic Columns
 
-To create a basic horizontal grid, just insert some columns into any element like so and pass a fraction (**as a string**) to `column()`.
+To create a basic horizontal grid, just insert some elements into any containing element like so and pass a fraction to the `lost-column` property.
 
-<h6 align="right">HTML</h6>
 ```html
 <section>
-  <figure>1</figure>
-  <figure>2</figure>
-  <figure>3</figure>
-  <figure>4</figure>
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
 </section>
 ```
 
-<h6 align="right">SCSS</h6>
-```scss
+```css
 section {
-  @include clearfix;
+  lost-utility: clearfix;
 }
 
-figure {
-  @include column('1/2');
-}
-```
-
-<h6 align="right">LESS</h6>
-```less
-section {
-  .clearfix();
-}
-
-figure {
-  .column(1 of 2);
+div {
+  lost-column: 1/2;
 }
 ```
 
-<h6 align="right">Stylus</h6>
-```stylus
-section
-  clearfix()
-
-figure
-  column('1/2')
-```
-
-`clearfix()` is just a [clearfix](http://nicolasgallagher.com/micro-clearfix-hack/) mixin since grid elements are floated. It's a good idea to give this to the element wrapping your grid elements every time.
+`lost-utility: clearfix;` is just a [clearfix](http://nicolasgallagher.com/micro-clearfix-hack/) function since Lost Grid elements are floated. It's a good idea to give this to the element wrapping your grid elements every time you have nested floated elements.
 
 **[⬆ back to top](#table-of-contents)**
 
@@ -147,37 +191,16 @@ figure
 
 ##### Centering Elements
 
-You can also make use of the `center()` mixin to assign a `max-width` and `margin: auto` to an element and center it on the page. `clearfix()` will automatically be applied in this case.
+You can also make use of the `lost-center` property to assign a `max-width` and `margin: auto` to an element and center it on the page. `clearfix` will automatically be applied in this case.
 
-<h6 align="right">SCSS</h6>
-```scss
+```css
 section {
-  @include center(980px);
+  lost-center: 980px;
 }
 
-figure {
-  @include column('1/2');
+div {
+  lost-column: 1/2;
 }
-```
-
-<h6 align="right">LESS</h6>
-```less
-section {
-  .center(980px);
-}
-
-figure {
-  .column(1 of 2);
-}
-```
-
-<h6 align="right">Stylus</h6>
-```stylus
-section
-  center(980px)
-
-figure
-  column('1/2')
 ```
 
 **[⬆ back to top](#table-of-contents)**
@@ -186,28 +209,23 @@ figure
 
 ##### Controlling Cycle
 
-Every element gets a `float: left` and `margin-right: $gutter` applied to them except the last one in the row. Lost will automatically detect the last item in a row (based on the denominator you passed) and apply a `margin-right: 0` to it by default.
+Every element gets a `float: left` and `margin-right: gutter` applied to it except the last element in the row. Lost will automatically detect the last item in a row (based on the denominator you passed) and apply a `margin-right: 0` to it by default.
 
-To override this behavior simply pass a `cycle` param to your `column()`.
+To override this behavior simply pass a `cycle` param to your `lost-column` property. It's the second argument.
 
-<h6 align="right">SCSS</h6>
-```scss
-figure {
-  @include column('2/4', $cycle: 2);
+```css
+div {
+  lost-column: 2/4 2;
 }
 ```
 
-<h6 align="right">LESS</h6>
-```less
-figure {
-  .column(2 of 4, @cycle: 2);
-}
-```
+It's suggested that you learn the Lost shorthand syntax, but you can specify cycle (and other params) the verbose way with `lost-column-cycle`.
 
-<h6 align="right">Stylus</h6>
-```stylus
-figure
-  column('2/4', $cycle: 2)
+```css
+div {
+  lost-column: 2/4;
+  lost-column-cycle: 2;
+}
 ```
 
 **[⬆ back to top](#table-of-contents)**
@@ -216,40 +234,25 @@ figure
 
 ##### Nesting
 
-Nesting is simple and **requires [no extra fractions](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#no-additional-ratio-context)** unlike other preprocessor grid systems.
+Nesting is simple and **requires [no extra context](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#no-additional-ratio-context)** unlike other preprocessor grid systems.
 
-<h6 align="right">HTML</h6>
 ```html
 <section>
-  <figure>a</figure>
-  <figure>
-    <figure>b</figure>
-    <figure>
-      <figure>c</figure>
-      <figure>c</figure>
-    </figure>
-  </figure>
+  <div>a</div>
+  <div>
+    <div>b</div>
+    <div>
+      <div>c</div>
+      <div>c</div>
+    </div>
+  </div>
 </section>
 ```
 
-<h6 align="right">SCSS</h6>
-```scss
-figure {
-  @include column('1/2');
+```css
+div {
+  lost-column: 1/2;
 }
-```
-
-<h6 align="right">LESS</h6>
-```less
-figure {
-  .column(1 of 2);
-}
-```
-
-<h6 align="right">Stylus</h6>
-```stylus
-figure
-  column('1/2')
 ```
 
 **[⬆ back to top](#table-of-contents)**
@@ -260,40 +263,21 @@ figure
 
 You can `offset` columns easily. To offset in the other direction, pass a negative fraction.
 
-<h6 align="right">HTML</h6>
 ```html
 <section>
-  <figure>1</figure>
-  <figure>2</figure>
+  <div>1</div>
+  <div>2</div>
 </section>
 ```
 
-<h6 align="right">SCSS</h6>
-```scss
-figure {
-  @include column('1/3');
-  &:first-child {
-    @include offset('1/3');
-  }
+```css
+div {
+  lost-column: 1/3;
 }
-```
 
-<h6 align="right">LESS</h6>
-```less
-figure {
-  .column(1 of 3);
-  &:first-child {
-    .offset(1 of 3);
-  }
+div:first-child {
+  lost-offset: 1/3;
 }
-```
-
-<h6 align="right">Stylus</h6>
-```stylus
-figure
-  column('1/3')
-  &:first-child
-    offset('1/3')
 ```
 
 **[⬆ back to top](#table-of-contents)**
@@ -302,53 +286,25 @@ figure
 
 ##### Alignment
 
-Easily align children elements with the `align()` mixin. It accepts options like `top-left`, `right`, `center`, [etc](#align).
+Easily align children elements with the `lost-align` property. It accepts options like `top-left`, `right`, `center`, [etc.](#align).
 
-<h6 align="right">HTML</h6>
 ```html
 <section>
-  <figure>Aligned</figure>
+  <div>Aligned</div>
 </section>
 ```
 
-<h6 align="right">SCSS</h6>
-```scss
+```css
 section {
-  @include align;
+  lost-align: center;
   width: 600px;
   height: 400px;
 }
 
-figure {
+div {
   width: 100px;
   height: 100px;
 }
-```
-
-<h6 align="right">LESS</h6>
-```less
-section {
-  .align();
-  width: 600px;
-  height: 400px;
-}
-
-figure {
-  width: 100px;
-  height: 100px;
-}
-```
-
-<h6 align="right">Stylus</h6>
-```stylus
-section
-  align()
-  width: 600px
-  height: 400px
-
-figure
-  width: 100px
-  height: 100px
 ```
 
 **[⬆ back to top](#table-of-contents)**
@@ -357,54 +313,30 @@ figure
 
 ##### Edit Mode
 
-Use the `edit()` mixin at base level to visualize the entire structure of your site, or just specify the areas you're working on. You can pass it any color (pick a darkish one because `edit()` will lighten it).
+Use `lost-utility: edit;` on `body` to visualize the entire structure of your site, or just specify the areas you're working on.
 
-<h6 align="right">HTML</h6>
 ```html
 <section>
-  <figure>1</figure>
-  <figure>2</figure>
-  <figure>3</figure>
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
 </section>
 
 <section>
-  <figure>4</figure>
-  <figure>5</figure>
-  <figure>6</figure>
+  <div>4</div>
+  <div>5</div>
+  <div>6</div>
 </section>
 ```
 
-<h6 align="right">SCSS</h6>
-```scss
-section {
-  &:nth-of-type(1) {
-    @include edit;
-  }
-  &:nth-of-type(2) {
-    @include edit(green);
-  }
+```css
+section:nth-of-type(1) {
+  lost-utility: edit;
 }
-```
 
-<h6 align="right">LESS</h6>
-```less
-section {
-  &:nth-of-type(1) {
-    .edit();
-  }
-  &:nth-of-type(2) {
-    .edit(green);
-  }
+section:nth-of-type(2) {
+  lost-utility: edit;
 }
-```
-
-<h6 align="right">Stylus</h6>
-```stylus
-section
-  &:nth-of-type(1)
-    edit()
-  &:nth-of-type(2)
-    edit(green)
 ```
 
 **[⬆ back to top](#table-of-contents)**
@@ -413,48 +345,26 @@ section
 
 ##### Vertical Grids
 
-Once you've mastered the basic horizontal grid system (it shouldn't take long), you can start to make vertical grids that have the same vertical gutters as your horizontal grids. Just use the `row()` mixin in place of `column()`. These rows will stretch to fill their container's height, so if you'd like to see them take up the full height of the page, set `height: 100%` on your container.
+Once you've mastered the basic horizontal grid system (it shouldn't take long), you can start to make vertical grids that have the same vertical gutters as your horizontal grids. Just use the `lost-row` property in place of `lost-column`. These rows will stretch to fill their container's height, so if you'd like to see them take up the full height of the page, set `height: 100%` on your container.
 
-No other grid system in the world supports vertical grids.
+No other grid system supports vertical grids.
 
-<h6 align="right">HTML</h6>
 ```html
 <section>
-  <figure>1</figure>
-  <figure>2</figure>
-  <figure>3</figure>
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
 </section>
 ```
 
-<h6 align="right">SCSS</h6>
-```scss
+```css
 section {
   height: 100%;
 }
 
-figure {
-  @include row('1/3');
+div {
+  lost-row: 1/3;
 }
-```
-
-<h6 align="right">LESS</h6>
-```less
-section {
-  height: 100%;
-}
-
-figure {
-  .row(1 of 3);
-}
-```
-
-<h6 align="right">Stylus</h6>
-```stylus
-section
-  height: 100%
-
-figure
-  row('1/3')
 ```
 
 **[⬆ back to top](#table-of-contents)**
@@ -463,52 +373,30 @@ figure
 
 ##### Waffle Grids
 
-You can even make a horizontal/vertical grid (a **waffle grid**) which resembles a tic-tac-toe board.
+You can even make a horizontal/vertical grid (a ***waffle grid***) which resembles a tic-tac-toe board.
 
-<h6 align="right">HTML</h6>
 ```html
 <section>
-  <figure>1</figure>
-  <figure>2</figure>
-  <figure>3</figure>
-  <figure>4</figure>
-  <figure>5</figure>
-  <figure>6</figure>
-  <figure>7</figure>
-  <figure>8</figure>
-  <figure>9</figure>
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+  <div>6</div>
+  <div>7</div>
+  <div>8</div>
+  <div>9</div>
 </section>
 ```
 
-<h6 align="right">SCSS</h6>
-```scss
+```css
 section {
   height: 100%;
 }
 
-figure {
-  @include waffle('1/3');
+div {
+  lost-waffle: 1/3;
 }
-```
-
-<h6 align="right">LESS</h6>
-```less
-section {
-  height: 100%;
-}
-
-figure {
-  .waffle(1 of 3);
-}
-```
-
-<h6 align="right">Stylus</h6>
-```stylus
-section
-  height: 100%
-
-figure
-  waffle('1/3')
 ```
 
 **[⬆ back to top](#table-of-contents)**
@@ -517,57 +405,53 @@ figure
 
 ##### Flexbox Grids
 
-You can easily change your grids to support Flexbox by altering the global variable: `$flexbox` to `true`. Once you do this, all grids throughout your site will use flexed elements. To make sure they are displayed as flexed elements, you need to wrap them in `flex-container()` or `center()` (which includes `flex-container()` by default).
+You can easily change your grids to support Flexbox by altering the global at-rule variable `@lost flexbox` to `flex`. Once you do this, all grids throughout your site will use flexed elements. To make sure they are displayed as flexed elements, you need to wrap them in `flex-container` or `center` (which includes `flex-container` by default).
 
-<h6 align="right">HTML</h6>
 ```html
 <section>
-  <figure>1</figure>
-  <figure>2</figure>
-  <figure>3</figure>
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
 </section>
 ```
 
-<h6 align="right">SCSS</h6>
-```scss
-$flexbox: true;
+```css
+@lost flexbox flex;
 
 section {
-  @include center();
+  lost-center: 980px;
 }
 
-figure {
-  @include column('1/3');
+div {
+  lost-column: 1/3;
 }
 ```
 
-<h6 align="right">LESS</h6>
-```less
-@flexbox: true;
+Flexbox offers slightly cleaner output and avoids the use of `clearfix` and other issues with float-based layouts. It also allows you to have elements of even height rather easily, and [much more](https://github.com/philipwalton/flexbugs/issues/32#issuecomment-90789645). The downside is, Flexbox doesn't work in IE9 or below, so keep that in mind if you have a client that needs that kind of support.
+
+Also note that waffle grids work well for the most part, but are somewhat finicky in fringe situations where Flexbox tries to act smarter than it is. All properties provide a way to disable or enable Flexbox per element with the `flex` parameter so if you'd like to disable it for a specific case you could do this:
+
+```html
+<section>
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+</section>
+```
+
+```css
+@lost flexbox flex;
 
 section {
-  .center();
+  lost-center: 980px no-flex;
 }
 
-figure {
-  .column(1 of 3);
+div {
+  lost-waffle: 1/3 no-flex;
 }
 ```
-
-<h6 align="right">Stylus</h6>
-```stylus
-$flexbox = true
-
-section
-  center()
-
-figure
-  column('1/3')
-```
-
-Flexbox offers cleaner output and avoids the use of `clearfix` and other issues with float-based layouts. It also allows you to have elements of even height rather easily, and [much more](https://github.com/philipwalton/flexbugs/issues/32#issuecomment-90789645). The downside is, Flexbox doesn't work in IE9 or below, so keep that in mind if you have a client that needs that kind of support.
-
-Also note that waffle grids work well for the most part, but are somewhat finicky in fringe situations where Flexbox tries to act smarter than it is. All mixins provide a way to disable or enable Flexbox per element with the `flex` parameter.
 
 **[⬆ back to top](#table-of-contents)**
 
@@ -575,574 +459,314 @@ Also note that waffle grids work well for the most part, but are somewhat finick
 
 ##### Masonry Support
 
-Lost supports masonry plugins like [Isotope](http://isotope.metafizzy.co/). To accomplish this we need to change how the margins work. Instead of applying a `margin-right` to everything, we need to apply it to both sides. We've made a couple special mixins to help with this: `masonry-column()` which creates a margin on the left and right of each element it's applied to, and `masonry-wrap()` which wraps your columns and applies a negative margin to the left and right to them to help line them up with containing elements.
+Lost supports masonry plugins like [Isotope](http://isotope.metafizzy.co/). To accomplish this we need to change how the margins work. Instead of applying a `margin-right` to everything, we need to apply it to both sides. We've made a couple special properties to help with this: `lost-masonry-column` which creates a margin on the left and right of each element it's applied to, and `lost-masonry-wrap` which wraps your columns and applies a negative margin to the left and right to them to help line them up with containing elements.
 
-<h6 align="right">HTML</h6>
 ```html
 <section>
-  <figure>1</figure>
-  <figure>2</figure>
-  <figure>3</figure>
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
 </section>
 ```
 
-<h6 align="right">SCSS</h6>
-```scss
+```css
 section {
-  @include masonry-wrap;
+  lost-masonry-wrap: no-flex;
 }
 
-figure {
-  @include masonry-column('1/3');
+div {
+  lost-masonry-column: 1/3;
 }
-```
-
-<h6 align="right">LESS</h6>
-```less
-section {
-  .masonry-wrap();
-}
-
-figure {
-  .masonry-column(1 of 3);
-}
-```
-
-<h6 align="right">Stylus</h6>
-```stylus
-section
-  masonry-wrap()
-
-figure
-  masonry-column('1/3')
 ```
 
 **[⬆ back to top](#table-of-contents)**
 
 &nbsp;
 
-## Grid Settings
+## Global Grid Settings
 
-Just set either of these in a settings file after you `@import` Lost and before you use a Lost mixin.
+Lost uses PostCSS which means to override global variables we need to use something called "at-rules". They're easy enough. Just define them at the top of your stylesheet and you're good to go.
 
-<h6 align="right">SCSS</h6>
-- `$gutter: 30px !default;`
-- `$rtl: false !default;`
+```css
+@lost gutter 60px;
+@lost flexbox flex;
 
-<h6 align="right">LESS</h6>
-- `@gutter: 30px;`
-- `@rtl: false;`
-
-<h6 align="right">Stylus</h6>
-- `$gutter = 30px`
-- `$rtl = false`
-
-
-## Mixin Options
-
-##### `edit()`
-Sets a translucent background color to all elements it affects. Helpful while setting up, or debugging, the structure of your site to make sure all items are cleared correctly.
-
-- `$bg: blue` - A color to be lightened, so make sure you pick a darkish color.
-
-<h6 align="right">SCSS</h6>
-```scss
-section {
-  @include edit(red);
+.foo {
+  ...
 }
-```
-
-<h6 align="right">LESS</h6>
-```less
-section {
-  .edit(red);
-}
-```
-
-<h6 align="right">Stylus</h6>
-```stylus
-section
-  edit(red)
 ```
 
 **[⬆ back to top](#table-of-contents)**
 
 &nbsp;
 
-##### `clearfix()`
-Clearfix used to clear floated children elements. http://nicolasgallagher.com/micro-clearfix-hack
+## Property Options
 
-<h6 align="right">SCSS</h6>
-```scss
-.parent {
-  @include clearfix;
-  .child {
-    @include column('1/2');
-  }
+#### lost-utility
+A general utility toolbelt for Lost. Included are mixins that require no additional input other than being called.
+
+- `edit|clearfix` - The mixin to create.
+
+```css
+section {
+  lost-utility: edit;
 }
-```
-
-<h6 align="right">LESS</h6>
-```less
-.parent {
-  .clearfix();
-  .child {
-    .column(1 of 2);
-  }
-}
-```
-
-<h6 align="right">Stylus</h6>
-```stylus
-.parent
-  clearfix()
-  .child
-    column('1/2')
 ```
 
 **[⬆ back to top](#table-of-contents)**
 
 &nbsp;
 
-##### `flex-container()`
+#### lost-flex-container
 Creates a Flexbox container.
 
-- `$direction: row` - The flex-direction the container should create. This is typically opposite to the element you're creating so a `row()` would need `flex-container(column)`.
+- `row|column` - The flex-direction the container should create. This is typically opposite to the element you're creating so a row would need `lost-flex-container: column;`.
 
-<h6 align="right">SCSS</h6>
-```scss
-$flexbox: true;
-
+```css
 section {
-  @include flex-container();
-  figure {
-    @include column('1/2');
-  }
+  lost-flex-container: row;
 }
-```
 
-<h6 align="right">LESS</h6>
-```less
-@flexbox: true;
-
-section {
-  .flex-container();
-  figure {
-    .column('1/2');
-  }
+div {
+  lost-column: 1/2 flex;
 }
-```
-
-<h6 align="right">Stylus</h6>
-```stylus
-$flexbox = true
-
-section
-  flex-container()
-  figure
-    column('1/2')
 ```
 
 **[⬆ back to top](#table-of-contents)**
 
 &nbsp;
 
-##### `center()`
+#### lost-center
 Horizontally center a container element and apply padding to it.
 
-- `$max-size: 1140px` - A max-width to assign. Can be any unit.
-- `$pad: 0` - Padding on the left and right of the element. Can be any unit.
-- `$flex: $flexbox` - Determines whether this element should use Flexbox or not.
+- `max-width` - A max-width to assign. Can be any unit.
+- `padding` - Padding on the left and right of the element. Can be any unit.
+- `flex|no-flex` - Determines whether this element should use Flexbox or not.
 
-<h6 align="right">SCSS</h6>
-```scss
+```css
 section {
-  @include center(900px);
+  lost-center: 980px;
 }
-```
 
-<h6 align="right">LESS</h6>
-```less
 section {
-  .center(900px);
+  lost-center: 1140px 30px flex;
 }
-```
-
-<h6 align="right">Stylus</h6>
-```stylus
-section
-  center(900px)
 ```
 
 **[⬆ back to top](#table-of-contents)**
 
 &nbsp;
 
-##### `align()`
-Align nested elements.
+#### lost-align
+Align nested elements. Apply this to a parent container.
 
-- `$location: middle-center` - The position the nested element takes relative to the containing element.
-  - reset
-  - top-left
-  - top-center or top
-  - top-right
-  - middle-left or left
-  - middle-right or right
-  - bottom-left
-  - bottom-center or bottom
-  - bottom-right
-- `$flex: $flexbox` - Determines whether this element should use Flexbox or not.
+- `reset|horizontal|vertical|top-left|top-center|top|top-right|middle-left|left|middle-center|center|middle-right|right|bottom-left|bottom-center|bottom|bottom-right` - The position the nested element takes relative to the containing element.
+- `flex|no-flex` - Determines whether this element should use Flexbox or not.
 
-<h6 align="right">SCSS</h6>
-```scss
+```css
 .parent {
-  @include align(right);
+  lost-align: right;
   width: 600px;
   height: 400px;
-  .child {
-    width: 300px;
-    height: 150px;
-  }
 }
-```
 
-<h6 align="right">LESS</h6>
-```less
-.parent {
-  .align(right);
-  width: 600px;
-  height: 400px;
-  .child {
-    width: 300px;
-    height: 150px;
-  }
+.child {
+  width: 300px;
+  height: 150px;
 }
-```
-
-<h6 align="right">Stylus</h6>
-```stylus
-.parent
-  align(right)
-  width: 600px
-  height: 400px
-  .child
-    width: 300px
-    height: 150px
 ```
 
 **[⬆ back to top](#table-of-contents)**
 
 &nbsp;
 
-##### `column()`
-Creates a column that is a fraction of the size of it's containing element with a gutter. You don't need to pass any additional ratios (fractions) as the grid system will make use of calc(). Note that fractions must always be wrapped in quotes.
+#### lost-column
+Creates a column that is a fraction of the size of its containing element's width with a gutter.
 
-- `$fraction: '1/1'` - This is a simple fraction of the containing element's width. This must be a string written as a fraction.
-- `$cycle: DENOMINATOR` - Lost works by assigning a margin-right to all elements except the last in the row. It does this by default by using the denominator of the fraction you pick. To override this default use this param. e.g. column('2/4', $cycle: 2)
-- `$gut: $gutter` - The margin on the right side of the element used to create a gutter. Typically this is left alone and the global $gutter will be used, but you can override it here if you want certain elements to have a particularly large or small gutter (pass 0 for no gutter at all).
-- `$flex: $flexbox` - Determines whether this element should use Flexbox or not.
+- `fraction` - This is a simple fraction of the containing element's width.
+- `cycle` - Lost works by assigning a margin-right to all elements except the last in the row. It does this by default by using the denominator of the fraction you pick. To override the default use this param., e.g.: .foo { lost-column: 2/4 2; }
+- `gutter` - The margin on the right side of the element used to create a gutter. Typically this is left alone and settings.gutter will be used, but you can override it here if you want
+certain elements to have a particularly large or small gutter (pass 0 for no gutter at all).
+- `flex|no-flex` - Determines whether this element should use Flexbox or not.
 
-<h6 align="right">SCSS</h6>
-```scss
-figure {
-  @include column('1/3');
+```css
+div {
+  lost-column: 1/3;
 }
-```
 
-<h6 align="right">LESS</h6>
-```less
-figure {
-  .column(1 of 3);
+div {
+  lost-column: 2/6 3 60px flex;
 }
-```
-
-<h6 align="right">Stylus</h6>
-```stylus
-figure
-  column('1/3')
 ```
 
 **[⬆ back to top](#table-of-contents)**
 
 &nbsp;
 
-##### `row()`
-Creates a row that is a fraction of the size of it's containing element with a gutter. You don't need to pass any additional ratios (fractions) as the grid system will make use of calc(). Note that fractions must always be wrapped in quotes.
+#### lost-row
+Creates a row that is a fraction of the size of its containing element's height with a gutter.
 
-- `$fraction: '1/1'` - This is a simple fraction of the containing element's height. This must be a string written as a fraction.
-- `$gut: $gutter` - The margin on the bottom of the element used to create a gutter. Typically this is left alone and the global $gutter will be used, but you can override it here if you want certain elements to have a particularly large or small gutter (pass 0 for no gutter at all).
-- `$flex: $flexbox` - Determines whether this element should use Flexbox or not.
+- `fraction` - This is a simple fraction of the containing element's height.
+- `gutter` - The margin on the bottom of the element used to create a gutter. Typically this is left alone and settings.gutter will be used, but you can override it here if you want certain elements to have a particularly large or small gutter (pass 0 for no gutter at all).
+- `flex|no-flex` - Determines whether this element should use Flexbox or not.
 
-<h6 align="right">SCSS</h6>
-```scss
-figure {
-  @include row('1/3');
+```css
+section {
+  height: 100%;
 }
-```
 
-<h6 align="right">LESS</h6>
-```less
-figure {
-  .row(1 of 3);
+div {
+  lost-row: 1/3;
 }
-```
-
-<h6 align="right">Stylus</h6>
-```stylus
-figure
-  row('1/3')
 ```
 
 **[⬆ back to top](#table-of-contents)**
 
 &nbsp;
 
-##### `waffle()`
-Creates a block that is a fraction of the size of it's containing element with a gutter on the right and bottom. You don't need to pass any additional ratios (fractions) as the grid system will make use of calc(). Note that fractions must always be wrapped in quotes.
+#### lost-waffle
+Creates a block that is a fraction of the size of its containing element's width AND height with a gutter on the right and bottom.
 
-- `$fraction: '1/1'` - This is a simple fraction of the containing element's width/height. This must be a string written as a fraction.
-- `$cycle: DENOMINATOR` - Lost works by assigning a margin-right/bottom to all elements except the last row (no margin-bottom) and the last column (no margin-right). It does this by default by using the denominator of the fraction you pick. To override this default use this param. e.g. waffle('2/4', $cycle: 2)
-- `$gut: $gutter` - The margin on the right and bottom side of the element used to create a gutter. Typically this is left alone and the global $gutter will be used, but you can override it here if you want certain elements to have a particularly large or small gutter (pass 0 for no gutter at all).
-- `$flex: $flexbox` - Determines whether this element should use Flexbox or not.
+- `fraction` - This is a simple fraction of the containing element's width/height.
+- `cycle` - Lost works by assigning a margin-right/bottom to all elements except the last row (no margin-bottom) and the last column (no margin-right). It does this by default by using the denominator of the fraction you pick. To override this default use this param., e.g.: .foo { lost-waffle: 2/4 2; }
+- `gutter` - The margin on the right and bottom side of the element used to create a gutter. Typically this is left alone and the global $gutter will be used, but you can override it here if you want certain elements to have a particularly large or small gutter (pass 0 for no gutter at all).
+- `flex|no-flex` - Determines whether this element should use Flexbox or not.
 
-<h6 align="right">SCSS</h6>
-```scss
-figure {
-  @include waffle('1/3');
+```css
+section {
+  height: 100%;
 }
-```
 
-<h6 align="right">LESS</h6>
-```less
-figure {
-  .waffle(1 of 3);
+div {
+  lost-waffle: 1/3;
 }
-```
-
-<h6 align="right">Stylus</h6>
-```stylus
-figure
-  waffle('1/3')
 ```
 
 **[⬆ back to top](#table-of-contents)**
 
 &nbsp;
 
-##### `offset()`
+#### lost-offset
 Margin to the left, right, bottom, or top, of an element depending on if the fraction passed is positive or negative. It works for both horizontal and vertical grids but not both.
 
-- `$fraction: '1/1'` - Fraction of the container to be offset. Must be a string.
-- `$dir: row` - Direction the grid is going. Should be the opposite of the column() or row() it's being used on.
-- `$gut: $gutter` - How large the gutter involved is, typically this won't be adjusted, but if you have set the elements for that container to have different gutters than default, you will need to match that gutter here as well.
+- `fraction` - Fraction of the container to be offset.
+- `row|column` - Direction the grid is going. Should be the opposite of the column or row it's being used on. Defaults to row.
+- `gutter` - How large the gutter involved is, typically this won't be adjusted, but if you have set the elements for that container to have different gutters than default, you will need to match that gutter here as well.
 
-<h6 align="right">SCSS</h6>
-```scss
+```css
 .two-elements {
-  @include column('1/3');
-  &:first-child {
-    @include offset('1/3');
-  }
+  lost-column: 1/3;
 }
-```
 
-<h6 align="right">LESS</h6>
-```less
-.two-elements {
-  .column(1 of 3);
-  &:first-child {
-    .offset(1 of 3);
-  }
+.two-elements:first-child {
+  lost-offset: 1/3;
 }
-```
-
-<h6 align="right">Stylus</h6>
-```stylus
-.two-elements
-  column('1/3')
-  &:first-child
-    offset('1/3')
 ```
 
 **[⬆ back to top](#table-of-contents)**
 
 &nbsp;
 
-##### `move()`
+#### lost-move
 Source ordering. Shift elements left, right, up, or down, by their left or top position by passing a positive or negative fraction.
 
-- `$fraction: '1/1'` - Fraction of the container to be shifted. Must be a string.
-- `$dir: row` - Direction the grid is going. Should be the opposite of the column() or row() it's being used on.
-- `$gut: $gutter` - Adjust the size of the gutter for this movement. Should match the element's $gut.
+- `fraction` - Fraction of the container to be shifted.
+- `row|column` - Direction the grid is going. Should be the opposite of the column or row it's being used on.
+- `gutter` - Adjust the size of the gutter for this movement. Should match the element's gutter.
 
-<h6 align="right">SCSS</h6>
-```scss
-figure {
-  @include column('1/3');
-  @include move('1/3');
+```css
+div {
+  lost-column: 1/2;
 }
-```
 
-<h6 align="right">LESS</h6>
-```less
-figure {
-  .column(1 of 3);
-  .move(1 of 3);
+div:first-child {
+  lost-move: 1/2;
 }
-```
 
-<h6 align="right">Stylus</h6>
-```stylus
-figure
-  column('1/3')
-  move('1/3')
+div:last-child {
+  lost-move: -1/2;
+}
 ```
 
 **[⬆ back to top](#table-of-contents)**
 
 &nbsp;
 
-##### `masonry-wrap()`
-Creates a wrapping element for working with JS masonry libraries like Isotope. Assigns a negative margin on each side of this wrapping element.
+#### lost-masonry-wrap
+Creates a wrapping element for working with JS Masonry libraries like Isotope. Assigns a negative margin on each side of this wrapping element.
 
-- `$gut: $gutter` - How large the gutter involved is, typically this won't be adjusted and will inherit the global $gutter setting, but it's made available if you want your masonry grid to have a special $gut, it should match your masonry-column's $gut.
-- `$flex: $flexbox` - Determines whether this element should use Flexbox or not.
+- `flex|no-flex` - Determines whether this element should use Flexbox or not.
+- `gutter` - How large the gutter involved is, typically this won't be adjusted and will inherit settings.gutter, but it's made available if you want your masonry grid to have a special gutter, it should match your masonry-column's gutter.
 
+```css
+section {
+  lost-masonry-wrap: no-flex;
+}
 
-##### `masonry-column()`
+div {
+  lost-masonry-column: 1/3;
+}
+```
+
+**[⬆ back to top](#table-of-contents)**
+
+&nbsp;
+
+#### lost-masonry-column
 Creates a column for working with JS masonry libraries like Isotope. Assigns a margin to each side of the element.
 
-- `$gut: $gutter` - How large the gutter involved is, typically this won't be adjusted and will inherit the global $gutter setting, but it's made available if you want your masonry grid to have a special $gut, it should match your masonry-row's $gut.
-- `$flex: $flexbox` - Determines whether this element should use Flexbox or not.
+- `gutter` - How large the gutter involved is, typically this won't be adjusted and will inherit settings.gutter, but it's made available if you want your masonry grid to have a special gutter, it should match your masonry-row's gutter.
+- `flex|no-flex` - Determines whether this element should use Flexbox or not.
 
-<h6 align="right">SCSS</h6>
-```scss
+```css
 section {
-  @include masonry-wrap;
+  lost-masonry-wrap: flex 60px;
 }
-figure {
-  @include masonry-column('1/3');
-}
-```
 
-<h6 align="right">LESS</h6>
-```less
-section {
-  .masonry-wrap();
+div {
+  lost-masonry-column: 1/3 60px flex;
 }
-figure {
-  .masonry-column(1 of 3);
-}
-```
-
-<h6 align="right">Stylus</h6>
-```stylus
-section
-  masonry-wrap()
-figure
-  masonry-column('1/3')
 ```
 
 **[⬆ back to top](#table-of-contents)**
 
 &nbsp;
-
-##### `get-size()`
-A function to return the size of a column minus it's gutter if a gutter is assigned. Handy for generating CSS classes.
-
-> **Note** This feature is not currently available in the LESS version. I'm not a fan of LESS but would love a PR.
-
-- `$fraction: '1/1'` - This is a simple fraction of the containing element's width. This must be a string written as a fraction.
-- `$gut: $gutter` - The gutter assigned to this size.
-
-<h6 align="right">SCSS</h6>
-```scss
-[class*="col-"] {
-  float: left;
-  margin-right: $gutter;
-  &:last-child {
-    margin-right: 0;
-  }
-}
-
-@for $i from 1 through 12 {
-  .col-#{$i} {
-    width: get-size('#{$i}/12');
-  }
-}
-```
-
-<h6 align="right">Stylus</h6>
-```stylus
-[class*="col-"]
-  float: left
-  margin-right: $gutter
-  &:last-child
-    margin-right: 0
-
-for $i in 1..12
-  .col-{$i}
-    width: get-size(s('%s/12', $i))
-```
-
-**[⬆ back to top](#table-of-contents)**
-
-&nbsp;
-
-## Usage with Node
-- `npm i lost --save-dev`
-
-<h6 align="right">JavaScript</h6>
-```javascript
-var fs = require('fs'),
-    stylus = require('stylus'),
-    lost = require('lost');
-
-stylus(fs.readFileSync('./css/style.styl', 'utf8'))
-  .use(lost())
-  .render(function(err, css){
-    if (err) return console.error(err);
-    console.log(css);
-  });
-```
-
-<h6 align="right">Stylus</h6>
-```stylus
-@import 'lost'
-
-$gutter = 20px
-
-figure
-  column('1/3')
-```
-
 
 ## Example Code
 
 - https://github.com/corysimmons/lost/tree/gh-pages
 
+**[⬆ back to top](#table-of-contents)**
+
+&nbsp;
 
 ## Browser Support
 
 - [`calc()` grids](https://webdesign.tutsplus.com/tutorials/calc-grids-are-the-best-grids--cms-22902) work perfect on IE9+ with poor support on old Android browsers ([`calc()` browser support](http://caniuse.com/#feat=calc)).
 - With some polyfills (like the ones included in [Boy](https://github.com/corysimmons/boy)) Lost works perfect in IE8 as well.
 
+**[⬆ back to top](#table-of-contents)**
+
+&nbsp;
 
 ### Other Projects
 
-If you like this project then I encourage you to check out a few of my other hand-selected projects.
+If you like this project then I encourage you to check out a few of my other projects.
 
 - [Boy](https://github.com/corysimmons/boy) - A super lightweight, old-browser-friendly, HTML5 boilerplate with tons of features that make it a great start to any project.
 - [Typographic](https://github.com/corysimmons/typographic) - Insanely powerful yet easy-to-use responsive typography. Includes vertical rhythm, font stacks, modular scale, and more.
-- [lost-grid.js](https://github.com/corysimmons/lost-grid.js) - A purely JavaScript version of Lost v1. You can create your grid system directly in your markup without ever touching a line of preprocessor code. A pretty cool **concept**.
 
+**[⬆ back to top](#table-of-contents)**
+
+&nbsp;
 
 ### Thanks
 
-- [Alex Bass](http://abass.co) for being my friend during this process and letting me bounce every idea off you.
+- [Alex Bass](http://abass.co) for letting me bounce ideas off of him.
 - [Maria Keller](https://dribbble.com/mariakeller) for the amazing logo. Be sure to hire her for all your design and motion graphic needs.
-- [Hugo Giraudel](https://twitter.com/HugoGiraudel) for contributions to code quality and for polyfilling Sass.
-- [Roman Komarov](https://twitter.com/kizmarh) for helping with Stylus hiccups.
-- [Huy Hong](https://twitter.com/huy) for helping with Sass hiccups.
 - Everyone who files an [Issue](https://github.com/corysimmons/lost/issues) when something isn't working as expected.
 - Everyone who is *actually* interested in my work on grids.
+
+**[⬆ back to top](#table-of-contents)**
+
+&nbsp;

@@ -1,17 +1,18 @@
 {
   "name": "lost",
-  "version": "5.1.6",
-  "description": "SCSS, LESS, and Stylus fractional grid system built with calc() by the guy who built Jeet. Supports masonry, vertical, and waffle grids.",
-  "main": "stylus/lost.js",
+  "version": "6.0.0",
+  "description": "PostCSS fractional grid system built with calc() by the guy who built Jeet. Supports masonry, vertical, and waffle grids.",
+  "main": "lost.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/corysimmons/lost.git"
   },
+  "dependencies": {
+    "postcss": "4.1.4",
+    "object-assign": "2.0.0"
+  },
   "keywords": [
     "grid",
-    "stylus",
-    "scss",
-    "sass",
     "fraction",
     "ratio"
   ],
