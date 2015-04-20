@@ -678,6 +678,9 @@ module.exports = postcss.plugin('lost', function lost(settings) {
      *   use Flexbox or not.
      *
      * @example
+     *   section {
+     *     height: 100%;
+     *   }
      *   div {
      *     lost-waffle: 1/3;
      *   }
