@@ -263,7 +263,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
       }
 
       decl.cloneBefore({
-        prop: 'width',
+        prop: 'max-width',
         value: declArr[0]
       });
 
