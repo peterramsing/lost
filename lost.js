@@ -756,11 +756,6 @@ module.exports = postcss.plugin('lost', function lost(settings) {
         newBlock(':last-child', ['margin-right', 'margin-bottom'], [0, 0]);
         newBlock(':nth-child(n)', ['margin-right', 'margin-bottom'], [lostWaffleGutter, lostWaffleGutter]);
       } else {
-        decl.cloneBefore({
-          prop: 'float',
-          value: 'left'
-        });
-
         newBlock(':nth-last-child(-n + '+ lostWaffleCycle +')', ['margin-bottom'], [0]);
         newBlock(':nth-child('+ lostWaffleCycle +'n + 1)', ['clear'], ['left']);
         newBlock(':nth-child('+ lostWaffleCycle +'n)', ['float', 'margin-right'], ['right', 0]);
