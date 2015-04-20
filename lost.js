@@ -506,15 +506,6 @@ module.exports = postcss.plugin('lost', function lost(settings) {
         newBlock(':last-child', ['margin-right'], [0]);
         newBlock(':nth-child(n)', ['margin-right'], [lostColumnGutter]);
       } else {
-        decl.cloneBefore({
-          prop: 'float',
-          value: 'left'
-        });
-        decl.cloneBefore({
-          prop: 'margin-right',
-          value: lostColumnGutter
-        });
-
         newBlock(':nth-child('+ lostColumnCycle +'n + 1)', ['clear'], ['left']);
         newBlock(':nth-child('+ lostColumnCycle +'n)', ['float', 'margin-right'], ['right', 0]);
         newBlock(':last-child', ['margin-right'], [0]);
