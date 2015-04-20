@@ -12,15 +12,15 @@
 # Installation
 
 - Install [NodeJS](http://nodejs.org)
-- Run the command: `npm install gulp gulp-sourcemaps gulp-postcss lost autoprefixer-core --save-dev`
+- Run the command: `npm install gulp gulp-postcss gulp-sourcemaps gulp-autoprefixer lost --save-dev`
 - Create a `gulpfile.js` with the following code:
 
 ```javascript
 var gulp = require('gulp'),
     sourcemaps = require('gulp-sourcemaps'),
     postcss = require('gulp-postcss'),
-    lost = require('lost'),
-    autoprefixer = require('autoprefixer-core');
+    autoprefixer = require('gulp-autoprefixer'),
+    lost = require('lost');
 
 var paths = {
   cssSource: 'src/css/',
@@ -31,9 +31,9 @@ gulp.task('styles', function() {
   return gulp.src(paths.cssSource + '**/*.css')
     .pipe(sourcemaps.init())
     .pipe(postcss([
-      lost(),
-      autoprefixer()
+      lost()
     ]))
+    .pipe(autoprefixer())
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(paths.cssDestination));
 });
