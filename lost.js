@@ -455,7 +455,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
         lostColumnCycle = declArr[1];
       }
 
-      if (declArr[1] == 'flex' || declArr[1] == 'no-flex') {
+      if (declArr[1] == 'flex' || declArr[1] == 'no-flex' || declArr[1] == 'auto') {
         lostColumnCycle = declArr[0].split('/')[1];
       }
 
@@ -702,7 +702,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
         lostWaffleCycle = declArr[1];
       }
 
-      if (declArr[1] == 'flex' || declArr[1] == 'no-flex') {
+      if (declArr[1] == 'flex' || declArr[1] == 'no-flex' || declArr[1] == 'auto') {
         lostWaffleCycle = declArr[0].split('/')[1];
       }
 
