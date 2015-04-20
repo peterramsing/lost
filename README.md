@@ -137,18 +137,18 @@ And the processed CSS looks like this:
 div {
   width: calc(99.99% * 1/3 - (30px - 30px * 1/3));
 }
-
 div:nth-child(n) {
   float: left;
   margin-right: 30px;
   clear: none;
 }
-
+div:last-child {
+  margin-right: 0;
+}
 div:nth-child(3n) {
   float: right;
   margin-right: 0;
 }
-
 div:nth-child(3n + 1) {
   clear: left;
 }
