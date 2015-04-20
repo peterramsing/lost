@@ -28,7 +28,7 @@ var paths = {
 };
 
 gulp.task('styles', function() {
-  return gulp.src(paths.cssSource + '/**/*.css')
+  return gulp.src(paths.cssSource + '**/*.css')
     .pipe(sourcemaps.init())
     .pipe(postcss([
       lost(),
@@ -38,7 +38,7 @@ gulp.task('styles', function() {
     .pipe(gulp.dest(paths.cssDestination));
 });
 
-gulp.watch(paths.cssSource + '/**/*.css', ['styles']);
+gulp.watch(paths.cssSource + '**/*.css', ['styles']);
 
 gulp.task('default', ['styles']);
 ```
