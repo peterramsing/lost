@@ -42,6 +42,7 @@ gulp.watch(paths.cssSource + '**/*.css', ['styles']);
 
 gulp.task('default', ['styles']);
 ```
+- Run `gulp`
 
 This will watch your `src/css/` directory for any changes to CSS files and then
 process them with Autoprefixer and Lost Grid (which will convert Lost Grid rules
@@ -61,12 +62,10 @@ And the processed CSS looks like this:
 ```css
 div {
   width: calc(99.99% * 1/3 - (30px - 30px * 1/3));
-  height: calc(99.99% * 1/3 - (30px - 30px * 1/3));
 }
 div:nth-child(n) {
   float: left;
   margin-right: 30px;
-  margin-bottom: 30px;
   clear: none;
 }
 div:nth-child(3n) {
@@ -75,9 +74,6 @@ div:nth-child(3n) {
 }
 div:nth-child(3n + 1) {
   clear: left;
-}
-div:nth-last-child(-n + 3) {
-  margin-bottom: 0;
 }
 
 /*# sourceMappingURL=style.css.map */
