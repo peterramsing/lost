@@ -13,8 +13,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
 
   settings = assign(settings, {
     gutter: '30px',
-    flexbox: 'no-flex',
-    rtl: false
+    flexbox: 'no-flex'
   });
 
   return function (css) {
@@ -33,10 +32,9 @@ module.exports = postcss.plugin('lost', function lost(settings) {
 
       if (rule.params[0] == 'gutter') {
         settings.gutter = rule.params[1];
-      } else if (rule.params[0] == 'flexbox') {
+      }
+      if (rule.params[0] == 'flexbox') {
         settings.flexbox = rule.params[1];
-      } else if (rule.params[0] == 'rtl') {
-        settings.rtl = rule.params[1];
       }
 
       rule.removeSelf();
@@ -504,46 +502,23 @@ module.exports = postcss.plugin('lost', function lost(settings) {
           value: '0 0 auto'
         });
 
-        if (settings.rtl === false) {
-          newBlock(':nth-child('+ lostColumnCycle +'n)', ['margin-right'], [0]);
-          newBlock(':last-child', ['margin-right'], [0]);
-          newBlock(':nth-child(n)', ['margin-right'], [lostColumnGutter]);
-        } else {
-          newBlock(':nth-child('+ lostColumnCycle +'n)', ['margin-left'], [0]);
-          newBlock(':last-child', ['margin-left'], [0]);
-          newBlock(':nth-child(n)', ['margin-left'], [lostColumnGutter]);
-        }
+        newBlock(':nth-child('+ lostColumnCycle +'n)', ['margin-right'], [0]);
+        newBlock(':last-child', ['margin-right'], [0]);
+        newBlock(':nth-child(n)', ['margin-right'], [lostColumnGutter]);
       } else {
-        if (settings.rtl === false) {
-          decl.cloneBefore({
-            prop: 'float',
-            value: 'left'
-          });
-          decl.cloneBefore({
-            prop: 'margin-right',
-            value: lostColumnGutter
-          });
+        decl.cloneBefore({
+          prop: 'float',
+          value: 'left'
+        });
+        decl.cloneBefore({
+          prop: 'margin-right',
+          value: lostColumnGutter
+        });
 
-          newBlock(':nth-child('+ lostColumnCycle +'n + 1)', ['clear'], ['left']);
-          newBlock(':nth-child('+ lostColumnCycle +'n)', ['float', 'margin-right'], ['right', 0]);
-          newBlock(':last-child', ['margin-right'], [0]);
-          newBlock(':nth-child(n)', ['float', 'margin-right', 'clear'], ['left', lostColumnGutter, 'none']);
-        } else {
-          decl.cloneBefore({
-            prop: 'float',
-            value: 'right'
-          });
-
-          decl.cloneBefore({
-            prop: 'margin-left',
-            value: lostColumnGutter
-          });
-
-          newBlock(':nth-child('+ lostColumnCycle +'n + 1)', ['clear'], ['right']);
-          newBlock(':nth-child('+ lostColumnCycle +'n)', ['float', 'margin-left'], ['left', 0]);
-          newBlock(':last-child', ['margin-left'], [0]);
-          newBlock(':nth-child(n)', ['float', 'margin-left', 'clear'], ['right', lostColumnGutter, 'none']);
-        }
+        newBlock(':nth-child('+ lostColumnCycle +'n + 1)', ['clear'], ['left']);
+        newBlock(':nth-child('+ lostColumnCycle +'n)', ['float', 'margin-right'], ['right', 0]);
+        newBlock(':last-child', ['margin-right'], [0]);
+        newBlock(':nth-child(n)', ['float', 'margin-right', 'clear'], ['left', lostColumnGutter, 'none']);
       }
 
       if (lostColumnGutter !== '0') {
@@ -785,41 +760,21 @@ module.exports = postcss.plugin('lost', function lost(settings) {
           value: '0 0 auto'
         });
 
-        if (settings.rtl === false) {
-          newBlock(':nth-last-child(-n + '+ lostWaffleCycle +')', ['margin-bottom'], [0]);
-          newBlock(':nth-child('+ lostWaffleCycle +'n)', ['margin-right'], [0]);
-          newBlock(':last-child', ['margin-right', 'margin-bottom'], [0, 0]);
-          newBlock(':nth-child(n)', ['margin-right', 'margin-bottom'], [lostWaffleGutter, lostWaffleGutter]);
-        } else {
-          newBlock(':nth-last-child(-n + '+ lostWaffleCycle +')', ['margin-bottom'], [0]);
-          newBlock(':nth-child('+ lostWaffleCycle +'n)', ['margin-left'], [0]);
-          newBlock(':last-child', ['margin-left', 'margin-bottom'], [0, 0]);
-          newBlock(':nth-child(n)', ['margin-left', 'margin-bottom'], [lostWaffleGutter, lostWaffleGutter]);
-        }
+        newBlock(':nth-last-child(-n + '+ lostWaffleCycle +')', ['margin-bottom'], [0]);
+        newBlock(':nth-child('+ lostWaffleCycle +'n)', ['margin-right'], [0]);
+        newBlock(':last-child', ['margin-right', 'margin-bottom'], [0, 0]);
+        newBlock(':nth-child(n)', ['margin-right', 'margin-bottom'], [lostWaffleGutter, lostWaffleGutter]);
       } else {
-        if (settings.rtl === false) {
-          decl.cloneBefore({
-            prop: 'float',
-            value: 'left'
-          });
+        decl.cloneBefore({
+          prop: 'float',
+          value: 'left'
+        });
 
-          newBlock(':nth-last-child(-n + '+ lostWaffleCycle +')', ['margin-bottom'], [0]);
-          newBlock(':nth-child('+ lostWaffleCycle +'n + 1)', ['clear'], ['left']);
-          newBlock(':nth-child('+ lostWaffleCycle +'n)', ['float', 'margin-right'], ['right', 0]);
-          newBlock(':last-child', ['margin-right', 'margin-bottom'], [0, 0]);
-          newBlock(':nth-child(n)', ['float', 'margin-right', 'margin-bottom', 'clear'], ['left', lostWaffleGutter, lostWaffleGutter, 'none']);
-        } else {
-          decl.cloneBefore({
-            prop: 'float',
-            value: 'right'
-          });
-
-          newBlock(':nth-last-child(-n + '+ lostWaffleCycle +')', ['margin-bottom'], [0]);
-          newBlock(':nth-child('+ lostWaffleCycle +'n + 1)', ['clear'], ['right']);
-          newBlock(':nth-child('+ lostWaffleCycle +'n)', ['float', 'margin-left'], ['left', 0]);
-          newBlock(':last-child', ['margin-left', 'margin-bottom'], [0, 0]);
-          newBlock(':nth-child(n)', ['float', 'margin-left', 'margin-bottom', 'clear'], ['right', lostWaffleGutter, lostWaffleGutter, 'none']);
-        }
+        newBlock(':nth-last-child(-n + '+ lostWaffleCycle +')', ['margin-bottom'], [0]);
+        newBlock(':nth-child('+ lostWaffleCycle +'n + 1)', ['clear'], ['left']);
+        newBlock(':nth-child('+ lostWaffleCycle +'n)', ['float', 'margin-right'], ['right', 0]);
+        newBlock(':last-child', ['margin-right', 'margin-bottom'], [0, 0]);
+        newBlock(':nth-child(n)', ['float', 'margin-right', 'margin-bottom', 'clear'], ['left', lostWaffleGutter, lostWaffleGutter, 'none']);
       }
 
       if (lostWaffleGutter !== '0') {
