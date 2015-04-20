@@ -12,28 +12,28 @@
 # Installation
 
 - Install [NodeJS](http://nodejs.org)
-- `npm install gulp gulp-autoprefixer gulp-postcss gulp-sourcemaps lost`
+- Run the command: `npm install gulp gulp-sourcemaps gulp-postcss lost autoprefixer-core`
 - Create a `gulpfile.js` with the following code:
 
 ```javascript
 var gulp = require('gulp'),
     sourcemaps = require('gulp-sourcemaps'),
     postcss = require('gulp-postcss'),
-    autoprefixer = require('gulp-autoprefixer'),
-    lost = require('lost');
+    lost = require('lost'),
+    autoprefixer = require('autoprefixer-core');
 
 var paths = {
-  cssSource: 'src/css',
-  cssDestination: 'dist/css'
+  cssSource: 'src/css/',
+  cssDestination: 'dist/css/'
 };
 
 gulp.task('styles', function() {
   return gulp.src(paths.cssSource + '/**/*.css')
     .pipe(sourcemaps.init())
     .pipe(postcss([
-      lost()
+      lost(),
+      autoprefixer()
     ]))
-    .pipe(autoprefixer())
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(paths.cssDestination));
 });
@@ -43,9 +43,12 @@ gulp.watch(paths.cssSource + '/**/*.css', ['styles']);
 gulp.task('default', ['styles']);
 ```
 
-This will watch your `src/css` folder for any changes to CSS files and then run Autoprefixer on them, create sourcemaps for them, convert Lost grid rules to functional CSS code, and output the code to a `dist/css` folder.
+This will watch your `src/css/` directory for any changes to CSS files and then
+process them with Autoprefixer and Lost Grid (which will convert Lost Grid rules
+into vanilla CSS code), create sourcemaps, and output the processed CSS and
+sourcemaps to `dist/css/`.
 
-Lost grid rules look like this:
+Lost Grid rules look like this:
 
 ```css
 .foo {
@@ -53,7 +56,7 @@ Lost grid rules look like this:
 }
 ```
 
-And is converted to:
+And the processed CSS looks like this:
 
 ```css
 .foo {
