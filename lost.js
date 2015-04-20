@@ -393,7 +393,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
 
 
     /**
-     * lost-column: Creates a column that is a fraction of the size of it's
+     * lost-column: Creates a column that is a fraction of the size of its
      * containing element's width with a gutter.
      *
      * @param {string} [fraction] - This is a simple fraction of the containing
@@ -529,7 +529,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
 
 
     /**
-     * lost-row: Creates a row that is a fraction of the size of it's containing
+     * lost-row: Creates a row that is a fraction of the size of its containing
      * element's height with a gutter.
      *
      * @param {string} [fraction] - This is a simple fraction of the containing
@@ -645,7 +645,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
 
 
     /**
-     * lost-waffle: Creates a block that is a fraction of the size of it's
+     * lost-waffle: Creates a block that is a fraction of the size of its
      * containing element's width AND height with a gutter on the right
      * and bottom.
      *
