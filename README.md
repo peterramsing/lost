@@ -17,8 +17,8 @@
 
 ```javascript
 var gulp = require('gulp'),
-    sourcemaps = require('gulp-sourcemaps'),
     postcss = require('gulp-postcss'),
+    sourcemaps = require('gulp-sourcemaps'),
     autoprefixer = require('gulp-autoprefixer'),
     lost = require('lost');
 
@@ -51,7 +51,7 @@ sourcemaps to `dist/css/`.
 Lost Grid rules look like this:
 
 ```css
-.foo {
+div {
   lost-column: 1/3;
 }
 ```
@@ -59,25 +59,25 @@ Lost Grid rules look like this:
 And the processed CSS looks like this:
 
 ```css
-.foo {
-  float: left;
-  margin-right: 30px;
+div {
   width: calc(99.99% * 1/3 - (30px - 30px * 1/3));
+  height: calc(99.99% * 1/3 - (30px - 30px * 1/3));
 }
-.foo:nth-child(n) {
+div:nth-child(n) {
   float: left;
   margin-right: 30px;
+  margin-bottom: 30px;
   clear: none;
 }
-.foo:last-child {
-  margin-right: 0;
-}
-.foo:nth-child(3n) {
+div:nth-child(3n) {
   float: right;
   margin-right: 0;
 }
-.foo:nth-child(3n + 1) {
+div:nth-child(3n + 1) {
   clear: left;
+}
+div:nth-last-child(-n + 3) {
+  margin-bottom: 0;
 }
 
 /*# sourceMappingURL=style.css.map */
