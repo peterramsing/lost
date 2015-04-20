@@ -646,6 +646,12 @@ module.exports = postcss.plugin('lost', function lost(settings) {
         );
 
         newBlock(
+          ':last-child',
+          ['margin-right'],
+          [0]
+        );
+
+        newBlock(
           ':nth-child(n)',
           ['margin-right'],
           [lostColumnGutter]
@@ -661,6 +667,12 @@ module.exports = postcss.plugin('lost', function lost(settings) {
           ':nth-child('+ lostColumnCycle +'n)',
           ['float', 'margin-right'],
           ['right', 0]
+        );
+
+        newBlock(
+          ':last-child',
+          ['margin-right'],
+          [0]
         );
 
         newBlock(
@@ -944,6 +956,12 @@ module.exports = postcss.plugin('lost', function lost(settings) {
         );
 
         newBlock(
+          ':last-child',
+          ['margin-right', 'margin-bottom'],
+          [0, 0]
+        );
+
+        newBlock(
           ':nth-child(n)',
           ['margin-right', 'margin-bottom'],
           [lostWaffleGutter, lostWaffleGutter]
@@ -965,6 +983,12 @@ module.exports = postcss.plugin('lost', function lost(settings) {
           ':nth-child('+ lostWaffleCycle +'n)',
           ['float', 'margin-right'],
           ['right', 0]
+        );
+
+        newBlock(
+          ':last-child',
+          ['margin-right', 'margin-bottom'],
+          [0, 0]
         );
 
         newBlock(
