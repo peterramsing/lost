@@ -503,12 +503,10 @@ module.exports = postcss.plugin('lost', function lost(settings) {
         });
 
         newBlock(':nth-child('+ lostColumnCycle +'n)', ['margin-right'], [0]);
-        newBlock(':last-child', ['margin-right'], [0]);
         newBlock(':nth-child(n)', ['margin-right'], [lostColumnGutter]);
       } else {
         newBlock(':nth-child('+ lostColumnCycle +'n + 1)', ['clear'], ['left']);
         newBlock(':nth-child('+ lostColumnCycle +'n)', ['float', 'margin-right'], ['right', 0]);
-        newBlock(':last-child', ['margin-right'], [0]);
         newBlock(':nth-child(n)', ['float', 'margin-right', 'clear'], ['left', lostColumnGutter, 'none']);
       }
 
@@ -753,13 +751,11 @@ module.exports = postcss.plugin('lost', function lost(settings) {
 
         newBlock(':nth-last-child(-n + '+ lostWaffleCycle +')', ['margin-bottom'], [0]);
         newBlock(':nth-child('+ lostWaffleCycle +'n)', ['margin-right'], [0]);
-        newBlock(':last-child', ['margin-right', 'margin-bottom'], [0, 0]);
         newBlock(':nth-child(n)', ['margin-right', 'margin-bottom'], [lostWaffleGutter, lostWaffleGutter]);
       } else {
         newBlock(':nth-last-child(-n + '+ lostWaffleCycle +')', ['margin-bottom'], [0]);
         newBlock(':nth-child('+ lostWaffleCycle +'n + 1)', ['clear'], ['left']);
         newBlock(':nth-child('+ lostWaffleCycle +'n)', ['float', 'margin-right'], ['right', 0]);
-        newBlock(':last-child', ['margin-right', 'margin-bottom'], [0, 0]);
         newBlock(':nth-child(n)', ['float', 'margin-right', 'margin-bottom', 'clear'], ['left', lostWaffleGutter, lostWaffleGutter, 'none']);
       }
 
