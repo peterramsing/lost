@@ -8,8 +8,8 @@
     "url": "https://github.com/corysimmons/lost.git"
   },
   "dependencies": {
-    "postcss": "4.1.4",
-    "object-assign": "2.0.0"
+    "postcss": "~4.1.4",
+    "object-assign": "~2.0.0"
   },
   "keywords": [
     "grid",
