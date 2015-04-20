@@ -84,8 +84,9 @@ Feature | Lost | [Bootstrap](http://getbootstrap.com/css/#grid) | [Foundation](h
 
 ##### Installation
 
-- Install [NodeJS](http://nodejs.org)
-- Run the command: `npm install gulp gulp-postcss gulp-sourcemaps gulp-autoprefixer lost --save-dev`
+- [Install NodeJS](http://nodejs.org)
+- Install [Gulp](http://gulpjs.com): `npm install --global gulp`
+- Install dev dependencies: `npm install --save-dev gulp gulp-postcss gulp-sourcemaps gulp-autoprefixer lost`
 - Create a `gulpfile.js` with the following code:
 
 ```javascript

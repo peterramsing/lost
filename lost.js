@@ -62,7 +62,9 @@ module.exports = postcss.plugin('lost', function lost(settings) {
      */
     css.eachDecl('lost-utility', function (decl) {
       var newBlock = function (selector, props, values) {
-        var block = decl.parent.cloneAfter({selector: decl.parent.selector + selector}),
+        var block = decl.parent.cloneAfter({
+          selector: decl.parent.selector + selector
+        }),
             props = props || [],
             values = values || [];
 
@@ -81,7 +83,11 @@ module.exports = postcss.plugin('lost', function lost(settings) {
       };
 
       if (decl.value == 'edit') {
-        newBlock(' *:not(input):not(textarea):not(select)', ['background-color'], ['rgba(0, 0, 255, 0.1)']);
+        newBlock(
+          ' *:not(input):not(textarea):not(select)',
+          ['background-color'],
+          ['rgba(0, 0, 255, 0.1)']
+        );
       }
 
       if (decl.value == 'clearfix') {
@@ -90,8 +96,17 @@ module.exports = postcss.plugin('lost', function lost(settings) {
           value: '1'
         });
 
-        newBlock(':after', ['content', 'display', 'clear'], ['\'\'', 'table', 'both']);
-        newBlock(':before', ['content', 'display'], ['\'\'', 'table']);
+        newBlock(
+          ':after',
+          ['content', 'display', 'clear'],
+          ['\'\'', 'table', 'both']
+        );
+
+        newBlock(
+          ':before',
+          ['content', 'display'],
+          ['\'\'', 'table']
+        );
       }
 
       if (decl.parent.nodes.length === 1) {
@@ -163,7 +178,9 @@ module.exports = postcss.plugin('lost', function lost(settings) {
      */
     css.eachDecl('lost-center', function (decl) {
       var newBlock = function (selector, props, values) {
-        var block = decl.parent.cloneAfter({selector: decl.parent.selector + selector}),
+        var block = decl.parent.cloneAfter({
+          selector: decl.parent.selector + selector
+        }),
             props = props || [],
             values = values || [];
 
@@ -201,6 +218,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
       decl.parent.nodes.forEach(function (decl) {
         if (decl.prop == 'lost-center-padding') {
           lostCenterPadding = decl.value;
+
           decl.removeSelf();
         }
       });
@@ -221,8 +239,17 @@ module.exports = postcss.plugin('lost', function lost(settings) {
           value: '1'
         });
 
-        newBlock(':after', ['content', 'display', 'clear'], ['\'\'', 'table', 'both']);
-        newBlock(':before', ['content', 'display'], ['\'\'', 'table']);
+        newBlock(
+          ':after',
+          ['content', 'display', 'clear'],
+          ['\'\'', 'table', 'both']
+        );
+
+        newBlock(
+          ':before',
+          ['content', 'display'],
+          ['\'\'', 'table']
+        );
       } else {
         decl.cloneBefore({
           prop: 'display',
@@ -270,10 +297,10 @@ module.exports = postcss.plugin('lost', function lost(settings) {
     /**
      * lost-align: Align nested elements. Apply this to a parent container.
      *
-     * @param {string} [reset|horizontal|vertical|top-left|top-center|top|top-right|
-     * middle-left|left|middle-center|center|middle-right|right|bottom-left
-     * bottom-center|bottom|bottom-right] - The position the nested element
-     *   takes relative to the containing element.
+     * @param {string} [reset|horizontal|vertical|top-left|top-center|top|
+     * top-right|middle-left|left|middle-center|center|middle-right|right|
+     * bottom-left|bottom-center|bottom|bottom-right] - The position the nested
+     *   element takes relative to the containing element.
      *
      * @param {string} [flex|no-flex] - Determines whether this element should
      *   use Flexbox or not.
@@ -291,7 +318,9 @@ module.exports = postcss.plugin('lost', function lost(settings) {
      */
     css.eachDecl('lost-align', function (decl) {
       var newBlock = function (selector, props, values) {
-        var block = decl.parent.cloneAfter({selector: decl.parent.selector + selector}),
+        var block = decl.parent.cloneAfter({
+          selector: decl.parent.selector + selector
+        }),
             props = props || [],
             values = values || [];
 
@@ -321,7 +350,11 @@ module.exports = postcss.plugin('lost', function lost(settings) {
             value: 'static'
           });
 
-          newBlock(' > *', ['position', 'top', 'right', 'bottom', 'left', 'transform'], ['static', 'auto', 'auto', 'auto', 'auto', 'translate3d(0, 0, 0)']);
+          newBlock(
+            ' > *',
+            ['position', 'top', 'right', 'bottom', 'left', 'transform'],
+            ['static', 'auto', 'auto', 'auto', 'auto', 'translate3d(0, 0, 0)']
+          );
         } else {
           decl.cloneBefore({
             prop: 'position',
@@ -329,27 +362,71 @@ module.exports = postcss.plugin('lost', function lost(settings) {
           });
 
           if (lostAlign == 'horizontal') {
-            newBlock(' > *', ['position', 'top', 'right', 'bottom', 'left', 'transform'], ['absolute', 'auto', 'auto', 'auto', '50%', 'translate3d(-50%, 0, 0)']);
+            newBlock(
+              ' > *',
+              ['position', 'top', 'right', 'bottom', 'left', 'transform'],
+              ['absolute', 'auto', 'auto', 'auto', '50%', 'translate3d(-50%, 0, 0)']
+            );
           } else if (lostAlign == 'vertical') {
-            newBlock(' > *', ['position', 'top', 'right', 'bottom', 'left', 'transform'], ['absolute', '50%', 'auto', 'auto', 'auto', 'translate3d(0, -50%, 0)']);
+            newBlock(
+              ' > *',
+              ['position', 'top', 'right', 'bottom', 'left', 'transform'],
+              ['absolute', '50%', 'auto', 'auto', 'auto', 'translate3d(0, -50%, 0)']
+            );
           } else if (lostAlign == 'top-left') {
-            newBlock(' > *', ['position', 'top', 'right', 'bottom', 'left', 'transform'], ['absolute', '0', 'auto', 'auto', '0', 'translate3d(0, 0, 0)']);
+            newBlock(
+              ' > *',
+              ['position', 'top', 'right', 'bottom', 'left', 'transform'],
+              ['absolute', '0', 'auto', 'auto', '0', 'translate3d(0, 0, 0)']
+            );
           } else if (lostAlign == 'top-center' || lostAlign == 'top') {
-            newBlock(' > *', ['position', 'top', 'right', 'bottom', 'left', 'transform'], ['absolute', '0', 'auto', 'auto', '50%', 'translate3d(-50%, 0, 0)']);
+            newBlock(
+              ' > *',
+              ['position', 'top', 'right', 'bottom', 'left', 'transform'],
+              ['absolute', '0', 'auto', 'auto', '50%', 'translate3d(-50%, 0, 0)']
+            );
           } else if (lostAlign == 'top-right') {
-            newBlock(' > *', ['position', 'top', 'right', 'bottom', 'left', 'transform'], ['absolute', '0', '0', 'auto', 'auto', 'translate3d(0, 0, 0)']);
+            newBlock(
+              ' > *',
+              ['position', 'top', 'right', 'bottom', 'left', 'transform'],
+              ['absolute', '0', '0', 'auto', 'auto', 'translate3d(0, 0, 0)']
+            );
           } else if (lostAlign == 'middle-left' || lostAlign == 'left') {
-            newBlock(' > *', ['position', 'top', 'right', 'bottom', 'left', 'transform'], ['absolute', '50%', 'auto', 'auto', '0', 'translate3d(0, -50%, 0)']);
+            newBlock(
+              ' > *',
+              ['position', 'top', 'right', 'bottom', 'left', 'transform'],
+              ['absolute', '50%', 'auto', 'auto', '0', 'translate3d(0, -50%, 0)']
+            );
           } else if (lostAlign == 'middle-center' || lostAlign == 'center') {
-            newBlock(' > *', ['position', 'top', 'right', 'bottom', 'left', 'transform'], ['absolute', '50%', 'auto', 'auto', '50%', 'translate3d(-50%, -50%, 0)']);
+            newBlock(
+              ' > *',
+              ['position', 'top', 'right', 'bottom', 'left', 'transform'],
+              ['absolute', '50%', 'auto', 'auto', '50%', 'translate3d(-50%, -50%, 0)']
+            );
           } else if (lostAlign == 'middle-right' || lostAlign == 'right') {
-            newBlock(' > *', ['position', 'top', 'right', 'bottom', 'left', 'transform'], ['absolute', '50%', '0', 'auto', 'auto', 'translate3d(0, -50%, 0)']);
+            newBlock(
+              ' > *',
+              ['position', 'top', 'right', 'bottom', 'left', 'transform'],
+              ['absolute', '50%', '0', 'auto', 'auto', 'translate3d(0, -50%, 0)']
+            );
           } else if (lostAlign == 'bottom-left') {
-            newBlock(' > *', ['position', 'top', 'right', 'bottom', 'left', 'transform'], ['absolute', 'auto', 'auto', '0', '0', 'translate3d(0, 0, 0)']);
+            newBlock(
+              ' > *',
+              ['position', 'top', 'right', 'bottom', 'left', 'transform'],
+              ['absolute', 'auto', 'auto', '0', '0', 'translate3d(0, 0, 0)']
+            );
           } else if (lostAlign == 'bottom-center' || lostAlign == 'bottom') {
-            newBlock(' > *', ['position', 'top', 'right', 'bottom', 'left', 'transform'], ['absolute', 'auto', 'auto', '0', '50%', 'translate3d(-50%, 0, 0)']);
+            newBlock(
+              ' > *',
+              ['position', 'top', 'right', 'bottom', 'left', 'transform'],
+              ['absolute', 'auto', 'auto', '0', '50%', 'translate3d(-50%, 0, 0)']
+            );
           } else if (lostAlign == 'bottom-right') {
-            newBlock(' > *', ['position', 'top', 'right', 'bottom', 'left', 'transform'], ['absolute', 'auto', '0', '0', 'auto', 'translate3d(0, 0, 0)']);
+            newBlock(
+              ' > *',
+              ['position', 'top', 'right', 'bottom', 'left', 'transform'],
+              ['absolute', 'auto', '0', '0', 'auto', 'translate3d(0, 0, 0)']
+            );
           }
         }
       } else {
@@ -359,7 +436,11 @@ module.exports = postcss.plugin('lost', function lost(settings) {
             value: 'initial'
           });
 
-          newBlock(' > *', ['justify-content', 'align-items'], ['inherit', 'inherit']);
+          newBlock(
+            ' > *',
+            ['justify-content', 'align-items'],
+            ['inherit', 'inherit']
+          );
         } else {
           decl.cloneBefore({
             prop: 'display',
@@ -367,27 +448,71 @@ module.exports = postcss.plugin('lost', function lost(settings) {
           });
 
           if (lostAlign == 'horizontal') {
-            newBlock(' > *', ['justify-content', 'align-items'], ['center', 'inherit']);
+            newBlock(
+              ' > *',
+              ['justify-content', 'align-items'],
+              ['center', 'inherit']
+            );
           } else if (lostAlign == 'vertical') {
-            newBlock(' > *', ['justify-content', 'align-items'], ['inherit', 'center']);
+            newBlock(
+              ' > *',
+              ['justify-content', 'align-items'],
+              ['inherit', 'center']
+            );
           } else if (lostAlign == 'top-left') {
-            newBlock(' > *', ['justify-content', 'align-items'], ['flex-start', 'flex-start']);
+            newBlock(
+              ' > *',
+              ['justify-content', 'align-items'],
+              ['flex-start', 'flex-start']
+            );
           } else if (lostAlign == 'top-center' || lostAlign == 'top') {
-            newBlock(' > *', ['justify-content', 'align-items'], ['center', 'flex-start']);
+            newBlock(
+              ' > *',
+              ['justify-content', 'align-items'],
+              ['center', 'flex-start']
+            );
           } else if (lostAlign == 'top-right') {
-            newBlock(' > *', ['justify-content', 'align-items'], ['flex-end', 'flex-start']);
+            newBlock(
+              ' > *',
+              ['justify-content', 'align-items'],
+              ['flex-end', 'flex-start']
+            );
           } else if (lostAlign == 'middle-left' || lostAlign == 'left') {
-            newBlock(' > *', ['justify-content', 'align-items'], ['flex-start', 'center']);
+            newBlock(
+              ' > *',
+              ['justify-content', 'align-items'],
+              ['flex-start', 'center']
+            );
           } else if (lostAlign == 'middle-center' || lostAlign == 'center') {
-            newBlock(' > *', ['justify-content', 'align-items'], ['center', 'center']);
+            newBlock(
+              ' > *',
+              ['justify-content', 'align-items'],
+              ['center', 'center']
+            );
           } else if (lostAlign == 'middle-right' || lostAlign == 'right') {
-            newBlock(' > *', ['justify-content', 'align-items'], ['flex-end', 'center']);
+            newBlock(
+              ' > *',
+              ['justify-content', 'align-items'],
+              ['flex-end', 'center']
+            );
           } else if (lostAlign == 'bottom-left') {
-            newBlock(' > *', ['justify-content', 'align-items'], ['flex-start', 'flex-end']);
+            newBlock(
+              ' > *',
+              ['justify-content', 'align-items'],
+              ['flex-start', 'flex-end']
+            );
           } else if (lostAlign == 'bottom-center' || lostAlign == 'bottom') {
-            newBlock(' > *', ['justify-content', 'align-items'], ['center', 'flex-end']);
+            newBlock(
+              ' > *',
+              ['justify-content', 'align-items'],
+              ['center', 'flex-end']
+            );
           } else if (lostAlign == 'bottom-right') {
-            newBlock(' > *', ['justify-content', 'align-items'], ['flex-end', 'flex-end']);
+            newBlock(
+              ' > *',
+              ['justify-content', 'align-items'],
+              ['flex-end', 'flex-end']
+            );
           }
         }
       }
@@ -429,7 +554,9 @@ module.exports = postcss.plugin('lost', function lost(settings) {
      */
     css.eachDecl('lost-column', function (decl) {
       var newBlock = function (selector, props, values) {
-        var block = decl.parent.cloneAfter({selector: decl.parent.selector + selector}),
+        var block = decl.parent.cloneAfter({
+          selector: decl.parent.selector + selector
+        }),
             props = props || [],
             values = values || [];
 
@@ -478,6 +605,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
       decl.parent.nodes.forEach(function (decl) {
         if (decl.prop == 'lost-column-cycle') {
           lostColumnCycle = decl.value;
+
           decl.removeSelf();
         }
       });
@@ -485,6 +613,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
       decl.parent.nodes.forEach(function (decl) {
         if (decl.prop == 'lost-column-gutter') {
           lostColumnGutter = decl.value;
+
           decl.removeSelf();
         }
       });
@@ -510,12 +639,35 @@ module.exports = postcss.plugin('lost', function lost(settings) {
           value: '0 0 auto'
         });
 
-        newBlock(':nth-child('+ lostColumnCycle +'n)', ['margin-right'], [0]);
-        newBlock(':nth-child(n)', ['margin-right'], [lostColumnGutter]);
+        newBlock(
+          ':nth-child('+ lostColumnCycle +'n)',
+          ['margin-right'],
+          [0]
+        );
+
+        newBlock(
+          ':nth-child(n)',
+          ['margin-right'],
+          [lostColumnGutter]
+        );
       } else {
-        newBlock(':nth-child('+ lostColumnCycle +'n + 1)', ['clear'], ['left']);
-        newBlock(':nth-child('+ lostColumnCycle +'n)', ['float', 'margin-right'], ['right', 0]);
-        newBlock(':nth-child(n)', ['float', 'margin-right', 'clear'], ['left', lostColumnGutter, 'none']);
+        newBlock(
+          ':nth-child('+ lostColumnCycle +'n + 1)',
+          ['clear'],
+          ['left']
+        );
+
+        newBlock(
+          ':nth-child('+ lostColumnCycle +'n)',
+          ['float', 'margin-right'],
+          ['right', 0]
+        );
+
+        newBlock(
+          ':nth-child(n)',
+          ['float', 'margin-right', 'clear'],
+          ['left', lostColumnGutter, 'none']
+        );
       }
 
       if (lostColumnGutter !== '0') {
@@ -560,7 +712,9 @@ module.exports = postcss.plugin('lost', function lost(settings) {
      */
     css.eachDecl('lost-row', function (decl) {
       var newBlock = function (selector, props, values) {
-        var block = decl.parent.cloneAfter({selector: decl.parent.selector + selector}),
+        var block = decl.parent.cloneAfter({
+          selector: decl.parent.selector + selector
+        }),
             props = props || [],
             values = values || [];
 
@@ -600,6 +754,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
       decl.parent.nodes.forEach(function (decl) {
         if (decl.prop == 'lost-row-gutter') {
           lostRowGutter = decl.value;
+
           decl.removeSelf();
         }
       });
@@ -648,7 +803,11 @@ module.exports = postcss.plugin('lost', function lost(settings) {
         value: lostRowGutter
       });
 
-      newBlock(':last-child', ['margin-bottom'], [0]);
+      newBlock(
+        ':last-child',
+        ['margin-bottom'],
+        [0]
+      );
 
       decl.removeSelf();
     });
@@ -687,7 +846,9 @@ module.exports = postcss.plugin('lost', function lost(settings) {
      */
     css.eachDecl('lost-waffle', function (decl) {
       var newBlock = function (selector, props, values) {
-        var block = decl.parent.cloneAfter({selector: decl.parent.selector + selector}),
+        var block = decl.parent.cloneAfter({
+          selector: decl.parent.selector + selector
+        }),
             props = props || [],
             values = values || [];
 
@@ -736,6 +897,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
       decl.parent.nodes.forEach(function (decl) {
         if (decl.prop == 'lost-waffle-cycle') {
           lostWaffleCycle = decl.value;
+
           decl.removeSelf();
         }
       });
@@ -743,6 +905,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
       decl.parent.nodes.forEach(function (decl) {
         if (decl.prop == 'lost-waffle-gutter') {
           lostWaffleGutter = decl.value;
+
           decl.removeSelf();
         }
       });
@@ -768,14 +931,47 @@ module.exports = postcss.plugin('lost', function lost(settings) {
           value: '0 0 auto'
         });
 
-        newBlock(':nth-last-child(-n + '+ lostWaffleCycle +')', ['margin-bottom'], [0]);
-        newBlock(':nth-child('+ lostWaffleCycle +'n)', ['margin-right'], [0]);
-        newBlock(':nth-child(n)', ['margin-right', 'margin-bottom'], [lostWaffleGutter, lostWaffleGutter]);
+        newBlock(
+          ':nth-last-child(-n + '+ lostWaffleCycle +')',
+          ['margin-bottom'],
+          [0]
+        );
+
+        newBlock(
+          ':nth-child('+ lostWaffleCycle +'n)',
+          ['margin-right'],
+          [0]
+        );
+
+        newBlock(
+          ':nth-child(n)',
+          ['margin-right', 'margin-bottom'],
+          [lostWaffleGutter, lostWaffleGutter]
+        );
       } else {
-        newBlock(':nth-last-child(-n + '+ lostWaffleCycle +')', ['margin-bottom'], [0]);
-        newBlock(':nth-child('+ lostWaffleCycle +'n + 1)', ['clear'], ['left']);
-        newBlock(':nth-child('+ lostWaffleCycle +'n)', ['float', 'margin-right'], ['right', 0]);
-        newBlock(':nth-child(n)', ['float', 'margin-right', 'margin-bottom', 'clear'], ['left', lostWaffleGutter, lostWaffleGutter, 'none']);
+        newBlock(
+          ':nth-last-child(-n + '+ lostWaffleCycle +')',
+          ['margin-bottom'],
+          [0]
+        );
+
+        newBlock(
+          ':nth-child('+ lostWaffleCycle +'n + 1)',
+          ['clear'],
+          ['left']
+        );
+
+        newBlock(
+          ':nth-child('+ lostWaffleCycle +'n)',
+          ['float', 'margin-right'],
+          ['right', 0]
+        );
+
+        newBlock(
+          ':nth-child(n)',
+          ['float', 'margin-right', 'margin-bottom', 'clear'],
+          ['left', lostWaffleGutter, lostWaffleGutter, 'none']
+        );
       }
 
       if (lostWaffleGutter !== '0') {
@@ -849,6 +1045,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
       decl.parent.nodes.forEach(function (decl) {
         if (decl.prop == 'lost-offset-direction') {
           lostOffsetDirection = decl.value;
+
           decl.removeSelf();
         }
       });
@@ -856,6 +1053,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
       decl.parent.nodes.forEach(function (decl) {
         if (decl.prop == 'lost-offset-gutter') {
           lostOffsetGutter = decl.value;
+
           decl.removeSelf();
         }
       });
@@ -983,6 +1181,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
       decl.parent.nodes.forEach(function (decl) {
         if (decl.prop == 'lost-move-direction') {
           lostMoveDirection = decl.value;
+
           decl.removeSelf();
         }
       });
@@ -990,6 +1189,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
       decl.parent.nodes.forEach(function (decl) {
         if (decl.prop == 'lost-move-gutter') {
           lostMoveGutter = decl.value;
+
           decl.removeSelf();
         }
       });
@@ -1052,7 +1252,9 @@ module.exports = postcss.plugin('lost', function lost(settings) {
      */
     css.eachDecl('lost-masonry-wrap', function (decl) {
       var newBlock = function (selector, props, values) {
-        var block = decl.parent.cloneAfter({ selector: decl.parent.selector + selector}),
+        var block = decl.parent.cloneAfter({
+          selector: decl.parent.selector + selector
+        }),
             props = props || [],
             values = values || [];
 
@@ -1106,6 +1308,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
       decl.parent.nodes.forEach(function (decl) {
         if (decl.prop == 'lost-masonry-wrap-gutter') {
           lostMasonryWrap = decl.value;
+
           decl.removeSelf();
         }
       });
@@ -1116,13 +1319,23 @@ module.exports = postcss.plugin('lost', function lost(settings) {
           value: '1'
         });
 
-        newBlock(':after', ['content', 'display', 'clear'], ['\'\'', 'table', 'both']);
-        newBlock(':before', ['content', 'display'], ['\'\'', 'table']);
+        newBlock(
+          ':after',
+          ['content', 'display', 'clear'],
+          ['\'\'', 'table', 'both']
+        );
+
+        newBlock(
+          ':before',
+          ['content', 'display'],
+          ['\'\'', 'table']
+        );
       } else {
         decl.cloneBefore({
           prop: 'display',
           value: 'flex'
         });
+
         decl.cloneBefore({
           prop: 'flex-flow',
           value: 'row wrap'
@@ -1194,6 +1407,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
       decl.parent.nodes.forEach(function (decl) {
         if (decl.prop == 'lost-masonry-column-gutter') {
           lostMasonryColumnGutter = decl.value;
+
           decl.removeSelf();
         }
       });
