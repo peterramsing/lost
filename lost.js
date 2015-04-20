@@ -63,8 +63,8 @@ module.exports = postcss.plugin('lost', function lost(settings) {
     css.eachDecl('lost-utility', function (decl) {
       var newBlock = function (selector, props, values) {
         var block = decl.parent.cloneAfter({
-          selector: decl.parent.selector + selector
-        }),
+              selector: decl.parent.selector + selector
+            }),
             props = props || [],
             values = values || [];
 
@@ -179,8 +179,8 @@ module.exports = postcss.plugin('lost', function lost(settings) {
     css.eachDecl('lost-center', function (decl) {
       var newBlock = function (selector, props, values) {
         var block = decl.parent.cloneAfter({
-          selector: decl.parent.selector + selector
-        }),
+              selector: decl.parent.selector + selector
+            }),
             props = props || [],
             values = values || [];
 
@@ -319,8 +319,8 @@ module.exports = postcss.plugin('lost', function lost(settings) {
     css.eachDecl('lost-align', function (decl) {
       var newBlock = function (selector, props, values) {
         var block = decl.parent.cloneAfter({
-          selector: decl.parent.selector + selector
-        }),
+              selector: decl.parent.selector + selector
+            }),
             props = props || [],
             values = values || [];
 
@@ -555,8 +555,8 @@ module.exports = postcss.plugin('lost', function lost(settings) {
     css.eachDecl('lost-column', function (decl) {
       var newBlock = function (selector, props, values) {
         var block = decl.parent.cloneAfter({
-          selector: decl.parent.selector + selector
-        }),
+              selector: decl.parent.selector + selector
+            }),
             props = props || [],
             values = values || [];
 
@@ -725,8 +725,8 @@ module.exports = postcss.plugin('lost', function lost(settings) {
     css.eachDecl('lost-row', function (decl) {
       var newBlock = function (selector, props, values) {
         var block = decl.parent.cloneAfter({
-          selector: decl.parent.selector + selector
-        }),
+              selector: decl.parent.selector + selector
+            }),
             props = props || [],
             values = values || [];
 
@@ -859,8 +859,8 @@ module.exports = postcss.plugin('lost', function lost(settings) {
     css.eachDecl('lost-waffle', function (decl) {
       var newBlock = function (selector, props, values) {
         var block = decl.parent.cloneAfter({
-          selector: decl.parent.selector + selector
-        }),
+              selector: decl.parent.selector + selector
+            }),
             props = props || [],
             values = values || [];
 
@@ -1277,8 +1277,8 @@ module.exports = postcss.plugin('lost', function lost(settings) {
     css.eachDecl('lost-masonry-wrap', function (decl) {
       var newBlock = function (selector, props, values) {
         var block = decl.parent.cloneAfter({
-          selector: decl.parent.selector + selector
-        }),
+              selector: decl.parent.selector + selector
+            }),
             props = props || [],
             values = values || [];
 
