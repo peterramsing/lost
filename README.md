@@ -12,7 +12,7 @@
 # Installation
 
 - Install [NodeJS](http://nodejs.org)
-- Run the command: `npm install gulp gulp-sourcemaps gulp-postcss lost autoprefixer-core`
+- Run the command: `npm install gulp gulp-sourcemaps gulp-postcss lost autoprefixer-core --save-dev`
 - Create a `gulpfile.js` with the following code:
 
 ```javascript
