@@ -214,6 +214,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
       decl.parent.nodes.forEach(function (decl) {
         if (decl.prop == 'lost-center-padding') {
           lostCenterPadding = decl.value;
+
           decl.removeSelf();
         }
       });
@@ -596,6 +597,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
       decl.parent.nodes.forEach(function (decl) {
         if (decl.prop == 'lost-column-cycle') {
           lostColumnCycle = decl.value;
+
           decl.removeSelf();
         }
       });
@@ -603,6 +605,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
       decl.parent.nodes.forEach(function (decl) {
         if (decl.prop == 'lost-column-gutter') {
           lostColumnGutter = decl.value;
+
           decl.removeSelf();
         }
       });
@@ -739,6 +742,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
       decl.parent.nodes.forEach(function (decl) {
         if (decl.prop == 'lost-row-gutter') {
           lostRowGutter = decl.value;
+
           decl.removeSelf();
         }
       });
@@ -874,6 +878,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
       decl.parent.nodes.forEach(function (decl) {
         if (decl.prop == 'lost-waffle-cycle') {
           lostWaffleCycle = decl.value;
+
           decl.removeSelf();
         }
       });
@@ -881,6 +886,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
       decl.parent.nodes.forEach(function (decl) {
         if (decl.prop == 'lost-waffle-gutter') {
           lostWaffleGutter = decl.value;
+
           decl.removeSelf();
         }
       });
@@ -1020,6 +1026,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
       decl.parent.nodes.forEach(function (decl) {
         if (decl.prop == 'lost-offset-direction') {
           lostOffsetDirection = decl.value;
+
           decl.removeSelf();
         }
       });
@@ -1027,6 +1034,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
       decl.parent.nodes.forEach(function (decl) {
         if (decl.prop == 'lost-offset-gutter') {
           lostOffsetGutter = decl.value;
+
           decl.removeSelf();
         }
       });
@@ -1154,6 +1162,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
       decl.parent.nodes.forEach(function (decl) {
         if (decl.prop == 'lost-move-direction') {
           lostMoveDirection = decl.value;
+
           decl.removeSelf();
         }
       });
@@ -1161,6 +1170,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
       decl.parent.nodes.forEach(function (decl) {
         if (decl.prop == 'lost-move-gutter') {
           lostMoveGutter = decl.value;
+
           decl.removeSelf();
         }
       });
@@ -1271,6 +1281,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
       decl.parent.nodes.forEach(function (decl) {
         if (decl.prop == 'lost-masonry-wrap-gutter') {
           lostMasonryWrap = decl.value;
+
           decl.removeSelf();
         }
       });
@@ -1297,6 +1308,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
           prop: 'display',
           value: 'flex'
         });
+
         decl.cloneBefore({
           prop: 'flex-flow',
           value: 'row wrap'
@@ -1360,6 +1372,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
       decl.parent.nodes.forEach(function (decl) {
         if (decl.prop == 'lost-masonry-column-gutter') {
           lostMasonryColumnGutter = decl.value;
+
           decl.removeSelf();
         }
       });
