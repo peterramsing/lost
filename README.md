@@ -21,6 +21,9 @@ I can tell you with no ego, this is [my finest grid](https://www.youtube.com/wat
 - [Comparison Table](#better-than-x)
 - [Getting Started](#getting-started)
   - [Installation](#installation)
+    - [Gulp](#gulp)
+    - [Grunt](#grunt)
+    - [Example](#example)
   - [Basic Columns](#basic-columns)
   - [Centering Elements](#centering-elements)
   - [Controlling Cycle](#controlling-cycle)
@@ -82,7 +85,9 @@ Feature | Lost | [Bootstrap](http://getbootstrap.com/css/#grid) | [Foundation](h
 
 ## Getting Started
 
-##### Installation
+#### Installation
+
+##### Gulp
 
 - [Install NodeJS](http://nodejs.org)
 - Install [Gulp](http://gulpjs.com): `npm install --global gulp`
@@ -122,6 +127,70 @@ This will watch your `src/css/` directory for any changes to CSS files and then
 process them with Autoprefixer and Lost Grid (which will convert Lost Grid rules
 into vanilla CSS code), create sourcemaps, and output the processed CSS and
 sourcemaps to `dist/css/`.
+
+**[⬆ back to top](#table-of-contents)**
+
+&nbsp;
+
+##### Grunt
+
+- [Install NodeJS](http://nodejs.org)
+- Install [Grunt](http://gruntjs.com): `npm install --global grunt-cli`
+- Install dev dependencies: `npm install --save-dev grunt grunt-postcss grunt-autoprefixer grunt-contrib-watch lost`
+- Create a `Gruntfile.js` with the following code:
+
+```javascript
+module.exports = function(grunt) {
+
+  grunt.initConfig({
+
+    postcss: {
+      options: {
+        map: true,
+        processors: [
+          require('lost')
+        ]
+      },
+      dist: {
+        src: 'src/css/style.css',
+        dest: 'dist/css/style.css'
+      }
+    },
+
+    autoprefixer: {
+      single_file: {
+        src: 'dist/css/style.css',
+        dest: 'dist/css/style.css'
+      }
+    },
+
+    watch: {
+      files: ['src/css/style.css'],
+      tasks: ['postcss', 'autoprefixer']
+    }
+
+  });
+
+  grunt.loadNpmTasks('grunt-postcss');
+  grunt.loadNpmTasks('grunt-autoprefixer');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+
+  grunt.registerTask('default', ['watch']);
+
+};
+```
+
+- Run `grunt`
+
+This will watch your `src/css/style.css` file for any changes and then
+process it with Autoprefixer and Lost Grid (which will convert Lost Grid rules
+into vanilla CSS code), and output the processed CSS to `dist/css/style.css`.
+
+**[⬆ back to top](#table-of-contents)**
+
+&nbsp;
+
+##### Example
 
 Lost Grid rules look like this:
 
