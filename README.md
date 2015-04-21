@@ -474,7 +474,7 @@ div {
 
 ##### Flexbox Grids
 
-You can easily change your grids to support Flexbox by altering the global at-rule variable `@lost flexbox` to `flex`. Once you do this, all grids throughout your site will use flexed elements. To make sure they are displayed as flexed elements, you need to wrap them in `flex-container` or `center` (which includes `flex-container` by default).
+You can easily change your grids to support Flexbox by altering the global at-rule variable `@lost flexbox` to `flex`. Once you do this, all grids throughout your site will use flexed elements. To make sure they are displayed as flexed elements, you need to wrap them in `lost-flex-container` or `lost-center` (which includes `lost-flex-container` by default).
 
 ```html
 <section>
