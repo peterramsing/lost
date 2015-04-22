@@ -23,6 +23,7 @@ I can tell you with no ego, this is [my finest grid](https://www.youtube.com/wat
   - [Installation](#installation)
     - [Gulp](#gulp)
     - [Grunt](#grunt)
+    - [Brunch](#brunch)
     - [Example](#example)
   - [Basic Columns](#basic-columns)
   - [Centering Elements](#centering-elements)
@@ -185,6 +186,43 @@ module.exports = function(grunt) {
 This will watch your `src/css/style.css` file for any changes and then
 process it with Autoprefixer and Lost Grid (which will convert Lost Grid rules
 into vanilla CSS code), and output the processed CSS to `dist/css/style.css`.
+
+**[⬆ back to top](#table-of-contents)**
+
+&nbsp;
+
+##### Brunch
+
+- Install [NodeJS](http://nodejs.org)
+- Install [Brunch](http://brunch.io/) `npm install -g brunch`
+- Create a new Brunch project `brunch new https://github.com/brunch/dead-simple`
+- Install [PostCSS](https://www.npmjs.com/package/postcss-brunch) `npm install --save LaurentTreguier/postcss-brunch`
+- Install [Autoprefixer](https://www.npmjs.com/package/autoprefixer) `npm install --save autoprefixer`
+- Install [Lost](https://www.npmjs.com/package/lost) `npm install --save lost`
+- Update `brunch-config.coffee`
+```coffee
+exports.config =
+  # See http://brunch.io/#documentation for docs.
+  files:
+    javascripts:
+      joinTo: 'app.js'
+    stylesheets:
+      joinTo: 'app.css'
+    templates:
+      joinTo: 'app.js'
+  plugins:
+    postcss:
+      config: (postcss) ->
+        postcss().
+        use(require('autoprefixer')(['last 1 versions']).postcss).
+        use(require('lost').postcss)
+```
+
+- Run `brunch watch`
+
+This will watch your app/style.css file for any changes and then process it with Autoprefixer and Lost Grid (which will convert Lost Grid rules into vanilla CSS code), and output the processed CSS to public/app.css.
+
+**NOTE:** postcss-brunch has [issue](https://github.com/iamvdo/postcss-brunch/issues/3), but with this [fix](https://github.com/iamvdo/postcss-brunch/pull/2) is ok, but will work only with a vanilla CSS and Less.
 
 **[⬆ back to top](#table-of-contents)**
 
