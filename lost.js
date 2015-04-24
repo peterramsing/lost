@@ -831,7 +831,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
      * and bottom.
      *
      * @param {string} [fraction] - This is a simple fraction of the containing
-     *   element's width/height.
+     *   element's width and height.
      *
      * @param {integer} [cycle] - Lost works by assigning a margin-right/bottom
      *   to all elements except the last row (no margin-bottom) and the last
