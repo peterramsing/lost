@@ -1453,6 +1453,11 @@ module.exports = postcss.plugin('lost', function lost(settings) {
           prop: 'flex',
           value: '0 0 auto'
         });
+      } else {
+        decl.cloneBefore({
+          prop: 'float',
+          value: 'left'
+        });
       }
 
       if (lostMasonryColumnGutter !== '0') {
