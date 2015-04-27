@@ -198,7 +198,7 @@ into vanilla CSS code), and output the processed CSS to `dist/css/style.css`.
 - Install [NodeJS](http://nodejs.org)
 - Install [Brunch](http://brunch.io/) `npm install -g brunch`
 - Create a new Brunch project `brunch new https://github.com/brunch/dead-simple`
-- Install [PostCSS](https://www.npmjs.com/package/postcss-brunch) `npm install --save LaurentTreguier/postcss-brunch`
+- Install [PostCSS](https://github.com/iamvdo/postcss-brunch) `npm install --save postcss-brunch`
 - Install [Autoprefixer](https://www.npmjs.com/package/autoprefixer) `npm install --save autoprefixer`
 - Install [Lost](https://www.npmjs.com/package/lost) `npm install --save lost`
 - Update `brunch-config.coffee`
@@ -223,8 +223,6 @@ exports.config =
 - Run `brunch watch`
 
 This will watch your app/style.css file for any changes and then process it with Autoprefixer and Lost Grid (which will convert Lost Grid rules into vanilla CSS code), and output the processed CSS to public/app.css.
-
-**NOTE:** postcss-brunch has [issue](https://github.com/iamvdo/postcss-brunch/issues/3), but with this [fix](https://github.com/iamvdo/postcss-brunch/pull/2) is ok, but will work only with a vanilla CSS and Less.
 
 **[⬆ back to top](#table-of-contents)**
 
