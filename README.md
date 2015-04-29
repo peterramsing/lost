@@ -627,11 +627,16 @@ Lost uses PostCSS which means to override global variables we need to use someth
 ```css
 @lost gutter 60px;
 @lost flexbox flex;
+@lost cycle none;
 
 .foo {
   ...
 }
 ```
+
+- `gutter` accepts any unit value. `30px` by default.
+- `flexbox` accepts `flex` or `no-flex` (default).
+- `cycle` accepts `none` or any digit (although this is really weird). `auto` by default.
 
 **[⬆ back to top](#table-of-contents)**
 
