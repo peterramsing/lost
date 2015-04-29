@@ -13,7 +13,8 @@ module.exports = postcss.plugin('lost', function lost(settings) {
 
   settings = assign(settings, {
     gutter: '30px',
-    flexbox: 'no-flex'
+    flexbox: 'no-flex',
+    cycle: 'auto'
   });
 
   return function (css) {
@@ -35,6 +36,17 @@ module.exports = postcss.plugin('lost', function lost(settings) {
       }
       if (rule.params[0] == 'flexbox') {
         settings.flexbox = rule.params[1];
+      }
+      if (rule.params[0] == 'cycle') {
+        if (rule.params[1] !== 'auto') {
+          if (rule.params[1] === 'none' || rule.params[1] === '0') {
+            settings.cycle = 0;
+          } else {
+            settings.cycle = rule.params[1];
+          }
+        } else {
+          settings.cycle = 'auto';
+        }
       }
 
       rule.removeSelf();
@@ -529,9 +541,10 @@ module.exports = postcss.plugin('lost', function lost(settings) {
      *   element's width.
      *
      * @param {integer} [cycle] - Lost works by assigning a margin-right to all
-     *   elements except the last in the row. It does this by default by using
-     *   the denominator of the fraction you pick. To override the default use
-     *   this param., e.g.: .foo { lost-column: 2/4 2; }
+     *   elements except the last in the row. If settings.cycle is set to auto
+     *   it will do this by default by using the denominator of the fraction you
+     *   pick. To override the default use this param.,
+     *   e.g.: .foo { lost-column: 2/4 2; }
      *
      * @param {length} [gutter] - The margin on the right side of the element
      *   used to create a gutter. Typically this is left alone and
@@ -575,9 +588,15 @@ module.exports = postcss.plugin('lost', function lost(settings) {
       },
       declArr = [],
       lostColumn,
-      lostColumnCycle = decl.value.split('/')[1],
+      lostColumnCycle,
       lostColumnGutter = settings.gutter,
       lostColumnFlexbox = settings.flexbox;
+
+      if (settings.cycle === 'auto') {
+        lostColumnCycle = decl.value.split('/')[1];
+      } else {
+        lostColumnCycle = settings.cycle;
+      }
 
       declArr = decl.value.split(' ');
       lostColumn = declArr[0];
@@ -639,11 +658,13 @@ module.exports = postcss.plugin('lost', function lost(settings) {
           value: '0 0 auto'
         });
 
-        newBlock(
-          ':nth-child('+ lostColumnCycle +'n)',
-          ['margin-right'],
-          [0]
-        );
+        if (lostColumnCycle !== 0) {
+          newBlock(
+            ':nth-child('+ lostColumnCycle +'n)',
+            ['margin-right'],
+            [0]
+          );
+        }
 
         newBlock(
           ':last-child',
@@ -657,17 +678,20 @@ module.exports = postcss.plugin('lost', function lost(settings) {
           [lostColumnGutter]
         );
       } else {
-        newBlock(
-          ':nth-child('+ lostColumnCycle +'n + 1)',
-          ['clear'],
-          ['left']
-        );
 
-        newBlock(
-          ':nth-child('+ lostColumnCycle +'n)',
-          ['float', 'margin-right'],
-          ['right', 0]
-        );
+        if (lostColumnCycle !== 0) {
+          newBlock(
+            ':nth-child('+ lostColumnCycle +'n + 1)',
+            ['clear'],
+            ['left']
+          );
+
+          newBlock(
+            ':nth-child('+ lostColumnCycle +'n)',
+            ['margin-right'],
+            [0]
+          );
+        }
 
         newBlock(
           ':last-child',
@@ -879,9 +903,15 @@ module.exports = postcss.plugin('lost', function lost(settings) {
       },
       declArr = [],
       lostWaffle,
-      lostWaffleCycle = decl.value.split('/')[1],
+      lostWaffleCycle,
       lostWaffleGutter = settings.gutter,
       lostWaffleFlexbox = settings.flexbox;
+
+      if (settings.cycle === 'auto') {
+        lostWaffleCycle = decl.value.split('/')[1];
+      } else {
+        lostWaffleCycle = settings.cycle;
+      }
 
       declArr = decl.value.split(' ');
       lostWaffle = declArr[0];
@@ -943,17 +973,19 @@ module.exports = postcss.plugin('lost', function lost(settings) {
           value: '0 0 auto'
         });
 
-        newBlock(
-          ':nth-last-child(-n + '+ lostWaffleCycle +')',
-          ['margin-bottom'],
-          [0]
-        );
+        if (lostWaffleCycle !== 0) {
+          newBlock(
+            ':nth-last-child(-n + '+ lostWaffleCycle +')',
+            ['margin-bottom'],
+            [0]
+          );
 
-        newBlock(
-          ':nth-child('+ lostWaffleCycle +'n)',
-          ['margin-right'],
-          [0]
-        );
+          newBlock(
+            ':nth-child('+ lostWaffleCycle +'n)',
+            ['margin-right'],
+            [0]
+          );
+        }
 
         newBlock(
           ':last-child',
@@ -967,23 +999,25 @@ module.exports = postcss.plugin('lost', function lost(settings) {
           [lostWaffleGutter, lostWaffleGutter]
         );
       } else {
-        newBlock(
-          ':nth-last-child(-n + '+ lostWaffleCycle +')',
-          ['margin-bottom'],
-          [0]
-        );
+        if (lostWaffleCycle !== 0) {
+          newBlock(
+            ':nth-last-child(-n + '+ lostWaffleCycle +')',
+            ['margin-bottom'],
+            [0]
+          );
 
-        newBlock(
-          ':nth-child('+ lostWaffleCycle +'n + 1)',
-          ['clear'],
-          ['left']
-        );
+          newBlock(
+            ':nth-child('+ lostWaffleCycle +'n + 1)',
+            ['clear'],
+            ['left']
+          );
 
-        newBlock(
-          ':nth-child('+ lostWaffleCycle +'n)',
-          ['float', 'margin-right'],
-          ['right', 0]
-        );
+          newBlock(
+            ':nth-child('+ lostWaffleCycle +'n)',
+            ['margin-right'],
+            [0]
+          );
+        }
 
         newBlock(
           ':last-child',
