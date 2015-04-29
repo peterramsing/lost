@@ -886,6 +886,7 @@ div {
 
 - [`calc()` grids](https://webdesign.tutsplus.com/tutorials/calc-grids-are-the-best-grids--cms-22902) work perfect on IE9+ with poor support on old Android browsers ([`calc()` browser support](http://caniuse.com/#feat=calc)).
 - With some polyfills (like the ones included in [Boy](https://github.com/corysimmons/boy)) Lost works perfect in IE8 as well.
+- The Flexbox version of Lost only works with browsers that support Flexbox (IE10+). Unfortunately, there isn't currently a good Flexbox polyfill. [Flexbox browser support](http://caniuse.com/#feat=flexbox)
 
 **[⬆ back to top](#table-of-contents)**
 
