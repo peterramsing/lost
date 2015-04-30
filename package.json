@@ -1,6 +1,6 @@
 {
   "name": "lost",
-  "version": "6.1.0",
+  "version": "6.1.1",
   "description": "PostCSS fractional grid system built with calc() by the guy who built Jeet. Supports masonry, vertical, and waffle grids.",
   "main": "lost.js",
   "repository": {
