@@ -1439,7 +1439,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
     css.eachDecl('lost-masonry-column', function (decl) {
       var declArr = [],
           lostMasonryColumn,
-          lostMasonryColumnFlexbox = settings.flexbox
+          lostMasonryColumnFlexbox = settings.flexbox,
           lostMasonryColumnGutter = settings.gutter,
           lostMasonryColumnGutterUnit;
 
