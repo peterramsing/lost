@@ -199,8 +199,8 @@ into vanilla CSS code), and output the processed CSS to `dist/css/style.css`.
 - Install [Brunch](http://brunch.io/) `npm install -g brunch`
 - Create a new Brunch project `brunch new https://github.com/brunch/dead-simple`
 - Install [PostCSS](https://github.com/iamvdo/postcss-brunch) `npm install --save postcss-brunch`
-- Install [Autoprefixer](https://www.npmjs.com/package/autoprefixer) `npm install --save autoprefixer`
-- Install [Lost](https://www.npmjs.com/package/lost) `npm install --save lost`
+- Install [Autoprefixer](https://github.com/postcss/autoprefixer) `npm install --save autoprefixer`
+- Install [Lost](https://github.com/corysimmons/lost) `npm install --save lost`
 - Update `brunch-config.coffee`
 ```coffee
 exports.config =
@@ -214,10 +214,10 @@ exports.config =
       joinTo: 'app.js'
   plugins:
     postcss:
-      config: (postcss) ->
-        postcss().
-        use(require('autoprefixer')(['last 1 versions']).postcss).
-        use(require('lost').postcss)
+      processors: [
+        require('autoprefixer')(),
+        require('lost')
+      ]
 ```
 
 - Run `brunch watch`
