@@ -649,11 +649,6 @@ module.exports = postcss.plugin('lost', function lost(settings) {
 
       if (lostColumnFlexbox === 'flex') {
         decl.cloneBefore({
-          prop: 'display',
-          value: 'flex'
-        });
-
-        decl.cloneBefore({
           prop: 'flex',
           value: '0 0 auto'
         });
