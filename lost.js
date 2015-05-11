@@ -23,7 +23,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
     props.forEach(function (prop, i) {
       var rule = decl.clone({
         prop: prop,
-        value: values[i]
+        value: values[i].toString()
       });
 
       rule.moveTo(block);
