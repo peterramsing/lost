@@ -807,11 +807,6 @@ module.exports = postcss.plugin('lost', function lost(settings) {
 
       if (lostRowFlexbox === 'flex') {
         decl.cloneBefore({
-          prop: 'display',
-          value: 'flex'
-        });
-
-        decl.cloneBefore({
           prop: 'flex',
           value: '0 0 auto'
         });
@@ -958,11 +953,6 @@ module.exports = postcss.plugin('lost', function lost(settings) {
       });
 
       if (lostWaffleFlexbox === 'flex') {
-        decl.cloneBefore({
-          prop: 'display',
-          value: 'flex'
-        });
-
         decl.cloneBefore({
           prop: 'flex',
           value: '0 0 auto'
