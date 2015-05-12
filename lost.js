@@ -328,7 +328,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
           });
 
           newBlock(
-          decl,
+            decl,
             ' > *',
             ['position', 'top', 'right', 'bottom', 'left', 'transform'],
             ['static', 'auto', 'auto', 'auto', 'auto', 'translate3d(0, 0, 0)']
@@ -341,77 +341,77 @@ module.exports = postcss.plugin('lost', function lost(settings) {
 
           if (lostAlign == 'horizontal') {
             newBlock(
-          decl,
+              decl,
               ' > *',
               ['position', 'top', 'right', 'bottom', 'left', 'transform'],
               ['absolute', 'auto', 'auto', 'auto', '50%', 'translate3d(-50%, 0, 0)']
             );
           } else if (lostAlign == 'vertical') {
             newBlock(
-          decl,
+              decl,
               ' > *',
               ['position', 'top', 'right', 'bottom', 'left', 'transform'],
               ['absolute', '50%', 'auto', 'auto', 'auto', 'translate3d(0, -50%, 0)']
             );
           } else if (lostAlign == 'top-left') {
             newBlock(
-          decl,
+              decl,
               ' > *',
               ['position', 'top', 'right', 'bottom', 'left', 'transform'],
               ['absolute', '0', 'auto', 'auto', '0', 'translate3d(0, 0, 0)']
             );
           } else if (lostAlign == 'top-center' || lostAlign == 'top') {
             newBlock(
-          decl,
+              decl,
               ' > *',
               ['position', 'top', 'right', 'bottom', 'left', 'transform'],
               ['absolute', '0', 'auto', 'auto', '50%', 'translate3d(-50%, 0, 0)']
             );
           } else if (lostAlign == 'top-right') {
             newBlock(
-          decl,
+              decl,
               ' > *',
               ['position', 'top', 'right', 'bottom', 'left', 'transform'],
               ['absolute', '0', '0', 'auto', 'auto', 'translate3d(0, 0, 0)']
             );
           } else if (lostAlign == 'middle-left' || lostAlign == 'left') {
             newBlock(
-          decl,
+              decl,
               ' > *',
               ['position', 'top', 'right', 'bottom', 'left', 'transform'],
               ['absolute', '50%', 'auto', 'auto', '0', 'translate3d(0, -50%, 0)']
             );
           } else if (lostAlign == 'middle-center' || lostAlign == 'center') {
             newBlock(
-          decl,
+              decl,
               ' > *',
               ['position', 'top', 'right', 'bottom', 'left', 'transform'],
               ['absolute', '50%', 'auto', 'auto', '50%', 'translate3d(-50%, -50%, 0)']
             );
           } else if (lostAlign == 'middle-right' || lostAlign == 'right') {
             newBlock(
-          decl,
+              decl,
               ' > *',
               ['position', 'top', 'right', 'bottom', 'left', 'transform'],
               ['absolute', '50%', '0', 'auto', 'auto', 'translate3d(0, -50%, 0)']
             );
           } else if (lostAlign == 'bottom-left') {
             newBlock(
-          decl,
+              decl,
               ' > *',
               ['position', 'top', 'right', 'bottom', 'left', 'transform'],
               ['absolute', 'auto', 'auto', '0', '0', 'translate3d(0, 0, 0)']
             );
           } else if (lostAlign == 'bottom-center' || lostAlign == 'bottom') {
             newBlock(
-          decl,
+              decl,
               ' > *',
               ['position', 'top', 'right', 'bottom', 'left', 'transform'],
               ['absolute', 'auto', 'auto', '0', '50%', 'translate3d(-50%, 0, 0)']
             );
           } else if (lostAlign == 'bottom-right') {
             newBlock(
-          decl,
+              decl,
               ' > *',
               ['position', 'top', 'right', 'bottom', 'left', 'transform'],
               ['absolute', 'auto', '0', '0', 'auto', 'translate3d(0, 0, 0)']
@@ -426,7 +426,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
           });
 
           newBlock(
-          decl,
+            decl,
             ' > *',
             ['justify-content', 'align-items'],
             ['inherit', 'inherit']
@@ -439,77 +439,77 @@ module.exports = postcss.plugin('lost', function lost(settings) {
 
           if (lostAlign == 'horizontal') {
             newBlock(
-          decl,
+              decl,
               ' > *',
               ['justify-content', 'align-items'],
               ['center', 'inherit']
             );
           } else if (lostAlign == 'vertical') {
             newBlock(
-          decl,
+              decl,
               ' > *',
               ['justify-content', 'align-items'],
               ['inherit', 'center']
             );
           } else if (lostAlign == 'top-left') {
             newBlock(
-          decl,
+              decl,
               ' > *',
               ['justify-content', 'align-items'],
               ['flex-start', 'flex-start']
             );
           } else if (lostAlign == 'top-center' || lostAlign == 'top') {
             newBlock(
-          decl,
+              decl,
               ' > *',
               ['justify-content', 'align-items'],
               ['center', 'flex-start']
             );
           } else if (lostAlign == 'top-right') {
             newBlock(
-          decl,
+              decl,
               ' > *',
               ['justify-content', 'align-items'],
               ['flex-end', 'flex-start']
             );
           } else if (lostAlign == 'middle-left' || lostAlign == 'left') {
             newBlock(
-          decl,
+              decl,
               ' > *',
               ['justify-content', 'align-items'],
               ['flex-start', 'center']
             );
           } else if (lostAlign == 'middle-center' || lostAlign == 'center') {
             newBlock(
-          decl,
+              decl,
               ' > *',
               ['justify-content', 'align-items'],
               ['center', 'center']
             );
           } else if (lostAlign == 'middle-right' || lostAlign == 'right') {
             newBlock(
-          decl,
+              decl,
               ' > *',
               ['justify-content', 'align-items'],
               ['flex-end', 'center']
             );
           } else if (lostAlign == 'bottom-left') {
             newBlock(
-          decl,
+              decl,
               ' > *',
               ['justify-content', 'align-items'],
               ['flex-start', 'flex-end']
             );
           } else if (lostAlign == 'bottom-center' || lostAlign == 'bottom') {
             newBlock(
-          decl,
+              decl,
               ' > *',
               ['justify-content', 'align-items'],
               ['center', 'flex-end']
             );
           } else if (lostAlign == 'bottom-right') {
             newBlock(
-          decl,
+              decl,
               ' > *',
               ['justify-content', 'align-items'],
               ['flex-end', 'flex-end']
@@ -624,7 +624,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
 
         if (lostColumnCycle !== 0) {
           newBlock(
-          decl,
+            decl,
             ':nth-child('+ lostColumnCycle +'n)',
             ['margin-right'],
             [0]
@@ -648,14 +648,14 @@ module.exports = postcss.plugin('lost', function lost(settings) {
 
         if (lostColumnCycle !== 0) {
           newBlock(
-          decl,
+            decl,
             ':nth-child('+ lostColumnCycle +'n + 1)',
             ['clear'],
             ['left']
           );
 
           newBlock(
-          decl,
+            decl,
             ':nth-child('+ lostColumnCycle +'n)',
             ['margin-right'],
             [0]
@@ -791,7 +791,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
       });
 
       newBlock(
-          decl,
+        decl,
         ':last-child',
         ['margin-bottom'],
         [0]
@@ -907,14 +907,14 @@ module.exports = postcss.plugin('lost', function lost(settings) {
 
         if (lostWaffleCycle !== 0) {
           newBlock(
-          decl,
+            decl,
             ':nth-last-child(-n + '+ lostWaffleCycle +')',
             ['margin-bottom'],
             [0]
           );
 
           newBlock(
-          decl,
+            decl,
             ':nth-child('+ lostWaffleCycle +'n)',
             ['margin-right'],
             [0]
@@ -937,21 +937,21 @@ module.exports = postcss.plugin('lost', function lost(settings) {
       } else {
         if (lostWaffleCycle !== 0) {
           newBlock(
-          decl,
+            decl,
             ':nth-last-child(-n + '+ lostWaffleCycle +')',
             ['margin-bottom'],
             [0]
           );
 
           newBlock(
-          decl,
+            decl,
             ':nth-child('+ lostWaffleCycle +'n + 1)',
             ['clear'],
             ['left']
           );
 
           newBlock(
-          decl,
+            decl,
             ':nth-child('+ lostWaffleCycle +'n)',
             ['margin-right'],
             [0]
