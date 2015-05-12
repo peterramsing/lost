@@ -94,14 +94,14 @@ Feature | Lost | [Bootstrap](http://getbootstrap.com/css/#grid) | [Foundation](h
 
 - [Install NodeJS](http://nodejs.org)
 - Install [Gulp](http://gulpjs.com): `npm install --global gulp`
-- Install dev dependencies: `npm install --save-dev gulp gulp-postcss gulp-sourcemaps gulp-autoprefixer lost`
+- Install dev dependencies: `npm install --save-dev gulp gulp-postcss gulp-sourcemaps autoprefixer lost`
 - Create a `gulpfile.js` with the following code:
 
 ```javascript
 var gulp = require('gulp'),
     postcss = require('gulp-postcss'),
     sourcemaps = require('gulp-sourcemaps'),
-    autoprefixer = require('gulp-autoprefixer'),
+    autoprefixer = require('autoprefixer'),
     lost = require('lost');
 
 var paths = {
@@ -113,9 +113,9 @@ gulp.task('styles', function() {
   return gulp.src(paths.cssSource + '**/*.css')
     .pipe(sourcemaps.init())
     .pipe(postcss([
-      lost()
+      lost(),
+      autoprefixer()
     ]))
-    .pipe(autoprefixer())
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(paths.cssDestination));
 });
