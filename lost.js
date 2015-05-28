@@ -331,7 +331,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
             decl,
             ' > *',
             ['position', 'top', 'right', 'bottom', 'left', 'transform'],
-            ['static', 'auto', 'auto', 'auto', 'auto', 'translate2d(0, 0)']
+            ['static', 'auto', 'auto', 'auto', 'auto', 'translate(0, 0)']
           );
         } else {
           decl.cloneBefore({
@@ -344,77 +344,77 @@ module.exports = postcss.plugin('lost', function lost(settings) {
               decl,
               ' > *',
               ['position', 'top', 'right', 'bottom', 'left', 'transform'],
-              ['absolute', 'auto', 'auto', 'auto', '50%', 'translate2d(-50%, 0)']
+              ['absolute', 'auto', 'auto', 'auto', '50%', 'translate(-50%, 0)']
             );
           } else if (lostAlign == 'vertical') {
             newBlock(
               decl,
               ' > *',
               ['position', 'top', 'right', 'bottom', 'left', 'transform'],
-              ['absolute', '50%', 'auto', 'auto', 'auto', 'translate2d(0, -50%)']
+              ['absolute', '50%', 'auto', 'auto', 'auto', 'translate(0, -50%)']
             );
           } else if (lostAlign == 'top-left') {
             newBlock(
               decl,
               ' > *',
               ['position', 'top', 'right', 'bottom', 'left', 'transform'],
-              ['absolute', '0', 'auto', 'auto', '0', 'translate2d(0, 0)']
+              ['absolute', '0', 'auto', 'auto', '0', 'translate(0, 0)']
             );
           } else if (lostAlign == 'top-center' || lostAlign == 'top') {
             newBlock(
               decl,
               ' > *',
               ['position', 'top', 'right', 'bottom', 'left', 'transform'],
-              ['absolute', '0', 'auto', 'auto', '50%', 'translate2d(-50%, 0)']
+              ['absolute', '0', 'auto', 'auto', '50%', 'translate(-50%, 0)']
             );
           } else if (lostAlign == 'top-right') {
             newBlock(
               decl,
               ' > *',
               ['position', 'top', 'right', 'bottom', 'left', 'transform'],
-              ['absolute', '0', '0', 'auto', 'auto', 'translate2d(0, 0)']
+              ['absolute', '0', '0', 'auto', 'auto', 'translate(0, 0)']
             );
           } else if (lostAlign == 'middle-left' || lostAlign == 'left') {
             newBlock(
               decl,
               ' > *',
               ['position', 'top', 'right', 'bottom', 'left', 'transform'],
-              ['absolute', '50%', 'auto', 'auto', '0', 'translate2d(0, -50%)']
+              ['absolute', '50%', 'auto', 'auto', '0', 'translate(0, -50%)']
             );
           } else if (lostAlign == 'middle-center' || lostAlign == 'center') {
             newBlock(
               decl,
               ' > *',
               ['position', 'top', 'right', 'bottom', 'left', 'transform'],
-              ['absolute', '50%', 'auto', 'auto', '50%', 'translate2d(-50%, -50%)']
+              ['absolute', '50%', 'auto', 'auto', '50%', 'translate(-50%, -50%)']
             );
           } else if (lostAlign == 'middle-right' || lostAlign == 'right') {
             newBlock(
               decl,
               ' > *',
               ['position', 'top', 'right', 'bottom', 'left', 'transform'],
-              ['absolute', '50%', '0', 'auto', 'auto', 'translate2d(0, -50%)']
+              ['absolute', '50%', '0', 'auto', 'auto', 'translate(0, -50%)']
             );
           } else if (lostAlign == 'bottom-left') {
             newBlock(
               decl,
               ' > *',
               ['position', 'top', 'right', 'bottom', 'left', 'transform'],
-              ['absolute', 'auto', 'auto', '0', '0', 'translate2d(0, 0)']
+              ['absolute', 'auto', 'auto', '0', '0', 'translate(0, 0)']
             );
           } else if (lostAlign == 'bottom-center' || lostAlign == 'bottom') {
             newBlock(
               decl,
               ' > *',
               ['position', 'top', 'right', 'bottom', 'left', 'transform'],
-              ['absolute', 'auto', 'auto', '0', '50%', 'translate2d(-50%, 0)']
+              ['absolute', 'auto', 'auto', '0', '50%', 'translate(-50%, 0)']
             );
           } else if (lostAlign == 'bottom-right') {
             newBlock(
               decl,
               ' > *',
               ['position', 'top', 'right', 'bottom', 'left', 'transform'],
-              ['absolute', 'auto', '0', '0', 'auto', 'translate2d(0, 0)']
+              ['absolute', 'auto', '0', '0', 'auto', 'translate(0, 0)']
             );
           }
         }
