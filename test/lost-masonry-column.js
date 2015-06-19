@@ -1,3 +1,5 @@
+'use strict';
+
 var check = require('./check');
 
 describe('lost-masonry-column', function() {
