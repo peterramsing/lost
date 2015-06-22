@@ -10,8 +10,22 @@ var postcss = require('postcss'),
  */
 module.exports = postcss.plugin('lost', function lost(settings) {
   var newBlock = function (decl, selector, props, values) {
-    var block = decl.parent.cloneAfter({
-          selector: decl.parent.selector + selector
+    var appendToSelectors, completeSelector, block;
+    
+    appendToSelectors = function (selector, selectorToAppend) {
+      var appendedSelectors = [];
+
+      selector.split(',').forEach(function(item) {
+        appendedSelectors.push(item + selectorToAppend);
+      });
+
+      return appendedSelectors.join(',');
+    };
+
+    completeSelector = appendToSelectors(decl.parent.selector, selector);
+
+    block = decl.parent.cloneAfter({
+          selector: completeSelector
         }),
         props = props || [],
         values = values || [];
