@@ -11,7 +11,7 @@ var postcss = require('postcss'),
 module.exports = postcss.plugin('lost', function lost(settings) {
   var newBlock = function (decl, selector, props, values) {
     var appendToSelectors, completeSelector, block;
-    
+
     appendToSelectors = function (selector, selectorToAppend) {
       var appendedSelectors = [];
 
@@ -124,16 +124,16 @@ module.exports = postcss.plugin('lost', function lost(settings) {
 
         newBlock(
           decl,
-          ':after',
-          ['content', 'display', 'clear'],
-          ['\'\'', 'table', 'both']
+          ':after, :before',
+          ['content', 'display'],
+          ['\'\'', 'table']
         );
 
         newBlock(
           decl,
-          ':before',
-          ['content', 'display'],
-          ['\'\'', 'table']
+          ':after',
+          ['clear'],
+          ['both']
         );
       }
 
