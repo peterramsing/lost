@@ -44,15 +44,14 @@ module.exports = postcss.plugin('lost', function lost(settings) {
     });
   };
 
-  settings = settings || {};
-
-  settings = assign(settings, {
-    gutter: '30px',
-    flexbox: 'no-flex',
-    cycle: 'auto'
-  });
-
   return function (css) {
+
+    settings = settings || {};
+
+    settings.gutter = settings.gutter || '30px';
+    settings.flexbox = settings.flexbox || 'no-flex';
+    settings.cycle = settings.cycle || 'auto';
+
     /**
      * Override global settings from at-rules set in stylesheet.
      *
