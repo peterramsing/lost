@@ -124,16 +124,16 @@ module.exports = postcss.plugin('lost', function lost(settings) {
 
         newBlock(
           decl,
-          ':after, :before',
-          ['content', 'display'],
-          ['\'\'', 'table']
+          ':after',
+          ['content', 'display', 'clear'],
+          ['\'\'', 'table', 'both']
         );
 
         newBlock(
           decl,
-          ':after',
-          ['clear'],
-          ['both']
+          ':before',
+          ['content', 'display'],
+          ['\'\'', 'table']
         );
       }
 
