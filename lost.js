@@ -30,7 +30,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
         props = props || [],
         values = values || [];
 
-    block.eachDecl(function (decl) {
+    block.walkDecls(function (decl) {
       decl.removeSelf();
     });
 
@@ -62,7 +62,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
      *     lost-column: 1/3;
      *   }
      */
-    css.eachAtRule('lost', function (rule) {
+    css.walkAtRules('lost', function (rule) {
       rule.params = rule.params.split(' ');
 
       if (rule.params[0] == 'gutter') {
@@ -106,7 +106,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
      *     lost-column: 1/2;
      *   }
      */
-    css.eachDecl('lost-utility', function (decl) {
+    css.walkDecls('lost-utility', function (decl) {
       if (decl.value == 'edit') {
         newBlock(
           decl,
@@ -160,7 +160,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
      *     lost-column: 1/2 flex;
      *   }
      */
-    css.eachDecl('lost-flex-container', function (decl) {
+    css.walkDecls('lost-flex-container', function (decl) {
       decl.cloneBefore({
         prop: 'display',
         value: 'flex'
@@ -204,7 +204,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
      *     lost-center: 1140px 30px flex;
      *   }
      */
-    css.eachDecl('lost-center', function (decl) {
+    css.walkDecls('lost-center', function (decl) {
       var declArr = [],
           lostCenterPadding,
           lostCenterFlexbox = settings.flexbox;
@@ -326,7 +326,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
      *     height: 150px;
      *   }
      */
-    css.eachDecl('lost-align', function (decl) {
+    css.walkDecls('lost-align', function (decl) {
       var declArr = [],
           lostAlign;
 
@@ -567,7 +567,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
      *     lost-column: 2/6 3 60px flex;
      *   }
      */
-    css.eachDecl('lost-column', function (decl) {
+    css.walkDecls('lost-column', function (decl) {
       var declArr = [],
           lostColumn,
           lostColumnCycle,
@@ -730,7 +730,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
      *     lost-row: 1/3;
      *   }
      */
-    css.eachDecl('lost-row', function (decl) {
+    css.walkDecls('lost-row', function (decl) {
       var declArr = [],
           lostRow,
           lostRowGutter = settings.gutter,
@@ -840,7 +840,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
      *     lost-waffle: 1/3;
      *   }
      */
-    css.eachDecl('lost-waffle', function (decl) {
+    css.walkDecls('lost-waffle', function (decl) {
       var declArr = [],
           lostWaffle,
           lostWaffleCycle,
@@ -1025,7 +1025,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
      *     lost-offset: 1/3;
      *   }
      */
-    css.eachDecl('lost-offset', function (decl) {
+    css.walkDecls('lost-offset', function (decl) {
       var declArr = [],
           lostOffset,
           lostOffsetNumerator,
@@ -1161,7 +1161,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
      *     lost-move: -1/2;
      *   }
      */
-    css.eachDecl('lost-move', function (decl) {
+    css.walkDecls('lost-move', function (decl) {
       var declArr = [],
           lostMove,
           lostMoveNumerator,
@@ -1252,7 +1252,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
      *     lost-masonry-column: 1/3;
      *   }
      */
-    css.eachDecl('lost-masonry-wrap', function (decl) {
+    css.walkDecls('lost-masonry-wrap', function (decl) {
       var declArr = [],
           lostMasonryWrap,
           lostMasonryWrapFlexbox = settings.flexbox,
@@ -1362,7 +1362,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
      *     lost-masonry-column: 1/3 60px flex;
      *   }
      */
-    css.eachDecl('lost-masonry-column', function (decl) {
+    css.walkDecls('lost-masonry-column', function (decl) {
       var declArr = [],
           lostMasonryColumn,
           lostMasonryColumnFlexbox = settings.flexbox,
