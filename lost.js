@@ -31,7 +31,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
         values = values || [];
 
     block.walkDecls(function (decl) {
-      decl.removeSelf();
+      decl.remove();
     });
 
     props.forEach(function (prop, i) {
@@ -83,7 +83,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
         }
       }
 
-      rule.removeSelf();
+      rule.remove();
     });
 
 
@@ -138,9 +138,9 @@ module.exports = postcss.plugin('lost', function lost(settings) {
       }
 
       if (decl.parent.nodes.length === 1) {
-        decl.parent.removeSelf();
+        decl.parent.remove();
       } else {
-        decl.removeSelf();
+        decl.remove();
       }
     });
 
@@ -178,7 +178,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
         });
       }
 
-      decl.removeSelf();
+      decl.remove();
     });
 
 
@@ -227,7 +227,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
         if (decl.prop == 'lost-center-padding') {
           lostCenterPadding = decl.value;
 
-          decl.removeSelf();
+          decl.remove();
         }
       });
 
@@ -237,7 +237,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
             lostCenterFlexbox = decl.value;
           }
 
-          decl.removeSelf();
+          decl.remove();
         }
       });
 
@@ -299,7 +299,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
         });
       }
 
-      decl.removeSelf();
+      decl.remove();
 
     });
 
@@ -531,7 +531,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
         }
       }
 
-      decl.removeSelf();
+      decl.remove();
     });
 
 
@@ -607,7 +607,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
         if (decl.prop == 'lost-column-cycle') {
           lostColumnCycle = decl.value;
 
-          decl.removeSelf();
+          decl.remove();
         }
       });
 
@@ -615,7 +615,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
         if (decl.prop == 'lost-column-gutter') {
           lostColumnGutter = decl.value;
 
-          decl.removeSelf();
+          decl.remove();
         }
       });
 
@@ -625,7 +625,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
             lostColumnFlexbox = 'flex';
           }
 
-          decl.removeSelf();
+          decl.remove();
         }
       });
 
@@ -702,7 +702,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
         });
       }
 
-      decl.removeSelf();
+      decl.remove();
     });
 
 
@@ -755,7 +755,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
         if (decl.prop == 'lost-row-gutter') {
           lostRowGutter = decl.value;
 
-          decl.removeSelf();
+          decl.remove();
         }
       });
 
@@ -765,7 +765,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
             lostRowFlexbox = 'flex';
           }
 
-          decl.removeSelf();
+          decl.remove();
         }
       });
 
@@ -805,7 +805,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
         [0]
       );
 
-      decl.removeSelf();
+      decl.remove();
     });
 
 
@@ -880,7 +880,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
         if (decl.prop == 'lost-waffle-cycle') {
           lostWaffleCycle = decl.value;
 
-          decl.removeSelf();
+          decl.remove();
         }
       });
 
@@ -888,7 +888,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
         if (decl.prop == 'lost-waffle-gutter') {
           lostWaffleGutter = decl.value;
 
-          decl.removeSelf();
+          decl.remove();
         }
       });
 
@@ -898,7 +898,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
             lostWaffleFlexbox = 'flex';
           }
 
-          decl.removeSelf();
+          decl.remove();
         }
       });
 
@@ -998,7 +998,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
         });
       }
 
-      decl.removeSelf();
+      decl.remove();
     });
 
 
@@ -1048,7 +1048,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
         if (decl.prop == 'lost-offset-direction') {
           lostOffsetDirection = decl.value;
 
-          decl.removeSelf();
+          decl.remove();
         }
       });
 
@@ -1056,7 +1056,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
         if (decl.prop == 'lost-offset-gutter') {
           lostOffsetGutter = decl.value;
 
-          decl.removeSelf();
+          decl.remove();
         }
       });
 
@@ -1134,7 +1134,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
         }
       }
 
-      decl.removeSelf();
+      decl.remove();
     });
 
 
@@ -1184,7 +1184,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
         if (decl.prop == 'lost-move-direction') {
           lostMoveDirection = decl.value;
 
-          decl.removeSelf();
+          decl.remove();
         }
       });
 
@@ -1192,7 +1192,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
         if (decl.prop == 'lost-move-gutter') {
           lostMoveGutter = decl.value;
 
-          decl.removeSelf();
+          decl.remove();
         }
       });
 
@@ -1227,7 +1227,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
         }
       }
 
-      decl.removeSelf();
+      decl.remove();
     });
 
 
@@ -1283,7 +1283,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
             lostMasonryWrapFlexbox = 'flex';
           }
 
-          decl.removeSelf();
+          decl.remove();
         }
       });
 
@@ -1291,7 +1291,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
         if (decl.prop == 'lost-masonry-wrap-gutter') {
           lostMasonryWrap = decl.value;
 
-          decl.removeSelf();
+          decl.remove();
         }
       });
 
@@ -1338,7 +1338,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
         value: (parseInt(lostMasonryWrapGutter) / -2) + lostMasonryWrapGutterUnit
       });
 
-      decl.removeSelf();
+      decl.remove();
     });
 
 
@@ -1392,7 +1392,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
         if (decl.prop == 'lost-masonry-column-gutter') {
           lostMasonryColumnGutter = decl.value;
 
-          decl.removeSelf();
+          decl.remove();
         }
       });
 
@@ -1402,7 +1402,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
             lostMasonryColumnFlexbox = 'flex';
           }
 
-          decl.removeSelf();
+          decl.remove();
         }
       });
 
@@ -1452,7 +1452,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
         });
       }
 
-      decl.removeSelf();
+      decl.remove();
     });
   };
 });
