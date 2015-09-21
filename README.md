@@ -277,7 +277,7 @@ div:first-child {
 
 ##### Alignment
 
-Easily align children elements with the `lost-align` property. It accepts options like `top-left`, `right`, `center`, [etc.](#align).
+Easily align children elements with the `lost-align` property. It accepts options like `top-left`, `right`, `center`, [etc.](#lost-align).
 
 ```html
 <section>
