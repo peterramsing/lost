@@ -3,9 +3,10 @@
 </p>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/lost"><img src="https://img.shields.io/npm/v/lost.svg?style=flat-square"></a>
-  <a href="https://github.com/corysimmons/lost/stargazers"><img src="http://img.shields.io/npm/dm/lost.svg?style=flat-square"></a>
-  <a href="https://gitter.im/corysimmons/lost"><img src="https://badges.gitter.im/Join%20Chat.svg"></a>
+  <a href="https://www.npmjs.com/package/lost"><img src="https://img.shields.io/npm/v/lost.svg?style=flat-square" alt="NPM version badge"></a>
+  <a href="https://travis-ci.org/jeffjewiss/broccoli-postcss"><img src="https://travis-ci.org/jeffjewiss/broccoli-postcss.svg?branch=master" alt="Travis build status badge"></a>
+  <a href="https://github.com/corysimmons/lost/stargazers"><img src="http://img.shields.io/npm/dm/lost.svg?style=flat-square" alt="Downloads badge"></a>
+  <a href="https://gitter.im/corysimmons/lost"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Gitter badge"></a>
 </p>
 
 Lost Grid is a powerful grid system built in [PostCSS](https://github.com/postcss/postcss) that works with any preprocessor and even vanilla CSS. You can think of it like the [Autoprefixer](https://github.com/postcss/autoprefixer) of grid systems.
