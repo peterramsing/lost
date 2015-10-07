@@ -124,7 +124,7 @@ div:nth-child(3n + 1) {
 
 ##### Basic Columns
 
-To create a basic horizontal grid, just insert some elements into any containing element like so and pass a fraction to the `lost-column` property.
+To create a basic horizontal grid, just insert some elements into any containing element like so and pass a fraction to the `lost-column` property. To unset (or remove) a column rule, possibly at a larger breakpoint, use `lost-column: none;`
 
 ```html
 <section>
@@ -142,6 +142,19 @@ section {
 
 div {
   lost-column: 1/2;
+}
+```
+
+#### Unsetting Columns
+
+```css
+div {
+  lost-column: 1/2;
+}
+@media screen and (min-width: 480px) {
+  div {
+    lost-column: none;
+  }
 }
 ```
 
@@ -585,6 +598,7 @@ Creates a column that is a fraction of the size of its containing element's widt
 - `gutter` - The margin on the right side of the element used to create a gutter. Typically this is left alone and settings.gutter will be used, but you can override it here if you want
 certain elements to have a particularly large or small gutter (pass 0 for no gutter at all).
 - `flex|no-flex` - Determines whether this element should use Flexbox or not.
+- Setting `lost-column` to `none` will unset the column by inheriting the rules from the parent container.
 
 ```css
 div {
