@@ -65,7 +65,7 @@ describe('lost-column', function() {
       'a:last-child { float: inherit; clear: inherit; margin-right: inherit; width: inherit; }\n' +
       'a:nth-child(n) { float: inherit; clear: inherit; margin-right: inherit; width: inherit; }\n' +
       'a:nth-child(1n + 1) { float: inherit; clear: inherit; margin-right: inherit; width: inherit; }\n' +
-      'a:nth-child(1n) { float: inherit; clear: inherit; margin-right: inherit; width: inherit; }\n'
+      'a:nth-child(1n) { float: inherit; clear: inherit; margin-right: inherit; width: inherit; }'
     );
   });
 });
