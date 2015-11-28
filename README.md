@@ -124,7 +124,7 @@ div:nth-child(3n + 1) {
 
 ##### Basic Columns
 
-To create a basic horizontal grid, just insert some elements into any containing element like so and pass a fraction to the `lost-column` property.
+To create a basic horizontal grid, just insert some elements into any containing element like so and pass a fraction to the `lost-column` property. To unset (or remove) a column rule, possibly at a larger breakpoint, use `lost-column: none;`
 
 ```html
 <section>
@@ -142,6 +142,61 @@ section {
 
 div {
   lost-column: 1/2;
+}
+```
+
+#### Unsetting Columns
+
+```css
+div {
+  lost-column: 1/2;
+}
+@media screen and (min-width: 480px) {
+  div {
+    lost-column: none;
+  }
+}
+```
+
+
+Processed CSS:
+
+```css
+section {
+  *zoom: 1;
+}
+
+section:before {
+  content: '';
+  display: table;
+}
+
+section:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+div {
+  width: calc(99.99% * 1/2 - (30px - 30px * 1/2));
+}
+
+div:nth-child(n) {
+  float: left;
+  margin-right: 30px;
+  clear: none;
+}
+
+div:last-child {
+  margin-right: 0;
+}
+
+div:nth-child(2n) {
+  margin-right: 0;
+}
+
+div:nth-child(2n + 1) {
+  clear: left;
 }
 ```
 
@@ -164,6 +219,50 @@ div {
   lost-column: 1/2;
 }
 ```
+Processed CSS:
+
+```css
+section {
+  *zoom: 1;
+  max-width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+section:before {
+  content: '';
+  display: table;
+}
+
+section:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+div {
+  width: calc(99.99% * 1/2 - (30px - 30px * 1/2));
+}
+
+div:nth-child(n) {
+  float: left;
+  margin-right: 30px;
+  clear: none;
+}
+
+div:last-child {
+  margin-right: 0;
+}
+
+div:nth-child(2n) {
+  margin-right: 0;
+}
+
+div:nth-child(2n + 1) {
+  clear: left;
+}
+```
+
 
 **[⬆ back to top](#table-of-contents)**
 
@@ -178,6 +277,28 @@ To override this behavior and tell Lost to apply `margin-right: 0` to a specific
 ```css
 div {
   lost-column: 2/4 2;
+}
+```
+
+Processed CSS:
+
+```css
+div {
+  width: calc(99.99% * 2/4 - (30px - 30px * 2/4));
+}
+div:nth-child(n) {
+  float: left;
+  margin-right: 30px;
+  clear: none;
+}
+div:last-child {
+  margin-right: 0;
+}
+div:nth-child(2n) {
+  margin-right: 0;
+}
+div:nth-child(2n + 1) {
+  clear: left;
 }
 ```
 
@@ -207,6 +328,68 @@ Using this knowledge we can create really flexible layouts with varying widths l
 }
 ```
 
+Processed CSS:
+```css
+.row {
+  *zoom: 1;
+}
+
+.row:before {
+  content: '';
+  display: table;
+}
+
+.row:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.quarter {
+  width: calc(99.99% * 1/4 - (30px - 30px * 1/4));
+}
+
+.quarter:nth-child(n) {
+  float: left;
+  margin-right: 30px;
+  clear: none;
+}
+
+.quarter:last-child {
+  margin-right: 0;
+}
+
+.quarter:nth-child(0n) {
+  margin-right: 0;
+}
+
+.quarter:nth-child(0n + 1) {
+  clear: left;
+}
+
+.half {
+  width: calc(99.99% * 1/2 - (30px - 30px * 1/2));
+}
+
+.half:nth-child(n) {
+  float: left;
+  margin-right: 30px;
+  clear: none;
+}
+
+.half:last-child {
+  margin-right: 0;
+}
+
+.half:nth-child(0n) {
+  margin-right: 0;
+}
+
+.half:nth-child(0n + 1) {
+  clear: left;
+}
+```
+
 There is a global setting to disable/enable `cycle` by default. Just put `@lost cycle auto;` or `@lost cycle none;` at the top of your stylesheet.
 
 It's suggested that you learn the Lost shorthand syntax, but you can specify cycle (and other params) the verbose way with `lost-column-cycle`.
@@ -215,6 +398,27 @@ It's suggested that you learn the Lost shorthand syntax, but you can specify cyc
 div {
   lost-column: 2/6;
   lost-column-cycle: 3;
+}
+```
+
+Processed CSS:
+```css
+div {
+  width: calc(99.99% * 2/6 - (30px - 30px * 2/6));
+}
+div:nth-child(n) {
+  float: left;
+  margin-right: 30px;
+  clear: none;
+}
+div:last-child {
+  margin-right: 0;
+}
+div:nth-child(3n) {
+  margin-right: 0;
+}
+div:nth-child(3n + 1) {
+  clear: left;
 }
 ```
 
@@ -247,6 +451,28 @@ div {
 }
 ```
 
+Processed CSS:
+
+```css
+div {
+  width: calc(99.99% * 1/2 - (30px - 30px * 1/2));
+}
+div:nth-child(n) {
+  float: left;
+  margin-right: 30px;
+  clear: none;
+}
+div:last-child {
+  margin-right: 0;
+}
+div:nth-child(2n) {
+  margin-right: 0;
+}
+div:nth-child(2n + 1) {
+  clear: left;
+}
+```
+
 **[⬆ back to top](#table-of-contents)**
 
 &nbsp;
@@ -269,6 +495,35 @@ div {
 
 div:first-child {
   lost-offset: 1/3;
+}
+```
+
+Processed CSS:
+```css
+div {
+  width: calc(99.99% * 1/3 - (30px - 30px * 1/3));
+}
+
+div:nth-child(n) {
+  float: left;
+  margin-right: 30px;
+  clear: none;
+}
+
+div:last-child {
+  margin-right: 0;
+}
+
+div:nth-child(3n) {
+  margin-right: 0;
+}
+
+div:nth-child(3n + 1) {
+  clear: left;
+}
+
+div:first-child {
+  margin-right: calc(99.99% * 1/3 - (30px - 30px * 1/3) + (30px * 2)) !important;
 }
 ```
 
@@ -299,13 +554,36 @@ div {
 }
 ```
 
+Processed CSS:
+```css
+section {
+  position: relative;
+  width: 600px;
+  height: 400px;
+}
+
+section > * {
+  position: absolute;
+  top: 50%;
+  right: auto;
+  bottom: auto;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+div {
+  width: 100px;
+  height: 100px;
+}
+```
+
 **[⬆ back to top](#table-of-contents)**
 
 &nbsp;
 
 ##### Edit Mode
 
-Use `lost-utility: edit;` on `body` to visualize the entire structure of your site, or just specify the areas you're working on.
+Use `lost-utility: edit;` on `body` to visualize the entire structure of your site, or just specify the areas you're working on. Currently the color is `rgba(0, 0, 255, 0.1)`.
 
 ```html
 <section>
@@ -328,6 +606,19 @@ section:nth-of-type(1) {
 
 section:nth-of-type(2) {
   lost-utility: edit;
+}
+```
+
+Processed CSS:
+```css
+section:nth-of-type(1) *:not(input):not(textarea):not(select) {
+
+    background-color: rgba(0, 0, 255, 0.1)
+}
+
+section:nth-of-type(2) *:not(input):not(textarea):not(select) {
+
+    background-color: rgba(0, 0, 255, 0.1)
 }
 ```
 
@@ -356,6 +647,23 @@ section {
 
 div {
   lost-row: 1/3;
+}
+```
+
+Processed CSS:
+```css
+section {
+  height: 100%;
+}
+
+div {
+  width: 100%;
+  height: calc(99.99% * 1/3 - (30px - 30px * 1/3));
+  margin-bottom: 30px;
+}
+
+div:last-child {
+  margin-bottom: 0;
 }
 ```
 
@@ -391,6 +699,42 @@ div {
 }
 ```
 
+Processed CSS:
+```css
+section {
+  height: 100%;
+}
+
+div {
+  width: calc(99.99% * 1/3 - (30px - 30px * 1/3));
+  height: calc(99.99% * 1/3 - (30px - 30px * 1/3));
+}
+
+div:nth-child(n) {
+  float: left;
+  margin-right: 30px;
+  margin-bottom: 30px;
+  clear: none;
+}
+
+div:last-child {
+  margin-right: 0;
+  margin-bottom: 0;
+}
+
+div:nth-child(3n) {
+  margin-right: 0;
+}
+
+div:nth-child(3n + 1) {
+  clear: left;
+}
+
+div:nth-last-child(-n + 3) {
+  margin-bottom: 0;
+}
+```
+
 **[⬆ back to top](#table-of-contents)**
 
 &nbsp;
@@ -416,6 +760,34 @@ section {
 
 div {
   lost-column: 1/3;
+}
+```
+
+Processed CSS:
+```css
+section {
+  display: flex;
+  flex-flow: row wrap;
+  max-width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+div {
+  flex: 0 0 auto;
+  width: calc(99.99% * 1/3 - (30px - 30px * 1/3));
+}
+
+div:nth-child(n) {
+  margin-right: 30px;
+}
+
+div:last-child {
+  margin-right: 0;
+}
+
+div:nth-child(3n) {
+  margin-right: 0;
 }
 ```
 
@@ -445,6 +817,56 @@ div {
 }
 ```
 
+Processed CSS:
+```css
+ection {
+  *zoom: 1;
+  max-width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+section:before {
+  content: '';
+  display: table;
+}
+
+section:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+div {
+  width: calc(99.99% * 1/3 - (30px - 30px * 1/3));
+  height: calc(99.99% * 1/3 - (30px - 30px * 1/3));
+}
+
+div:nth-child(n) {
+  float: left;
+  margin-right: 30px;
+  margin-bottom: 30px;
+  clear: none;
+}
+
+div:last-child {
+  margin-right: 0;
+  margin-bottom: 0;
+}
+
+div:nth-child(3n) {
+  margin-right: 0;
+}
+
+div:nth-child(3n + 1) {
+  clear: left;
+}
+
+div:nth-last-child(-n + 3) {
+  margin-bottom: 0;
+}
+```
+
 **[⬆ back to top](#table-of-contents)**
 
 &nbsp;
@@ -471,6 +893,33 @@ div {
 }
 ```
 
+Processed CSS:
+```css
+section {
+  *zoom: 1;
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+section:before {
+  content: '';
+  display: table;
+}
+
+section:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+div {
+  flex: 0 0 auto;
+  width: calc(99.99% * 1/3 - 30px);
+  margin-left: 15px;
+  margin-right: 15px;
+}
+```
+
 **[⬆ back to top](#table-of-contents)**
 
 &nbsp;
@@ -486,6 +935,19 @@ Lost uses PostCSS which means to override global variables we need to use someth
 
 .foo {
   ...
+}
+```
+
+Processed CSS:
+```css
+.foo {
+  flex: 0 0 auto;
+}
+.foo:nth-child(n) {
+  margin-right: 60px;
+}
+.foo:last-child {
+  margin-right: 0;
 }
 ```
 
@@ -510,6 +972,13 @@ section {
 }
 ```
 
+Processed CSS:
+```css
+section *:not(input):not(textarea):not(select) {
+    background-color: rgba(0, 0, 255, 0.1)
+}
+```
+
 **[⬆ back to top](#table-of-contents)**
 
 &nbsp;
@@ -526,6 +995,31 @@ section {
 
 div {
   lost-column: 1/2 flex;
+}
+```
+
+Processed CSS:
+```css
+section {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+div {
+  flex: 0 0 auto;
+  width: calc(99.99% * 1/2 - (60px - 60px * 1/2));
+}
+
+div:nth-child(n) {
+  margin-right: 60px;
+}
+
+div:last-child {
+  margin-right: 0;
+}
+
+div:nth-child(2n) {
+  margin-right: 0;
 }
 ```
 
@@ -548,6 +1042,28 @@ section {
 section {
   lost-center: 1140px 30px flex;
 }
+```
+
+Processed CSS:
+```css
+section {
+  display: flex;
+  flex-flow: row wrap;
+  max-width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+section {
+  display: flex;
+  flex-flow: row wrap;
+  max-width: 1140px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
 ```
 
 **[⬆ back to top](#table-of-contents)**
@@ -573,6 +1089,29 @@ Align nested elements. Apply this to a parent container.
 }
 ```
 
+Processed CSS:
+```css
+.parent {
+  position: relative;
+  width: 600px;
+  height: 400px;
+}
+
+.parent > * {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  bottom: auto;
+  left: auto;
+  transform: translate(0, -50%);
+}
+
+.child {
+  width: 300px;
+  height: 150px;
+}
+```
+
 **[⬆ back to top](#table-of-contents)**
 
 &nbsp;
@@ -585,6 +1124,7 @@ Creates a column that is a fraction of the size of its containing element's widt
 - `gutter` - The margin on the right side of the element used to create a gutter. Typically this is left alone and settings.gutter will be used, but you can override it here if you want
 certain elements to have a particularly large or small gutter (pass 0 for no gutter at all).
 - `flex|no-flex` - Determines whether this element should use Flexbox or not.
+- Setting `lost-column` to `none` will unset the column by inheriting the rules from the parent container.
 
 ```css
 div {
@@ -593,6 +1133,39 @@ div {
 
 div {
   lost-column: 2/6 3 60px flex;
+}
+```
+
+Processed CSS:
+```css
+div {
+  flex: 0 0 auto;
+  width: calc(99.99% * 1/3 - (60px - 60px * 1/3));
+}
+
+div:nth-child(n) {
+  margin-right: 60px;
+}
+
+div:last-child {
+  margin-right: 0;
+}
+
+div {
+  flex: 0 0 auto;
+  width: calc(99.99% * 2/6 - (60px - 60px * 2/6));
+}
+
+div:nth-child(n) {
+  margin-right: 60px;
+}
+
+div:last-child {
+  margin-right: 0;
+}
+
+div:nth-child(3n) {
+  margin-right: 0;
 }
 ```
 
@@ -614,6 +1187,24 @@ section {
 
 div {
   lost-row: 1/3;
+}
+```
+
+Processed CSS:
+```css
+section {
+  height: 100%;
+}
+
+div {
+  width: 100%;
+  flex: 0 0 auto;
+  height: calc(99.99% * 1/3 - (60px - 60px * 1/3));
+  margin-bottom: 60px;
+}
+
+div:last-child {
+  margin-bottom: 0;
 }
 ```
 
@@ -639,6 +1230,29 @@ div {
 }
 ```
 
+Processed CSS:
+```css
+section {
+  height: 100%;
+}
+
+div {
+  flex: 0 0 auto;
+  width: calc(99.99% * 1/3 - (60px - 60px * 1/3));
+  height: calc(99.99% * 1/3 - (60px - 60px * 1/3));
+}
+
+div:nth-child(n) {
+  margin-right: 60px;
+  margin-bottom: 60px;
+}
+
+div:last-child {
+  margin-right: 0;
+  margin-bottom: 0;
+}
+```
+
 **[⬆ back to top](#table-of-contents)**
 
 &nbsp;
@@ -657,6 +1271,26 @@ Margin to the left, right, bottom, or top, of an element depending on if the fra
 
 .two-elements:first-child {
   lost-offset: 1/3;
+}
+```
+
+Processed CSS:
+```css
+.two-elements {
+  flex: 0 0 auto;
+  width: calc(99.99% * 1/3 - (60px - 60px * 1/3));
+}
+
+.two-elements:nth-child(n) {
+  margin-right: 60px;
+}
+
+.two-elements:last-child {
+  margin-right: 0;
+}
+
+.two-elements:first-child {
+  margin-right: calc(99.99% * 1/3 - (60px - 60px * 1/3) + (60px * 2)) !important;
 }
 ```
 
@@ -685,6 +1319,32 @@ div:last-child {
 }
 ```
 
+Processed CSS:
+```css
+div {
+  flex: 0 0 auto;
+  width: calc(99.99% * 1/2 - (60px - 60px * 1/2));
+}
+
+div:nth-child(n) {
+  margin-right: 60px;
+}
+
+div:last-child {
+  margin-right: 0;
+}
+
+div:first-child {
+  position: relative;
+  left: calc(99.99% * 1/2 - (60px - 60px * 1/2) + 60px);
+}
+
+div:last-child {
+  position: relative;
+  left: calc(99.99% * -1/2 - (60px - 60px * -1/2) + 60px);
+}
+```
+
 **[⬆ back to top](#table-of-contents)**
 
 &nbsp;
@@ -705,6 +1365,33 @@ div {
 }
 ```
 
+Processed CSS:
+```css
+section {
+  *zoom: 1;
+  margin-left: -30px;
+  margin-right: -30px;
+}
+
+section:before {
+  content: '';
+  display: table;
+}
+
+section:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+div {
+  flex: 0 0 auto;
+  width: calc(99.99% * 1/3 - 60px);
+  margin-left: 30px;
+  margin-right: 30px;
+}
+```
+
 **[⬆ back to top](#table-of-contents)**
 
 &nbsp;
@@ -722,6 +1409,23 @@ section {
 
 div {
   lost-masonry-column: 1/3 60px flex;
+}
+```
+
+Processed CSS:
+```css
+section {
+  display: flex;
+  flex-flow: row wrap;
+  margin-left: -30px;
+  margin-right: -30px;
+}
+
+div {
+  flex: 0 0 auto;
+  width: calc(99.99% * 1/3 - 60px);
+  margin-left: 30px;
+  margin-right: 30px;
 }
 ```
 
@@ -762,6 +1466,7 @@ If you like this project then I encourage you to check out a few of my other pro
 
 - [Alex Bass](http://abass.co) for letting me bounce ideas off of him.
 - [Maria Keller](https://dribbble.com/mariakeller) for the amazing logo. Be sure to hire her for all your design and motion graphic needs.
+- [Peter Ramsing](http://peter.coffee/) for helping update the README, and adding enhancements.
 - Everyone who files an [Issue](https://github.com/corysimmons/lost/issues) when something isn't working as expected.
 - Everyone who is *actually* interested in my work on grids.
 
