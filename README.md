@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="http://corysimmons.github.io/lost/lost-grid.svg">
+  <img src="http://peterramsing.github.io/lost/lost-grid.svg">
 </p>
 
 <p align="center">
