@@ -74,7 +74,7 @@ Feature | Lost | [Bootstrap](http://getbootstrap.com/css/#grid) | [Foundation](h
 [Vertical Grids](https://github.com/peterramsing/lost/wiki/Comparison-Explanation#vertical-grids) | <img src="http://peterramsing.github.io/lost/checkmark.svg">
 [Waffle Grids](https://github.com/peterramsing/lost/wiki/Comparison-Explanation#waffle-grids) | <img src="http://peterramsing.github.io/lost/checkmark.svg">
 [Fixed Gutters](https://github.com/peterramsing/lost/wiki/Comparison-Explanation#fixed-gutters) | <img src="http://peterramsing.github.io/lost/checkmark.svg">
-[Flexbox Grids](https://github.com/peterramsing/lost/wiki/Comparison-Explanation#flexbox-grids) | <img src="http://peterramsing.github.io/lost/checkmark.svg">
+[Flexbox Grids](https://github.com/peterramsing/lost/wiki/Comparison-Explanation#flexbox-grids) | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | | <img src="http://peterramsing.github.io/lost/checkmark.svg">
 
 <sup>If you notice anything in this table is incorrect or unfair, please don't hesitate to [open an issue](https://github.com/peterramsing/lost/issues/new).</sup>
 
