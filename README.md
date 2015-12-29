@@ -11,7 +11,7 @@
 Lost Grid is a powerful grid system built in [PostCSS](https://github.com/postcss/postcss) that works with any preprocessor and even vanilla CSS. You can think of it like the [Autoprefixer](https://github.com/postcss/autoprefixer) of grid systems.
 
 
-## This project is transition of maintainers.
+## This project is currently transitioning maintainers.
 
 [@corysimmons](https://github.com/corysimmons) Created this grid and has since moved on to other projects. [@peterramsing](https://github.com/peterramsing), is currently transitioning to maintaining this project. If you have any questions, comments, or concerns please feel free to [open an issue](https://github.com/peterramsing/lost/issues/new).
 
