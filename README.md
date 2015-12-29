@@ -10,6 +10,13 @@
 
 Lost Grid is a powerful grid system built in [PostCSS](https://github.com/postcss/postcss) that works with any preprocessor and even vanilla CSS. You can think of it like the [Autoprefixer](https://github.com/postcss/autoprefixer) of grid systems.
 
+
+## This project is transition of maintainers.
+
+[@corysimmons](https://github.com/corysimmons) Created this grid and has since moved on to other projects. [@peterramsing](https://github.com/peterramsing), is currently transitioning to maintaining this project. If you have any questions, comments, or concerns please feel free to [open an issue](https://github.com/peterramsing/lost/issues/new).
+
+*********
+
 It is built upon years of studying and [building](http://jeet.gs) grid systems with **tons** of community feedback.
 
 It makes use of [`calc()`](https://webdesign.tutsplus.com/tutorials/calc-grids-are-the-best-grids--cms-22902) to create stunning grids based on fractions you define without having to pass a ton of options.
