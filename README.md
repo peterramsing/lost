@@ -130,7 +130,7 @@ div:nth-child(3n + 1) {
 
 ##### Basic Columns
 
-To create a basic horizontal grid, just insert some elements into any containing element like so and pass a fraction to the `lost-column` property.
+To create a basic horizontal grid, just insert some elements into any containing element like so and pass a fraction to the `lost-column` property. To unset (or remove) a column rule, possibly at a larger breakpoint, use `lost-column: none;`
 
 ```html
 <section>
