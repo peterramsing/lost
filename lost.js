@@ -21,7 +21,8 @@ var libs = [
 var defaultSettings = {
   gutter: '30px',
   flexbox: 'no-flex',
-  cycle: 'auto'
+  cycle: 'auto',
+  selector: 'nth-child'
 };
 
 module.exports = postcss.plugin('lost', function lost(settings) {
