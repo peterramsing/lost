@@ -1,15 +1,21 @@
 <p align="center">
-  <img src="http://corysimmons.github.io/lost/lost-grid.svg">
+  <img src="http://peterramsing.github.io/lost/lost-grid.svg">
 </p>
 
 <p align="center">
   <a href="https://www.npmjs.com/package/lost"><img src="https://img.shields.io/npm/v/lost.svg?style=flat-square"></a>
-  <a href="https://github.com/corysimmons/lost/stargazers"><img src="http://img.shields.io/npm/dm/lost.svg?style=flat-square"></a>
-  <a href="https://travis-ci.org/corysimmons/lost"><img src="https://img.shields.io/travis/corysimmons/lost/master.svg?style=flat-square"></a>
-  <a href="https://gitter.im/corysimmons/lost"><img src="https://badges.gitter.im/Join%20Chat.svg"></a>
+  <a href="https://github.com/peterramsing/lost/stargazers"><img src="http://img.shields.io/npm/dm/lost.svg?style=flat-square"></a>
+  <a href="https://travis-ci.org/peterramsing/lost"><img src="https://img.shields.io/travis/peterramsing/lost/master.svg?style=flat-square"></a>
 </p>
 
 Lost Grid is a powerful grid system built in [PostCSS](https://github.com/postcss/postcss) that works with any preprocessor and even vanilla CSS. You can think of it like the [Autoprefixer](https://github.com/postcss/autoprefixer) of grid systems.
+
+
+## This project is currently transitioning maintainers.
+
+[@corysimmons](https://github.com/corysimmons) Created this grid and has since moved on to other projects. [@peterramsing](https://github.com/peterramsing), is currently transitioning to maintaining this project. If you have any questions, comments, or concerns please feel free to [open an issue](https://github.com/peterramsing/lost/issues/new).
+
+*********
 
 It is built upon years of studying and [building](http://jeet.gs) grid systems with **tons** of community feedback.
 
@@ -19,7 +25,7 @@ I can tell you with no ego, this is [my finest grid](https://www.youtube.com/wat
 
 
 ## Table of Contents
-- [Installation](https://github.com/corysimmons/lost/wiki/Installation)
+- [Installation](https://github.com/peterramsing/lost/wiki/Installation)
 - [Comparison Table](#better-than-x)
 - [Getting Started](#getting-started)
   - [Basic Columns](#basic-columns)
@@ -57,27 +63,27 @@ Lost is better than any grid system out there and can prove it.
 
 Feature | Lost | [Bootstrap](http://getbootstrap.com/css/#grid) | [Foundation](http://foundation.zurb.com/grid.html) | [Jeet](http://jeet.gs/) | [Neat](http://neat.bourbon.io/) | [Susy](http://susy.oddbird.net/)
 :-:|:-:|:-:|:-:|:-:|:-:|:-:
-[Responsive](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#responsive) | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg">
-[Small learning curve](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#small-learning-curve) | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg">
-[Easy-to-implement](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#easy-to-implement) | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg">
-[Works with Masonry](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#works-with-masonry) | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg"> |
-[Terse markup](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#terse-markup) | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | | | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg">
-[On-the-fly grids](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#on-the-fly-grids) | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | | | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg">
-[Clean markup](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#clean-markup) | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | | | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg">
-[Real gutters](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#real-gutters) | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | | | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg">
-[Sass support](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#sass-support) | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg">
-[Stylus support](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#stylus-support) | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | | | <img src="http://corysimmons.github.io/lost/checkmark.svg">
-[LESS support](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#less-support) | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg">
-[CSS support](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#css-support) | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg">
-[No Additional Ratio Context](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#no-additional-ratio-context) | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg"> | <img src="http://corysimmons.github.io/lost/checkmark.svg">
-[Consistent Gutters on All Sides](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#consistent-gutters-on-all-sides) | <img src="http://corysimmons.github.io/lost/checkmark.svg">
-[Lightweight](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#lightweight) | <img src="http://corysimmons.github.io/lost/checkmark.svg">
-[Vertical Grids](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#vertical-grids) | <img src="http://corysimmons.github.io/lost/checkmark.svg">
-[Waffle Grids](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#waffle-grids) | <img src="http://corysimmons.github.io/lost/checkmark.svg">
-[Fixed Gutters](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#fixed-gutters) | <img src="http://corysimmons.github.io/lost/checkmark.svg">
-[Flexbox Grids](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#flexbox-grids) | <img src="http://corysimmons.github.io/lost/checkmark.svg">
+[Responsive](https://github.com/peterramsing/lost/wiki/Comparison-Explanation#responsive) | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg">
+[Small learning curve](https://github.com/peterramsing/lost/wiki/Comparison-Explanation#small-learning-curve) | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg">
+[Easy-to-implement](https://github.com/peterramsing/lost/wiki/Comparison-Explanation#easy-to-implement) | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg">
+[Works with Masonry](https://github.com/peterramsing/lost/wiki/Comparison-Explanation#works-with-masonry) | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg"> |
+[Terse markup](https://github.com/peterramsing/lost/wiki/Comparison-Explanation#terse-markup) | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | | | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg">
+[On-the-fly grids](https://github.com/peterramsing/lost/wiki/Comparison-Explanation#on-the-fly-grids) | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | | | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg">
+[Clean markup](https://github.com/peterramsing/lost/wiki/Comparison-Explanation#clean-markup) | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | | | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg">
+[Real gutters](https://github.com/peterramsing/lost/wiki/Comparison-Explanation#real-gutters) | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | | | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg">
+[Sass support](https://github.com/peterramsing/lost/wiki/Comparison-Explanation#sass-support) | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg">
+[Stylus support](https://github.com/peterramsing/lost/wiki/Comparison-Explanation#stylus-support) | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | | | <img src="http://peterramsing.github.io/lost/checkmark.svg">
+[LESS support](https://github.com/peterramsing/lost/wiki/Comparison-Explanation#less-support) | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg">
+[CSS support](https://github.com/peterramsing/lost/wiki/Comparison-Explanation#css-support) | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg">
+[No Additional Ratio Context](https://github.com/peterramsing/lost/wiki/Comparison-Explanation#no-additional-ratio-context) | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg">
+[Consistent Gutters on All Sides](https://github.com/peterramsing/lost/wiki/Comparison-Explanation#consistent-gutters-on-all-sides) | <img src="http://peterramsing.github.io/lost/checkmark.svg">
+[Lightweight](https://github.com/peterramsing/lost/wiki/Comparison-Explanation#lightweight) | <img src="http://peterramsing.github.io/lost/checkmark.svg">
+[Vertical Grids](https://github.com/peterramsing/lost/wiki/Comparison-Explanation#vertical-grids) | <img src="http://peterramsing.github.io/lost/checkmark.svg">
+[Waffle Grids](https://github.com/peterramsing/lost/wiki/Comparison-Explanation#waffle-grids) | <img src="http://peterramsing.github.io/lost/checkmark.svg">
+[Fixed Gutters](https://github.com/peterramsing/lost/wiki/Comparison-Explanation#fixed-gutters) | <img src="http://peterramsing.github.io/lost/checkmark.svg">
+[Flexbox Grids](https://github.com/peterramsing/lost/wiki/Comparison-Explanation#flexbox-grids) | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | | <img src="http://peterramsing.github.io/lost/checkmark.svg">
 
-<sup>If you notice anything in this table is incorrect or unfair, please don't hesitate to [open an issue](https://github.com/corysimmons/lost/issues/new).</sup>
+<sup>If you notice anything in this table is incorrect or unfair, please don't hesitate to [open an issue](https://github.com/peterramsing/lost/issues/new).</sup>
 
 **[⬆ back to top](#table-of-contents)**
 
@@ -226,7 +232,7 @@ The concept of `cycle` is **extremely important** to Lost and what sets good Los
 
 ##### Nesting
 
-Nesting is simple and **requires [no extra context](https://github.com/corysimmons/lost/wiki/Comparison-Explanation#no-additional-ratio-context)** unlike other preprocessor grid systems.
+Nesting is simple and **requires [no extra context](https://github.com/peterramsing/lost/wiki/Comparison-Explanation#no-additional-ratio-context)** unlike other preprocessor grid systems.
 
 ```html
 <section>
@@ -731,7 +737,7 @@ div {
 
 ## Example Code
 
-- https://github.com/corysimmons/lost/tree/gh-pages
+- https://github.com/peterramsing/lost/tree/gh-pages
 
 **[⬆ back to top](#table-of-contents)**
 
@@ -759,10 +765,10 @@ If you like this project then I encourage you to check out a few of my other pro
 &nbsp;
 
 ### Thanks
-
+- [Cory Simmons](https://github.com/corysimmons) for creating this grid!
 - [Alex Bass](http://abass.co) for letting me bounce ideas off of him.
 - [Maria Keller](https://dribbble.com/mariakeller) for the amazing logo. Be sure to hire her for all your design and motion graphic needs.
-- Everyone who files an [Issue](https://github.com/corysimmons/lost/issues) when something isn't working as expected.
+- Everyone who files an [Issue](https://github.com/peterramsing/lost/issues) when something isn't working as expected.
 - Everyone who is *actually* interested in my work on grids.
 
 **[⬆ back to top](#table-of-contents)**
