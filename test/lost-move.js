@@ -44,14 +44,13 @@ describe('lost-move', function() {
   });
   it('supports retaining gutter set by lost-column', function() {
     check(
-      'a { lost-column: 1/3 0 0} \m a { lost-move: 1/3}',
-      'a { width: calc(99.999999% * 1/3)}\n' +
+      'a { lost-column: 1/3 0 0} \n' +
+      'a { lost-move: 1/3}',
+      'a { width: calc(99.999999% * 1/3); position: relative; left: calc(99.999999% * 1/3)}\n' +
       'a:nth-child(n) { float: left; margin-right: 0; clear: none}\n' +
       'a:last-child { margin-right: 0}\n' +
       'a:nth-child(0n) { margin-right: 0}\n' +
-      'a:nth-child(0n + 1) { clear: left}\n' +
-      'a { position: relative; left: calc(99.99% * 1/3)' +
-      ' + 30px); }'
+      'a:nth-child(0n + 1) { clear: left}'
     );
   });
 });
