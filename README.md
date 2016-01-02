@@ -17,11 +17,8 @@ Lost Grid is a powerful grid system built in [PostCSS](https://github.com/postcs
 
 *********
 
-It is built upon years of studying and [building](http://jeet.gs) grid systems with **tons** of community feedback.
-
 It makes use of [`calc()`](https://webdesign.tutsplus.com/tutorials/calc-grids-are-the-best-grids--cms-22902) to create stunning grids based on fractions you define without having to pass a ton of options.
 
-I can tell you with no ego, this is [my finest grid](https://www.youtube.com/watch?v=EnjtQQQaDKo).
 
 
 ## Table of Contents
@@ -232,7 +229,7 @@ The concept of `cycle` is **extremely important** to Lost and what sets good Los
 
 ##### Nesting
 
-Nesting is simple and **requires [no extra context](https://github.com/peterramsing/lost/wiki/Comparison-Explanation#no-additional-ratio-context)** unlike other preprocessor grid systems.
+Nesting is simple. There is no context required.
 
 ```html
 <section>
@@ -427,7 +424,7 @@ div {
 
 Flexbox offers slightly cleaner output and avoids the use of `clearfix` and other issues with float-based layouts. It also allows you to have elements of even height rather easily, and [much more](https://github.com/philipwalton/flexbugs/issues/32#issuecomment-90789645). The downside is, Flexbox doesn't work in IE9 or below, so keep that in mind if you have a client that needs that kind of support.
 
-Also note that waffle grids work well for the most part, but are somewhat finicky in fringe situations where Flexbox tries to act smarter than it is. All properties provide a way to disable or enable Flexbox per element with the `flex` parameter so if you'd like to disable it for a specific case you could do this:
+Also note that waffle grids work well for the most part, but are somewhat finicky in fringe situations. All properties provide a way to disable or enable Flexbox per element with the `flex` parameter so if you'd like to disable it for a specific case you could do this:
 
 ```html
 <section>
