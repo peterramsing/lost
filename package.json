@@ -1,11 +1,11 @@
 {
   "name": "lost",
-  "version": "6.6.2",
+  "version": "6.6.3",
   "description": "PostCSS fractional grid system built with calc() by the guy who built Jeet. Supports masonry, vertical, and waffle grids.",
   "main": "lost.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/corysimmons/lost.git"
+    "url": "https://github.com/peterramsing/lost.git"
   },
   "dependencies": {
     "postcss": "^5.0.4",
@@ -19,9 +19,9 @@
   "author": "Cory Simmons",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/corysimmons/lost/issues"
+    "url": "https://github.com/peterramsing/lost/issues"
   },
-  "homepage": "https://github.com/corysimmons/lost",
+  "homepage": "https://github.com/peterramsing/lost",
   "devDependencies": {
     "chai": "^3.0.0",
     "coveralls": "^2.11.2",
