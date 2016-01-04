@@ -689,6 +689,24 @@ div:last-child {
 }
 ```
 
+_note: If a gutter is set, lost-move will not retain it and will need to be set manually_
+
+See [#195](https://github.com/peterramsing/lost/issues/195) for more details. This is projected to be fixed in 7.0.0.
+
+```css
+div {
+  lost-column: 1/2 0 0;
+}
+
+div:first-child {
+  lost-move: 1/2 0 0;
+}
+
+div:last-child {
+  lost-move: -1/2 0 0;
+}
+```
+
 **[⬆ back to top](#table-of-contents)**
 
 &nbsp;
