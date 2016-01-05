@@ -13,11 +13,20 @@ Lost Grid is a powerful grid system built in [PostCSS](https://github.com/postcs
 
 ## This project is currently transitioning maintainers.
 
-[@corysimmons](https://github.com/corysimmons) Created this grid and has since moved on to other projects. [@peterramsing](https://github.com/peterramsing), is currently transitioning to maintaining this project. If you have any questions, comments, or concerns please feel free to [open an issue](https://github.com/peterramsing/lost/issues/new).
+[@corysimmons](https://github.com/corysimmons) Created this grid and has since moved on to other projects. [@peterramsing](https://github.com/peterramsing), is currently transitioning to maintaining this project.
+
+### Near Future  Roadmap Outline:
+- [New documentation](https://github.com/peterramsing/lost/milestones/Site%20and%20Docs) to enhance learning and using Lost
+- [6.7.0](https://github.com/peterramsing/lost/milestones/6.7.0%20-%20Minor%20Updates) - Some minor updates and fixes.
+- [7.0.0](https://github.com/peterramsing/lost/milestones/7.0.0) - Looking to fix some issues and enable more ease of use.
+- A focusing of Lost Grid. With the ever-changing web, Lost wants to be a tool that allows one to dive deep and enable powerful grids, not be the "one tool fits all". With improved documentation and a keen focus, Lost plans on being a great grid option to stand alongside the rest of them.
+
+As always, if you have any questions, comments, or concerns please feel free to [open an issue](https://github.com/peterramsing/lost/issues/new). You're also welcome to tweet [@lostgrid](https://twitter.com/lostgrid) if an issue seems too formal.
 
 *********
 
-It makes use of [`calc()`](https://webdesign.tutsplus.com/tutorials/calc-grids-are-the-best-grids--cms-22902) to create stunning grids based on fractions you define without having to pass a ton of options.
+Lost makes use of [`calc()`](https://webdesign.tutsplus.com/tutorials/calc-grids-are-the-best-grids--cms-22902) to create stunning grids based on fractions you define without having to pass a lot of options.
+
 
 
 
@@ -51,12 +60,11 @@ It makes use of [`calc()`](https://webdesign.tutsplus.com/tutorials/calc-grids-a
   - [`lost-masonry-column`](#lost-masonry-column)
 - [Example Code](#example-code)
 - [Browser Support](#browser-support)
-- [Other Projects](#other-projects)
+- [Gotchas](#gotchas)
 - [Thanks](#thanks)
 
 
-## Better than X
-Lost is better than any grid system out there and can prove it.
+## General Grid Comparison
 
 Feature | Lost | [Bootstrap](http://getbootstrap.com/css/#grid) | [Foundation](http://foundation.zurb.com/grid.html) | [Jeet](http://jeet.gs/) | [Neat](http://neat.bourbon.io/) | [Susy](http://susy.oddbird.net/)
 :-:|:-:|:-:|:-:|:-:|:-:|:-:
@@ -80,7 +88,7 @@ Feature | Lost | [Bootstrap](http://getbootstrap.com/css/#grid) | [Foundation](h
 [Fixed Gutters](https://github.com/peterramsing/lost/wiki/Comparison-Explanation#fixed-gutters) | <img src="http://peterramsing.github.io/lost/checkmark.svg">
 [Flexbox Grids](https://github.com/peterramsing/lost/wiki/Comparison-Explanation#flexbox-grids) | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | | <img src="http://peterramsing.github.io/lost/checkmark.svg">
 
-<sup>If you notice anything in this table is incorrect or unfair, please don't hesitate to [open an issue](https://github.com/peterramsing/lost/issues/new).</sup>
+<sup>If you notice anything in this table is incorrect, please don't hesitate to [open an issue](https://github.com/peterramsing/lost/issues/new) or [tweet](https://twitter.com/lostgrid)</sup>
 
 **[⬆ back to top](#table-of-contents)**
 
@@ -759,22 +767,20 @@ div {
 
 &nbsp;
 
-## Browser Support
+## Gotchas
 
-- [`calc()` grids](https://webdesign.tutsplus.com/tutorials/calc-grids-are-the-best-grids--cms-22902) work perfect on IE9+ with poor support on old Android browsers ([`calc()` browser support](http://caniuse.com/#feat=calc)).
-- With some polyfills (like the ones included in [Boy](https://github.com/corysimmons/boy)) Lost works perfect in IE8 as well.
-- The Flexbox version of Lost only works with browsers that support Flexbox (IE10+). Unfortunately, there isn't currently a good Flexbox polyfill. [Flexbox browser support](http://caniuse.com/#feat=flexbox)
+- If you're experiencing issues when adding padding to an element with `lost-column`, look into adding `box-sizing: border-box` [See Issue 118](https://github.com/peterramsing/lost/issues/118#issuecomment-100752669)
+  - Especially if you're expecting two elements to be next to each other and they end up being on top of each other.
 
 **[⬆ back to top](#table-of-contents)**
 
 &nbsp;
 
-### Other Projects
+## Browser Support
 
-If you like this project then I encourage you to check out a few of my other projects.
-
-- [Boy](https://github.com/corysimmons/boy) - A super lightweight, old-browser-friendly, HTML5 boilerplate with tons of features that make it a great start to any project.
-- [Typographic](https://github.com/corysimmons/typographic) - Insanely powerful yet easy-to-use responsive typography. Includes vertical rhythm, font stacks, modular scale, and more.
+- [`calc()` grids](https://webdesign.tutsplus.com/tutorials/calc-grids-are-the-best-grids--cms-22902) work perfect on IE9+ with poor support on old Android browsers ([`calc()` browser support](http://caniuse.com/#feat=calc)).
+- With some polyfills (like the ones included in [Boy](https://github.com/corysimmons/boy)) Lost works perfect in IE8 as well.
+- The Flexbox version of Lost only works with browsers that support Flexbox (IE10+). Unfortunately, there isn't currently a good Flexbox polyfill. [Flexbox browser support](http://caniuse.com/#feat=flexbox)
 
 **[⬆ back to top](#table-of-contents)**
 
