@@ -90,7 +90,7 @@ Feature | Lost | [Bootstrap](http://getbootstrap.com/css/#grid) | [Foundation](h
 
 <sup>If you notice anything in this table is incorrect, please don't hesitate to [open an issue](https://github.com/peterramsing/lost/issues/new) or [tweet](https://twitter.com/lostgrid)</sup>
 
-**[⬆ back to top](#table-of-contents)**
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -129,7 +129,7 @@ div:nth-child(3n + 1) {
 /*# sourceMappingURL=style.css.map */
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -158,7 +158,7 @@ div {
 
 `lost-utility: clearfix;` is just a [clearfix](http://nicolasgallagher.com/micro-clearfix-hack/) function since Lost Grid elements are floated. It's a good idea to give this to the element wrapping your grid elements every time you have nested floated elements.
 
-**[⬆ back to top](#table-of-contents)**
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -176,7 +176,7 @@ div {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -231,7 +231,7 @@ div {
 
 The concept of `cycle` is **extremely important** to Lost and what sets good Lost developers apart from great Lost developers. Really try to grok this!
 
-**[⬆ back to top](#table-of-contents)**
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -258,7 +258,7 @@ div {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -283,7 +283,7 @@ div:first-child {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -310,7 +310,7 @@ div {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -342,7 +342,7 @@ section:nth-of-type(2) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -370,7 +370,7 @@ div {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -402,7 +402,7 @@ div {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -456,7 +456,7 @@ div {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -482,7 +482,7 @@ div {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -504,7 +504,7 @@ Lost uses PostCSS which means to override global variables we need to use someth
 - `flexbox` accepts `flex` or `no-flex` (default).
 - `cycle` accepts `none` or any digit (although this is really weird). `auto` by default.
 
-**[⬆ back to top](#table-of-contents)**
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -521,7 +521,7 @@ section {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -540,7 +540,7 @@ div {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -561,7 +561,7 @@ section {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -584,7 +584,7 @@ Align nested elements. Apply this to a parent container.
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -608,7 +608,7 @@ div {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -629,7 +629,7 @@ div {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -651,7 +651,7 @@ div {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -672,7 +672,7 @@ Margin to the left, right, bottom, or top, of an element depending on if the fra
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -715,7 +715,7 @@ div:last-child {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -735,7 +735,7 @@ div {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -755,7 +755,7 @@ div {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -763,7 +763,7 @@ div {
 
 - https://github.com/peterramsing/lost/tree/gh-pages
 
-**[⬆ back to top](#table-of-contents)**
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -771,8 +771,12 @@ div {
 
 - If you're experiencing issues when adding padding to an element with `lost-column`, look into adding `box-sizing: border-box` [See Issue 118](https://github.com/peterramsing/lost/issues/118#issuecomment-100752669)
   - Especially if you're expecting two elements to be next to each other and they end up being on top of each other.
+- If you're using [Less](http://lesscss.org/) there are sometimes issues with fractions being divided before Lost can interpret them.
+  - To fix, escape the math like so: `lost-column: ~"1/2";`.
+  - See: [Lost issue 229](https://github.com/peterramsing/lost/issues/229), [Less issue 974](https://github.com/less/less.js/issues/974)
 
-**[⬆ back to top](#table-of-contents)**
+
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -782,7 +786,7 @@ div {
 - With some polyfills (like the ones included in [Boy](https://github.com/corysimmons/boy)) Lost works perfect in IE8 as well.
 - The Flexbox version of Lost only works with browsers that support Flexbox (IE10+). Unfortunately, there isn't currently a good Flexbox polyfill. [Flexbox browser support](http://caniuse.com/#feat=flexbox)
 
-**[⬆ back to top](#table-of-contents)**
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -793,6 +797,6 @@ div {
 - Everyone who files an [Issue](https://github.com/peterramsing/lost/issues) when something isn't working as expected.
 - Everyone who is *actually* interested in my work on grids.
 
-**[⬆ back to top](#table-of-contents)**
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
