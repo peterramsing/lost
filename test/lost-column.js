@@ -62,4 +62,14 @@ describe('lost-column', function() {
       'a:nth-child(3n) { margin-right: 0; }'
     );
   });
+  it('provides none rule', function() {
+    check(
+      'a { lost-column: none; }',
+      'a { width: auto; }\n' +
+      'a:last-child { float: none; clear: none; margin-right: 0; width: auto; }\n' +
+      'a:nth-child(n) { float: none; clear: none; margin-right: 0; width: auto; }\n' +
+      'a:nth-child(1n + 1) { float: none; clear: none; margin-right: 0; width: auto; }\n' +
+      'a:nth-child(1n) { float: none; clear: none; margin-right: 0; width: auto; }'
+    );
+  });
 });
