@@ -160,136 +160,175 @@ describe('lost-align', function() {
     it('resets the alignment', function() {
       check(
         'a { lost-align: reset flex; }',
-        'a { display: initial; }\n' +
-        'a > * { justify-content: inherit; align-items: inherit; }'
+        'a { display: flex; justify-content: inherit; align-items: inherit; }'
       );
     });
 
     it('aligns horizontally', function() {
       check(
         'a { lost-align: horizontal flex; }',
-        'a { display: flex; }\n' +
-        'a > * { justify-content: center; align-items: inherit; }'
+        'a { display: flex; justify-content: center; align-items: inherit; }'
       );
     });
 
     it('aligns vertically', function() {
       check(
         'a { lost-align: vertical flex; }',
-        'a { display: flex; }\n' +
-        'a > * { justify-content: inherit; align-items: center; }'
+        'a { display: flex; justify-content: inherit; align-items: center; }'
       );
     });
 
     it('aligns top left', function() {
       check(
         'a { lost-align: top-left flex; }',
-        'a { display: flex; }\n' +
-        'a > * { justify-content: flex-start; align-items: flex-start; }'
+        'a { display: flex; justify-content: flex-start; align-items: flex-start; }'
       );
     });
 
     it('aligns top center', function() {
       check(
         'a { lost-align: top-center flex; }',
-        'a { display: flex; }\n' +
-        'a > * { justify-content: center; align-items: flex-start; }'
+        'a { display: flex; justify-content: center; align-items: flex-start; }'
       );
     });
 
     it('aligns top', function() {
       check(
         'a { lost-align: top flex; }',
-        'a { display: flex; }\n' +
-        'a > * { justify-content: center; align-items: flex-start; }'
+        'a { display: flex; justify-content: center; align-items: flex-start; }'
       );
     });
 
     it('aligns top right', function() {
       check(
         'a { lost-align: top-right flex; }',
-        'a { display: flex; }\n' +
-        'a > * { justify-content: flex-end; align-items: flex-start; }'
+        'a { display: flex; justify-content: flex-end; align-items: flex-start; }'
+      );
+    });
+
+    it('aligns top between', function() {
+      check(
+        'a { lost-align: top-between flex; }',
+        'a { display: flex; justify-content: space-between; align-items: flex-start; }'
+      );
+    });
+
+    it('aligns top around', function() {
+      check(
+        'a { lost-align: top-around flex; }',
+        'a { display: flex; justify-content: space-around; align-items: flex-start; }'
       );
     });
 
     it('aligns middle left', function() {
       check(
         'a { lost-align: middle-left flex; }',
-        'a { display: flex; }\n' +
-        'a > * { justify-content: flex-start; align-items: center; }'
+        'a { display: flex; justify-content: flex-start; align-items: center; }'
       );
     });
 
     it('aligns left', function() {
       check(
         'a { lost-align: left flex; }',
-        'a { display: flex; }\n' +
-        'a > * { justify-content: flex-start; align-items: center; }'
+        'a { display: flex; justify-content: flex-start; align-items: center; }'
       );
     });
 
     it('aligns middle center', function() {
       check(
         'a { lost-align: middle-center flex; }',
-        'a { display: flex; }\n' +
-        'a > * { justify-content: center; align-items: center; }'
+        'a { display: flex; justify-content: center; align-items: center; }'
       );
     });
 
     it('aligns center', function() {
       check(
         'a { lost-align: center flex; }',
-        'a { display: flex; }\n' +
-        'a > * { justify-content: center; align-items: center; }'
+        'a { display: flex; justify-content: center; align-items: center; }'
       );
     });
 
     it('aligns middle right', function() {
       check(
         'a { lost-align: middle-right flex; }',
-        'a { display: flex; }\n' +
-        'a > * { justify-content: flex-end; align-items: center; }'
+        'a { display: flex; justify-content: flex-end; align-items: center; }'
       );
     });
 
     it('aligns right', function() {
       check(
         'a { lost-align: right flex; }',
-        'a { display: flex; }\n' +
-        'a > * { justify-content: flex-end; align-items: center; }'
+        'a { display: flex; justify-content: flex-end; align-items: center; }'
+      );
+    });
+
+    it('aligns middle between', function() {
+      check(
+        'a { lost-align: middle-between flex; }',
+        'a { display: flex; justify-content: space-between; align-items: center; }'
+      );
+    });
+
+    it('aligns between', function() {
+      check(
+        'a { lost-align: between flex; }',
+        'a { display: flex; justify-content: space-between; align-items: center; }'
+      );
+    });
+
+    it('aligns middle around', function() {
+      check(
+        'a { lost-align: middle-around flex; }',
+        'a { display: flex; justify-content: space-around; align-items: center; }'
+      );
+    });
+
+    it('aligns around', function() {
+      check(
+        'a { lost-align: around flex; }',
+        'a { display: flex; justify-content: space-around; align-items: center; }'
       );
     });
 
     it('aligns bottom left', function() {
       check(
         'a { lost-align: bottom-left flex; }',
-        'a { display: flex; }\n' +
-        'a > * { justify-content: flex-start; align-items: flex-end; }'
+        'a { display: flex; justify-content: flex-start; align-items: flex-end; }'
       );
     });
 
     it('aligns bottom center', function() {
       check(
         'a { lost-align: bottom-center flex; }',
-        'a { display: flex; }\n' +
-        'a > * { justify-content: center; align-items: flex-end; }'
+        'a { display: flex; justify-content: center; align-items: flex-end; }'
       );
     });
 
     it('aligns bottom', function() {
       check(
         'a { lost-align: bottom flex; }',
-        'a { display: flex; }\n' +
-        'a > * { justify-content: center; align-items: flex-end; }'
+        'a { display: flex; justify-content: center; align-items: flex-end; }'
       );
     });
 
     it('aligns bottom right', function() {
       check(
         'a { lost-align: bottom-right flex; }',
-        'a { display: flex; }\n' +
-        'a > * { justify-content: flex-end; align-items: flex-end; }'
+        'a { display: flex; justify-content: flex-end; align-items: flex-end; }'
+      );
+    });
+
+    it('aligns bottom between', function() {
+      check(
+        'a { lost-align: bottom-between flex; }',
+        'a { display: flex; justify-content: space-between; align-items: flex-end; }'
+      );
+    });
+
+    it('aligns bottom around', function() {
+      check(
+        'a { lost-align: bottom-around flex; }',
+        'a { display: flex; justify-content: space-around; align-items: flex-end; }'
       );
     });
   });
