@@ -568,7 +568,7 @@ section {
 #### lost-align
 Align nested elements. Apply this to a parent container.
 
-- `reset|horizontal|vertical|top-left|top-center|top|top-right|middle-left|left|middle-center|center|middle-right|right|bottom-left|bottom-center|bottom|bottom-right` - The position the nested element takes relative to the containing element.
+- `reset|horizontal|vertical|top-left|top-center|top|top-right|top-between|top-around||middle-left|left|middle-center|center|middle-right|right|middle-between|between|middle-around|around|bottom-left|bottom-center|bottom|bottom-right|bottom-between|bottom-around` - The position the nested element takes relative to the containing element.
 - `flex|no-flex` - Determines whether this element should use Flexbox or not.
 
 ```css
