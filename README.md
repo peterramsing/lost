@@ -25,8 +25,8 @@ As always, if you have any questions, comments, or concerns please feel free to 
 
 *********
 
-
 Lost makes use of [`calc()`](https://webdesign.tutsplus.com/tutorials/calc-grids-are-the-best-grids--cms-22902) to create stunning grids based on fractions you define without having to pass a lot of options.
+
 
 
 
@@ -135,7 +135,7 @@ div:nth-child(3n + 1) {
 
 ##### Basic Columns
 
-To create a basic horizontal grid, just insert some elements into any containing element like so and pass a fraction to the `lost-column` property.
+To create a basic horizontal grid, just insert some elements into any containing element like so and pass a fraction to the `lost-column` property. To unset (or remove) a column rule, possibly at a larger breakpoint, use `lost-column: none;`
 
 ```html
 <section>
@@ -237,7 +237,7 @@ The concept of `cycle` is **extremely important** to Lost and what sets good Los
 
 ##### Nesting
 
-Nesting is simple and **requires [no extra context](https://github.com/peterramsing/lost/wiki/Comparison-Explanation#no-additional-ratio-context)** unlike other preprocessor grid systems.
+Nesting is simple. There is no context required.
 
 ```html
 <section>
@@ -432,7 +432,7 @@ div {
 
 Flexbox offers slightly cleaner output and avoids the use of `clearfix` and other issues with float-based layouts. It also allows you to have elements of even height rather easily, and [much more](https://github.com/philipwalton/flexbugs/issues/32#issuecomment-90789645). The downside is, Flexbox doesn't work in IE9 or below, so keep that in mind if you have a client that needs that kind of support.
 
-Also note that waffle grids work well for the most part, but are somewhat finicky in fringe situations where Flexbox tries to act smarter than it is. All properties provide a way to disable or enable Flexbox per element with the `flex` parameter so if you'd like to disable it for a specific case you could do this:
+Also note that waffle grids work well for the most part, but are somewhat finicky in fringe situations. All properties provide a way to disable or enable Flexbox per element with the `flex` parameter so if you'd like to disable it for a specific case you could do this:
 
 ```html
 <section>
@@ -592,10 +592,12 @@ Align nested elements. Apply this to a parent container.
 Creates a column that is a fraction of the size of its containing element's width with a gutter.
 
 - `fraction` - This is a simple fraction of the containing element's width.
-- `cycle` - Lost works by assigning a margin-right to all elements except the last in the row. It does this by default by using the denominator of the fraction you pick. To override the default use this param., e.g.: .foo { lost-column: 2/4 2; }
 - `gutter` - The margin on the right side of the element used to create a gutter. Typically this is left alone and settings.gutter will be used, but you can override it here if you want
 certain elements to have a particularly large or small gutter (pass 0 for no gutter at all).
+  - When specifying the gutter, you need to also specify the cycle. [see issue 181](https://github.com/peterramsing/lost/issues/181)
+- `cycle` - Lost works by assigning a margin-right to all elements except the last in the row. It does this by default by using the denominator of the fraction you pick. To override the default use this param., e.g.: .foo { lost-column: 2/4 2; }
 - `flex|no-flex` - Determines whether this element should use Flexbox or not.
+- `none` - Resets the column (back to browser defaults)
 
 ```css
 div {
@@ -693,6 +695,24 @@ div:first-child {
 
 div:last-child {
   lost-move: -1/2;
+}
+```
+
+_note: If a gutter is set, lost-move will not retain it and will need to be set manually_
+
+See [#195](https://github.com/peterramsing/lost/issues/195) for more details. This is projected to be fixed in 7.0.0.
+
+```css
+div {
+  lost-column: 1/2 0 0;
+}
+
+div:first-child {
+  lost-move: 1/2 0 0;
+}
+
+div:last-child {
+  lost-move: -1/2 0 0;
 }
 ```
 
