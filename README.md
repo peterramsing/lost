@@ -597,6 +597,7 @@ certain elements to have a particularly large or small gutter (pass 0 for no gut
   - When specifying the gutter, you need to also specify the cycle. [see issue 181](https://github.com/peterramsing/lost/issues/181)
 - `cycle` - Lost works by assigning a margin-right to all elements except the last in the row. It does this by default by using the denominator of the fraction you pick. To override the default use this param., e.g.: .foo { lost-column: 2/4 2; }
 - `flex|no-flex` - Determines whether this element should use Flexbox or not.
+- `none` - Resets the column (back to browser defaults)
 
 ```css
 div {
