@@ -13,15 +13,21 @@ Lost Grid is a powerful grid system built in [PostCSS](https://github.com/postcs
 
 ## This project is currently transitioning maintainers.
 
-[@corysimmons](https://github.com/corysimmons) Created this grid and has since moved on to other projects. [@peterramsing](https://github.com/peterramsing), is currently transitioning to maintaining this project. If you have any questions, comments, or concerns please feel free to [open an issue](https://github.com/peterramsing/lost/issues/new).
+[@corysimmons](https://github.com/corysimmons) Created this grid and has since moved on to other projects. [@peterramsing](https://github.com/peterramsing), is currently transitioning to maintaining this project.
+
+### Near Future  Roadmap Outline:
+- [New documentation](https://github.com/peterramsing/lost/milestones/Site%20and%20Docs) to enhance learning and using Lost
+- [6.7.0](https://github.com/peterramsing/lost/milestones/6.7.0%20-%20Minor%20Updates) - Some minor updates and fixes.
+- [7.0.0](https://github.com/peterramsing/lost/milestones/7.0.0) - Looking to fix some issues and enable more ease of use.
+- A focusing of Lost Grid. With the ever-changing web, Lost wants to be a tool that allows one to dive deep and enable powerful grids, not be the "one tool fits all". With improved documentation and a keen focus, Lost plans on being a great grid option to stand alongside the rest of them.
+
+As always, if you have any questions, comments, or concerns please feel free to [open an issue](https://github.com/peterramsing/lost/issues/new). You're also welcome to tweet [@lostgrid](https://twitter.com/lostgrid) if an issue seems too formal.
 
 *********
 
-It is built upon years of studying and [building](http://jeet.gs) grid systems with **tons** of community feedback.
+Lost makes use of [`calc()`](https://webdesign.tutsplus.com/tutorials/calc-grids-are-the-best-grids--cms-22902) to create stunning grids based on fractions you define without having to pass a lot of options.
 
-It makes use of [`calc()`](https://webdesign.tutsplus.com/tutorials/calc-grids-are-the-best-grids--cms-22902) to create stunning grids based on fractions you define without having to pass a ton of options.
 
-I can tell you with no ego, this is [my finest grid](https://www.youtube.com/watch?v=EnjtQQQaDKo).
 
 
 ## Table of Contents
@@ -54,12 +60,11 @@ I can tell you with no ego, this is [my finest grid](https://www.youtube.com/wat
   - [`lost-masonry-column`](#lost-masonry-column)
 - [Example Code](#example-code)
 - [Browser Support](#browser-support)
-- [Other Projects](#other-projects)
+- [Gotchas](#gotchas)
 - [Thanks](#thanks)
 
 
-## Better than X
-Lost is better than any grid system out there and can prove it.
+## General Grid Comparison
 
 Feature | Lost | [Bootstrap](http://getbootstrap.com/css/#grid) | [Foundation](http://foundation.zurb.com/grid.html) | [Jeet](http://jeet.gs/) | [Neat](http://neat.bourbon.io/) | [Susy](http://susy.oddbird.net/)
 :-:|:-:|:-:|:-:|:-:|:-:|:-:
@@ -83,9 +88,9 @@ Feature | Lost | [Bootstrap](http://getbootstrap.com/css/#grid) | [Foundation](h
 [Fixed Gutters](https://github.com/peterramsing/lost/wiki/Comparison-Explanation#fixed-gutters) | <img src="http://peterramsing.github.io/lost/checkmark.svg">
 [Flexbox Grids](https://github.com/peterramsing/lost/wiki/Comparison-Explanation#flexbox-grids) | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | | <img src="http://peterramsing.github.io/lost/checkmark.svg">
 
-<sup>If you notice anything in this table is incorrect or unfair, please don't hesitate to [open an issue](https://github.com/peterramsing/lost/issues/new).</sup>
+<sup>If you notice anything in this table is incorrect, please don't hesitate to [open an issue](https://github.com/peterramsing/lost/issues/new) or [tweet](https://twitter.com/lostgrid)</sup>
 
-**[⬆ back to top](#table-of-contents)**
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -124,13 +129,13 @@ div:nth-child(3n + 1) {
 /*# sourceMappingURL=style.css.map */
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
 
 ##### Basic Columns
 
-To create a basic horizontal grid, just insert some elements into any containing element like so and pass a fraction to the `lost-column` property.
+To create a basic horizontal grid, just insert some elements into any containing element like so and pass a fraction to the `lost-column` property. To unset (or remove) a column rule, possibly at a larger breakpoint, use `lost-column: none;`
 
 ```html
 <section>
@@ -153,7 +158,7 @@ div {
 
 `lost-utility: clearfix;` is just a [clearfix](http://nicolasgallagher.com/micro-clearfix-hack/) function since Lost Grid elements are floated. It's a good idea to give this to the element wrapping your grid elements every time you have nested floated elements.
 
-**[⬆ back to top](#table-of-contents)**
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -171,7 +176,7 @@ div {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -226,13 +231,13 @@ div {
 
 The concept of `cycle` is **extremely important** to Lost and what sets good Lost developers apart from great Lost developers. Really try to grok this!
 
-**[⬆ back to top](#table-of-contents)**
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
 
 ##### Nesting
 
-Nesting is simple and **requires [no extra context](https://github.com/peterramsing/lost/wiki/Comparison-Explanation#no-additional-ratio-context)** unlike other preprocessor grid systems.
+Nesting is simple. There is no context required.
 
 ```html
 <section>
@@ -253,7 +258,7 @@ div {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -278,7 +283,7 @@ div:first-child {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -305,7 +310,7 @@ div {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -337,7 +342,7 @@ section:nth-of-type(2) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -365,7 +370,7 @@ div {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -397,7 +402,7 @@ div {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -427,7 +432,7 @@ div {
 
 Flexbox offers slightly cleaner output and avoids the use of `clearfix` and other issues with float-based layouts. It also allows you to have elements of even height rather easily, and [much more](https://github.com/philipwalton/flexbugs/issues/32#issuecomment-90789645). The downside is, Flexbox doesn't work in IE9 or below, so keep that in mind if you have a client that needs that kind of support.
 
-Also note that waffle grids work well for the most part, but are somewhat finicky in fringe situations where Flexbox tries to act smarter than it is. All properties provide a way to disable or enable Flexbox per element with the `flex` parameter so if you'd like to disable it for a specific case you could do this:
+Also note that waffle grids work well for the most part, but are somewhat finicky in fringe situations. All properties provide a way to disable or enable Flexbox per element with the `flex` parameter so if you'd like to disable it for a specific case you could do this:
 
 ```html
 <section>
@@ -451,7 +456,7 @@ div {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -477,7 +482,7 @@ div {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -499,7 +504,7 @@ Lost uses PostCSS which means to override global variables we need to use someth
 - `flexbox` accepts `flex` or `no-flex` (default).
 - `cycle` accepts `none` or any digit (although this is really weird). `auto` by default.
 
-**[⬆ back to top](#table-of-contents)**
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -516,7 +521,7 @@ section {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -535,7 +540,7 @@ div {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -556,7 +561,7 @@ section {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -579,7 +584,7 @@ Align nested elements. Apply this to a parent container.
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -587,10 +592,12 @@ Align nested elements. Apply this to a parent container.
 Creates a column that is a fraction of the size of its containing element's width with a gutter.
 
 - `fraction` - This is a simple fraction of the containing element's width.
-- `cycle` - Lost works by assigning a margin-right to all elements except the last in the row. It does this by default by using the denominator of the fraction you pick. To override the default use this param., e.g.: .foo { lost-column: 2/4 2; }
 - `gutter` - The margin on the right side of the element used to create a gutter. Typically this is left alone and settings.gutter will be used, but you can override it here if you want
 certain elements to have a particularly large or small gutter (pass 0 for no gutter at all).
+  - When specifying the gutter, you need to also specify the cycle. [see issue 181](https://github.com/peterramsing/lost/issues/181)
+- `cycle` - Lost works by assigning a margin-right to all elements except the last in the row. It does this by default by using the denominator of the fraction you pick. To override the default use this param., e.g.: .foo { lost-column: 2/4 2; }
 - `flex|no-flex` - Determines whether this element should use Flexbox or not.
+- `none` - Resets the column (back to browser defaults)
 
 ```css
 div {
@@ -602,7 +609,7 @@ div {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -623,7 +630,7 @@ div {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -645,7 +652,7 @@ div {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -666,7 +673,7 @@ Margin to the left, right, bottom, or top, of an element depending on if the fra
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -691,7 +698,25 @@ div:last-child {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+_note: If a gutter is set, lost-move will not retain it and will need to be set manually_
+
+See [#195](https://github.com/peterramsing/lost/issues/195) for more details. This is projected to be fixed in 7.0.0.
+
+```css
+div {
+  lost-column: 1/2 0 0;
+}
+
+div:first-child {
+  lost-move: 1/2 0 0;
+}
+
+div:last-child {
+  lost-move: -1/2 0 0;
+}
+```
+
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -711,7 +736,7 @@ div {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -731,7 +756,7 @@ div {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -739,7 +764,29 @@ div {
 
 - https://github.com/peterramsing/lost/tree/gh-pages
 
-**[⬆ back to top](#table-of-contents)**
+**[:arrow_up: back to top](#table-of-contents)**
+
+&nbsp;
+
+## Gotchas
+
+- If you're experiencing issues when adding padding to an element with `lost-column`, look into adding `box-sizing: border-box` [See Issue 118](https://github.com/peterramsing/lost/issues/118#issuecomment-100752669)
+  - Especially if you're expecting two elements to be next to each other and they end up being on top of each other.
+- If you're using [Less](http://lesscss.org/) there are sometimes issues with fractions being divided before Lost can interpret them.
+  - To fix, escape the math like so: `lost-column: ~"1/2";`.
+  - See: [Lost issue 229](https://github.com/peterramsing/lost/issues/229), [Less issue 974](https://github.com/less/less.js/issues/974)
+- If you're using [Less](http://lesscss.org/) you need to escape any `@lost` declarations like so: [See Issue 197](https://github.com/peterramsing/lost/issues/197#issuecomment-170324607)
+
+    ```less
+    .escape-at-rules(@literal) {
+        @namespace ~"lostgrid; @{literal}";
+    }
+
+    .escape-at-rules("@lost flexbox flex");
+    ```
+
+
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -749,18 +796,7 @@ div {
 - With some polyfills (like the ones included in [Boy](https://github.com/corysimmons/boy)) Lost works perfect in IE8 as well.
 - The Flexbox version of Lost only works with browsers that support Flexbox (IE10+). Unfortunately, there isn't currently a good Flexbox polyfill. [Flexbox browser support](http://caniuse.com/#feat=flexbox)
 
-**[⬆ back to top](#table-of-contents)**
-
-&nbsp;
-
-### Other Projects
-
-If you like this project then I encourage you to check out a few of my other projects.
-
-- [Boy](https://github.com/corysimmons/boy) - A super lightweight, old-browser-friendly, HTML5 boilerplate with tons of features that make it a great start to any project.
-- [Typographic](https://github.com/corysimmons/typographic) - Insanely powerful yet easy-to-use responsive typography. Includes vertical rhythm, font stacks, modular scale, and more.
-
-**[⬆ back to top](#table-of-contents)**
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
 
@@ -771,6 +807,6 @@ If you like this project then I encourage you to check out a few of my other pro
 - Everyone who files an [Issue](https://github.com/peterramsing/lost/issues) when something isn't working as expected.
 - Everyone who is *actually* interested in my work on grids.
 
-**[⬆ back to top](#table-of-contents)**
+**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
