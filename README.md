@@ -73,7 +73,7 @@ And the processed CSS looks like this:
 div {
   width: calc(99.99% * 1/3 - (30px - 30px * 1/3));
 }
-div:nth-child(n) {
+div:nth-child(1n) {
   float: left;
   margin-right: 30px;
   clear: none;
