@@ -738,7 +738,7 @@ div {
 - If you're using [Less](http://lesscss.org/) there are sometimes issues with fractions being divided before Lost can interpret them.
   - To fix, escape the math like so: `lost-column: ~"1/2";`.
   - See: [Lost issue 229](https://github.com/peterramsing/lost/issues/229), [Less issue 974](https://github.com/less/less.js/issues/974)
-- If you're using [Less](http://lesscss.org/) you need to escape any `@lost` declarations like so: [See Issue 197](https://github.com/peterramsing/lost/issues/197#issuecomment-170324607)
+- If you're using [Less](http://lesscss.org/) in version `<2.6` you need to escape any `@lost` declarations like so: [See Issue 197](https://github.com/peterramsing/lost/issues/197#issuecomment-170324607)
 
     ```less
     .escape-at-rules(@literal) {
