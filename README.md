@@ -13,7 +13,7 @@ Lost Grid is a powerful grid system built in [PostCSS](https://github.com/postcs
 
 ### Near Future  Roadmap Outline:
 - [New documentation](https://github.com/peterramsing/lost/milestones/Site%20and%20Docs) to enhance learning and using Lost
-- [7.0.0](https://github.com/peterramsing/lost/milestones/7.0.0) - Looking to fix some issues and enable more ease of use.
+- [7.0.0](https://github.com/peterramsing/lost/milestones/7.0.x) - Looking to fix some issues and enable more ease of use.
 - A focusing of Lost Grid. With the ever-changing web, Lost wants to be a tool that allows one to dive deep and enable powerful grids, not be the "one tool fits all". With improved documentation and a keen focus, Lost plans on being a great grid option to stand alongside the rest of them.
 
 As always, if you have any questions, comments, or concerns please feel free to [open an issue](https://github.com/peterramsing/lost/issues/new). You're also welcome to tweet [@lostgrid](https://twitter.com/lostgrid) if an issue seems too formal.
@@ -73,7 +73,7 @@ And the processed CSS looks like this:
 div {
   width: calc(99.99% * 1/3 - (30px - 30px * 1/3));
 }
-div:nth-child(n) {
+div:nth-child(1n) {
   float: left;
   margin-right: 30px;
   clear: none;
@@ -738,7 +738,7 @@ div {
 - If you're using [Less](http://lesscss.org/) there are sometimes issues with fractions being divided before Lost can interpret them.
   - To fix, escape the math like so: `lost-column: ~"1/2";`.
   - See: [Lost issue 229](https://github.com/peterramsing/lost/issues/229), [Less issue 974](https://github.com/less/less.js/issues/974)
-- If you're using [Less](http://lesscss.org/) you need to escape any `@lost` declarations like so: [See Issue 197](https://github.com/peterramsing/lost/issues/197#issuecomment-170324607)
+- If you're using [Less](http://lesscss.org/) in version `<2.6` you need to escape any `@lost` declarations like so: [See Issue 197](https://github.com/peterramsing/lost/issues/197#issuecomment-170324607)
 
     ```less
     .escape-at-rules(@literal) {
