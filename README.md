@@ -82,14 +82,12 @@ div:last-child {
   margin-right: 0;
 }
 div:nth-child(3n) {
-  float: right;
   margin-right: 0;
+  float: right;
 }
 div:nth-child(3n + 1) {
   clear: left;
 }
-
-/*# sourceMappingURL=style.css.map */
 ```
 
 **[:arrow_up: back to top](#table-of-contents)**
