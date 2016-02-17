@@ -52,7 +52,7 @@ describe('lost-waffle', function() {
       ' height: calc(99.999999% * 2/5); }\n' +
       'a:nth-child(1n) { margin-right: 0; margin-bottom: 0; }\n' +
       'a:last-child { margin-right: 0; margin-bottom: 0; }\n' +
-      'a:nth-child(3n) { margin-right: 0; float: right; }\n' +
+      'a:nth-child(3n) { margin-right: 0; margin-left: auto; }\n' +
       'a:nth-last-child(-n + 3) { margin-bottom: 0; }'
     );
   });

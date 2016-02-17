@@ -54,8 +54,7 @@ describe('lost-column', function() {
       ' }\n' +
       'a:nth-child(1n) { margin-right: 60px; }\n' +
       'a:last-child { margin-right: 0; }\n' +
-      'a:nth-child(3n) { float: right; }\n' +
-      'a:nth-child(3n) { margin-right: 0; }'
+      'a:nth-child(3n) { margin-right: 0; margin-left: auto; }'
     );
   });
   it('provides none rule', function() {
