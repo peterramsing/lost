@@ -8,17 +8,6 @@
   <a href="https://travis-ci.org/peterramsing/lost"><img src="https://img.shields.io/travis/peterramsing/lost/master.svg?style=flat-square"></a>
 </p>
 
-<p align="center">
-  [![Stories in Backlog](https://badge.waffle.io/peterramsing/lost.svg?label=status:%20Backlog&title=In%20Backlog)](http://waffle.io/peterramsing/lost)
-
-  [![Stories in Review](https://badge.waffle.io/peterramsing/lost.svg?label=status:%20In%20Review&title=In%20Review)](http://waffle.io/peterramsing/lost)
-
-  [![Stories Ready ](https://badge.waffle.io/peterramsing/lost.svg?label=status:%20Ready%20for%20Dev&title=Ready%20for%20Dev)](http://waffle.io/peterramsing/lost)
-
-  [![Stories in Progress ](https://badge.waffle.io/peterramsing/lost.svg?label=status:%20In%20Progress&title=In%20Progress)](http://waffle.io/peterramsing/lost)
-
-</p>
-
 Lost Grid is a powerful grid system built in [PostCSS](https://github.com/postcss/postcss) that works with any preprocessor and even vanilla CSS. You can think of it like the [Autoprefixer](https://github.com/postcss/autoprefixer) of grid systems.
 
 
