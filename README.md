@@ -455,15 +455,18 @@ Lost uses PostCSS which means to override global variables we need to use someth
 @lost gutter 60px;
 @lost flexbox flex;
 @lost cycle none;
+@lost clearing left
 
 .foo {
   ...
 }
 ```
 
-- `gutter` accepts any unit value. `30px` by default.
+- `gutter` accepts any unit value. `30px` (default).
 - `flexbox` accepts `flex` or `no-flex` (default).
 - `cycle` accepts `none` or any digit (although this is really weird). `auto` by default.
+- `clearing` accepts `left` or `both` (default).
+  - See [#276](https://github.com/peterramsing/lost/issues/276) for details
 
 **[:arrow_up: back to top](#table-of-contents)**
 
