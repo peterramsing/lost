@@ -10,7 +10,7 @@ describe('lost-column', function() {
       'a:nth-child(1n) { float: left; margin-right: 30px; clear: none; }\n' +
       'a:last-child { margin-right: 0; }\n' +
       'a:nth-child(3n) { margin-right: 0; float: right; }\n' +
-      'a:nth-child(3n + 1) { clear: left; }'
+      'a:nth-child(3n + 1) { clear: both; }'
     );
   });
 
@@ -21,7 +21,7 @@ describe('lost-column', function() {
       'a:nth-child(1n) { float: left; margin-right: 30px; clear: none; }\n' +
       'a:last-child { margin-right: 0; }\n' +
       'a:nth-child(5n) { margin-right: 0; float: right; }\n' +
-      'a:nth-child(5n + 1) { clear: left; }'
+      'a:nth-child(5n + 1) { clear: both; }'
     );
   });
 
@@ -32,7 +32,7 @@ describe('lost-column', function() {
       'a:nth-child(1n) { float: left; margin-right: 30px; clear: none; }\n' +
       'a:last-child { margin-right: 0; }\n' +
       'a:nth-child(2n) { margin-right: 0; float: right; }\n' +
-      'a:nth-child(2n + 1) { clear: left; }'
+      'a:nth-child(2n + 1) { clear: both; }'
     );
   });
 
@@ -43,7 +43,7 @@ describe('lost-column', function() {
       'a:nth-child(1n) { float: left; margin-right: 0; clear: none; }\n' +
       'a:last-child { margin-right: 0; }\n' +
       'a:nth-child(3n) { margin-right: 0; float: right; }\n' +
-      'a:nth-child(3n + 1) { clear: left; }'
+      'a:nth-child(3n + 1) { clear: both; }'
     );
   });
 
