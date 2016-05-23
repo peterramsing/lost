@@ -10,7 +10,7 @@
 **Does this introduce any breaking changes?**
 
 
-**Does the PR fulfill the these requirements?**
+**Does the PR fulfill these requirements?**
 - [ ] Tests for the changes have been added
 - [ ] Docs have been added or updated
 
