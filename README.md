@@ -86,7 +86,7 @@ div:nth-child(3n) {
   float: right;
 }
 div:nth-child(3n + 1) {
-  clear: left;
+  clear: both;
 }
 ```
 
