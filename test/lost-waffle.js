@@ -12,7 +12,7 @@ describe('lost-waffle', function() {
       ' margin-bottom: 30px; clear: none; }\n' +
       'a:last-child { margin-right: 0; margin-bottom: 0; }\n' +
       'a:nth-child(3n) { margin-right: 0; float: right; }\n' +
-      'a:nth-child(3n + 1) { clear: left; }\n' +
+      'a:nth-child(3n + 1) { clear: both; }\n' +
       'a:nth-last-child(-n + 3) { margin-bottom: 0; }'
     );
   });
@@ -26,7 +26,7 @@ describe('lost-waffle', function() {
       ' margin-bottom: 30px; clear: none; }\n' +
       'a:last-child { margin-right: 0; margin-bottom: 0; }\n' +
       'a:nth-child(2n) { margin-right: 0; float: right; }\n' +
-      'a:nth-child(2n + 1) { clear: left; }\n' +
+      'a:nth-child(2n + 1) { clear: both; }\n' +
       'a:nth-last-child(-n + 2) { margin-bottom: 0; }'
     );
   });
@@ -40,8 +40,30 @@ describe('lost-waffle', function() {
       ' margin-bottom: 60px; clear: none; }\n' +
       'a:last-child { margin-right: 0; margin-bottom: 0; }\n' +
       'a:nth-child(2n) { margin-right: 0; float: right; }\n' +
-      'a:nth-child(2n + 1) { clear: left; }\n' +
+      'a:nth-child(2n + 1) { clear: both; }\n' +
       'a:nth-last-child(-n + 2) { margin-bottom: 0; }'
+    );
+  });
+
+  it('supports clearing fallback', function() {
+    check(
+      '@lost clearing left; \n' +
+      'a { lost-waffle: 1/3; }',
+      'a { width: calc(99.99% * 1/3 - (30px - 30px * 1/3));' +
+      ' height: calc(99.99% * 1/3 - (30px - 30px * 1/3)); }\n' +
+      'a:nth-child(1n) { float: left; margin-right: 30px;' +
+      ' margin-bottom: 30px; clear: none; }\n' +
+      'a:last-child { margin-right: 0; margin-bottom: 0; }\n' +
+      'a:nth-child(3n) { margin-right: 0; float: right; }\n' +
+      'a:nth-child(3n + 1) { clear: left; }\n' +
+      'a:nth-last-child(-n + 3) { margin-bottom: 0; }'
+    );
+  });
+
+  it('reverts global back to default', function() {
+    check(
+      '@lost clearing both',
+      ''
     );
   });
 
