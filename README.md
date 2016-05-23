@@ -8,12 +8,11 @@
   <a href="https://travis-ci.org/peterramsing/lost"><img src="https://img.shields.io/travis/peterramsing/lost/master.svg?style=flat-square"></a>
 </p>
 
-Lost Grid is a powerful grid system built in [PostCSS](https://github.com/postcss/postcss) that works with any preprocessor and even vanilla CSS. You can think of it like the [Autoprefixer](https://github.com/postcss/autoprefixer) of grid systems.
+LostGrid is a powerful grid system built in [PostCSS](https://github.com/postcss/postcss) that works with any preprocessor and even vanilla CSS. You can think of it like the [Autoprefixer](https://github.com/postcss/autoprefixer) of grid systems.
 
 
 ### Near Future  Roadmap Outline:
 - [New documentation](https://github.com/peterramsing/lost/milestones/Site%20and%20Docs) to enhance learning and using Lost
-- [7.0.0](https://github.com/peterramsing/lost/milestones/7.0.x) - Looking to fix some issues and enable more ease of use.
 - A focusing of Lost Grid. With the ever-changing web, Lost wants to be a tool that allows one to dive deep and enable powerful grids, not be the "one tool fits all". With improved documentation and a keen focus, Lost plans on being a great grid option to stand alongside the rest of them.
 
 As always, if you have any questions, comments, or concerns please feel free to [open an issue](https://github.com/peterramsing/lost/issues/new). You're also welcome to tweet [@lostgrid](https://twitter.com/lostgrid) if an issue seems too formal.
