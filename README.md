@@ -70,7 +70,7 @@ And the processed CSS looks like this:
 
 ```css
 div {
-  width: calc(99.99% * 1/3 - (30px - 30px * 1/3));
+  width: calc(99.9% * 1/3 - (30px - 30px * 1/3));
 }
 div:nth-child(1n) {
   float: left;
