@@ -49,8 +49,8 @@ describe('lost-waffle', function() {
     check(
       '@lost clearing left; \n' +
       'a { lost-waffle: 1/3; }',
-      'a { width: calc(99.99% * 1/3 - (30px - 30px * 1/3));' +
-      ' height: calc(99.99% * 1/3 - (30px - 30px * 1/3)); }\n' +
+      'a { width: calc(99.9% * 1/3 - (30px - 30px * 1/3));' +
+      ' height: calc(99.9% * 1/3 - (30px - 30px * 1/3)); }\n' +
       'a:nth-child(1n) { float: left; margin-right: 30px;' +
       ' margin-bottom: 30px; clear: none; }\n' +
       'a:last-child { margin-right: 0; margin-bottom: 0; }\n' +
