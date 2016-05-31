@@ -12,6 +12,8 @@ LostGrid is a powerful grid system built in [PostCSS](https://github.com/postcss
 
 
 ### Near Future  Roadmap Outline:
+
+[![Join the chat at https://gitter.im/peterramsing/lost](https://badges.gitter.im/peterramsing/lost.svg)](https://gitter.im/peterramsing/lost?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 - [New documentation](https://github.com/peterramsing/lost/milestones/Site%20and%20Docs) to enhance learning and using Lost
 - A focusing of Lost Grid. With the ever-changing web, Lost wants to be a tool that allows one to dive deep and enable powerful grids, not be the "one tool fits all". With improved documentation and a keen focus, Lost plans on being a great grid option to stand alongside the rest of them.
 
