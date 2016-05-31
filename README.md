@@ -70,7 +70,7 @@ And the processed CSS looks like this:
 
 ```css
 div {
-  width: calc(99.99% * 1/3 - (30px - 30px * 1/3));
+  width: calc(99.9% * 1/3 - (30px - 30px * 1/3));
 }
 div:nth-child(1n) {
   float: left;
@@ -85,7 +85,7 @@ div:nth-child(3n) {
   float: right;
 }
 div:nth-child(3n + 1) {
-  clear: left;
+  clear: both;
 }
 ```
 
@@ -454,15 +454,18 @@ Lost uses PostCSS which means to override global variables we need to use someth
 @lost gutter 60px;
 @lost flexbox flex;
 @lost cycle none;
+@lost clearing left
 
 .foo {
   ...
 }
 ```
 
-- `gutter` accepts any unit value. `30px` by default.
+- `gutter` accepts any unit value. `30px` (default).
 - `flexbox` accepts `flex` or `no-flex` (default).
 - `cycle` accepts `none` or any digit (although this is really weird). `auto` by default.
+- `clearing` accepts `left` or `both` (default).
+  - See [#276](https://github.com/peterramsing/lost/issues/276) for details
 
 **[:arrow_up: back to top](#table-of-contents)**
 
