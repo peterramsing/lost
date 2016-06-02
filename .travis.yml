@@ -7,5 +7,9 @@ node_js:
   - "0.12"
   - "0.10"
 
+before_script:
+  - npm i -g typescript typings
+  - typings install
+
 after_success:
   - npm run coveralls
