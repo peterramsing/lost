@@ -38,4 +38,12 @@ describe('lost-row', function() {
       'a:last-child { margin-bottom: 0; }'
     );
   });
+
+  it('provides none rule', function() {
+    check(
+      'a { lost-row: none; }',
+      'a { width: auto; height: auto;' +
+      ' margin-bottom: 0; }'
+    );
+  });
 });
