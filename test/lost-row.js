@@ -24,7 +24,7 @@ describe('lost-row', function() {
   it('supports no gutter', function() {
     check(
       'a { lost-row: 2/5 0; }',
-      'a { width: 100%; height: calc(99.999999% * 2/5); margin-bottom: 0; }\n' +
+      'a { width: 100%; height: calc(99.9% * 2/5); margin-bottom: 0; }\n' +
       'a:last-child { margin-bottom: 0; }'
     );
   });
@@ -36,6 +36,14 @@ describe('lost-row', function() {
       ' height: calc(99.9% * 2/6 - (60px - 60px * 2/6));' +
       ' margin-bottom: 60px; }\n' +
       'a:last-child { margin-bottom: 0; }'
+    );
+  });
+
+  it('provides none rule', function() {
+    check(
+      'a { lost-row: none; }',
+      'a { width: auto; height: auto;' +
+      ' margin-bottom: 0; }'
     );
   });
 });

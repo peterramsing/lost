@@ -583,6 +583,7 @@ Creates a row that is a fraction of the size of its containing element's height 
 - `fraction` - This is a simple fraction of the containing element's height.
 - `gutter` - The margin on the bottom of the element used to create a gutter. Typically this is left alone and settings.gutter will be used, but you can override it here if you want certain elements to have a particularly large or small gutter (pass 0 for no gutter at all).
 - `flex|no-flex` - Determines whether this element should use Flexbox or not.
+- `none` - Resets the row (back to browser defaults)
 
 ```css
 section {
