@@ -6,6 +6,7 @@
   <a href="https://www.npmjs.com/package/lost"><img src="https://img.shields.io/npm/v/lost.svg?style=flat-square"></a>
   <a href="https://github.com/peterramsing/lost/stargazers"><img src="http://img.shields.io/npm/dm/lost.svg?style=flat-square"></a>
   <a href="https://travis-ci.org/peterramsing/lost"><img src="https://img.shields.io/travis/peterramsing/lost/master.svg?style=flat-square"></a>
+  <a href="https://gitter.im/peterramsing/lost"><img src="https://gitter.im/peterramsing/lost?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge"></a>
 </p>
 
 LostGrid is a powerful grid system built in [PostCSS](https://github.com/postcss/postcss) that works with any preprocessor and even vanilla CSS. You can think of it like the [Autoprefixer](https://github.com/postcss/autoprefixer) of grid systems.
