@@ -71,7 +71,7 @@ And the processed CSS looks like this:
 
 ```css
 div {
-  width: calc(99.99% * 1/3 - (30px - 30px * 1/3));
+  width: calc(99.9% * 1/3 - (30px - 30px * 1/3));
 }
 div:nth-child(1n) {
   float: left;
@@ -86,7 +86,7 @@ div:nth-child(3n) {
   float: right;
 }
 div:nth-child(3n + 1) {
-  clear: left;
+  clear: both;
 }
 ```
 
@@ -455,15 +455,18 @@ Lost uses PostCSS which means to override global variables we need to use someth
 @lost gutter 60px;
 @lost flexbox flex;
 @lost cycle none;
+@lost clearing left
 
 .foo {
   ...
 }
 ```
 
-- `gutter` accepts any unit value. `30px` by default.
+- `gutter` accepts any unit value. `30px` (default).
 - `flexbox` accepts `flex` or `no-flex` (default).
 - `cycle` accepts `none` or any digit (although this is really weird). `auto` by default.
+- `clearing` accepts `left` or `both` (default).
+  - See [#276](https://github.com/peterramsing/lost/issues/276) for details
 
 **[:arrow_up: back to top](#table-of-contents)**
 
@@ -580,6 +583,7 @@ Creates a row that is a fraction of the size of its containing element's height 
 - `fraction` - This is a simple fraction of the containing element's height.
 - `gutter` - The margin on the bottom of the element used to create a gutter. Typically this is left alone and settings.gutter will be used, but you can override it here if you want certain elements to have a particularly large or small gutter (pass 0 for no gutter at all).
 - `flex|no-flex` - Determines whether this element should use Flexbox or not.
+- `none` - Resets the row (back to browser defaults)
 
 ```css
 section {
