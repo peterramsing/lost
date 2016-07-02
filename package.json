@@ -16,12 +16,12 @@
     "fraction",
     "ratio"
   ],
-  "author": "Cory Simmons",
+  "author": "Cory Simmons & Peter Ramsing <hi@peterramsing.com> (http://peter.coffee)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/peterramsing/lost/issues"
   },
-  "homepage": "https://github.com/peterramsing/lost",
+  "homepage": "http://lostgrid.org",
   "devDependencies": {
     "chai": "^3.0.0",
     "coveralls": "^2.11.2",
