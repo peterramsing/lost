@@ -26,7 +26,7 @@ var defaultSettings = {
 };
 
 module.exports = postcss.plugin('lost', function lost(settings) {
-  settings = assign(defaultSettings, settings || {});
+  settings = assign({}, defaultSettings, settings || {});
 
   return function (css) {
     libs.forEach(function(lib) {
