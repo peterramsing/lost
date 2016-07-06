@@ -80,4 +80,60 @@ describe('lost-at-rule', function() {
     );
   });
 
+  it('changes the cycle to auto', function() {
+    check(
+      '@lost cycle auto;\n' +
+      'div {\n' +
+      '  lost-column: 1/3;\n' +
+      '}',
+
+      'div {\n' +
+      '  width: calc(99.9% * 1/3 - (30px - 30px * 1/3));\n' +
+      '}\n' +
+      'div:nth-child(1n) {\n' +
+      '  float: left;\n' +
+      '  margin-right: 30px;\n' +
+      '  clear: none;\n' +
+      '}\n' +
+      'div:last-child {\n' +
+      '  margin-right: 0;\n' +
+      '}\n' +
+      'div:nth-child(3n) {\n' +
+      '  margin-right: 0;\n' +
+      '  float: right;\n' +
+      '}\n' +
+      'div:nth-child(3n + 1) {\n' +
+      '  clear: both;\n' +
+      '}'
+    );
+  });
+
+  it('changes the cycle to number', function() {
+    check(
+      '@lost cycle 2;\n' +
+      'div {\n' +
+      '  lost-column: 1/3;\n' +
+      '}',
+
+      'div {\n' +
+      '  width: calc(99.9% * 1/3 - (30px - 30px * 1/3));\n' +
+      '}\n' +
+      'div:nth-child(1n) {\n' +
+      '  float: left;\n' +
+      '  margin-right: 30px;\n' +
+      '  clear: none;\n' +
+      '}\n' +
+      'div:last-child {\n' +
+      '  margin-right: 0;\n' +
+      '}\n' +
+      'div:nth-child(2n) {\n' +
+      '  margin-right: 0;\n' +
+      '  float: right;\n' +
+      '}\n' +
+      'div:nth-child(2n + 1) {\n' +
+      '  clear: both;\n' +
+      '}'
+    );
+  });
+
 });
