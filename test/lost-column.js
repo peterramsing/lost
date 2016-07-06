@@ -70,14 +70,6 @@ describe('lost-column', function() {
     );
   });
 
-
-  it('reverts global back to default', function() {
-    check(
-      '@lost clearing both',
-      ''
-    );
-  });
-
   it('provides none rule', function() {
     check(
       'a { lost-column: none; }',

@@ -60,13 +60,6 @@ describe('lost-waffle', function() {
     );
   });
 
-  it('reverts global back to default', function() {
-    check(
-      '@lost clearing both',
-      ''
-    );
-  });
-
   it('supports flexbox', function() {
     check(
       'a { lost-waffle: 2/5 3 0 flex; }',
