@@ -1,24 +1,19 @@
 <p align="center">
-  <img src="http://peterramsing.github.io/lost/lost-grid.svg">
+  <img src="http://lostgrid.org/lost-grid.svg">
 </p>
 
 <p align="center">
   <a href="https://www.npmjs.com/package/lost"><img src="https://img.shields.io/npm/v/lost.svg?style=flat-square"></a>
   <a href="https://github.com/peterramsing/lost/stargazers"><img src="http://img.shields.io/npm/dm/lost.svg?style=flat-square"></a>
   <a href="https://travis-ci.org/peterramsing/lost"><img src="https://img.shields.io/travis/peterramsing/lost/master.svg?style=flat-square"></a>
+  <a href="https://gitter.im/peterramsing/lost"><img src="https://badges.gitter.im/Join%20Chat.svg"></a>
 </p>
 
-Lost Grid is a powerful grid system built in [PostCSS](https://github.com/postcss/postcss) that works with any preprocessor and even vanilla CSS. You can think of it like the [Autoprefixer](https://github.com/postcss/autoprefixer) of grid systems.
+LostGrid is a powerful grid system built in [PostCSS](https://github.com/postcss/postcss) that works with any preprocessor and even vanilla CSS. You can think of it like the [Autoprefixer](https://github.com/postcss/autoprefixer) of grid systems.
 
-
-## This project is currently transitioning maintainers.
-
-[@corysimmons](https://github.com/corysimmons) Created this grid and has since moved on to other projects. [@peterramsing](https://github.com/peterramsing), is currently transitioning to maintaining this project.
 
 ### Near Future  Roadmap Outline:
 - [New documentation](https://github.com/peterramsing/lost/milestones/Site%20and%20Docs) to enhance learning and using Lost
-- [6.7.0](https://github.com/peterramsing/lost/milestones/6.7.0%20-%20Minor%20Updates) - Some minor updates and fixes.
-- [7.0.0](https://github.com/peterramsing/lost/milestones/7.0.0) - Looking to fix some issues and enable more ease of use.
 - A focusing of Lost Grid. With the ever-changing web, Lost wants to be a tool that allows one to dive deep and enable powerful grids, not be the "one tool fits all". With improved documentation and a keen focus, Lost plans on being a great grid option to stand alongside the rest of them.
 
 As always, if you have any questions, comments, or concerns please feel free to [open an issue](https://github.com/peterramsing/lost/issues/new). You're also welcome to tweet [@lostgrid](https://twitter.com/lostgrid) if an issue seems too formal.
@@ -32,7 +27,6 @@ Lost makes use of [`calc()`](https://webdesign.tutsplus.com/tutorials/calc-grids
 
 ## Table of Contents
 - [Installation](https://github.com/peterramsing/lost/wiki/Installation)
-- [Comparison Table](#better-than-x)
 - [Getting Started](#getting-started)
   - [Basic Columns](#basic-columns)
   - [Centering Elements](#centering-elements)
@@ -63,37 +57,6 @@ Lost makes use of [`calc()`](https://webdesign.tutsplus.com/tutorials/calc-grids
 - [Gotchas](#gotchas)
 - [Thanks](#thanks)
 
-
-## General Grid Comparison
-
-Feature | Lost | [Bootstrap](http://getbootstrap.com/css/#grid) | [Foundation](http://foundation.zurb.com/grid.html) | [Jeet](http://jeet.gs/) | [Neat](http://neat.bourbon.io/) | [Susy](http://susy.oddbird.net/)
-:-:|:-:|:-:|:-:|:-:|:-:|:-:
-[Responsive](https://github.com/peterramsing/lost/wiki/Comparison-Explanation#responsive) | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg">
-[Small learning curve](https://github.com/peterramsing/lost/wiki/Comparison-Explanation#small-learning-curve) | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg">
-[Easy-to-implement](https://github.com/peterramsing/lost/wiki/Comparison-Explanation#easy-to-implement) | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg">
-[Works with Masonry](https://github.com/peterramsing/lost/wiki/Comparison-Explanation#works-with-masonry) | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg"> |
-[Terse markup](https://github.com/peterramsing/lost/wiki/Comparison-Explanation#terse-markup) | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | | | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg">
-[On-the-fly grids](https://github.com/peterramsing/lost/wiki/Comparison-Explanation#on-the-fly-grids) | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | | | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg">
-[Clean markup](https://github.com/peterramsing/lost/wiki/Comparison-Explanation#clean-markup) | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | | | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg">
-[Real gutters](https://github.com/peterramsing/lost/wiki/Comparison-Explanation#real-gutters) | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | | | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg">
-[Sass support](https://github.com/peterramsing/lost/wiki/Comparison-Explanation#sass-support) | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg">
-[Stylus support](https://github.com/peterramsing/lost/wiki/Comparison-Explanation#stylus-support) | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | | | <img src="http://peterramsing.github.io/lost/checkmark.svg">
-[LESS support](https://github.com/peterramsing/lost/wiki/Comparison-Explanation#less-support) | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg">
-[CSS support](https://github.com/peterramsing/lost/wiki/Comparison-Explanation#css-support) | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg">
-[No Additional Ratio Context](https://github.com/peterramsing/lost/wiki/Comparison-Explanation#no-additional-ratio-context) | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | <img src="http://peterramsing.github.io/lost/checkmark.svg">
-[Consistent Gutters on All Sides](https://github.com/peterramsing/lost/wiki/Comparison-Explanation#consistent-gutters-on-all-sides) | <img src="http://peterramsing.github.io/lost/checkmark.svg">
-[Lightweight](https://github.com/peterramsing/lost/wiki/Comparison-Explanation#lightweight) | <img src="http://peterramsing.github.io/lost/checkmark.svg">
-[Vertical Grids](https://github.com/peterramsing/lost/wiki/Comparison-Explanation#vertical-grids) | <img src="http://peterramsing.github.io/lost/checkmark.svg">
-[Waffle Grids](https://github.com/peterramsing/lost/wiki/Comparison-Explanation#waffle-grids) | <img src="http://peterramsing.github.io/lost/checkmark.svg">
-[Fixed Gutters](https://github.com/peterramsing/lost/wiki/Comparison-Explanation#fixed-gutters) | <img src="http://peterramsing.github.io/lost/checkmark.svg">
-[Flexbox Grids](https://github.com/peterramsing/lost/wiki/Comparison-Explanation#flexbox-grids) | <img src="http://peterramsing.github.io/lost/checkmark.svg"> | | <img src="http://peterramsing.github.io/lost/checkmark.svg">
-
-<sup>If you notice anything in this table is incorrect, please don't hesitate to [open an issue](https://github.com/peterramsing/lost/issues/new) or [tweet](https://twitter.com/lostgrid)</sup>
-
-**[:arrow_up: back to top](#table-of-contents)**
-
-&nbsp;
-
 ### Getting Started
 
 Lost Grid rules look like this:
@@ -108,9 +71,9 @@ And the processed CSS looks like this:
 
 ```css
 div {
-  width: calc(99.99% * 1/3 - (30px - 30px * 1/3));
+  width: calc(99.9% * 1/3 - (30px - 30px * 1/3));
 }
-div:nth-child(n) {
+div:nth-child(1n) {
   float: left;
   margin-right: 30px;
   clear: none;
@@ -119,14 +82,12 @@ div:last-child {
   margin-right: 0;
 }
 div:nth-child(3n) {
-  float: right;
   margin-right: 0;
+  float: right;
 }
 div:nth-child(3n + 1) {
-  clear: left;
+  clear: both;
 }
-
-/*# sourceMappingURL=style.css.map */
 ```
 
 **[:arrow_up: back to top](#table-of-contents)**
@@ -494,15 +455,18 @@ Lost uses PostCSS which means to override global variables we need to use someth
 @lost gutter 60px;
 @lost flexbox flex;
 @lost cycle none;
+@lost clearing left
 
 .foo {
   ...
 }
 ```
 
-- `gutter` accepts any unit value. `30px` by default.
+- `gutter` accepts any unit value. `30px` (default).
 - `flexbox` accepts `flex` or `no-flex` (default).
 - `cycle` accepts `none` or any digit (although this is really weird). `auto` by default.
+- `clearing` accepts `left` or `both` (default).
+  - See [#276](https://github.com/peterramsing/lost/issues/276) for details
 
 **[:arrow_up: back to top](#table-of-contents)**
 
@@ -619,6 +583,7 @@ Creates a row that is a fraction of the size of its containing element's height 
 - `fraction` - This is a simple fraction of the containing element's height.
 - `gutter` - The margin on the bottom of the element used to create a gutter. Typically this is left alone and settings.gutter will be used, but you can override it here if you want certain elements to have a particularly large or small gutter (pass 0 for no gutter at all).
 - `flex|no-flex` - Determines whether this element should use Flexbox or not.
+- `none` - Resets the row (back to browser defaults)
 
 ```css
 section {
@@ -775,7 +740,7 @@ div {
 - If you're using [Less](http://lesscss.org/) there are sometimes issues with fractions being divided before Lost can interpret them.
   - To fix, escape the math like so: `lost-column: ~"1/2";`.
   - See: [Lost issue 229](https://github.com/peterramsing/lost/issues/229), [Less issue 974](https://github.com/less/less.js/issues/974)
-- If you're using [Less](http://lesscss.org/) you need to escape any `@lost` declarations like so: [See Issue 197](https://github.com/peterramsing/lost/issues/197#issuecomment-170324607)
+- If you're using [Less](http://lesscss.org/) in version `<2.6` you need to escape any `@lost` declarations like so: [See Issue 197](https://github.com/peterramsing/lost/issues/197#issuecomment-170324607)
 
     ```less
     .escape-at-rules(@literal) {
@@ -802,10 +767,9 @@ div {
 
 ### Thanks
 - [Cory Simmons](https://github.com/corysimmons) for creating this grid!
-- [Alex Bass](http://abass.co) for letting me bounce ideas off of him.
+- [Alex Bass](http://abass.co) for being available to bounce ideas off of.
 - [Maria Keller](https://dribbble.com/mariakeller) for the amazing logo. Be sure to hire her for all your design and motion graphic needs.
 - Everyone who files an [Issue](https://github.com/peterramsing/lost/issues) when something isn't working as expected.
-- Everyone who is *actually* interested in my work on grids.
 
 **[:arrow_up: back to top](#table-of-contents)**
 
