@@ -21,11 +21,12 @@ var libs = [
 var defaultSettings = {
   gutter: '30px',
   flexbox: 'no-flex',
-  cycle: 'auto'
+  cycle: 'auto',
+  clearing: 'both'
 };
 
 module.exports = postcss.plugin('lost', function lost(settings) {
-  settings = assign(defaultSettings, settings || {});
+  settings = assign({}, defaultSettings, settings || {});
 
   return function (css) {
     libs.forEach(function(lib) {

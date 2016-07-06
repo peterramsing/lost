@@ -1,6 +1,6 @@
 {
   "name": "lost",
-  "version": "6.7.0",
+  "version": "7.0.2",
   "description": "PostCSS fractional grid system built with calc() by the guy who built Jeet. Supports masonry, vertical, and waffle grids.",
   "main": "lost.js",
   "repository": {
@@ -16,12 +16,12 @@
     "fraction",
     "ratio"
   ],
-  "author": "Cory Simmons",
+  "author": "Cory Simmons & Peter Ramsing <hi@peterramsing.com> (http://peter.coffee)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/peterramsing/lost/issues"
   },
-  "homepage": "https://github.com/peterramsing/lost",
+  "homepage": "http://lostgrid.org",
   "devDependencies": {
     "chai": "^3.0.0",
     "coveralls": "^2.11.2",
