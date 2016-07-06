@@ -79,4 +79,15 @@ describe('lost-column', function() {
       'a:nth-child(1n + 1) { float: none; clear: none; margin-right: 0; width: auto; }'
     );
   });
+
+  it('supports no-flexbox', function() {
+    check(
+      'a { lost-column: 2/6 3 60px no-flex; }',
+      'a { width: calc(99.9% * 2/6 - (60px - 60px * 2/6)); }\n' +
+      'a:nth-child(1n) { float: left; margin-right: 60px; clear: none; }\n' +
+      'a:last-child { margin-right: 0; }\n' +
+      'a:nth-child(3n) { margin-right: 0; float: right; }\n' +
+      'a:nth-child(3n + 1) { clear: both; }'
+    );
+  });
 });
