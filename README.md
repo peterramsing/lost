@@ -782,6 +782,7 @@ div {
 - [Alex Bass](http://abass.co) for being available to bounce ideas off of.
 - [Maria Keller](https://dribbble.com/mariakeller) for the amazing logo. Be sure to hire her for all your design and motion graphic needs.
 - Everyone who files an [Issue](https://github.com/peterramsing/lost/issues) when something isn't working as expected.
+- Everyone who has [contributed](https://github.com/peterramsing/lost/graphs/contributors).
 
 **[:arrow_up: back to top](#table-of-contents)**
 
