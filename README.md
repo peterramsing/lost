@@ -767,6 +767,7 @@ div {
   - Evergreen Browsers (as they update automatically, tests are performed on the latest version of the following browsers)
     - Chrome
       - Chrome Canary + Chromium as well
+    - Opera
     - Firefox
       - FirefoxDeveloperEdition as well
     - Edge
