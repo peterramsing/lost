@@ -6,7 +6,7 @@ describe('lost-center', function() {
   it('horizontally centers container', function() {
     check(
       'a { lost-center: 980px }',
-      'a { *zoom: 1; max-width: 980px; margin-left: auto; margin-right: auto }\n' +
+      'a { max-width: 980px; margin-left: auto; margin-right: auto }\n' +
       'a:before { content: \'\'; display: table }\n' +
       'a:after { content: \'\'; display: table; clear: both }'
     );
@@ -15,7 +15,7 @@ describe('lost-center', function() {
   it('adds 30px padding', function() {
     check(
       'a { lost-center: 980px 30px }',
-      'a { *zoom: 1; max-width: 980px; margin-left: auto; margin-right: auto; padding-left: 30px; padding-right: 30px }\n' +
+      'a { max-width: 980px; margin-left: auto; margin-right: auto; padding-left: 30px; padding-right: 30px }\n' +
       'a:before { content: \'\'; display: table }\n' +
       'a:after { content: \'\'; display: table; clear: both }'
     );
