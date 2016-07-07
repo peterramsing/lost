@@ -31,7 +31,7 @@ describe('lost-center', function() {
   it('uses no-flexbox', function() {
     check(
       'a { lost-center: 1140px 30px no-flex }',
-      'a { *zoom: 1; max-width: 1140px; margin-left: auto; margin-right: auto; padding-left: 30px; padding-right: 30px }\n' +
+      'a { max-width: 1140px; margin-left: auto; margin-right: auto; padding-left: 30px; padding-right: 30px }\n' +
       'a:before { content: \'\'; display: table }\n' +
       'a:after { content: \'\'; display: table; clear: both }'
     );
@@ -41,7 +41,7 @@ describe('lost-center', function() {
     check(
       'a { lost-center: 1140px 30px; lost-center-padding: 10px }',
 
-      'a { *zoom: 1; max-width: 1140px; margin-left: auto; margin-right: auto; padding-left: 10px; padding-right: 10px }\n' +
+      'a { max-width: 1140px; margin-left: auto; margin-right: auto; padding-left: 10px; padding-right: 10px }\n' +
       'a:before { content: \'\'; display: table }\n' +
       'a:after { content: \'\'; display: table; clear: both }'
     );
