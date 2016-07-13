@@ -32,3 +32,5 @@ node_modules
 
 ### Custom ###
 /demo
+dist
+typings

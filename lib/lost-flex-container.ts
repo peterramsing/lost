@@ -13,7 +13,7 @@
  *     lost-column: 1/2 flex;
  *   }
  */
-module.exports = function lostFlexContainerDecl(css) {
+export = function lostFlexContainerDecl(css) {
   css.walkDecls('lost-flex-container', function lostFlexContainerFunction(decl) {
     decl.cloneBefore({
       prop: 'display',

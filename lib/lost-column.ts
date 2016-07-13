@@ -1,4 +1,4 @@
-var newBlock = require('./new-block.js');
+import newBlock = require('./new-block');
 
 /**
  * lost-column: Creates a column that is a fraction of the size of its
@@ -32,7 +32,7 @@ var newBlock = require('./new-block.js');
  *     lost-column: 2/6 3 60px flex;
  *   }
  */
-module.exports = function lostColumnDecl(css, settings) {
+export = function lostColumnDecl(css, settings) {
   css.walkDecls('lost-column', function lostColumnFunction(decl) {
     var declArr = [];
     var lostColumn;

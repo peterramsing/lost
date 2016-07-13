@@ -1,4 +1,4 @@
-var newBlock = require('./new-block.js');
+import newBlock = require('./new-block');
 
 /**
  * lost-align: Align nested elements. Apply this to a parent container.
@@ -22,7 +22,7 @@ var newBlock = require('./new-block.js');
  *     height: 150px;
  *   }
  */
-module.exports = function lostAlign(css) {
+export = function lostAlignDecl(css) {
   css.walkDecls('lost-align', function alignDirectionFunction(decl) {
     var declArr = [];
     var alignDirection;

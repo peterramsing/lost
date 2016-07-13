@@ -1,4 +1,4 @@
-var newBlock = require('./new-block.js');
+import newBlock = require('./new-block');
 
 /**
  * lost-masonry-wrap: Creates a wrapping element for working with JS Masonry
@@ -21,7 +21,7 @@ var newBlock = require('./new-block.js');
  *     lost-masonry-column: 1/3;
  *   }
  */
-module.exports = function lostMasonryWrapDecl(css, settings) {
+export = function lostMasonryWrapDecl(css, settings) {
   css.walkDecls('lost-masonry-wrap', function lostMasonryWrapDeclFunction(decl) {
     var declArr = [];
     var lostMasonryWrapFlexbox = settings.flexbox;

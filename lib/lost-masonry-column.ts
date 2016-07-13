@@ -18,7 +18,7 @@
  *     lost-masonry-column: 1/3 60px flex;
  *   }
  */
-module.exports = function lostMasonryColumnDecl(css, settings) {
+export = function lostMasonryColumnDecl(css, settings) {
   css.walkDecls('lost-masonry-column', function lostMasonryColumnFunction(decl) {
     var declArr = [];
     var lostMasonryColumn;

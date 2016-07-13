@@ -1,7 +1,7 @@
 'use strict';
 
 var expect  = require('chai').expect;
-var lost    = require('../lost');
+var lost    = require('../dist/lost');
 var postcss = require('postcss');
 
 module.exports = function check( input, output, opts ) {

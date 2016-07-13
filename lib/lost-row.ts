@@ -1,4 +1,4 @@
-var newBlock = require('./new-block.js');
+import newBlock = require('./new-block');
 
 /**
  * lost-row: Creates a row that is a fraction of the size of its containing
@@ -26,7 +26,7 @@ var newBlock = require('./new-block.js');
  *     lost-row: 1/3;
  *   }
  */
-module.exports = function lostRowDecl(css, settings) {
+export = function lostRowDecl(css, settings) {
   css.walkDecls('lost-row', function lostRowDeclFunction(decl) {
     var declArr = [];
     var lostRow;

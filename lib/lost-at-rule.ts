@@ -8,7 +8,7 @@
 *     lost-column: 1/3;
 *   }
 */
-module.exports = function lostAtRule(css, Settings) {
+export = function lostAtRule(css, Settings) {
   css.walkAtRules('lost', function lostAtRuleFunction(Rule) {
     var rule = Rule;
     var settings = Settings;

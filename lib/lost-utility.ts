@@ -1,4 +1,4 @@
-var newBlock = require('./new-block.js');
+import newBlock = require('./new-block');
 
 /**
  * lost-utility: A general utility toolbelt for Lost. Included are mixins
@@ -31,7 +31,7 @@ function getColorValue(string) {
   return color;
 }
 
-module.exports = function lostUtilityDecl(css) {
+export = function lostUtilityDecl(css) {
   css.walkDecls('lost-utility', function lostUtilityDeclFunction(decl) {
     var utilityArray = decl.value.split(' ');
     var utility = utilityArray[0];

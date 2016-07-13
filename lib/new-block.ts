@@ -1,4 +1,4 @@
-module.exports = function newBlock(decl, selector, props, values) {
+export = function newBlock(decl, selector, props, values) {
   var completeSelector;
   var block;
 

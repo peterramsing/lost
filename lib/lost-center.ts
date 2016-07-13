@@ -1,4 +1,4 @@
-var newBlock = require('./new-block.js');
+import newBlock = require('./new-block');
 
 /**
  * lost-center: Horizontally center a container element and apply padding
@@ -22,7 +22,7 @@ var newBlock = require('./new-block.js');
  *     lost-center: 1140px 30px flex;
  *   }
  */
-module.exports = function lostCenterDecl(css, settings) {
+export = function lostCenterDecl(css, settings) {
   css.walkDecls('lost-center', function lostCenterFunction(decl) {
     var declArr = [];
     var lostCenterPadding;

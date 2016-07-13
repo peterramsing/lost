@@ -21,7 +21,7 @@
  *     lost-offset: 1/3;
  *   }
  */
-module.exports = function lostOffsetDecl(css, settings) {
+export = function lostOffsetDecl(css, settings) {
   css.walkDecls('lost-offset', function lostOffsetDeclFunction(decl) {
     var declArr = [];
     var lostOffset;

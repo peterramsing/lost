@@ -1,4 +1,4 @@
-var newBlock = require('./new-block.js');
+import newBlock = require('./new-block');
 
 /**
  * lost-waffle: Creates a block that is a fraction of the size of its
@@ -31,7 +31,7 @@ var newBlock = require('./new-block.js');
  *     lost-waffle: 1/3;
  *   }
  */
-module.exports = function lostWaffleDecl(css, settings) {
+export = function lostWaffleDecl(css, settings) {
   css.walkDecls('lost-waffle', function lostWaffleDeclFunction(decl) {
     var declArr = [];
     var lostWaffle;

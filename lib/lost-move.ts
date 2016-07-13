@@ -21,7 +21,7 @@
  *     lost-move: -1/2;
  *   }
  */
-module.exports = function lostMoveDecl(css, settings) {
+export = function lostMoveDecl(css, settings) {
   css.walkDecls('lost-move', function lostMoveDeclFunction(decl) {
     var declArr = [];
     var lostMove;

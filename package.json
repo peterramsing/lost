@@ -29,12 +29,16 @@
     "eslint": "^3.3.1",
     "eslint-config-airbnb-base": "^5.0.2",
     "eslint-plugin-import": "^1.13.0",
-    "istanbul": "^0.3.15",
-    "mocha": "^3.0.0"
+    "istanbul": "^0.4.4",
+    "mocha": "^3.0.0",
+    "remap-istanbul": "^0.6.4",
+    "typescript": "^1.8.10"
   },
   "scripts": {
-    "coveralls": "cat coverage/lcov.info | coveralls",
+    "coveralls": "cat coverage/lcov-remapped.info | coveralls",
+    "pretest": "tsc",
     "test": "istanbul cover node_modules/mocha/bin/_mocha -- test/*.js",
+    "posttest": "remap-istanbul -i coverage/coverage.json -o coverage/coverage-remapped.json && remap-istanbul -i coverage/coverage.json -o coverage/lcov-remapped.info -t lcovonly && remap-istanbul -i coverage/coverage.json -o coverage/lcov-report-remapped -t html",
     "testing": "mocha test/*.js --watch --growl"
   }
 }
