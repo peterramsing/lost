@@ -32,7 +32,7 @@ Lost makes use of [`calc()`](https://webdesign.tutsplus.com/tutorials/calc-grids
   - [Centering Elements](#centering-elements)
   - [Controlling Cycle](#controlling-cycle)
   - [Nesting](#nesting)
-  - [Offseting Elements](#offseting-elements)
+  - [Offsetting Elements](#offsetting-elements)
   - [Alignment](#alignment)
   - [Edit Mode](#edit-mode)
   - [Vertical Grids](#vertical-grids)
@@ -223,7 +223,7 @@ div {
 
 &nbsp;
 
-##### Offseting Elements
+##### offsetting Elements
 
 You can `offset` columns easily. To offset in the other direction, pass a negative fraction.
 
