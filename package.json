@@ -8,8 +8,8 @@
     "url": "https://github.com/peterramsing/lost.git"
   },
   "dependencies": {
-    "postcss": "^5.0.4",
-    "object-assign": "~2.0.0"
+    "postcss": "^5.1.2",
+    "object-assign": "^4.1.0"
   },
   "keywords": [
     "grid",
@@ -24,9 +24,9 @@
   "homepage": "http://lostgrid.org",
   "devDependencies": {
     "chai": "^3.0.0",
-    "coveralls": "^2.11.2",
+    "coveralls": "^2.11.12",
     "istanbul": "^0.3.15",
-    "mocha": "^2.2.5"
+    "mocha": "^3.0.0"
   },
   "scripts": {
     "coveralls": "cat coverage/lcov.info | coveralls",
