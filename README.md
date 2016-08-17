@@ -277,7 +277,7 @@ div {
 
 ##### Edit Mode
 
-Use `lost-utility: edit;` on `body` to visualize the entire structure of your site, or just specify the areas you're working on.
+Use `lost-utility: edit;` on `body` to visualize the entire structure of your site, or just specify the areas you're working on. You can also set custom colors of your lost-utility: edit; declaration by adding an rgb value after "edit".
 
 ```html
 <section>
@@ -299,7 +299,7 @@ section:nth-of-type(1) {
 }
 
 section:nth-of-type(2) {
-  lost-utility: edit;
+  lost-utility: edit rgb(166, 0, 0);
 }
 ```
 
@@ -475,13 +475,18 @@ Lost uses PostCSS which means to override global variables we need to use someth
 ## Property Options
 
 #### lost-utility
-A general utility toolbelt for Lost. Included are mixins that require no additional input other than being called.
+A general utility toolbelt for LostGrid. Included are mixins that require no additional input other than being called.
 
 - `edit|clearfix` - The mixin to create.
+- `edit rgb(166, 0, 0)` - Adds a custom color for the edit highlight.
 
 ```css
 section {
   lost-utility: edit;
+}
+
+div {
+  lost-utility: edit rgb(15, 150, 25);
 }
 ```
 
