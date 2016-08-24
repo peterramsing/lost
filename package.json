@@ -33,7 +33,7 @@
   },
   "scripts": {
     "coveralls": "cat coverage/lcov.info | coveralls",
-    "test": "istanbul cover node_modules/mocha/bin/_mocha -- test/*.js",
+    "test": "istanbul cover node_modules/mocha/bin/_mocha -- test/*.js ./node_modules/.bin/eslint ./lib/*.js lost.js",
     "testing": "mocha test/*.js --watch --growl"
   }
 }
