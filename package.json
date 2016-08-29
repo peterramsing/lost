@@ -1,7 +1,7 @@
 {
   "name": "lost",
   "version": "7.0.4",
-  "description": "PostCSS fractional grid system built with calc() by the guy who built Jeet. Supports masonry, vertical, and waffle grids.",
+  "description": "LostGrid is a powerful grid system built in PostCSS that works with any preprocessor and even vanilla CSS.",
   "main": "lost.js",
   "repository": {
     "type": "git",
@@ -14,7 +14,8 @@
   "keywords": [
     "grid",
     "fraction",
-    "ratio"
+    "ratio",
+    "postcss"
   ],
   "author": "Cory Simmons & Peter Ramsing <hi@peterramsing.com> (http://peter.coffee)",
   "license": "MIT",
