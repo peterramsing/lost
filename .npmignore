@@ -1,0 +1,6 @@
+.github
+.editorconfig
+.gitignore
+.travis.yml
+coverage
+typings

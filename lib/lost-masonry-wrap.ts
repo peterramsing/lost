@@ -1,4 +1,4 @@
-var newBlock = require('./new-block.js');
+import newBlock = require('./new-block');
 
 /**
  * lost-masonry-wrap: Creates a wrapping element for working with JS Masonry
@@ -21,26 +21,25 @@ var newBlock = require('./new-block.js');
  *     lost-masonry-column: 1/3;
  *   }
  */
-module.exports = function lostMasonryWrapDecl(css, settings) {
-  css.walkDecls('lost-masonry-wrap', function(decl) {
-    var declArr = [],
-        lostMasonryWrap,
-        lostMasonryWrapFlexbox = settings.flexbox,
-        lostMasonryWrapGutter = settings.gutter,
-        lostMasonryWrapGutterUnit;
+export = function lostMasonryWrapDecl(css, settings) {
+  css.walkDecls('lost-masonry-wrap', function lostMasonryWrapDeclFunction(decl) {
+    var declArr = [];
+    var lostMasonryWrapFlexbox = settings.flexbox;
+    var lostMasonryWrapGutter = settings.gutter;
+    var lostMasonryWrapGutterUnit;
 
-    var cloneAllBefore = function(props) {
-      for (var prop in props) {
+    function cloneAllBefore(props) {
+      Object.keys(props).forEach(function traverseProps(prop) {
         decl.cloneBefore({
           prop: prop,
           value: props[prop]
-        })
-      }
+        });
+      });
     }
 
     declArr = decl.value.split(' ');
 
-    if (declArr[0] !== undefined && declArr[0] == 'flex' || declArr[0] == 'no-flex') {
+    if ((declArr[0] !== undefined && declArr[0] === 'flex') || declArr[0] === 'no-flex') {
       lostMasonryWrapFlexbox = declArr[0];
     }
 
@@ -56,30 +55,23 @@ module.exports = function lostMasonryWrapDecl(css, settings) {
       lostMasonryWrapGutter = declArr[1];
     }
 
-    decl.parent.nodes.forEach(function (decl) {
-      if (decl.prop == 'lost-masonry-wrap-flexbox') {
-        if (decl.value == 'flex') {
+    decl.parent.nodes.forEach(function lostMasonryWrapFlexboxFunction(declaration) {
+      if (declaration.prop === 'lost-masonry-wrap-flexbox') {
+        if (declaration.value === 'flex') {
           lostMasonryWrapFlexbox = 'flex';
         }
 
-        decl.remove();
+        declaration.remove();
       }
     });
 
-    decl.parent.nodes.forEach(function (decl) {
-      if (decl.prop == 'lost-masonry-wrap-gutter') {
-        lostMasonryWrap = decl.value;
-
-        decl.remove();
+    decl.parent.nodes.forEach(function lostMasonryWrapFunction(declaration) {
+      if (declaration.prop === 'lost-masonry-wrap-gutter') {
+        declaration.remove();
       }
     });
 
     if (lostMasonryWrapFlexbox !== 'flex') {
-      decl.cloneBefore({
-        prop: '*zoom',
-        value: '1'
-      });
-
       newBlock(
         decl,
         ':after',
@@ -108,8 +100,8 @@ module.exports = function lostMasonryWrapDecl(css, settings) {
     lostMasonryWrapGutterUnit = lostMasonryWrapGutter.match(/\D/g).join('');
 
     cloneAllBefore({
-      'margin-left': (parseInt(lostMasonryWrapGutter) / -2) + lostMasonryWrapGutterUnit,
-      'margin-right': (parseInt(lostMasonryWrapGutter) / -2) + lostMasonryWrapGutterUnit
+      'margin-left': (parseInt(lostMasonryWrapGutter, 10) / -2) + lostMasonryWrapGutterUnit,
+      'margin-right': (parseInt(lostMasonryWrapGutter, 10) / -2) + lostMasonryWrapGutterUnit
     });
 
     decl.remove();

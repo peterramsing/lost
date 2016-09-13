@@ -1,4 +1,4 @@
-var newBlock = require('./new-block.js');
+import newBlock = require('./new-block');
 
 /**
  * lost-column: Creates a column that is a fraction of the size of its
@@ -32,13 +32,13 @@ var newBlock = require('./new-block.js');
  *     lost-column: 2/6 3 60px flex;
  *   }
  */
-module.exports = function lostColumnDecl(css, settings) {
-  css.walkDecls('lost-column', function(decl) {
-    var declArr = [],
-        lostColumn,
-        lostColumnCycle,
-        lostColumnGutter = settings.gutter,
-        lostColumnFlexbox = settings.flexbox;
+export = function lostColumnDecl(css, settings) {
+  css.walkDecls('lost-column', function lostColumnFunction(decl) {
+    var declArr = [];
+    var lostColumn;
+    var lostColumnCycle;
+    var lostColumnGutter = settings.gutter;
+    var lostColumnFlexbox = settings.flexbox;
 
     if (decl.value !== 'none') {
       if (settings.cycle === 'auto') {
@@ -54,7 +54,7 @@ module.exports = function lostColumnDecl(css, settings) {
         lostColumnCycle = declArr[1];
       }
 
-      if (declArr[1] == 'flex' || declArr[1] == 'no-flex' || declArr[1] == 'auto') {
+      if (declArr[1] === 'flex' || declArr[1] === 'no-flex' || declArr[1] === 'auto') {
         lostColumnCycle = declArr[0].split('/')[1];
       }
 
@@ -70,29 +70,29 @@ module.exports = function lostColumnDecl(css, settings) {
         lostColumnFlexbox = 'no-flex';
       }
 
-      decl.parent.nodes.forEach(function (decl) {
-        if (decl.prop == 'lost-column-cycle') {
-          lostColumnCycle = decl.value;
+      decl.parent.nodes.forEach(function lostColumnCycleFunction(declaration) {
+        if (declaration.prop === 'lost-column-cycle') {
+          lostColumnCycle = declaration.value;
 
-          decl.remove();
+          declaration.remove();
         }
       });
 
-      decl.parent.nodes.forEach(function (decl) {
-        if (decl.prop == 'lost-column-gutter') {
-          lostColumnGutter = decl.value;
+      decl.parent.nodes.forEach(function lostColumnGutterFunction(declaration) {
+        if (declaration.prop === 'lost-column-gutter') {
+          lostColumnGutter = declaration.value;
 
-          decl.remove();
+          declaration.remove();
         }
       });
 
-      decl.parent.nodes.forEach(function (decl) {
-        if (decl.prop == 'lost-column-flexbox') {
-          if (decl.prop == 'flex') {
+      decl.parent.nodes.forEach(function lostColumnFlexboxFunction(declaration) {
+        if (declaration.prop === 'lost-column-flexbox') {
+          if (declaration.prop === 'flex') {
             lostColumnFlexbox = 'flex';
           }
 
-          decl.remove();
+          declaration.remove();
         }
       });
 
@@ -105,7 +105,7 @@ module.exports = function lostColumnDecl(css, settings) {
         if (lostColumnCycle !== 0) {
           newBlock(
             decl,
-            ':nth-child('+ lostColumnCycle +'n)',
+            ':nth-child(' + lostColumnCycle + 'n)',
             ['margin-right', 'margin-left'],
             [0, 'auto']
           );
@@ -124,21 +124,19 @@ module.exports = function lostColumnDecl(css, settings) {
           ['margin-right', 'margin-left'],
           [lostColumnGutter, 0]
         );
-
       } else {
         if (lostColumnCycle !== 0) {
-
           if (settings.clearing === 'left') {
             newBlock(
               decl,
-              ':nth-child('+ lostColumnCycle +'n + 1)',
+              ':nth-child(' + lostColumnCycle + 'n + 1)',
               ['clear'],
               ['left']
             );
           } else {
             newBlock(
               decl,
-              ':nth-child('+ lostColumnCycle +'n + 1)',
+              ':nth-child(' + lostColumnCycle + 'n + 1)',
               ['clear'],
               ['both']
             );
@@ -146,14 +144,14 @@ module.exports = function lostColumnDecl(css, settings) {
 
           newBlock(
             decl,
-            ':nth-child('+ lostColumnCycle +'n)',
+            ':nth-child(' + lostColumnCycle + 'n)',
             ['margin-right', 'float'],
             [0, 'right']
           );
         } else {
           newBlock(
             decl,
-            ':nth-child('+ lostColumnCycle +'n)',
+            ':nth-child(' + lostColumnCycle + 'n)',
             ['float'],
             ['right']
           );
@@ -177,16 +175,17 @@ module.exports = function lostColumnDecl(css, settings) {
       if (lostColumnGutter !== '0') {
         decl.cloneBefore({
           prop: 'width',
-          value: 'calc(99.9% * '+ lostColumn +' - ('+ lostColumnGutter +' - '+ lostColumnGutter +' * '+ lostColumn +'))'
+          value: 'calc(99.9% * '
+          + lostColumn + ' - (' + lostColumnGutter + ' - '
+          + lostColumnGutter + ' * ' + lostColumn + '))'
         });
       } else {
         decl.cloneBefore({
           prop: 'width',
-          value: 'calc(99.9% * '+ lostColumn +')'
+          value: 'calc(99.9% * ' + lostColumn + ')'
         });
       }
     } else {
-
       decl.cloneBefore({
         prop: 'width',
         value: 'auto'

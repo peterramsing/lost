@@ -14,7 +14,7 @@ describe('lost-masonry-wrap', function() {
   it('creates a non-flexbox wrapper', function() {
     check(
       'a { lost-masonry-wrap: no-flex; }',
-      'a { *zoom: 1; margin-left: -15px; margin-right: -15px; }\n' +
+      'a { margin-left: -15px; margin-right: -15px; }\n' +
       'a:before { content: \'\'; display: table; }\n' +
       'a:after { content: \'\'; display: table; clear: both; }'
     );

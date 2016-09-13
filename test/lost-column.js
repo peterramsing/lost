@@ -70,14 +70,6 @@ describe('lost-column', function() {
     );
   });
 
-
-  it('reverts global back to default', function() {
-    check(
-      '@lost clearing both',
-      ''
-    );
-  });
-
   it('provides none rule', function() {
     check(
       'a { lost-column: none; }',
@@ -87,4 +79,40 @@ describe('lost-column', function() {
       'a:nth-child(1n + 1) { float: none; clear: none; margin-right: 0; width: auto; }'
     );
   });
+
+  it('supports no-flexbox', function() {
+    check(
+      'a { lost-column: 2/6 3 60px no-flex; }',
+      'a { width: calc(99.9% * 2/6 - (60px - 60px * 2/6)); }\n' +
+      'a:nth-child(1n) { float: left; margin-right: 60px; clear: none; }\n' +
+      'a:last-child { margin-right: 0; }\n' +
+      'a:nth-child(3n) { margin-right: 0; float: right; }\n' +
+      'a:nth-child(3n + 1) { clear: both; }'
+    );
+  });
+
+  it('lost-column-cycle', function() {
+    check(
+      'a { lost-column: 2/6; lost-column-cycle: 6; }',
+
+      'a { width: calc(99.9% * 2/6 - (30px - 30px * 2/6)); }\n' +
+      'a:nth-child(1n) { float: left; margin-right: 30px; clear: none; }\n' +
+      'a:last-child { margin-right: 0; }\n' +
+      'a:nth-child(6n) { margin-right: 0; float: right; }\n' +
+      'a:nth-child(6n + 1) { clear: both; }'
+    );
+  });
+
+  it('lost-column-gutter', function() {
+    check(
+      'a { lost-column: 2/6; lost-column-gutter: 10px; }',
+
+      'a { width: calc(99.9% * 2/6 - (10px - 10px * 2/6)); }\n' +
+      'a:nth-child(1n) { float: left; margin-right: 10px; clear: none; }\n' +
+      'a:last-child { margin-right: 0; }\n' +
+      'a:nth-child(6n) { margin-right: 0; float: right; }\n' +
+      'a:nth-child(6n + 1) { clear: both; }'
+    );
+  });
+
 });

@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="http://peterramsing.github.io/lost/lost-grid.svg">
+  <img src="http://lostgrid.org/lost-grid.svg">
 </p>
 
 <p align="center">
@@ -9,14 +9,14 @@
   <a href="https://gitter.im/peterramsing/lost"><img src="https://badges.gitter.im/Join%20Chat.svg"></a>
 </p>
 
-LostGrid is a powerful grid system built in [PostCSS](https://github.com/postcss/postcss) that works with any preprocessor and even vanilla CSS. You can think of it like the [Autoprefixer](https://github.com/postcss/autoprefixer) of grid systems.
+LostGrid is a powerful grid system built in [PostCSS](https://github.com/postcss/postcss) that works with any preprocessor and even vanilla CSS.
 
 
 ### Near Future  Roadmap Outline:
-- [New documentation](https://github.com/peterramsing/lost/milestones/Site%20and%20Docs) to enhance learning and using Lost
-- A focusing of Lost Grid. With the ever-changing web, Lost wants to be a tool that allows one to dive deep and enable powerful grids, not be the "one tool fits all". With improved documentation and a keen focus, Lost plans on being a great grid option to stand alongside the rest of them.
+- [New documentation](https://github.com/peterramsing/lost/milestone/5) to enhance learning and using LostGrid
+- A focusing of LostGrid. With the ever-changing web, Lost wants to be a tool that allows one to dive deep and enable powerful grids, not be the "one tool fits all". With improved documentation and a keen focus, LostGrid plans on being a great grid option to stand alongside the rest of them.
 
-As always, if you have any questions, comments, or concerns please feel free to [open an issue](https://github.com/peterramsing/lost/issues/new). You're also welcome to tweet [@lostgrid](https://twitter.com/lostgrid) if an issue seems too formal.
+As always, if you have any questions, comments, or concerns please feel free to [open an issue](https://github.com/peterramsing/lost/issues/new). You're also welcome to tweet [@LostGrid](https://twitter.com/lostgrid) if an issue seems too formal.
 
 *********
 
@@ -32,7 +32,7 @@ Lost makes use of [`calc()`](https://webdesign.tutsplus.com/tutorials/calc-grids
   - [Centering Elements](#centering-elements)
   - [Controlling Cycle](#controlling-cycle)
   - [Nesting](#nesting)
-  - [Offseting Elements](#offseting-elements)
+  - [Offsetting Elements](#offsetting-elements)
   - [Alignment](#alignment)
   - [Edit Mode](#edit-mode)
   - [Vertical Grids](#vertical-grids)
@@ -223,7 +223,7 @@ div {
 
 &nbsp;
 
-##### Offseting Elements
+##### offsetting Elements
 
 You can `offset` columns easily. To offset in the other direction, pass a negative fraction.
 
@@ -277,7 +277,7 @@ div {
 
 ##### Edit Mode
 
-Use `lost-utility: edit;` on `body` to visualize the entire structure of your site, or just specify the areas you're working on.
+Use `lost-utility: edit;` on `body` to visualize the entire structure of your site, or just specify the areas you're working on. You can also set custom colors of your lost-utility: edit; declaration by adding an rgb value after "edit".
 
 ```html
 <section>
@@ -299,7 +299,7 @@ section:nth-of-type(1) {
 }
 
 section:nth-of-type(2) {
-  lost-utility: edit;
+  lost-utility: edit rgb(166, 0, 0);
 }
 ```
 
@@ -475,13 +475,18 @@ Lost uses PostCSS which means to override global variables we need to use someth
 ## Property Options
 
 #### lost-utility
-A general utility toolbelt for Lost. Included are mixins that require no additional input other than being called.
+A general utility toolbelt for LostGrid. Included are mixins that require no additional input other than being called.
 
 - `edit|clearfix` - The mixin to create.
+- `edit rgb(166, 0, 0)` - Adds a custom color for the edit highlight.
 
 ```css
 section {
   lost-utility: edit;
+}
+
+div {
+  lost-utility: edit rgb(15, 150, 25);
 }
 ```
 
@@ -756,10 +761,23 @@ div {
 &nbsp;
 
 ## Browser Support
+- LostGrid relies on [`calc()`](https://developer.mozilla.org/en-US/docs/Web/CSS/calc) to create the grid. Thus, LostGrid is limited to browsers that support `calc()`. The great thing is that `calc()` is widely supported in all current browsers and the LostGrid usage of `calc()` is supported as far back as IE9+.
+- **If using LostGrid in flexbox mode** browser support is limited to IE 10+.
+- [Calc browser support](http://caniuse.com/#feat=calc)
+- [Flexbox browser support](http://caniuse.com/#feat=flexbox)
 
-- [`calc()` grids](https://webdesign.tutsplus.com/tutorials/calc-grids-are-the-best-grids--cms-22902) work perfect on IE9+ with poor support on old Android browsers ([`calc()` browser support](http://caniuse.com/#feat=calc)).
-- With some polyfills (like the ones included in [Boy](https://github.com/corysimmons/boy)) Lost works perfect in IE8 as well.
-- The Flexbox version of Lost only works with browsers that support Flexbox (IE10+). Unfortunately, there isn't currently a good Flexbox polyfill. [Flexbox browser support](http://caniuse.com/#feat=flexbox)
+### Official Support
+- LostGrid is tested in the following browsers for compatibility
+  - IE10+ (IE9 has the same `calc()` support as IE10 except for background position which LostGrid doesn't affect)
+  - Evergreen Browsers (as they update automatically, tests are performed on the latest version of the following browsers)
+    - Chrome
+      - Chrome Canary + Chromium as well
+    - Opera
+    - Firefox
+      - FirefoxDeveloperEdition as well
+    - Edge
+  - Safari 9+
+- Automated browser testing with Selenium is coming soon. 👍
 
 **[:arrow_up: back to top](#table-of-contents)**
 
@@ -770,6 +788,7 @@ div {
 - [Alex Bass](http://abass.co) for being available to bounce ideas off of.
 - [Maria Keller](https://dribbble.com/mariakeller) for the amazing logo. Be sure to hire her for all your design and motion graphic needs.
 - Everyone who files an [Issue](https://github.com/peterramsing/lost/issues) when something isn't working as expected.
+- Everyone who has [contributed](https://github.com/peterramsing/lost/graphs/contributors).
 
 **[:arrow_up: back to top](#table-of-contents)**
 

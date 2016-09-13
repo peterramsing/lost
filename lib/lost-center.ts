@@ -1,4 +1,4 @@
-var newBlock = require('./new-block.js');
+import newBlock = require('./new-block');
 
 /**
  * lost-center: Horizontally center a container element and apply padding
@@ -22,11 +22,11 @@ var newBlock = require('./new-block.js');
  *     lost-center: 1140px 30px flex;
  *   }
  */
-module.exports = function lostCenterDecl(css, settings) {
-  css.walkDecls('lost-center', function(decl) {
-    var declArr = [],
-        lostCenterPadding,
-        lostCenterFlexbox = settings.flexbox;
+export = function lostCenterDecl(css, settings) {
+  css.walkDecls('lost-center', function lostCenterFunction(decl) {
+    var declArr = [];
+    var lostCenterPadding;
+    var lostCenterFlexbox = settings.flexbox;
 
     declArr = decl.value.split(' ');
 
@@ -42,30 +42,25 @@ module.exports = function lostCenterDecl(css, settings) {
       lostCenterFlexbox = 'no-flex';
     }
 
-    decl.parent.nodes.forEach(function (decl) {
-      if (decl.prop == 'lost-center-padding') {
-        lostCenterPadding = decl.value;
+    decl.parent.nodes.forEach(function lostCenterPaddingFunction(declaration) {
+      if (declaration.prop === 'lost-center-padding') {
+        lostCenterPadding = declaration.value;
 
-        decl.remove();
+        declaration.remove();
       }
     });
 
-    decl.parent.nodes.forEach(function (decl) {
-      if (decl.prop == 'lost-center-flexbox') {
-        if (decl.value == 'flex') {
-          lostCenterFlexbox = decl.value;
+    decl.parent.nodes.forEach(function lostCenterFlexboxFunction(declaration) {
+      if (declaration.prop === 'lost-center-flexbox') {
+        if (declaration.value === 'flex') {
+          lostCenterFlexbox = declaration.value;
         }
 
-        decl.remove();
+        declaration.remove();
       }
     });
 
     if (lostCenterFlexbox === 'no-flex') {
-      decl.cloneBefore({
-        prop: '*zoom',
-        value: '1'
-      });
-
       newBlock(
         decl,
         ':after',
