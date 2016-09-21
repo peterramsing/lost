@@ -629,8 +629,11 @@ div {
 #### lost-offset
 Margin to the left, right, bottom, or top, of an element depending on if the fraction passed is positive or negative. It works for both horizontal and vertical grids but not both.
 
+**Note: This is presently reversed from typical behavior due to initial API and the need to retain the API. Version 8 is planning to implement this in a more natural way.**
+
 - `fraction` - Fraction of the container to be offset.
 - `row|column` - Direction the grid is going. Should be the opposite of the column or row it's being used on. Defaults to row.
+  - Negative numbers for right offsets, positive numbers for left offsets.
 - `gutter` - How large the gutter involved is, typically this won't be adjusted, but if you have set the elements for that container to have different gutters than default, you will need to match that gutter here as well.
 
 ```css
