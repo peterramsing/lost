@@ -6,7 +6,7 @@ describe('lost-offset', function() {
   it('moves element to the left', function() {
     check(
       'a { lost-offset: 1/3; }',
-      'a { margin-right: calc(99.9% * 1/3 - (30px - 30px * 1/3) + (30px * 2)' +
+      'a { margin-left: calc(99.9% * (-1/3 * -1) - (30px - 30px * (-1/3 * -1)) + 30px' +
       ') !important; }'
     );
   });
@@ -14,8 +14,8 @@ describe('lost-offset', function() {
   it('moves element to the right', function() {
     check(
       'a { lost-offset: -1/3; }',
-      'a { margin-left: calc(99.9% * (-1/3 * -1) - (30px - 30px * ' +
-      '(-1/3 * -1)) + 30px) !important; }'
+      'a { margin-left: calc(99.9% * -1/3 - (30px - 30px * ' +
+      '-1/3) + 30px) !important; }'
     );
   });
 
@@ -38,8 +38,8 @@ describe('lost-offset', function() {
   it('supports custom gutter', function() {
     check(
       'a { lost-offset: 1/2 row 60px; }',
-      'a { margin-right: calc(99.9% * 1/2 - (60px - 60px * 1/2) + ' +
-      '(60px * 2)) !important; }'
+      'a { margin-left: calc(99.9% * (-1/2 * -1) - (60px - 60px * (-1/2 * -1)) + ' +
+      '60px) !important; }'
     );
   });
 });
