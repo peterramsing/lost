@@ -42,4 +42,21 @@ describe('lost-offset', function() {
       '60px) !important; }'
     );
   });
+  describe('allows for customizable rounders', function() {
+    it('100%', function() {
+      check(
+        'a { lost-offset: 1/2 row 60px; lost-offset-rounder: 100; }',
+        'a { margin-left: calc(100% * (-1/2 * -1) - (60px - 60px * (-1/2 * -1)) + ' +
+        '60px) !important; }'
+      );
+    });
+
+    it('99.99999999999%', function() {
+      check(
+        'a { lost-offset: 1/2 row 60px; lost-offset-rounder: 99.99999999999; }',
+        'a { margin-left: calc(99.99999999999% * (-1/2 * -1) - (60px - 60px * (-1/2 * -1)) + ' +
+        '60px) !important; }'
+      );
+    });
+  });
 });
