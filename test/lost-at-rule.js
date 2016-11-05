@@ -136,4 +136,31 @@ describe('lost-at-rule', function() {
     );
   });
 
+  it('can adapt the global rounder', function() {
+    check(
+      '@lost rounder 100;\n' +
+      'div {\n' +
+      '  lost-column: 1/3;\n' +
+      '}',
+
+      'div {\n' +
+      '  width: calc(100% * 1/3 - (30px - 30px * 1/3));\n' +
+      '}\n' +
+      'div:nth-child(1n) {\n' +
+      '  float: left;\n' +
+      '  margin-right: 30px;\n' +
+      '  clear: none;\n' +
+      '}\n' +
+      'div:last-child {\n' +
+      '  margin-right: 0;\n' +
+      '}\n' +
+      'div:nth-child(3n) {\n' +
+      '  margin-right: 0;\n' +
+      '  float: right;\n' +
+      '}\n' +
+      'div:nth-child(3n + 1) {\n' +
+      '  clear: both;\n' +
+      '}'
+    );
+  });
 });
