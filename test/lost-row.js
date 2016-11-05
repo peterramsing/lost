@@ -46,4 +46,23 @@ describe('lost-row', function() {
       ' margin-bottom: 0; }'
     );
   });
+  describe('allows for customizable rounders', function() {
+    it('100%', function() {
+      check(
+        'a { lost-row: 1/3; lost-row-rounder: 100; }',
+        'a { width: 100%; height: calc(100% * 1/3 - (30px - 30px * 1/3));' +
+        ' margin-bottom: 30px; }\n' +
+        'a:last-child { margin-bottom: 0; }'
+      );
+    });
+
+    it('99.99999999999%', function() {
+      check(
+        'a { lost-row: 1/3; lost-row-rounder: 99.99999999999; }',
+        'a { width: 100%; height: calc(99.99999999999% * 1/3 - (30px - 30px * 1/3));' +
+        ' margin-bottom: 30px; }\n' +
+        'a:last-child { margin-bottom: 0; }'
+      );
+    });
+  });
 });
