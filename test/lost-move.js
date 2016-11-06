@@ -42,4 +42,22 @@ describe('lost-move', function() {
       ' + 60px); }'
     );
   });
+
+  describe('allows for customizable rounders', function() {
+    it('100%', function() {
+      check(
+        'a { lost-move: 1/2 row 60px; lost-move-rounder: 100; }',
+        'a { position: relative; left: calc(100% * 1/2 - (60px - 60px * 1/2)' +
+        ' + 60px); }'
+      );
+    });
+
+    it('99.99999999999%', function() {
+      check(
+        'a { lost-move: 1/2 row 60px; lost-move-rounder: 99.99999999999; }',
+        'a { position: relative; left: calc(99.99999999999% * 1/2 - (60px - 60px * 1/2)' +
+        ' + 60px); }'
+      );
+    });
+  });
 });

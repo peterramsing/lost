@@ -84,4 +84,31 @@ describe('lost-waffle', function() {
       'a:nth-last-child(-n + 3) { margin-bottom: 0; }'
     );
   });
+  describe('allows for customizable rounders', function() {
+    it('100%', function() {
+      check(
+        'a { lost-waffle: 2/5 3 0 no-flex; lost-waffle-rounder: 100; }',
+
+        'a { width: calc(100% * 2/5); height: calc(100% * 2/5); }\n' +
+        'a:nth-child(1n) { float: left; margin-right: 0; margin-bottom: 0; clear: none; }\n' +
+        'a:last-child { margin-right: 0; margin-bottom: 0; }\n' +
+        'a:nth-child(3n) { margin-right: 0; float: right; }\n' +
+        'a:nth-child(3n + 1) { clear: both; }\n' +
+        'a:nth-last-child(-n + 3) { margin-bottom: 0; }'
+      );
+    });
+
+    it('99.99999999999%', function() {
+      check(
+        'a { lost-waffle: 2/5 3 0 no-flex; lost-waffle-rounder: 99.99999999999; }',
+
+        'a { width: calc(99.99999999999% * 2/5); height: calc(99.99999999999% * 2/5); }\n' +
+        'a:nth-child(1n) { float: left; margin-right: 0; margin-bottom: 0; clear: none; }\n' +
+        'a:last-child { margin-right: 0; margin-bottom: 0; }\n' +
+        'a:nth-child(3n) { margin-right: 0; float: right; }\n' +
+        'a:nth-child(3n + 1) { clear: both; }\n' +
+        'a:nth-last-child(-n + 3) { margin-bottom: 0; }'
+      );
+    });
+  });
 });

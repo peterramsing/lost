@@ -115,4 +115,29 @@ describe('lost-column', function() {
     );
   });
 
+  describe('allows for customizable rounders', function() {
+    it('100%', function() {
+      check(
+        'a { lost-column: 2/6; lost-column-rounder: 100; }',
+
+        'a { width: calc(100% * 2/6 - (30px - 30px * 2/6)); }\n' +
+        'a:nth-child(1n) { float: left; margin-right: 30px; clear: none; }\n' +
+        'a:last-child { margin-right: 0; }\n' +
+        'a:nth-child(6n) { margin-right: 0; float: right; }\n' +
+        'a:nth-child(6n + 1) { clear: both; }'
+      );
+    });
+
+    it('99.99999999999%', function() {
+      check(
+        'a { lost-column: 2/6; lost-column-rounder: 99.99999999999; }',
+
+        'a { width: calc(99.99999999999% * 2/6 - (30px - 30px * 2/6)); }\n' +
+        'a:nth-child(1n) { float: left; margin-right: 30px; clear: none; }\n' +
+        'a:last-child { margin-right: 0; }\n' +
+        'a:nth-child(6n) { margin-right: 0; float: right; }\n' +
+        'a:nth-child(6n + 1) { clear: both; }'
+      );
+    });
+  });
 });
