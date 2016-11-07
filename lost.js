@@ -14,6 +14,7 @@ var lostOffset = require('./lib/lost-offset');
 var lostMove = require('./lib/lost-move');
 var lostMasonryWrap = require('./lib/lost-masonry-wrap');
 var lostMasonryColumn = require('./lib/lost-masonry-column');
+var checkNodeVersion = require('./lib/check-node-version');
 
 // Lost At Rules and Declarations
 var libs = [
@@ -28,7 +29,8 @@ var libs = [
   lostOffset,
   lostMove,
   lostMasonryWrap,
-  lostMasonryColumn
+  lostMasonryColumn,
+  checkNodeVersion
 ];
 
 var defaultSettings = {
