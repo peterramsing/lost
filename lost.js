@@ -16,6 +16,9 @@ var lostMasonryWrap = require('./lib/lost-masonry-wrap');
 var lostMasonryColumn = require('./lib/lost-masonry-column');
 var checkNodeVersion = require('./lib/check-node-version');
 
+// Get the version of Node
+var nodeVersion = process.env.npm_config_node_version;
+
 // Lost At Rules and Declarations
 var libs = [
   lostAtRule,
@@ -29,8 +32,7 @@ var libs = [
   lostOffset,
   lostMove,
   lostMasonryWrap,
-  lostMasonryColumn,
-  checkNodeVersion
+  lostMasonryColumn
 ];
 
 var defaultSettings = {
@@ -43,9 +45,13 @@ var defaultSettings = {
 module.exports = postcss.plugin('lost', function lost(settings) {
   var theseSettings = assign({}, defaultSettings, settings || {});
 
+  if (checkNodeVersion(nodeVersion).warn === true) {
+    console.log(checkNodeVersion(nodeVersion).warning);
+  }
+
   return function executeLostGrid(css) {
     libs.forEach(function executeEachLostRule(lib) {
-      lib(css, theseSettings);
+      lib(css, theseSettings, nodeVersion);
     });
   };
 });
