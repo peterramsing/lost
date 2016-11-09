@@ -19,7 +19,7 @@ describe('Logs Node warning if node version is 0.x', function() {
       expect(checkNodeVersion('7.0.0').warn).to.not.equal(true);
     });
   });
-  describe('Operates as it should real version', function() {
+  describe('Operates as it should with \"real\" Node version', function() {
     it('logs on 0.12 and 0.10', function() {
       if (nodeVersion.split('.')[0] < 1) {
         console.log('Does log');
