@@ -52,7 +52,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
 
   return function executeLostGrid(css) {
     libs.forEach(function executeEachLostRule(lib) {
-      lib(css, theseSettings, nodeVersion);
+      lib(css, theseSettings);
     });
   };
 });
