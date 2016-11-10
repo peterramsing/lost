@@ -18,7 +18,7 @@ If you have any questions, comments, or concerns please feel free to [open an is
 
 Lost makes use of [`calc()`](https://webdesign.tutsplus.com/tutorials/calc-grids-are-the-best-grids--cms-22902) to create stunning grids based on fractions you define without having to pass a lot of options.
 
-
+Note: After LostGrid version 8 I'm no longer going to be ensuring it works on Node 0.10 and 0.12. It still might and I will be open when it breaks but I'll be following the [Node LTS plan for Node](https://github.com/nodejs/LTS#lts-schedule). Let me know if you any questions. Thanks!
 
 
 ## Table of Contents
@@ -557,10 +557,10 @@ Align nested elements. Apply this to a parent container.
 Creates a column that is a fraction of the size of its containing element's width with a gutter.
 
 - `fraction` - This is a simple fraction of the containing element's width.
+- `cycle` - Lost works by assigning a margin-right to all elements except the last in the row. It does this by default by using the denominator of the fraction you pick. To override the default use this param., e.g.: .foo { lost-column: 2/4 2; }
 - `gutter` - The margin on the right side of the element used to create a gutter. Typically this is left alone and settings.gutter will be used, but you can override it here if you want
 certain elements to have a particularly large or small gutter (pass 0 for no gutter at all).
   - When specifying the gutter, you need to also specify the cycle. [see issue 181](https://github.com/peterramsing/lost/issues/181)
-- `cycle` - Lost works by assigning a margin-right to all elements except the last in the row. It does this by default by using the denominator of the fraction you pick. To override the default use this param., e.g.: .foo { lost-column: 2/4 2; }
 - `flex|no-flex` - Determines whether this element should use Flexbox or not.
 - `none` - Resets the column (back to browser defaults)
 
@@ -777,6 +777,8 @@ div {
     - Edge
   - Safari 9+
 - Automated browser testing with Selenium is coming soon. 👍
+
+Note: After LostGrid version 8 I'm no longer going to be ensuring it works on Node 0.10 and 0.12. It still might and I will be open when it breaks but I'll be following the [Node LTS plan for Node](https://github.com/nodejs/LTS#lts-schedule). Let me know if you any questions. Thanks!
 
 **[:arrow_up: back to top](#table-of-contents)**
 
