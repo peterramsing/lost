@@ -16,7 +16,7 @@ If you have any questions, comments, or concerns please feel free to [open an is
 
 *********
 
-Lost makes use of [`calc()`](https://webdesign.tutsplus.com/tutorials/calc-grids-are-the-best-grids--cms-22902) to create stunning grids based on fractions you define without having to pass a lot of options.
+Lost makes use of [`calc()`](https://developer.mozilla.org/en-US/docs/Web/CSS/calc) to create stunning grids based on fractions you define without having to pass a lot of options.
 
 Note: After LostGrid version 8 I'm no longer going to be ensuring it works on Node 0.10 and 0.12. It still might and I will be open when it breaks but I'll be following the [Node LTS plan for Node](https://github.com/nodejs/LTS#lts-schedule). Let me know if you any questions. Thanks!
 
