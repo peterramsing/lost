@@ -27,8 +27,6 @@
     "chai": "^3.0.0",
     "coveralls": "^2.11.12",
     "eslint": "^3.3.1",
-    "eslint-config-airbnb-base": "^5.0.2",
-    "eslint-plugin-import": "^1.13.0",
     "istanbul": "^0.3.15",
     "mocha": "^3.0.0"
   },
