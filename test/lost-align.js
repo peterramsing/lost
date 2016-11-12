@@ -292,5 +292,14 @@ describe('lost-align', function() {
         'a > * { justify-content: flex-end; align-items: flex-end; }'
       );
     });
+
+    it('Flexbox is set globally', function() {
+      check(
+        '@lost flexbox flex; \n'+
+        'a { lost-align: bottom-right; }',
+        'a { display: flex; }\n' +
+        'a > * { justify-content: flex-end; align-items: flex-end; }'
+      );
+    });
   });
 });
