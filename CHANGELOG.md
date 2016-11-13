@@ -5,7 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [v8.0.0-beta.2] - 2016-11-12
 ### Fixed
-- [#328] Issue where flex-basis needed to be set for IE 10/11
+- [#329](https://github.com/peterramsing/lost/issues/329) Issue where flex-basis needed to be set for IE 10/11
 
 ### Added
 - Some [new global logic](https://github.com/peterramsing/lost/commit/9699bfc7e092ff6e2df00fc7861ac5a50c636c8b) for things. I'm a huge fan of breaking things out so they can be reused...LostGrid is in dire need of some breaking out within the codebase. This starts this (and it's been epic already and is starting to simplify things and improve readability.
