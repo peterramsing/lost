@@ -39,7 +39,9 @@ describe('lost-at-rule', function() {
       '}',
 
       'div {\n' +
-      '  flex: 0 0 auto;\n' +
+      '  flex-grow: 0;\n' +
+      '  flex-shrink: 0;\n' +
+      '  flex-basis: calc(99.9% * 1/3 - (30px - 30px * 1/3));\n' +
       '  width: calc(99.9% * 1/3 - (30px - 30px * 1/3));\n' +
       '}\n' +
       'div:nth-child(1n) {\n' +
