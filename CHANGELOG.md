@@ -23,6 +23,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 - Issue where 99.9 pixels could cause issues. You can now use the custom rounder to fine-tune your width to remove pixel rounding issues.
 
+[Diff with previous version 8.0.0-beta.0](https://github.com/peterramsing/lost/compare/v8.0.0-beta.0...v8.0.0-beta.1)
 
 ## [v8.0.0-beta.0] - 2016-10-18
 ### Changed
