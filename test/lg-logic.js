@@ -19,7 +19,7 @@ describe('calcValue works as it should', () => {
 
     expect(testCase).to.equal(expectedResult);
   });
-  it('no gutter ✅ when gutter is undefined', () => {
+  it('no gutter ✅  when gutter is undefined', () => {
     var testCase = lgLogic.calcValue('1/3', undefined, 99.9);
 
     var expectedResult = `calc(99.9% * 1/3)`;
