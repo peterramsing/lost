@@ -30,9 +30,9 @@ describe('calcValue works as it should', () => {
 
 describe('Units are validated based on if they make sense', () => {
   it('only allows % and vw for lg-column', () => {
-    expect(lgLogic.validateUnit('vw', 'lg-column')).to.be.true;
-    expect(lgLogic.validateUnit('%', 'lg-column')).to.be.true;
-    expect(lgLogic.validateUnit('foobar', 'lg-column')).to.not.be.true;
-    expect(lgLogic.validateUnit(3, 'lg-column')).to.not.be.true;
+    expect(lgLogic.validateUnit('vw', ['%','vw'])).to.be.true;
+    expect(lgLogic.validateUnit('%', ['%','vw'])).to.be.true;
+    expect(lgLogic.validateUnit('foobar', ['%','vw'])).to.not.be.true;
+    expect(lgLogic.validateUnit(3, ['%','vw'])).to.not.be.true;
   });
 });
