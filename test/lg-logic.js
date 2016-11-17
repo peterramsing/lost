@@ -29,9 +29,10 @@ describe('calcValue works as it should', () => {
 });
 
 describe('Units are validated based on if they make sense', () => {
-  it('only allows % and vw for lg-column', () => {
+  it('only allows what is in the array of accepted units', () => {
     expect(lgLogic.validateUnit('vw', ['%','vw'])).to.be.true;
     expect(lgLogic.validateUnit('%', ['%','vw'])).to.be.true;
+    expect(lgLogic.validateUnit('px', ['%','vw', 'px', 'em'])).to.be.true;
     expect(lgLogic.validateUnit('foobar', ['%','vw'])).to.not.be.true;
     expect(lgLogic.validateUnit(3, ['%','vw'])).to.not.be.true;
   });
