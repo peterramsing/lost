@@ -39,6 +39,26 @@ describe('lost-row', function() {
     );
   });
 
+  it('ignores bad unit', function() {
+    check(
+      'a { lost-row: 2/6 60px flex; lost-unit: $; }',
+      'a { width: 100%; flex: 0 0 auto;' +
+      ' height: calc(99.9% * 2/6 - (60px - 60px * 2/6));' +
+      ' margin-bottom: 60px; }\n' +
+      'a:last-child { margin-bottom: 0; }'
+    );
+  });
+
+  it('Uses unit if one is passed', function() {
+    check(
+      'a { lost-row: 2/6 60px flex; lost-unit: vh; }',
+      'a { width: 100%; flex: 0 0 auto;' +
+      ' height: calc(99.9vh * 2/6 - (60px - 60px * 2/6));' +
+      ' margin-bottom: 60px; }\n' +
+      'a:last-child { margin-bottom: 0; }'
+    );
+  });
+
   it('provides none rule', function() {
     check(
       'a { lost-row: none; }',

@@ -116,6 +116,30 @@ describe('lost-column', function() {
     );
   });
 
+  it('Ignores bad unit', function() {
+    check(
+      `a { lost-column: 2/6; lost-column-gutter: 10px; lost-unit: $; }`,
+
+      'a { width: calc(99.9% * 2/6 - (10px - 10px * 2/6)); }\n' +
+      'a:nth-child(1n) { float: left; margin-right: 10px; clear: none; }\n' +
+      'a:last-child { margin-right: 0; }\n' +
+      'a:nth-child(6n) { margin-right: 0; float: right; }\n' +
+      'a:nth-child(6n + 1) { clear: both; }'
+    );
+  });
+
+  it('Uses unit if one is passed', function() {
+    check(
+      `a { lost-column: 2/6; lost-column-gutter: 10px; lost-unit: vw; }`,
+
+      'a { width: calc(99.9vw * 2/6 - (10px - 10px * 2/6)); }\n' +
+      'a:nth-child(1n) { float: left; margin-right: 10px; clear: none; }\n' +
+      'a:last-child { margin-right: 0; }\n' +
+      'a:nth-child(6n) { margin-right: 0; float: right; }\n' +
+      'a:nth-child(6n + 1) { clear: both; }'
+    );
+  });
+
   describe('allows for customizable rounders', function() {
     it('100%', function() {
       check(

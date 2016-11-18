@@ -40,7 +40,8 @@ var defaultSettings = {
   flexbox: 'no-flex',
   cycle: 'auto',
   clearing: 'both',
-  rounder: 99.9
+  rounder: 99.9,
+  gridUnit: '%'
 };
 
 module.exports = postcss.plugin('lost', function lost(settings) {
@@ -50,9 +51,9 @@ module.exports = postcss.plugin('lost', function lost(settings) {
     console.log(checkNodeVersion(nodeVersion).warning);
   }
 
-  return function executeLostGrid(css) {
+  return function executeLostGrid(css, result) {
     libs.forEach(function executeEachLostRule(lib) {
-      lib(css, theseSettings);
+      lib(css, theseSettings, result);
     });
   };
 });
