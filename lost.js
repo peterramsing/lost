@@ -15,6 +15,7 @@ var lostMove = require('./lib/lost-move');
 var lostMasonryWrap = require('./lib/lost-masonry-wrap');
 var lostMasonryColumn = require('./lib/lost-masonry-column');
 var checkNodeVersion = require('./lib/check-node-version');
+var lgGutter = require('./lib/_lg-gutter');
 
 // Get the version of Node
 var nodeVersion = process.env.npm_config_node_version;
@@ -32,7 +33,8 @@ var libs = [
   lostOffset,
   lostMove,
   lostMasonryWrap,
-  lostMasonryColumn
+  lostMasonryColumn,
+  lgGutter
 ];
 
 var defaultSettings = {
