@@ -46,6 +46,14 @@ describe('lost-local-gutter', () => {
       `div:nth-child(3n) { margin-right: 0; float: right; }\n`+
       `div:nth-child(3n + 1) { clear: both; }`
     );
+    check(
+      `div { padding: $lost-local-gutter; lost-column: 1/3; lost-column-gutter: 0; }`,
+      `div { padding: 0; width: calc(99.9% * 1/3); }\n`+
+      `div:nth-child(1n) { float: left; margin-right: 0; clear: none; }\n`+
+      `div:last-child { margin-right: 0; }\n`+
+      `div:nth-child(3n) { margin-right: 0; float: right; }\n`+
+      `div:nth-child(3n + 1) { clear: both; }`
+    );
   });
   it('replaces the local gutter with an shortcutted gutter', () => {
     check(
