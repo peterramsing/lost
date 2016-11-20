@@ -23,6 +23,7 @@ var nodeVersion = process.env.npm_config_node_version;
 // Lost At Rules and Declarations
 var libs = [
   lostAtRule,
+  lgGutter,
   lostUtility,
   lostFlexContainer,
   lostCenter,
@@ -33,8 +34,7 @@ var libs = [
   lostOffset,
   lostMove,
   lostMasonryWrap,
-  lostMasonryColumn,
-  lgGutter
+  lostMasonryColumn
 ];
 
 var defaultSettings = {
