@@ -3,8 +3,6 @@
 var expect = require('chai').expect;
 var lgLogic = require('../lib/_lg-gutter.js');
 
-
-
 var check = require('./check');
 
 describe('lost-gutter', function() {
