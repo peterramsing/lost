@@ -50,7 +50,7 @@ module.exports = postcss.plugin('lost', function lost(settings) {
   var theseSettings = assign({}, defaultSettings, settings || {});
 
   if (checkNodeVersion(nodeVersion).warn === true) {
-    console.log(checkNodeVersion(nodeVersion).warning);
+    console.log(checkNodeVersion(nodeVersion).warning); // eslint-disable-line no-console
   }
 
   return function executeLostGrid(css, result) {
