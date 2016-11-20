@@ -4,8 +4,8 @@ var expect = require('chai').expect;
 
 var check = require('./check');
 
-describe('lost-gutter', function() {
-  it('replaces $lost-gutter with global', function() {
+describe('lost-gutter', () => {
+  it('replaces $lost-gutter with global', () => {
     check(
       `div { padding: $lost-gutter; }`,
       `div { padding: 30px; }`
@@ -27,7 +27,7 @@ describe('lost-gutter', function() {
       `div:nth-child(3n + 1) { clear: both; }`
     );
   });
-  it('replaces $lost-gutter with global when global is not default', function() {
+  it('replaces $lost-gutter with global when global is not default', () => {
     check(
       `@lost gutter 40px; div { padding: $lost-gutter; }`,
       `div { padding: 40px; }`
