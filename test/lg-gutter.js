@@ -55,7 +55,7 @@ describe('lost-local-gutter', () => {
       `div:nth-child(3n + 1) { clear: both; }`
     );
   });
-  it('replaces the local gutter with an shortcutted gutter', () => {
+  it('works on shortcut lost-column', () => {
     check(
       `div { padding: $lost-local-gutter; lost-column: 1/3 3 70px;}`,
       `div { padding: 70px; width: calc(99.9% * 1/3 - (70px - 70px * 1/3));}\n`+
@@ -64,5 +64,49 @@ describe('lost-local-gutter', () => {
       `div:nth-child(3n) { margin-right: 0; float: right;}\n`+
       `div:nth-child(3n + 1) { clear: both;}`
     );
-  })
+  });
+  it('works on shortcut lost-waffle', () => {
+    check(
+      `div { padding: $lost-local-gutter; lost-waffle: 1/3 3 20px;}`,
+      `div { padding: 20px; width: calc(99.9% * 1/3 - (20px - 20px * 1/3)); height: calc(99.9% * 1/3 - (20px - 20px * 1/3));}\n`+
+      `div:nth-child(1n) { float: left; margin-right: 20px; margin-bottom: 20px; clear: none;}\n` +
+      `div:last-child { margin-right: 0; margin-bottom: 0;}\n` +
+      `div:nth-child(3n) { margin-right: 0;}\n` +
+      `div:nth-child(3n + 1) { clear: both;}\n` +
+      `div:nth-last-child(-n + 3) { margin-bottom: 0;}`
+    );
+  });
+  it('works on shortcut lost-offset', () => {
+    check(
+      `div { padding: $lost-local-gutter; lost-offset: 1/3 3 100px;}`,
+      `div { padding: 100px; margin-left: calc(99.9% * (-1/3 * -1) - (100px - 100px * (-1/3 * -1)) + 100px) !important;}`
+    );
+  });
+  it('works on shortcut lost-center', () => {
+    check(
+      `div { padding: $lost-local-gutter; lost-center: 400px 60px;}`,
+      `div { padding: 60px; max-width: 400px; margin-left: auto; margin-right: auto; padding-left: 60px; padding-right: 60px;}\n` +
+      `div:before { content: ''; display: table;}\n` +
+      `div:after { content: ''; display: table; clear: both;}`
+    );
+  });
+  it('works on shortcut lost-masonry-wrap', () => {
+    check(
+      `div { padding: $lost-local-gutter; lost-masonry-wrap: flex 60px;}`,
+      `div { padding: 60px; display: flex; flex-flow: row wrap; margin-left: -30px; margin-right: -30px;}`
+    );
+  });
+  it('works on shortcut lost-masonry-column', () => {
+    check(
+      `div { padding: $lost-local-gutter; lost-masonry-column: 1/3 15px;}`,
+      `div { padding: 15px; float: left; width: calc(99.9% * 1/3 - 15px); margin-left: 7.5px; margin-right: 7.5px;}`
+    );
+  });
+  it('works on shortcut lost-row', () => {
+    check(
+      `div { padding: $lost-local-gutter; lost-row: 1/3 70px;}`,
+      `div { padding: 70px; width: 100%; height: calc(99.9% * 1/3 - (70px - 70px * 1/3)); margin-bottom: 70px;}\n` +
+      `div:last-child { margin-bottom: 0;}`
+    );
+  });
 });
