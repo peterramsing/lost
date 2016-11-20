@@ -109,4 +109,14 @@ describe('lost-local-gutter', () => {
       `div:last-child { margin-bottom: 0;}`
     );
   });
+  it('takes global if no local one is given', () => {
+    check(
+      `div { padding: $lost-local-gutter; lost-column: 1/3;}`,
+      `div { padding: 30px; width: calc(99.9% * 1/3 - (30px - 30px * 1/3));}\n` +
+      `div:nth-child(1n) { float: left; margin-right: 30px; clear: none;}\n` +
+      `div:last-child { margin-right: 0;}\n` +
+      `div:nth-child(3n) { margin-right: 0; float: right;}\n` +
+      `div:nth-child(3n + 1) { clear: both;}`
+    );
+  });
 });
