@@ -40,8 +40,8 @@ describe('lost-local-gutter', () => {
   it('replaces $lost-local-gutter', () => {
     check(
       `div { padding: $lost-local-gutter; lost-column: 1/3; lost-column-gutter: 50px; }`,
-      `div { padding: 40px; width: calc(99.9% * 1/3 - (40px - 40px * 1/3)); }\n`+
-      `div:nth-child(1n) { float: left; margin-right: 40px; clear: none; }\n`+
+      `div { padding: 50px; width: calc(99.9% * 1/3 - (50px - 50px * 1/3)); }\n`+
+      `div:nth-child(1n) { float: left; margin-right: 50px; clear: none; }\n`+
       `div:last-child { margin-right: 0; }\n`+
       `div:nth-child(3n) { margin-right: 0; float: right; }\n`+
       `div:nth-child(3n + 1) { clear: both; }`
@@ -50,8 +50,8 @@ describe('lost-local-gutter', () => {
   it('replaces the local gutter with an shortcutted gutter', () => {
     check(
       `div { padding: $lost-local-gutter; lost-column: 1/3 3 70px;}`,
-      `div { padding: 40px; width: calc(99.9% * 1/3 - (40px - 40px * 1/3)); }\n`+
-      `div:nth-child(1n) { float: left; margin-right: 40px; clear: none; }\n`+
+      `div { padding: 70px; width: calc(99.9% * 1/3 - (70px - 70px * 1/3)); }\n`+
+      `div:nth-child(1n) { float: left; margin-right: 70px; clear: none; }\n`+
       `div:last-child { margin-right: 0; }\n`+
       `div:nth-child(3n) { margin-right: 0; float: right; }\n`+
       `div:nth-child(3n + 1) { clear: both; }`
