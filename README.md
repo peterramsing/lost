@@ -7,6 +7,9 @@
   <a href="https://github.com/peterramsing/lost/stargazers"><img src="http://img.shields.io/npm/dm/lost.svg?style=flat-square"></a>
   <a href="https://travis-ci.org/peterramsing/lost"><img src="https://img.shields.io/travis/peterramsing/lost/master.svg?style=flat-square"></a>
   <a href="https://gitter.im/peterramsing/lost"><img src="https://badges.gitter.im/Join%20Chat.svg"></a>
+  <br><br>
+  <a href="http://waffle.io/peterramsing/lost"><img src="https://badge.waffle.io/peterramsing/lost.svg?label=status: Slated For Dev&title=Slated for Dev"></a>
+  <a href="http://waffle.io/peterramsing/lost"><img src="https://badge.waffle.io/peterramsing/lost.svg?label=status: In Progress&title=In Progress"></a>
 </p>
 
 LostGrid is a powerful grid system built in [PostCSS](https://github.com/postcss/postcss) that works with any preprocessor and even vanilla CSS.
