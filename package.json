@@ -25,13 +25,11 @@
   "homepage": "http://lostgrid.org",
   "devDependencies": {
     "chai": "^3.0.0",
-    "coveralls": "^2.11.12",
     "eslint": "^3.3.1",
     "istanbul": "^0.3.15",
     "mocha": "^3.0.0"
   },
   "scripts": {
-    "coveralls": "cat coverage/lcov.info | coveralls",
     "test": "istanbul cover node_modules/mocha/bin/_mocha -- test/*.js",
     "lint": "node_modules/.bin/eslint lib/*.js"
   }
