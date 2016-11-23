@@ -119,4 +119,14 @@ describe('lost-local-gutter', () => {
       `div:nth-child(3n + 1) { clear: both;}`
     );
   });
+  it('allows for multiple uses of the variable', () => {
+    check(
+      `div { padding: $lost-local-gutter; lost-column: 1/3 3 20px; margin-top: $lost-local-gutter;}`,
+      `div { padding: 20px; width: calc(99.9% * 1/3 - (20px - 20px * 1/3)); margin-top: 20px;}\n` +
+      `div:nth-child(1n) { float: left; margin-right: 20px; clear: none;}\n` +
+      `div:last-child { margin-right: 0;}\n` +
+      `div:nth-child(3n) { margin-right: 0; float: right;}\n` +
+      `div:nth-child(3n + 1) { clear: both;}`
+    );
+  });
 });
