@@ -35,6 +35,17 @@ describe('lost-move', function() {
     );
   });
 
+  it('retains the lost-column gutter', () => {
+    check(
+      `a { lost-column: 1/3 3 50px; lost-move: -1/3 row; }`,
+      `a { width: calc(99.9% * 1/3 - (50px - 50px * 1/3)); position: relative; left: calc(99.9% * -1/3 - (50px - 50px * -1/3) + 50px); }\n`+
+      `a:nth-child(1n) { float: left; margin-right: 50px; clear: none; }\n`+
+      `a:last-child { margin-right: 0; }\n`+
+      `a:nth-child(3n) { margin-right: 0; float: right; }\n`+
+      `a:nth-child(3n + 1) { clear: both; }`
+    );
+  });
+
   it('supports custom gutter', function() {
     check(
       'a { lost-move: 1/2 row 60px; }',
