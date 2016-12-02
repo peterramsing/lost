@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [v8.0.0-beta.3] - 2016-11-??
+## [v8.0.0-beta.3] - 2016-12-01
 ### Fixed
 - [#339](https://github.com/peterramsing/lost/issues/233) Fixes issue where `lost-align` was targeting the incorrect element when using flexbox.
 
