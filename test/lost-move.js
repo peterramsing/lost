@@ -53,6 +53,18 @@ describe('lost-move', function() {
       `a:nth-child(3n + 1) { clear: both; }`
     );
   });
+
+  it('retains the lost-row gutter', () => {
+    check(
+      `a { lost-row: 1/3 50px; lost-move: -1/3 column; }`,
+      `a { width: 100%; height: calc(99.9% * 1/3 - (50px - 50px * 1/3)); margin-bottom: 50px; position: relative; top: calc(99.9% * -1/3 - (50px - 50px * -1/3) + 50px); }\n`+
+      `a:last-child { margin-bottom: 0; }`
+    );
+    check(
+      `a { lost-row: 1/3; lost-move: -1/3 column; lost-row-gutter: 50px; }`,
+      `a { width: 100%; height: calc(99.9% * 1/3 - (50px - 50px * 1/3)); margin-bottom: 50px; position: relative; top: calc(99.9% * -1/3 - (50px - 50px * -1/3) + 50px); }\n`+
+      `a:last-child { margin-bottom: 0; }`
+    );
   });
 
   it('supports custom gutter', function() {
