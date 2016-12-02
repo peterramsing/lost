@@ -44,6 +44,15 @@ describe('lost-move', function() {
       `a:nth-child(3n) { margin-right: 0; float: right; }\n`+
       `a:nth-child(3n + 1) { clear: both; }`
     );
+    check(
+      `a { lost-column: 1/3; lost-move: -1/3 row; lost-column-gutter: 50px; }`,
+      `a { width: calc(99.9% * 1/3 - (50px - 50px * 1/3)); position: relative; left: calc(99.9% * -1/3 - (50px - 50px * -1/3) + 50px); }\n`+
+      `a:nth-child(1n) { float: left; margin-right: 50px; clear: none; }\n`+
+      `a:last-child { margin-right: 0; }\n`+
+      `a:nth-child(3n) { margin-right: 0; float: right; }\n`+
+      `a:nth-child(3n + 1) { clear: both; }`
+    );
+  });
   });
 
   it('supports custom gutter', function() {
