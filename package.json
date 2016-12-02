@@ -15,7 +15,8 @@
     "grid",
     "fraction",
     "ratio",
-    "postcss"
+    "postcss",
+    "postcss-plugin"
   ],
   "author": "Cory Simmons & Peter Ramsing <hi@peterramsing.com> (http://peter.coffee)",
   "license": "MIT",
