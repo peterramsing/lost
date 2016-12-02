@@ -11,6 +11,7 @@ describe('lost-at-rule', function() {
       '}',
 
       'div {\n' +
+      '  min-height: 1px;\n' +
       '  width: calc(99.9% * 1/3 - (60px - 60px * 1/3));\n' +
       '}\n' +
       'div:nth-child(1n) {\n' +
@@ -64,6 +65,7 @@ describe('lost-at-rule', function() {
       '}',
 
       'div {\n' +
+      '  min-height: 1px;\n' +
       '  width: calc(99.9% * 1/3 - (30px - 30px * 1/3));\n' +
       '}\n' +
       'div:nth-child(1n) {\n' +
@@ -88,6 +90,7 @@ describe('lost-at-rule', function() {
       '}',
 
       'div {\n' +
+      '  min-height: 1px;\n' +
       '  width: calc(99.9% * 1/3 - (30px - 30px * 1/3));\n' +
       '}\n' +
       'div:nth-child(1n) {\n' +
@@ -116,6 +119,7 @@ describe('lost-at-rule', function() {
       '}',
 
       'div {\n' +
+      '  min-height: 1px;\n' +
       '  width: calc(99.9% * 1/3 - (30px - 30px * 1/3));\n' +
       '}\n' +
       'div:nth-child(1n) {\n' +
