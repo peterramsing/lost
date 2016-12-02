@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [v8.0.0-beta.3] - 2016-11-??
+## [v8.0.0-beta.3] - 2016-12-01
 ### Fixed
 - [#339](https://github.com/peterramsing/lost/issues/233) Fixes issue where `lost-align` was targeting the incorrect element when using flexbox.
 
@@ -11,7 +11,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - [#343](https://github.com/peterramsing/lost/issues/328) Changes how the `lost-waffle` last element in a row is floated. Before, the last element in a row would be floated right where everything else would float left. This is typically with row based grids, however when using the waffle grid it was a bit strange. This now allows for a param to be used instead if you want the last element to float right and all elements floating left is default.
 
 ### Added
-- [#345](https://github.com/peterramsing/lost/issues/345)
+- [#345](https://github.com/peterramsing/lost/issues/345) Customizable units for calc (vw).
 
 ### LostGrid Infrastructure
 - Added a way to validate whether or not a unit is valid based on the declaration.
