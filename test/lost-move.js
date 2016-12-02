@@ -67,6 +67,14 @@ describe('lost-move', function() {
     );
   });
 
+  it(`doesn't override the gutter set by lost-move`, () => {
+    check(
+      `a { lost-row: 1/3; lost-move: -1/3 column 70px; lost-row-gutter: 50px; }`,
+      `a { width: 100%; height: calc(99.9% * 1/3 - (50px - 50px * 1/3)); margin-bottom: 50px; position: relative; top: calc(99.9% * -1/3 - (70px - 70px * -1/3) + 70px); }\n`+
+      `a:last-child { margin-bottom: 0; }`
+    )
+  });
+
   it('supports custom gutter', function() {
     check(
       'a { lost-move: 1/2 row 60px; }',
