@@ -35,6 +35,51 @@ describe('lost-move', function() {
     );
   });
 
+  it('retains the lost-column gutter', () => {
+    check(
+      `a { lost-column: 1/3 3 50px; lost-move: -1/3 row; }`,
+      `a { width: calc(99.9% * 1/3 - (50px - 50px * 1/3)); position: relative; left: calc(99.9% * -1/3 - (50px - 50px * -1/3) + 50px); }\n`+
+      `a:nth-child(1n) { float: left; margin-right: 50px; clear: none; }\n`+
+      `a:last-child { margin-right: 0; }\n`+
+      `a:nth-child(3n) { margin-right: 0; float: right; }\n`+
+      `a:nth-child(3n + 1) { clear: both; }`
+    );
+    check(
+      `a { lost-column: 1/3; lost-move: -1/3 row; lost-column-gutter: 50px; }`,
+      `a { width: calc(99.9% * 1/3 - (50px - 50px * 1/3)); position: relative; left: calc(99.9% * -1/3 - (50px - 50px * -1/3) + 50px); }\n`+
+      `a:nth-child(1n) { float: left; margin-right: 50px; clear: none; }\n`+
+      `a:last-child { margin-right: 0; }\n`+
+      `a:nth-child(3n) { margin-right: 0; float: right; }\n`+
+      `a:nth-child(3n + 1) { clear: both; }`
+    );
+  });
+
+  it('retains the lost-row gutter', () => {
+    check(
+      `a { lost-row: 1/3 50px; lost-move: -1/3 column; }`,
+      `a { width: 100%; height: calc(99.9% * 1/3 - (50px - 50px * 1/3)); margin-bottom: 50px; position: relative; top: calc(99.9% * -1/3 - (50px - 50px * -1/3) + 50px); }\n`+
+      `a:last-child { margin-bottom: 0; }`
+    );
+    check(
+      `a { lost-row: 1/3; lost-move: -1/3 column; lost-row-gutter: 50px; }`,
+      `a { width: 100%; height: calc(99.9% * 1/3 - (50px - 50px * 1/3)); margin-bottom: 50px; position: relative; top: calc(99.9% * -1/3 - (50px - 50px * -1/3) + 50px); }\n`+
+      `a:last-child { margin-bottom: 0; }`
+    );
+  });
+
+  it(`doesn't override the gutter set by lost-move`, () => {
+    check(
+      `a { lost-row: 1/3; lost-move: -1/3 column 70px; lost-row-gutter: 50px; }`,
+      `a { width: 100%; height: calc(99.9% * 1/3 - (50px - 50px * 1/3)); margin-bottom: 50px; position: relative; top: calc(99.9% * -1/3 - (70px - 70px * -1/3) + 70px); }\n`+
+      `a:last-child { margin-bottom: 0; }`
+    );
+    check(
+      `a { lost-row: 1/3; lost-move: -1/3 column; lost-move-gutter: 70px; lost-row-gutter: 50px; }`,
+      `a { width: 100%; height: calc(99.9% * 1/3 - (50px - 50px * 1/3)); margin-bottom: 50px; position: relative; top: calc(99.9% * -1/3 - (70px - 70px * -1/3) + 70px); }\n`+
+      `a:last-child { margin-bottom: 0; }`
+    );
+  });
+
   it('supports custom gutter', function() {
     check(
       'a { lost-move: 1/2 row 60px; }',

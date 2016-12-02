@@ -24,6 +24,7 @@ var nodeVersion = process.env.npm_config_node_version;
 var libs = [
   lostAtRule,
   lgGutter,
+  lostMove,
   lostUtility,
   lostFlexContainer,
   lostCenter,
@@ -32,7 +33,6 @@ var libs = [
   lostRow,
   lostWaffle,
   lostOffset,
-  lostMove,
   lostMasonryWrap,
   lostMasonryColumn
 ];
