@@ -1,5 +1,7 @@
 *For support questions you might try tweeting me [@lostgrid](https://twitter.com/lostgrid) first.*
 
+*If this is about the documentation site please submit issues for that on the site's repo: [github.com/lostgrid/lostgrid-site](https://github.com/lostgrid/lostgrid-site/issues/new).*
+
 -----
 
 **Is this a feature request or a bug report?**
