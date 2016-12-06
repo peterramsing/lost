@@ -43,7 +43,8 @@ var defaultSettings = {
   cycle: 'auto',
   clearing: 'both',
   rounder: 99.9,
-  gridUnit: '%'
+  gridUnit: '%',
+  direction: 'ltr'
 };
 
 module.exports = postcss.plugin('lost', function lost(settings) {
