@@ -166,7 +166,7 @@ describe('lost-column', function() {
     });
   });
 
-  describe('supports LTR', () => {
+  describe('supports RTL', () => {
     it('works with typical column', () => {
       check(
         `@lost direction rtl;\n`+
