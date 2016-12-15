@@ -9,4 +9,5 @@ node_js:
   - "7"
 
 script:
+  - npm test
   - npm run lint
