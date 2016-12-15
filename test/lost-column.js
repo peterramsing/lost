@@ -169,7 +169,7 @@ describe('lost-column', function() {
   describe('supports RTL', () => {
     it('works with typical column', () => {
       check(
-        `@lost direction rtl;\n`+
+        `@lost --beta-direction rtl;\n`+
         `a { lost-column: 1/2; }`,
         `a { width: calc(99.9% * 1/2 - (30px - 30px * 1/2)); }\n` +
         `a:nth-child(1n) { float: right; margin-left: 30px; clear: none; }\n` +
@@ -178,7 +178,7 @@ describe('lost-column', function() {
         `a:nth-child(2n + 1) { clear: both; }`
       );
       check(
-        `@lost direction rtl;\n`+
+        `@lost --beta-direction rtl;\n`+
         `a { lost-column: 5/10; }`,
         `a { width: calc(99.9% * 5/10 - (30px - 30px * 5/10)); }\n` +
         `a:nth-child(1n) { float: right; margin-left: 30px; clear: none; }\n` +
