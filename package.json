@@ -25,10 +25,10 @@
   },
   "homepage": "http://lostgrid.org",
   "devDependencies": {
-    "chai": "^3.0.0",
-    "eslint": "^3.3.1",
-    "istanbul": "^0.4.5",
-    "mocha": "^3.0.0"
+    "chai": "^3.5",
+    "eslint": "^3.12",
+    "istanbul": "^0.4",
+    "mocha": "^3.2"
   },
   "scripts": {
     "test": "istanbul cover node_modules/mocha/bin/_mocha -- test/*.js",
