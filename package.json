@@ -8,7 +8,7 @@
     "url": "https://github.com/peterramsing/lost.git"
   },
   "dependencies": {
-    "postcss": "^5.2.6",
+    "postcss": "^5.2.8",
     "object-assign": "^4.1.0"
   },
   "keywords": [
