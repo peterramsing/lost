@@ -19,6 +19,10 @@ If you have any questions, comments, or concerns please feel free to [open an is
 
 *********
 
+## Getting Started
+* [Installation Guide](https://github.com/peterramsing/lost/wiki/Installation)
+* [Getting Started Video](https://youtu.be/6FN7QU1ZxqA)
+
 Lost makes use of [`calc()`](https://developer.mozilla.org/en-US/docs/Web/CSS/calc) to create stunning grids based on fractions you define without having to pass a lot of options.
 
 Read the docs on [LostGrid.org](http://lostgrid.org/docs.html)!
