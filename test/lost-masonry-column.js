@@ -36,4 +36,22 @@ describe('lost-masonry-column', function() {
       );
     });
   });
+
+  describe('allows for customizable rounders', function() {
+    it('100%', function() {
+      check(
+        'a { lost-masonry-column: 60px; lost-masonry-column-rounder: 99.99999999999; }',
+        'a { float: left; width: calc(99.99999999999% * 60px - 30px); margin-left: 15px;' +
+        ' margin-right: 15px; }'
+      );
+    });
+
+    it('99.99999999999%', function() {
+      check(
+        'a { lost-masonry-column: 60px; lost-masonry-column-rounder: 100; }',
+        'a { float: left; width: calc(100% * 60px - 30px); margin-left: 15px;' +
+        ' margin-right: 15px; }'
+      );
+    });
+  });
 });

@@ -15,6 +15,7 @@ var lostMove = require('./lib/lost-move');
 var lostMasonryWrap = require('./lib/lost-masonry-wrap');
 var lostMasonryColumn = require('./lib/lost-masonry-column');
 var checkNodeVersion = require('./lib/check-node-version');
+var lgGutter = require('./lib/lg-gutter');
 
 // Get the version of Node
 var nodeVersion = process.env.npm_config_node_version;
@@ -22,6 +23,8 @@ var nodeVersion = process.env.npm_config_node_version;
 // Lost At Rules and Declarations
 var libs = [
   lostAtRule,
+  lgGutter,
+  lostMove,
   lostUtility,
   lostFlexContainer,
   lostCenter,
@@ -30,7 +33,6 @@ var libs = [
   lostRow,
   lostWaffle,
   lostOffset,
-  lostMove,
   lostMasonryWrap,
   lostMasonryColumn
 ];
@@ -39,19 +41,22 @@ var defaultSettings = {
   gutter: '30px',
   flexbox: 'no-flex',
   cycle: 'auto',
-  clearing: 'both'
+  clearing: 'both',
+  rounder: 99.9,
+  gridUnit: '%',
+  direction: 'ltr'
 };
 
 module.exports = postcss.plugin('lost', function lost(settings) {
   var theseSettings = assign({}, defaultSettings, settings || {});
 
   if (checkNodeVersion(nodeVersion).warn === true) {
-    console.log(checkNodeVersion(nodeVersion).warning);
+    console.log(checkNodeVersion(nodeVersion).warning); // eslint-disable-line no-console
   }
 
-  return function executeLostGrid(css) {
+  return function executeLostGrid(css, result) {
     libs.forEach(function executeEachLostRule(lib) {
-      lib(css, theseSettings, nodeVersion);
+      lib(css, theseSettings, result);
     });
   };
 });

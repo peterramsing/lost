@@ -161,7 +161,7 @@ describe('lost-align', function() {
       check(
         'a { lost-align: reset flex; }',
         'a { display: initial; }\n' +
-        'a > * { justify-content: inherit; align-items: inherit; }'
+        'a { justify-content: inherit; align-items: inherit; }'
       );
     });
 
@@ -169,7 +169,7 @@ describe('lost-align', function() {
       check(
         'a { lost-align: horizontal flex; }',
         'a { display: flex; }\n' +
-        'a > * { justify-content: center; align-items: inherit; }'
+        'a { justify-content: center; align-items: inherit; }'
       );
     });
 
@@ -177,7 +177,7 @@ describe('lost-align', function() {
       check(
         'a { lost-align: vertical flex; }',
         'a { display: flex; }\n' +
-        'a > * { justify-content: inherit; align-items: center; }'
+        'a { justify-content: inherit; align-items: center; }'
       );
     });
 
@@ -185,7 +185,7 @@ describe('lost-align', function() {
       check(
         'a { lost-align: top-left flex; }',
         'a { display: flex; }\n' +
-        'a > * { justify-content: flex-start; align-items: flex-start; }'
+        'a { justify-content: flex-start; align-items: flex-start; }'
       );
     });
 
@@ -193,7 +193,7 @@ describe('lost-align', function() {
       check(
         'a { lost-align: top-center flex; }',
         'a { display: flex; }\n' +
-        'a > * { justify-content: center; align-items: flex-start; }'
+        'a { justify-content: center; align-items: flex-start; }'
       );
     });
 
@@ -201,7 +201,7 @@ describe('lost-align', function() {
       check(
         'a { lost-align: top flex; }',
         'a { display: flex; }\n' +
-        'a > * { justify-content: center; align-items: flex-start; }'
+        'a { justify-content: center; align-items: flex-start; }'
       );
     });
 
@@ -209,7 +209,7 @@ describe('lost-align', function() {
       check(
         'a { lost-align: top-right flex; }',
         'a { display: flex; }\n' +
-        'a > * { justify-content: flex-end; align-items: flex-start; }'
+        'a { justify-content: flex-end; align-items: flex-start; }'
       );
     });
 
@@ -217,7 +217,7 @@ describe('lost-align', function() {
       check(
         'a { lost-align: middle-left flex; }',
         'a { display: flex; }\n' +
-        'a > * { justify-content: flex-start; align-items: center; }'
+        'a { justify-content: flex-start; align-items: center; }'
       );
     });
 
@@ -225,7 +225,7 @@ describe('lost-align', function() {
       check(
         'a { lost-align: left flex; }',
         'a { display: flex; }\n' +
-        'a > * { justify-content: flex-start; align-items: center; }'
+        'a { justify-content: flex-start; align-items: center; }'
       );
     });
 
@@ -233,7 +233,7 @@ describe('lost-align', function() {
       check(
         'a { lost-align: middle-center flex; }',
         'a { display: flex; }\n' +
-        'a > * { justify-content: center; align-items: center; }'
+        'a { justify-content: center; align-items: center; }'
       );
     });
 
@@ -241,7 +241,7 @@ describe('lost-align', function() {
       check(
         'a { lost-align: center flex; }',
         'a { display: flex; }\n' +
-        'a > * { justify-content: center; align-items: center; }'
+        'a { justify-content: center; align-items: center; }'
       );
     });
 
@@ -249,7 +249,7 @@ describe('lost-align', function() {
       check(
         'a { lost-align: middle-right flex; }',
         'a { display: flex; }\n' +
-        'a > * { justify-content: flex-end; align-items: center; }'
+        'a { justify-content: flex-end; align-items: center; }'
       );
     });
 
@@ -257,7 +257,7 @@ describe('lost-align', function() {
       check(
         'a { lost-align: right flex; }',
         'a { display: flex; }\n' +
-        'a > * { justify-content: flex-end; align-items: center; }'
+        'a { justify-content: flex-end; align-items: center; }'
       );
     });
 
@@ -265,7 +265,7 @@ describe('lost-align', function() {
       check(
         'a { lost-align: bottom-left flex; }',
         'a { display: flex; }\n' +
-        'a > * { justify-content: flex-start; align-items: flex-end; }'
+        'a { justify-content: flex-start; align-items: flex-end; }'
       );
     });
 
@@ -273,7 +273,7 @@ describe('lost-align', function() {
       check(
         'a { lost-align: bottom-center flex; }',
         'a { display: flex; }\n' +
-        'a > * { justify-content: center; align-items: flex-end; }'
+        'a { justify-content: center; align-items: flex-end; }'
       );
     });
 
@@ -281,7 +281,7 @@ describe('lost-align', function() {
       check(
         'a { lost-align: bottom flex; }',
         'a { display: flex; }\n' +
-        'a > * { justify-content: center; align-items: flex-end; }'
+        'a { justify-content: center; align-items: flex-end; }'
       );
     });
 
@@ -289,7 +289,16 @@ describe('lost-align', function() {
       check(
         'a { lost-align: bottom-right flex; }',
         'a { display: flex; }\n' +
-        'a > * { justify-content: flex-end; align-items: flex-end; }'
+        'a { justify-content: flex-end; align-items: flex-end; }'
+      );
+    });
+
+    it('Flexbox is set globally', function() {
+      check(
+        '@lost flexbox flex; \n'+
+        'a { lost-align: bottom-right; }',
+        'a { display: flex; }\n' +
+        'a { justify-content: flex-end; align-items: flex-end; }'
       );
     });
   });

@@ -1,6 +1,6 @@
 {
   "name": "lost",
-  "version": "7.1.1",
+  "version": "8.0.0",
   "description": "LostGrid is a powerful grid system built in PostCSS that works with any preprocessor and even vanilla CSS.",
   "main": "lost.js",
   "repository": {
@@ -8,14 +8,15 @@
     "url": "https://github.com/peterramsing/lost.git"
   },
   "dependencies": {
-    "postcss": "^5.1.2",
+    "postcss": "^5.2.8",
     "object-assign": "^4.1.0"
   },
   "keywords": [
     "grid",
     "fraction",
     "ratio",
-    "postcss"
+    "postcss",
+    "postcss-plugin"
   ],
   "author": "Cory Simmons & Peter Ramsing <hi@peterramsing.com> (http://peter.coffee)",
   "license": "MIT",
@@ -24,17 +25,13 @@
   },
   "homepage": "http://lostgrid.org",
   "devDependencies": {
-    "chai": "^3.0.0",
-    "coveralls": "^2.11.12",
-    "eslint": "^3.3.1",
-    "eslint-config-airbnb-base": "^5.0.2",
-    "eslint-plugin-import": "^1.13.0",
-    "istanbul": "^0.3.15",
-    "mocha": "^3.0.0"
+    "chai": "^3.5",
+    "eslint": "^3.12",
+    "istanbul": "^0.4",
+    "mocha": "^3.2"
   },
   "scripts": {
-    "coveralls": "cat coverage/lcov.info | coveralls",
     "test": "istanbul cover node_modules/mocha/bin/_mocha -- test/*.js",
-    "testing": "mocha test/*.js --watch --growl"
+    "lint": "node_modules/.bin/eslint lib/*.js lost.js"
   }
 }
