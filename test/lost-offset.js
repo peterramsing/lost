@@ -59,4 +59,19 @@ describe('lost-offset', function() {
       );
     });
   });
+
+  describe('disables the offset', () => {
+    it('disables for row', () => {
+      check(
+        'a { lost-offset: none; }',
+        'a { margin-left: auto!important; margin-right: auto!important; }'
+      );
+    })
+    it('disables for column', () => {
+      check(
+        'a { lost-offset: none column; }',
+        'a { margin-top: auto!important; margin-bottom: auto!important; }'
+      );
+    })
+  })
 });
