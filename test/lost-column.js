@@ -167,25 +167,106 @@ describe('lost-column', function() {
   });
 
   describe('supports RTL', () => {
-    it('works with typical column', () => {
-      check(
-        `@lost --beta-direction rtl;\n`+
-        `a { lost-column: 1/2; }`,
-        `a { width: calc(99.9% * 1/2 - (30px - 30px * 1/2)); }\n` +
-        `a:nth-child(1n) { float: right; margin-left: 30px; clear: none; }\n` +
-        `a:last-child { margin-left: 0; }\n` +
-        `a:nth-child(2n) { margin-left: 0; float: left; }\n` +
-        `a:nth-child(2n + 1) { clear: both; }`
-      );
-      check(
-        `@lost --beta-direction rtl;\n`+
-        `a { lost-column: 5/10; }`,
-        `a { width: calc(99.9% * 5/10 - (30px - 30px * 5/10)); }\n` +
-        `a:nth-child(1n) { float: right; margin-left: 30px; clear: none; }\n` +
-        `a:last-child { margin-left: 0; }\n` +
-        `a:nth-child(10n) { margin-left: 0; float: left; }\n` +
-        `a:nth-child(10n + 1) { clear: both; }`
-      );
+    describe('when set as a global option', () => {
+      it('works with typical column', () => {
+        check(
+          `@lost --beta-direction rtl;\n`+
+          `a { lost-column: 1/2; }`,
+          `a { width: calc(99.9% * 1/2 - (30px - 30px * 1/2)); }\n` +
+          `a:nth-child(1n) { float: right; margin-left: 30px; clear: none; }\n` +
+          `a:last-child { margin-left: 0; }\n` +
+          `a:nth-child(2n) { margin-left: 0; float: left; }\n` +
+          `a:nth-child(2n + 1) { clear: both; }`
+        );
+        check(
+          `@lost --beta-direction rtl;\n`+
+          `a { lost-column: 5/10; }`,
+          `a { width: calc(99.9% * 5/10 - (30px - 30px * 5/10)); }\n` +
+          `a:nth-child(1n) { float: right; margin-left: 30px; clear: none; }\n` +
+          `a:last-child { margin-left: 0; }\n` +
+          `a:nth-child(10n) { margin-left: 0; float: left; }\n` +
+          `a:nth-child(10n + 1) { clear: both; }`
+        );
+      });
+    });
+
+    describe('when set on a specific element', () => {
+      it('works with typical column', () => {
+        check(
+          `a { lost-column: 1/2 rtl; }`,
+
+          `a { width: calc(99.9% * 1/2 - (30px - 30px * 1/2)); }\n` +
+          `a:nth-child(1n) { float: right; margin-left: 30px; clear: none; }\n` +
+          `a:last-child { margin-left: 0; }\n` +
+          `a:nth-child(2n) { margin-left: 0; float: left; }\n` +
+          `a:nth-child(2n + 1) { clear: both; }`
+        );
+        check(
+          `a { lost-column: 5/10 rtl; }`,
+
+          `a { width: calc(99.9% * 5/10 - (30px - 30px * 5/10)); }\n` +
+          `a:nth-child(1n) { float: right; margin-left: 30px; clear: none; }\n` +
+          `a:last-child { margin-left: 0; }\n` +
+          `a:nth-child(10n) { margin-left: 0; float: left; }\n` +
+          `a:nth-child(10n + 1) { clear: both; }`
+        );
+      });
+
+      it('provides 3 column layout', function() {
+        check(
+          'a { lost-column: 1/3 rtl; }',
+          'a { width: calc(99.9% * 1/3 - (30px - 30px * 1/3)); }\n' +
+          'a:nth-child(1n) { float: right; margin-left: 30px; clear: none; }\n' +
+          'a:last-child { margin-left: 0; }\n' +
+          'a:nth-child(3n) { margin-left: 0; float: left; }\n' +
+          'a:nth-child(3n + 1) { clear: both; }'
+        );
+      });
+
+      it('provides 2/5 column layout', function() {
+        check(
+          'a { lost-column: 2/5 rtl; }',
+          'a { width: calc(99.9% * 2/5 - (30px - 30px * 2/5)); }\n' +
+          'a:nth-child(1n) { float: right; margin-left: 30px; clear: none; }\n' +
+          'a:last-child { margin-left: 0; }\n' +
+          'a:nth-child(5n) { margin-left: 0; float: left; }\n' +
+          'a:nth-child(5n + 1) { clear: both; }'
+        );
+      });
+
+      it('can support custom cycle', function() {
+        check(
+          'a { lost-column: 2/4 2 rtl; }',
+          'a { width: calc(99.9% * 2/4 - (30px - 30px * 2/4)); }\n' +
+          'a:nth-child(1n) { float: right; margin-left: 30px; clear: none; }\n' +
+          'a:last-child { margin-left: 0; }\n' +
+          'a:nth-child(2n) { margin-left: 0; float: left; }\n' +
+          'a:nth-child(2n + 1) { clear: both; }'
+        );
+      });
+
+      it('supports no gutter', function() {
+        check(
+          'a { lost-column: 2/5 3 0 rtl; }',
+          'a { width: calc(99.9% * 2/5); }\n' +
+          'a:nth-child(1n) { float: right; margin-left: 0; clear: none; }\n' +
+          'a:last-child { margin-left: 0; }\n' +
+          'a:nth-child(3n) { margin-left: 0; float: left; }\n' +
+          'a:nth-child(3n + 1) { clear: both; }'
+        );
+      });
+
+      it('supports flexbox', function() {
+        check(
+          'a { lost-column: 2/6 3 60px flex rtl; }',
+          'a { flex-grow: 0; flex-shrink: 0; ' +
+          'flex-basis: calc(99.9% * 2/6 - (60px - 60px * 2/6)); ' +
+          'width: calc(99.9% * 2/6 - (60px - 60px * 2/6)); }\n' +
+          'a:nth-child(1n) { margin-left: 60px; margin-right: 0; }\n' +
+          'a:last-child { margin-left: 0; }\n' +
+          'a:nth-child(3n) { margin-left: 0; margin-right: auto; }'
+        );
+      });
     });
   });
 });
