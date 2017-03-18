@@ -30,5 +30,5 @@ build/Release
 node_modules
 
 
-### Custom ###
-/demo
+### IDEA ###
+.idea/
