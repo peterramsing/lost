@@ -63,13 +63,13 @@ describe('lost-offset', function() {
   describe('disables the offset', () => {
     it('disables for row', () => {
       check(
-        'a { lost-offset: none; }',
+        'a { lost-offset: clear; }',
         'a { margin-left: auto!important; margin-right: auto!important; }'
       );
     })
     it('disables for column', () => {
       check(
-        'a { lost-offset: none column; }',
+        'a { lost-offset: clear-left; }',
         'a { margin-top: auto!important; margin-bottom: auto!important; }'
       );
     })
