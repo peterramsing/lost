@@ -60,18 +60,34 @@ describe('lost-offset', function() {
     });
   });
 
-  describe('disables the offset', () => {
-    it('disables for row', () => {
+  describe('disables the offset', function() {
+    it('disables for row', function() {
       check(
         'a { lost-offset: clear; }',
         'a { margin-left: auto!important; margin-right: auto!important; }'
       );
-    })
-    it('disables for column', () => {
       check(
         'a { lost-offset: clear-left; }',
+        'a { margin-left: auto!important; }'
+      );
+      check(
+        'a { lost-offset: clear-right; }',
+        'a { margin-right: auto!important; }'
+      );
+    });
+    it('disables for column', function() {
+      check(
+        'a { lost-offset: clear column; }',
         'a { margin-top: auto!important; margin-bottom: auto!important; }'
       );
-    })
-  })
+      check(
+        'a { lost-offset: clear-top column; }',
+        'a { margin-top: auto!important; }'
+      );
+      check(
+        'a { lost-offset: clear-bottom column; }',
+        'a { margin-bottom: auto!important; }'
+      );
+    });
+  });
 });
