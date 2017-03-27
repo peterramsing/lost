@@ -3,10 +3,40 @@
 var check = require('./check');
 
 describe('lost-center', function() {
+  it('Ignores bad unit', function() {
+    check(
+      'a { lost-center: 4/12; lost-unit: $ }',
+
+      'a { max-width: calc(99.9% * 4/12); margin-left: auto; margin-right: auto }\n' +
+      'a:before { content: \'\'; display: table }\n' +
+      'a:after { content: \'\'; display: table; clear: both }'
+    );
+  });
+
+  it('Uses unit if one is passed', function() {
+    check(
+      'a { lost-center: 3/9; lost-unit: vw }',
+
+      'a { max-width: calc(99.9vw * 3/9); margin-left: auto; margin-right: auto }\n' +
+      'a:before { content: \'\'; display: table }\n' +
+      'a:after { content: \'\'; display: table; clear: both }'
+    );
+  });
+
   it('horizontally centers container', function() {
     check(
       'a { lost-center: 980px }',
       'a { max-width: 980px; margin-left: auto; margin-right: auto }\n' +
+      'a:before { content: \'\'; display: table }\n' +
+      'a:after { content: \'\'; display: table; clear: both }'
+    );
+  });
+
+  it('horizontally centers container (fraction)', function() {
+    check(
+      'a { lost-center: 2/6 }',
+
+      'a { max-width: calc(99.9% * 2/6); margin-left: auto; margin-right: auto }\n' +
       'a:before { content: \'\'; display: table }\n' +
       'a:after { content: \'\'; display: table; clear: both }'
     );
