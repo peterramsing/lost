@@ -62,12 +62,12 @@ describe('parseLostProperty works as it should', () => {
 
   it('property node removed if found', () => {
     var css = 'a { height: 100px; lost-unit: vw; lost-center-padding: 25px }';
-    var nodes = postcss.parse(css).nodes[0].nodes;
+    var cssProperties = postcss.parse(css);
 
-    lgLogic.parseLostProperty(nodes, 'lost-unit', '%');
+    lgLogic.parseLostProperty(cssProperties.nodes[0].nodes, 'lost-unit', '%');
 
-    var testCase = nodes.length;
-    var expectedResult = 2;
+    var testCase = 'a { height: 100px; lost-center-padding: 25px }';
+    var expectedResult = cssProperties.toString();
 
     expect(testCase).to.equal(expectedResult);
   });
