@@ -2,6 +2,7 @@
 
 var expect = require('chai').expect;
 var lgLogic = require('../lib/_lg-logic.js');
+var postcss = require('postcss');
 
 
 describe('calcValue works as it should', () => {
@@ -36,4 +37,39 @@ describe('Units are validated based on if they make sense', () => {
     expect(lgLogic.validateUnit('foobar', ['%','vw'])).to.not.be.true;
     expect(lgLogic.validateUnit(3, ['%','vw'])).to.not.be.true;
   });
+});
+
+describe('parseLostProperty works as it should', () => {
+  it('returns default value if property not found', () => {
+    var css = 'a { lost-unit: vw; lost-center-padding: 25px }';
+    var nodes = postcss.parse(css).nodes[0].nodes;
+
+    var testCase = lgLogic.parseLostProperty(nodes, 'lost-column-rounder', 0);
+    var expectedResult = 0;
+
+    expect(testCase).to.equal(expectedResult);
+  });
+
+  it('returns value if property is found', () => {
+    var css = 'a { lost-unit: vw; lost-center-padding: 25px }';
+    var nodes = postcss.parse(css).nodes[0].nodes;
+
+    var testCase = lgLogic.parseLostProperty(nodes, 'lost-unit', '%');
+    var expectedResult = 'vw';
+
+    expect(testCase).to.equal(expectedResult);
+  });
+
+  it('property node removed if found', () => {
+    var css = 'a { height: 100px; lost-unit: vw; lost-center-padding: 25px }';
+    var cssProperties = postcss.parse(css);
+
+    lgLogic.parseLostProperty(cssProperties.nodes[0].nodes, 'lost-unit', '%');
+
+    var testCase = 'a { height: 100px; lost-center-padding: 25px }';
+    var expectedResult = cssProperties.toString();
+
+    expect(testCase).to.equal(expectedResult);
+  });
+
 });
