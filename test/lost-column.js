@@ -52,6 +52,7 @@ describe('lost-column', function() {
       'a { lost-column: 2/6 3 60px flex; }',
       'a { flex-grow: 0; flex-shrink: 0; ' +
       'flex-basis: calc(99.9% * 2/6 - (60px - 60px * 2/6)); ' +
+      'max-width: calc(99.9% * 2/6 - (60px - 60px * 2/6)); ' +
       'width: calc(99.9% * 2/6 - (60px - 60px * 2/6)); }\n' +
       'a:nth-child(1n) { margin-right: 60px; margin-left: 0; }\n' +
       'a:last-child { margin-right: 0; }\n' +
