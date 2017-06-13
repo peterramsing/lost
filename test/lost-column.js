@@ -47,6 +47,30 @@ describe('lost-column', function() {
     );
   });
 
+  it('supports gutter with decimal value', function() {
+    check(
+      'a { lost-column: 2/5 0 0.7em; }',
+
+      'a { width: calc(99.9% * 2/5 - (0.7em - 0.7em * 2/5)); }\n' +
+      'a:nth-child(1n) { float: left; margin-right: 0.7em; clear: none; }\n' +
+      'a:last-child { margin-right: 0; }\n' +
+      'a:nth-child(0n) { margin-right: 0; float: right; }\n' +
+      'a:nth-child(0n + 1) { clear: both; }'
+    );
+  });
+
+  it('supports gutter with decimal value (no leading zero)', function() {
+    check(
+      'a { lost-column: 2/5 0 .5em; }',
+
+      'a { width: calc(99.9% * 2/5 - (.5em - .5em * 2/5)); }\n' +
+      'a:nth-child(1n) { float: left; margin-right: .5em; clear: none; }\n' +
+      'a:last-child { margin-right: 0; }\n' +
+      'a:nth-child(0n) { margin-right: 0; float: right; }\n' +
+      'a:nth-child(0n + 1) { clear: both; }'
+    );
+  });
+
   it('supports flexbox', function() {
     check(
       'a { lost-column: 2/6 3 60px flex; }',
