@@ -143,14 +143,14 @@ describe('lost-waffle', function() {
   describe('supports RTL', () => {
     it('works with typical waffle', () => {
       check(
-        `@lost --beta-direction rtl;\n`+
-        `div { lost-waffle: 1/3; }`,
-        `div { width: calc(99.9% * 1/3 - (30px - 30px * 1/3)); height: calc(99.9% * 1/3 - (30px - 30px * 1/3)); }\n` +
-        `div:nth-child(1n) { float: right; margin-left: 30px; margin-bottom: 30px; clear: none; }\n` +
-        `div:last-child { margin-left: 0; margin-bottom: 0; }\n` +
-        `div:nth-child(3n) { margin-left: 0; }\n` +
-        `div:nth-child(3n + 1) { clear: both; }\n` +
-        `div:nth-last-child(-n + 3) { margin-bottom: 0; }`
+        '@lost --beta-direction rtl;\n'+
+        'div { lost-waffle: 1/3; }',
+        'div { width: calc(99.9% * 1/3 - (30px - 30px * 1/3)); height: calc(99.9% * 1/3 - (30px - 30px * 1/3)); }\n' +
+        'div:nth-child(1n) { float: right; margin-left: 30px; margin-bottom: 30px; clear: none; }\n' +
+        'div:last-child { margin-left: 0; margin-bottom: 0; }\n' +
+        'div:nth-child(3n) { margin-left: 0; }\n' +
+        'div:nth-child(3n + 1) { clear: both; }\n' +
+        'div:nth-last-child(-n + 3) { margin-bottom: 0; }'
       );
     });
   });
