@@ -42,6 +42,7 @@ describe('lost-at-rule', function() {
       '  flex-grow: 0;\n' +
       '  flex-shrink: 0;\n' +
       '  flex-basis: calc(99.9% * 1/3 - (30px - 30px * 1/3));\n' +
+      '  max-width: calc(99.9% * 1/3 - (30px - 30px * 1/3));\n' +
       '  width: calc(99.9% * 1/3 - (30px - 30px * 1/3));\n' +
       '}\n' +
       'div:nth-child(1n) {\n' +
