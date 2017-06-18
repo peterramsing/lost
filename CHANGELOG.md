@@ -3,6 +3,35 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+---
+
+## [v8.1.0-beta.0] - 2017-06-18
+
+### How to install
+
+`npm install lost@beta`
+
+### Fixed
+- [#374](https://github.com/peterramsing/lost/pull/374) Fixes issue with `flex-basis` where IE10/11 would not lay out correctly with `lost-column`. - Thanks @finneganh! 🏙
+
+### Added
+- [#337](https://github.com/peterramsing/lost/pull/377) `lost-column` not supports decimals without the leading zero. - Thanks @codebysubtract! 🔢
+- [#365](https://github.com/peterramsing/lost/pull/365) `lost-center` now supports fractions! - Thanks @codebysubtract 📈
+- [#363](https://github.com/peterramsing/lost/pull/363) Add param for `lost-offset` that disables it
+
+### Changed
+- [#375](https://github.com/peterramsing/lost/pull/375) Deprecation of Node move methods in postcss is triggering deprecation message "Node#moveTo was deprecated. Use Container#append." - Thanks @thebuilder 🏗
+
+### LostGrid Infrastructure
+- [#368](https://github.com/peterramsing/lost/pull/368) Adds NYC and Codecov coverage for reporting - Thanks @BarryThePenguin! 🛰
+- [#364](https://github.com/peterramsing/lost/pull/364) Inline docs are removed from the code, see [lostgrid.org](http://lostgrid.org) for docs.
+
+[v8.1 Milestone](https://github.com/peterramsing/lost/milestone/11?closed=1)
+
+[Diff with previous version 8.0.0](https://github.com/peterramsing/lost/compare/v8.0.0...v8.1.0-beta.0)
+
+---
+
 ## [v8.0.0] - 2016-12-31
 ### Fixed
 - [#339](https://github.com/peterramsing/lost/issues/233) Fixes issue where `lost-align` was targeting the incorrect element when using flexbox.
