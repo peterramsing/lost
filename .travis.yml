@@ -10,8 +10,8 @@ node_js:
   - "8"
 
 script:
-  - npm test
+  - nyc mocha
   - npm run lint
 
 after_success:
-  - codecov
+  - npm run report-coverage
