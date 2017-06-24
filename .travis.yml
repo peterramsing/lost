@@ -10,7 +10,7 @@ node_js:
   - "8"
 
 script:
-  - mocha
+  - npm test
   - npm run lint
 
 after_success:
