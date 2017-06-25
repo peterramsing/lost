@@ -3,6 +3,32 @@
 var check = require('./check');
 
 describe('lost-offset', function() {
+  it('Supports direction in new property', function () {
+    check(
+      'a { lost-offset: 0/3; lost-offset-direction: row; }',
+      'a { margin-left: 0 !important; margin-right: 30px !important; }'
+    );
+  });
+
+  it('Supports gutter in new property', function () {
+    check(
+      'a { lost-offset: 0/3; lost-offset-gutter: 10px; }',
+      'a { margin-left: 0 !important; margin-right: 10px !important; }'
+    );
+  });
+
+  it('Does not move with a zero numerator (of you\'re so inclined)' , function() {
+    check(
+      'a { lost-offset: 0/3; }',
+      'a { margin-left: 0 !important; margin-right: 30px !important; }'
+    );
+
+    check(
+      'a { lost-offset: 0/3 column; }',
+      'a { margin-top: 0 !important; margin-bottom: 30px !important; }'
+    );
+  });
+
   it('moves element to the left', function() {
     check(
       'a { lost-offset: 1/3; }',
@@ -16,6 +42,10 @@ describe('lost-offset', function() {
       'a { lost-offset: -1/3; }',
       'a { margin-left: calc(99.9% * -1/3 - (30px - 30px * ' +
       '-1/3) + 30px) !important; }'
+    );
+    check(
+      'a { lost-offset: -1/3 row 0; }',
+      'a { margin-left: calc(99.9% * -1/3) !important; }'
     );
   });
 
@@ -40,6 +70,21 @@ describe('lost-offset', function() {
       'a { lost-offset: 1/2 row 60px; }',
       'a { margin-left: calc(99.9% * (-1/2 * -1) - (60px - 60px * (-1/2 * -1)) + ' +
       '60px) !important; }'
+    );
+
+    check(
+      'a { lost-offset: 1/2 row 0; }',
+      'a { margin-left: calc(99.9% * 1/2)!important; }'
+    );
+
+    check(
+      'a { lost-offset: 1/2 column 0; }',
+      'a { margin-bottom: calc(99.9% * 1/2)!important; }'
+    );
+
+    check(
+      'a { lost-offset: -1/2 column 0; }',
+      'a { margin-top: calc(99.9% * -1/2)!important; }'
     );
   });
   describe('allows for customizable rounders', function() {
