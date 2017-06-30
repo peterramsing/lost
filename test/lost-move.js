@@ -35,6 +35,17 @@ describe('lost-move', function() {
     );
   });
 
+  it('supports custom gutter', function() {
+    check(
+      'a { lost-move: 1/2; lost-move-gutter: 0; }',
+      'a { position:relative; left:calc(99.9% * 1/2); }'
+    );
+    check(
+      'a { lost-move: 1/2; lost-move-gutter: 0; lost-move-direction: column; }',
+      'a { position:relative; top:calc(99.9% * 1/2); }'
+    );
+  });
+
   it('retains the lost-column gutter', function() {
     check(
       'a { lost-column: 1/3 3 50px; lost-move: -1/3 row; }',
@@ -102,6 +113,19 @@ describe('lost-move', function() {
         'a { lost-move: 1/2 row 60px; lost-move-rounder: 99.99999999999; }',
         'a { position: relative; left: calc(99.99999999999% * 1/2 - (60px - 60px * 1/2)' +
         ' + 60px); }'
+      );
+    });
+  });
+
+  describe('Long-form names', function() {
+    it('allows lost-move-direction to work', function () {
+      check(
+        'a {lost-move: 1/2; lost-move-direction: column; }',
+        'a { position:relative; top:calc(99.9% * 1/2 - (30px - 30px * 1/2) + 30px); }'
+      );
+      check(
+        'a {lost-move: 1/2; lost-move-direction: row; }',
+        'a { position:relative; left:calc(99.9% * 1/2 - (30px - 30px * 1/2) + 30px); }'
       );
     });
   });
