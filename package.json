@@ -33,7 +33,8 @@
     "nyc": "^10.3.2"
   },
   "scripts": {
-    "test": "nyc mocha && codecov",
-    "lint": "eslint --ignore-path .gitignore ."
+    "test": "nyc mocha",
+    "lint": "eslint --ignore-path .gitignore .",
+    "report-coverage": "nyc report --reporter=lcov > coverage.lcov && codecov"
   }
 }

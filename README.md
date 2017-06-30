@@ -10,6 +10,8 @@
   <br><br>
   <a href="http://waffle.io/peterramsing/lost"><img src="https://badge.waffle.io/peterramsing/lost.svg?label=status:%20Slated%20For%20Dev&title=Slated%20for%20Dev"></a>
   <a href="http://waffle.io/peterramsing/lost"><img src="https://badge.waffle.io/peterramsing/lost.svg?label=status:%20In%20Progress&title=In%20Progress"></a>
+  <br><br>
+  <a href="https://codecov.io/gh/peterramsing/lost"><img src="https://codecov.io/gh/peterramsing/lost/branch/master/graph/badge.svg" alt="Codecov" /></a>
 </p>
 
 LostGrid is a powerful grid system built in [PostCSS](https://github.com/postcss/postcss) that works with any preprocessor and even vanilla CSS.
