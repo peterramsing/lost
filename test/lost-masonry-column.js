@@ -35,7 +35,7 @@ describe('lost-masonry-column', function() {
         'a { lost-masonry-column: 60px; lost-masonry-column-flexbox: flex; }',
         'a { flex: 0 0 auto; width: calc(99.9% * 60px - 30px);' +
         ' margin-left: 15px; margin-right: 15px; }'
-      )
+      );
     });
 
     it('supports a custom gutter', function() {
