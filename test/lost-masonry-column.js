@@ -45,12 +45,14 @@ describe('lost-masonry-column', function() {
         ' margin-left: 15px; margin-right: 15px; }'
       );
     });
+  });
 
-    it('supports no gutter', function() {
+  describe('non-flexbox', function() {
+    it('supports non-flexbox', function() {
       check(
-        'a { lost-masonry-column: 0 flex; }',
-        'a { flex: 0 0 auto; width: calc(99.9% * 0 - 30px);' +
-        ' margin-left: 15px; margin-right: 15px; }'
+        'a { lost-masonry-column: 60px no-flex; }',
+        'a { float: left; width: calc(99.9% * 60px - 30px); margin-left: 15px;' +
+        ' margin-right: 15px; }'
       );
     });
   });
