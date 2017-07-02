@@ -3,6 +3,16 @@
 var check = require('./check');
 
 describe('lost-row', function() {
+
+  describe('Flexbox modifiers', function () {
+    it('supports flex in long-form', function() {
+      check(
+        'a { lost-row: 1/3; lost-row-flexbox: flex; }',
+        'a { width:100%; flex:0 0 auto; height:calc(99.9% * 1/3 - (30px - 30px * 1/3)); ' +
+        'margin-bottom: 30px; } a:last-child{ margin-bottom:0; }'
+      );
+    });
+  });
   it('provides 3 row layout', function() {
     check(
       'a { lost-row: 1/3; }',
