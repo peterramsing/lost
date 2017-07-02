@@ -12,7 +12,7 @@ describe('lost-column', function() {
         'max-width: calc(99.9% * 1/3 - (30px - 30px * 1/3)); width:calc(99.9% * 1/3 - (30px - 30px * 1/3)); }' +
         'a:nth-child(1n) { margin-right: 30px; margin-left: 0; } a:last-child{ margin-right: 0; }' +
         'a:nth-child(3n) { margin-right: 0; margin-left: auto; }'
-      )
+      );
     });
   });
 
