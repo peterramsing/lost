@@ -5,6 +5,24 @@ var check = require('./check');
 describe('lost-row', function() {
 
   describe('Flexbox modifiers', function () {
+    it('supports no-flex', function() {
+      check(
+        'a { lost-row: 1/3 no-flex; }',
+        'a { width: 100%; height: calc(99.9% * 1/3 - (30px - 30px * 1/3));' +
+        ' margin-bottom: 30px; }' +
+        'a:last-child { margin-bottom: 0; }'
+      );
+    });
+
+    it('supports no-flex in long-form', function() {
+      check(
+        'a { lost-row: 1/3; lost-row-flexbox: no-flex; }',
+        'a { width: 100%; height: calc(99.9% * 1/3 - (30px - 30px * 1/3));' +
+        ' margin-bottom: 30px; }' +
+        'a:last-child { margin-bottom: 0; }'
+      );
+    });
+
     it('supports flex in long-form', function() {
       check(
         'a { lost-row: 1/3; lost-row-flexbox: flex; }',
@@ -13,6 +31,8 @@ describe('lost-row', function() {
       );
     });
   });
+
+
   it('provides 3 row layout', function() {
     check(
       'a { lost-row: 1/3; }',
@@ -76,6 +96,7 @@ describe('lost-row', function() {
       ' margin-bottom: 0; }'
     );
   });
+
   describe('allows for customizable rounders', function() {
     it('100%', function() {
       check(
