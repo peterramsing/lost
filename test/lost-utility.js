@@ -26,7 +26,7 @@ describe('lost-utility', function() {
       'a *:not(input):not(textarea):not(select) {\n' +
       '    background-color: rgba(44, 55, 33, 0.1)\n' +
       '}'
-    ),
+    );
     check(
       'a { lost-utility: edit rgb(44,55,111) }',
       'a *:not(input):not(textarea):not(select) {\n' +
