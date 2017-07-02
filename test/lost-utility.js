@@ -6,7 +6,7 @@ describe('lost-utility', function() {
   it('Doesn\'t remove the parent node if there are other rules in declaration', function () {
     check(
       'a { lost-utility: edit; color: blue; }',
-      'a { color:blue; } a:not(input):not(textarea):not(select) ' +
+      'a { color:blue; } a *:not(input):not(textarea):not(select) ' +
       '{ background-color:rgba(0,0,255,.1); }'
     );
   });
