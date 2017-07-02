@@ -40,6 +40,14 @@ describe('lost-masonry-column', function() {
 
     it('supports a custom gutter', function() {
       check(
+        'a { lost-masonry-column: 60px 10px flex; }',
+        'a { flex: 0 0 auto; width: calc(99.9% * 60px - 10px);' +
+        ' margin-left: 5px; margin-right: 5px; }'
+      );
+    });
+
+    it('supports flexbox without specifying custom gutter', function() {
+      check(
         'a { lost-masonry-column: 60px flex; }',
         'a { flex: 0 0 auto; width: calc(99.9% * 60px - 30px);' +
         ' margin-left: 15px; margin-right: 15px; }'
@@ -51,6 +59,12 @@ describe('lost-masonry-column', function() {
     it('supports non-flexbox', function() {
       check(
         'a { lost-masonry-column: 60px no-flex; }',
+        'a { float: left; width: calc(99.9% * 60px - 30px); margin-left: 15px;' +
+        ' margin-right: 15px; }'
+      );
+
+      check(
+        'a { lost-masonry-column: 60px; lost-masonry-column-flexbox: no-flex; }',
         'a { float: left; width: calc(99.9% * 60px - 30px); margin-left: 15px;' +
         ' margin-right: 15px; }'
       );
