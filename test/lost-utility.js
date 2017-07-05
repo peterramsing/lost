@@ -41,4 +41,58 @@ describe('lost-utility', function() {
       '}'
     );
   });
+
+  it('applies overlay uses defaults', function(){
+    check(
+      'body { lost-utility: overlay }',
+      'body:before{background-image:linear-gradient(left, ' +
+      '#e6f6ff 0,#e6f6ff 6.54296875%,transparent 6.54296875%,' +
+      'transparent 8.49609375%,#e6f6ff 8.49609375%,#e6f6ff 15.0390625%,' +
+      'transparent 15.0390625%,transparent 16.9921875%,#e6f6ff 16.9921875%,' + 
+      '#e6f6ff 23.53515625%,transparent 23.53515625%,transparent 25.48828125%,' + 
+      '#e6f6ff 25.48828125%,#e6f6ff 32.03125%,transparent 32.03125%,transparent 33.984375%,' +
+      '#e6f6ff 33.984375%,#e6f6ff 40.52734375%,transparent 40.52734375%,' +
+      'transparent 42.48046875%,#e6f6ff 42.48046875%,#e6f6ff 49.0234375%,' +
+      'transparent 49.0234375%,transparent 50.9765625%,#e6f6ff 50.9765625%,' +
+      '#e6f6ff 57.51953125%,transparent 57.51953125%,transparent 59.47265625%,' +
+      '#e6f6ff 59.47265625%,#e6f6ff 66.015625%,transparent 66.015625%,' +
+      'transparent 67.96875%,#e6f6ff 67.96875%,#e6f6ff 74.51171875%,' +
+      'transparent 74.51171875%,transparent 76.46484375%,#e6f6ff 76.46484375%,' +
+      '#e6f6ff 83.0078125%,transparent 83.0078125%,transparent 84.9609375%,' +
+      '#e6f6ff 84.9609375%,#e6f6ff 91.50390625%,transparent 91.50390625%,' +
+      'transparent 93.45703125%,#e6f6ff 93.45703125%,#e6f6ff 100%);' +
+      'content:\'\';' +
+      'display:inline-block;' +
+      'height:100%;' +
+      'left:0;' +
+      'margin:0 auto;' +
+      'max-width:1024px;' +
+      'opacity:.4;' +
+      'pointer-events:none;' +
+      'position:fixed;' +
+      'right:0;' +
+      'width:100%;' +
+      'z-index:1}'
+    );
+  });
+
+  it('applies overlay', function(){
+    check(
+      'body { lost-utility: overlay 200px 2 50px #ccc }',
+      'body:before{background-image:linear-gradient(left,' +
+      '#ccc 0,#ccc 37.5%,transparent 37.5%,transparent 62.5%,#ccc 62.5%,#ccc 100%);' +
+      'content:\'\';' +
+      'display:inline-block;' +
+      'height:100%;' +
+      'left:0;' +
+      'margin:0 auto;' +
+      'max-width:200px;' +
+      'opacity:.4;' +
+      'pointer-events:none;' +
+      'position:fixed;' +
+      'right:0;' +
+      'width:100%;' +
+      'z-index:1}'
+    );
+});
 });
