@@ -1,6 +1,7 @@
 'use strict';
 
 var check = require('./check');
+var throws = require('./throws');
 
 describe('lost-utility', function() {
   it('applies edit indicator', function() {
@@ -45,7 +46,7 @@ describe('lost-utility', function() {
   it('applies overlay uses defaults', function(){
     check(
       'body { lost-utility: overlay }',
-      'body:before{background-image:linear-gradient(left, ' +
+      'body:before{background-image:linear-gradient(to right, ' +
       '#e6f6ff 0,#e6f6ff 6.54296875%,transparent 6.54296875%,' +
       'transparent 8.49609375%,#e6f6ff 8.49609375%,#e6f6ff 15.0390625%,' +
       'transparent 15.0390625%,transparent 16.9921875%,#e6f6ff 16.9921875%,' + 
@@ -79,7 +80,7 @@ describe('lost-utility', function() {
   it('applies overlay', function(){
     check(
       'body { lost-utility: overlay 200px 2 50px #ccc }',
-      'body:before{background-image:linear-gradient(left,' +
+      'body:before{background-image:linear-gradient(to right,' +
       '#ccc 0,#ccc 37.5%,transparent 37.5%,transparent 62.5%,#ccc 62.5%,#ccc 100%);' +
       'content:\'\';' +
       'display:inline-block;' +
@@ -94,5 +95,12 @@ describe('lost-utility', function() {
       'width:100%;' +
       'z-index:1}'
     );
-});
+  });
+
+  it('applies overlay unit mismatch', function(){
+    throws(
+      'lost-utility: overlay 1600px 2 10em #999',
+      'lost-utility: Please use the same units for width and gutter.'
+    );
+  });
 });
