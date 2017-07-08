@@ -55,7 +55,7 @@ Note: LostGrid no longer supports Node 0.10 and 0.12. I'll be following the [Nod
 - [Peter Ramsing](https://github.com/peterramsing) - Maintainer
 - [Steve Holland](https://github.com/codebysubtract) - Maintainer
 - [Jay Pick](https://github.com/japick) - LostGrid Website
-- [You!](https://github.com/peterramsing/lost/graphs/contributors).
+- [You!](https://github.com/peterramsing/lost/graphs/contributors)
 
 
 &nbsp;
