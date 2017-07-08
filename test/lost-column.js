@@ -3,6 +3,20 @@
 var check = require('./check');
 
 describe('lost-column', function() {
+
+  describe('flexbox support', function() {
+    it('supports being set in long form', function() {
+      check(
+        'a { lost-column: 1/3; lost-column-flexbox: flex; }',
+        'a { flex-grow: 0; flex-shrink: 0; flex-basis: calc(99.9% * 1/3 - (30px - 30px * 1/3));' +
+        'max-width: calc(99.9% * 1/3 - (30px - 30px * 1/3)); width:calc(99.9% * 1/3 - (30px - 30px * 1/3)); }' +
+        'a:nth-child(1n) { margin-right: 30px; margin-left: 0; } a:last-child{ margin-right: 0; }' +
+        'a:nth-child(3n) { margin-right: 0; margin-left: auto; }'
+      );
+    });
+  });
+
+
   it('provides 3 column layout', function() {
     check(
       'a { lost-column: 1/3; }',
