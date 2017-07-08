@@ -50,7 +50,13 @@ Read the docs on [LostGrid.org](http://lostgrid.org/docs.html)!
 
 Note: LostGrid no longer supports Node 0.10 and 0.12. I'll be following the [Node LTS plan for Node](https://github.com/nodejs/LTS#lts-schedule). Let me know if you any questions. Thanks!
 
-**[:arrow_up: back to top](#table-of-contents)**
+&nbsp;
+### LostGrid Team
+- [Peter Ramsing](https://github.com/peterramsing) - Maintainer
+- [Steve Holland](https://github.com/codebysubtract) - Maintainer
+- [Jay Pick](https://github.com/japick) - LostGrid Website
+- [You!](https://github.com/peterramsing/lost/graphs/contributors).
+
 
 &nbsp;
 
@@ -60,7 +66,5 @@ Note: LostGrid no longer supports Node 0.10 and 0.12. I'll be following the [Nod
 - [Maria Keller](https://dribbble.com/mariakeller) for the amazing logo. Be sure to hire her for all your design and motion graphic needs.
 - Everyone who files an [Issue](https://github.com/peterramsing/lost/issues) when something isn't working as expected.
 - Everyone who has [contributed](https://github.com/peterramsing/lost/graphs/contributors).
-
-**[:arrow_up: back to top](#table-of-contents)**
 
 &nbsp;
