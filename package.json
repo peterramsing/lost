@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "object-assign": "^4.1.0",
-    "postcss": "^6.0.2"
+    "postcss": "^6.0.6"
   },
   "keywords": [
     "grid",
@@ -26,7 +26,7 @@
   "homepage": "http://lostgrid.org",
   "devDependencies": {
     "chai": "^3.5",
-    "clean-css": "^4.1.4",
+    "clean-css": "^4.1.6",
     "codecov": "^2.1.0",
     "eslint": "^3.16",
     "mocha": "^3.2",
