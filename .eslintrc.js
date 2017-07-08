@@ -8,6 +8,7 @@ module.exports = {
         'sourceType': 'module'
     },
     'rules': {
+        'eol-last': 2,
         'indent': [
             'error',
             2
