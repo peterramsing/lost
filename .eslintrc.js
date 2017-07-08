@@ -9,6 +9,10 @@ module.exports = {
     },
     'rules': {
         'eol-last': 2,
+        'no-multiple-empty-lines': [
+            2,
+            { max: 2, maxEOF: 1 }
+        ],
         'indent': [
             'error',
             2
