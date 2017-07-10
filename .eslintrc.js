@@ -23,6 +23,10 @@ module.exports = {
         'semi': [
             'error',
             'always'
+        ],
+        'eol-last': [
+            'error',
+            'always'
         ]
     }
 };
