@@ -16,6 +16,10 @@ describe('lost-vars', function() {
       'div { margin: lost-vars(\'gutter\') lost-vars(\'gutter\'); padding: lost-vars(\'gutter-local\'); lost-offset: 1/3 3 100px;}',
       'div { margin: 30px 30px; padding: 100px; margin-left: calc(99.9% * (-1/3 * -1) - (100px - 100px * (-1/3 * -1)) + 100px) !important;}'
     );
+    check(
+      'div { margin: lost-vars(\'gutter\') lost-vars(\'gutter-local\'); lost-offset: 1/3 3 95px;}',
+      'div { margin: 30px 95px; margin-left: calc(99.9% * (-1/3 * -1) - (95px - 95px * (-1/3 * -1)) + 95px) !important;}'
+    );
   });
 
   describe('gutter', function() {
@@ -115,16 +119,6 @@ describe('lost-vars', function() {
         'div { padding: lost-vars(\'gutter-local\'); lost-row: 1/3 invalid;}',
         'div { padding: 30px; width: 100%; height: calc(99.9% * 1/3 - (30px - 30px * 1/3)); margin-bottom: 30px;}\n' +
         'div:last-child { margin-bottom: 0;}'
-      );
-    });
-    it('allows for multiple uses of the variable', () => {
-      check(
-        'div { padding: lost-vars(\'gutter-local\'); lost-column: 1/3 3 20px; margin-top: lost-vars(\'gutter-local\');}',
-        'div { padding: 20px; width: calc(99.9% * 1/3 - (20px - 20px * 1/3)); margin-top: 20px;}\n' +
-        'div:nth-child(1n) { float: left; margin-right: 20px; clear: none;}\n' +
-        'div:last-child { margin-right: 0;}\n' +
-        'div:nth-child(3n) { margin-right: 0; float: right;}\n' +
-        'div:nth-child(3n + 1) { clear: both;}'
       );
     });
   });
