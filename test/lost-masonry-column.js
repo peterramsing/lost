@@ -18,9 +18,6 @@ describe('lost-masonry-column', function() {
         'a { float: left; width: calc(99.9% * 60px - 0px); margin-left: 0;' +
         ' margin-right: 0; }'
       );
-    });
-
-    it('supports a null unit for "no gutter"', function() {
       check(
         'a { lost-masonry-column: 60px; lost-masonry-column-gutter: 0; }',
         'a { float: left; width: calc(99.9% * 60px); margin-left: 0;' +
