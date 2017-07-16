@@ -68,8 +68,7 @@ describe('lost-column', function() {
       'a { width: calc(99.9% * 2/5 - (0.7em - 0.7em * 2/5)); }\n' +
       'a:nth-child(1n) { float: left; margin-right: 0.7em; clear: none; }\n' +
       'a:last-child { margin-right: 0; }\n' +
-      'a:nth-child(0n) { margin-right: 0; float: right; }\n' +
-      'a:nth-child(0n + 1) { clear: both; }'
+      'a:nth-child(0n) { float: right; }'
     );
   });
 
@@ -80,11 +79,19 @@ describe('lost-column', function() {
       'a { width: calc(99.9% * 2/5 - (.5em - .5em * 2/5)); }\n' +
       'a:nth-child(1n) { float: left; margin-right: .5em; clear: none; }\n' +
       'a:last-child { margin-right: 0; }\n' +
-      'a:nth-child(0n) { margin-right: 0; float: right; }\n' +
-      'a:nth-child(0n + 1) { clear: both; }'
+      'a:nth-child(0n) { float: right; }'
     );
   });
 
+  it('can support zero cycle', function() {
+    check(
+      'a { lost-column: 2/4 0; }',
+      'a { width: calc(99.9% * 2/4 - (30px - 30px * 2/4)); }' +
+      'a:nth-child(1n) { float: left; margin-right: 30px; clear: none; }' +
+      'a:last-child { margin-right: 0; }' +
+      'a:nth-child(0n) { float: right; }'
+    );
+  });
   it('supports flexbox', function() {
     check(
       'a { lost-column: 2/6 3 60px flex; }',
