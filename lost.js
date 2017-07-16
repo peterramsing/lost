@@ -15,10 +15,12 @@ var lostMove = require('./lib/lost-move');
 var lostMasonryWrap = require('./lib/lost-masonry-wrap');
 var lostMasonryColumn = require('./lib/lost-masonry-column');
 var lgGutter = require('./lib/lg-gutter');
+var lostVars = require('./lib/lost-vars');
 
 // Lost At Rules and Declarations
 var libs = [
   lostAtRule,
+  lostVars,
   lgGutter,
   lostMove,
   lostUtility,
