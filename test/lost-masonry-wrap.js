@@ -26,5 +26,10 @@ describe('lost-masonry-wrap', function() {
       'a { display: flex; flex-flow: row wrap; margin-left: -30px;' +
       ' margin-right: -30px; }'
     );
+    check(
+      'a { lost-masonry-wrap: flex; lost-masonry-wrap-gutter: 60px; }',
+      'a { display: flex; flex-flow: row wrap; margin-left: -30px;' +
+      ' margin-right: -30px; }'
+    );
   });
 });
