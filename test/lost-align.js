@@ -1,6 +1,7 @@
 'use strict';
 
 var check = require('./check');
+var throws = require('./throws');
 
 describe('lost-align', function() {
   it('resets the alignment', function() {
@@ -156,6 +157,13 @@ describe('lost-align', function() {
     );
   });
 
+  it('throws error if it does not understand the direction', function() {
+    throws(
+      'a { lost-align: bottom-rigth; }',
+      'lost-align: direction \'bottom-rigth\' is unknown.'
+    );
+  });
+
   describe('flexbox', function() {
     it('resets the alignment', function() {
       check(
@@ -290,6 +298,13 @@ describe('lost-align', function() {
         'a { lost-align: bottom-right flex; }',
         'a { display: flex; }\n' +
         'a { justify-content: flex-end; align-items: flex-end; }'
+      );
+    });
+
+    it('throws error if it does not understand the direction', function() {
+      throws(
+        'a { lost-align: bottom-rigth flex; }',
+        'lost-align: direction \'bottom-rigth\' is unknown.'
       );
     });
 
