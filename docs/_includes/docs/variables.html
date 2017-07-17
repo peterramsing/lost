@@ -1,0 +1,41 @@
+<article class="section--content" id="variables">
+    <h2 class="h1">Variables</h2>
+    <ul class="page-anchors list--bare">
+      {% for doc in site.docs %}
+        {% if doc.type == "variable" %}
+        <li><a href="#{{ doc.nav }}">{{ doc.nav }}</a></li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+    <p>These are to be used as values.</p>
+</article>
+
+{% for doc in site.docs %}
+  {% if doc.type == "variable" %}
+    <article class="section--content" id="{{ doc.nav }}">
+      <h3>{{ doc.title }}</h3>
+      {% if doc.description %}
+       <p>{{ doc.description }}</p>
+      {% endif %}
+      <table class="table--rules" border="1" style="border-collapse:collapse; width:100%" cellpadding="3" cellspacing="3">
+        {% for rule in doc.rules %}
+          <tr>
+            <td class="table--rules__code"><code>{{ rule.rule }}</code></td>
+            <td class="table--rules__description">
+              {{ rule.description }}
+              {% if rule.sub-note %}
+                  <span class="sub-note">Note: {{ rule.sub-note }}</span>
+              {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+      {% if doc.code-example %}
+          {{ doc.content }}
+      {% endif %}
+      <div class="page-anchors">
+        <a class="back-to-top" href="#variables">Back to Variables List</a>
+      </div>
+    </article>
+  {% endif %}
+{% endfor %}

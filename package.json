@@ -34,7 +34,7 @@
   },
   "scripts": {
     "test": "nyc mocha",
-    "lint": "eslint --ignore-path .gitignore .",
+    "lint": "eslint .",
     "report-coverage": "nyc report --reporter=lcov > coverage.lcov && codecov"
   }
 }

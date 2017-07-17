@@ -1,0 +1,34 @@
+/*!
+ * Hamburgers
+ * @description Tasty CSS-animated hamburgers
+ * @author Jonathan Suh @jonsuh
+ * @site https://jonsuh.com/hamburgers
+ * @link https://github.com/jonsuh/hamburgers
+ */
+
+// Settings
+// ==================================================
+$hamburger-padding-x                       : 24px !default;
+$hamburger-padding-y                       : 34px !default;
+$hamburger-layer-width                     : 40px !default;
+$hamburger-layer-height                    : 4px !default;
+$hamburger-layer-spacing                   : 6px !default;
+$hamburger-layer-color                     : $dark-grey !default;
+$hamburger-layer-border-radius             : 0 !default;
+$hamburger-hover-opacity                   : 1 !default;
+$hamburger-hover-transition-duration       : 0.5s !default;
+$hamburger-hover-transition-timing-function: linear !default;
+
+// To use CSS filters as the hover effect instead of opacity,
+// set $hamburger-hover-use-filter as true and
+// change the value of $hamburger-hover-filter accordingly.
+$hamburger-hover-use-filter: false !default;
+$hamburger-hover-filter    : opacity(50%) !default;
+
+// Base Hamburger (We need this)
+// ==================================================
+@import "base";
+
+// Types (Remove or comment out what you don’t need)
+// ==================================================
+@import "types/squeeze";
