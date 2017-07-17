@@ -1,0 +1,152 @@
+#section-wrapper {
+  padding-top: 90px;
+}
+// Logo
+.logo {
+  text-indent: -99999px;
+  display: block;
+  background: url('../../assets/img/lost-grid.svg') no-repeat 50% 50%;
+  background-size: 100%;
+  max-width: 100%;
+  &--large {
+    width: 500px;
+    height: 153px;
+    margin: 0 auto 3rem;
+    @include breakpoint(m) {
+      width: 300px;
+      height: 92px;
+    }
+  }
+  &--small {
+    width: 300px;
+    height: 92px;
+    margin: 0 0 3rem;
+    @include breakpoint(l) {
+      margin: 0 0 2rem;
+    }
+  }
+}
+// Sections
+.section {
+  overflow: hidden;
+  clear: both;
+  transition: margin 0.3s cubic-bezier(.36,.24,.35,1.03);
+  padding: 100px 148px;
+  width: 100%;
+  box-sizing: border-box;
+  &.padding-left {
+    margin-left: 300px;
+  }
+  &__inner {
+    max-width: 1260px;
+    padding: 0 100px;
+    box-sizing: border-box;
+    transition: margin 0.3s cubic-bezier(.36,.24,.35,1.03);
+    @include clearfix;
+    @include breakpoint(l) {
+      margin: 0 auto;
+      padding: 0 50px;
+    }
+    @include breakpoint(s) {
+      padding: 0 25px;
+    }
+    &.shift-left {
+      margin-left: 300px;
+    }
+  }
+  &--content {
+    margin: 0 auto 2rem;
+  }
+  &--center {
+    text-align: center;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+  p:last-child {
+    margin: 0;
+  }
+}
+// Main Nav
+.nav {
+  &__side {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    max-width: 350px;
+    background: $orange;
+    box-sizing: border-box;
+    padding: 90px 50px;
+    margin: 0 0 0 -350px;
+    transition: margin 0.3s cubic-bezier(.36,.24,.35,1.03);
+    text-align: right;
+    z-index: 3;
+    @include breakpoint(l) {
+      max-width: 320px;
+      padding: 90px 25px;
+    }
+    &.is-active {
+      margin-left: 0;
+    }
+    ul {
+      margin-bottom: 2rem;
+
+      li {
+        line-height: 1.8;
+        font-size: 1.2em;
+        font-weight: 600;
+      }
+
+      a {
+        display: block;
+        color: $white;
+        position: relative;
+        left: 0;
+
+          &:hover {
+              left: 5px;
+          }
+
+          &.is-active {
+              color: $dark-grey;
+          }
+      }
+    }
+    li {
+      list-style: none;
+    }
+  }
+  &__toggle {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 90px;
+    height: 90px;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    box-sizing: border-box;
+    &:before {
+      font-weight: 600;
+      line-height: 40px;
+    }
+  }
+}
+
+.highlight {
+  overflow-x: scroll;
+}
+
+.highlight + p {
+  margin-top: 25px;
+}
+
+// Custom for the align rule
+[id='lost-align'] {
+  .table--rules__code {
+    width: 50%;
+  }
+}
