@@ -11,6 +11,8 @@ rules:
     description: "Will use a custom color for the edit overlay"
   - rule: "clearfix"
     description: "Adds a clearfix mixin."
+  - rule: "overlay [max-width] [columns] [gutter] [color]"
+    description: "This will add a semi-transparent full grid overlay. Use same units for max-width and gutter."
 ---
 
 {% highlight css %}
@@ -20,5 +22,9 @@ section {
 
 div {
   lost-utility: edit rgb(15, 150, 25);
+}
+
+body {
+  lost-utility: overlay 1600px 12 20px #ccc;
 }
 {% endhighlight %}
