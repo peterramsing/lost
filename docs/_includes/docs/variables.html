@@ -3,7 +3,10 @@
     <ul class="page-anchors list--bare">
       {% for doc in site.docs %}
         {% if doc.type == "variable" %}
-        <li><a href="#{{ doc.nav }}">{{ doc.nav }}</a></li>
+        <li>
+          <a href="#{{ doc.nav }}">{{ doc.nav }}</a>
+          {% if doc.deprecation %}⚠️{% endif %}
+        </li>
         {% endif %}
       {% endfor %}
     </ul>
@@ -16,6 +19,9 @@
       <h3>{{ doc.title }}</h3>
       {% if doc.description %}
        <p>{{ doc.description }}</p>
+      {% endif %}
+      {% if doc.deprecation %}
+        <p class="text-warning">⚠️ This variable is planning to be deprecated soon. Use <strong>{{ doc.deprecation-instead }}</strong> instead.</p>
       {% endif %}
       <table class="table--rules" border="1" style="border-collapse:collapse; width:100%" cellpadding="3" cellspacing="3">
         {% for rule in doc.rules %}
