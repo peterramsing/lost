@@ -2,7 +2,7 @@
 title: "Lost Variables"
 nav: "lost-vars"
 code-example: "true"
-type: "function"
+type: "variable"
 description: "Use to output Lost Variables anywhere in the project to help consistency and readability."
 rules:
   - rule: "gutter"
