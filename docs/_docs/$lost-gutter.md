@@ -7,6 +7,8 @@ description: "Use the global gutter anywhere in the project to help consistency 
 rules:
   - rule: "$lost-gutter"
     description: "Outputs the value of the global gutter. Use this as a value anywhere in your project."
+deprecation: "true"
+deprecation-instead: "lost-vars"
 ---
 
 ##### Default

@@ -7,6 +7,8 @@ description: "Allows you to output the gutter that is declared locally within th
 rules:
   - rule: "$lost-gutter-local"
     description: "Outputs the value of the gutter for that particular declaration."
+deprecation: "true"
+deprecation-instead: "lost-vars"
 ---
 
 {% highlight css %}
