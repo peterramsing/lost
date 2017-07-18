@@ -5,11 +5,40 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ---
 
-## [v8.1.0-beta.0] - 2017-06-18
+## [v8.2.0] - 2017-07-18
 
-### How to install
+[v8.2 Milestone](https://github.com/peterramsing/lost/milestone/12?closed=1)
 
-`npm install lost@beta`
+There are various bug fixes in here due to increasing the test coverage. Huge props to @BarryThePenguin for [setting up the coverage](https://github.com/peterramsing/lost/pull/368)! A small change but it helped bring to light a fair amount of bugs (the ones listed here are not the only ones see: [#384](https://github.com/peterramsing/lost/pull/384), [#385](https://github.com/peterramsing/lost/pull/385)). 
+
+
+### Updates
+- [#381](https://github.com/peterramsing/lost/pull/381) Code Coverage is now 100%  Thanks @peterramsing 😳
+
+### Fixed
+-  [#381](https://github.com/peterramsing/lost/pull/381) Fixed an issue where explicitly setting a custom `lost-column` or `lost-waffle` cycle to zero might not work correctly.
+    - [`lost-column` Commit](https://github.com/peterramsing/lost/pull/381/commits/fb957f22d42c8e2715d57c5cad3343ccfa73bf5e) 
+    - [`lost-waffle` Commit](https://github.com/peterramsing/lost/pull/381/commits/e1dbbb60f0f697a41fee095a252cc5a0a7483863)
+- [#381](https://github.com/peterramsing/lost/pull/381) Fixed an issue where the flexbox long-form for `lost-waffle` woudn't actually set.
+    - [Commit](https://github.com/peterramsing/lost/pull/381/commits/92fe8f785e29baff20a9fdac038601abe0687cc5)
+- [#381](https://github.com/peterramsing/lost/pull/381) Fixed an issue where the long-form `lost-masonry-wrap-gutter` didn't actually do anything. 😳
+
+
+### Added
+- [#389](https://github.com/peterramsing/lost/pull/389) New and improved Variables for using the gutters for other things like padding, etc. Thanks @codebysubtract 💪
+- [#396](https://github.com/peterramsing/lost/pull/386) New grid overlay to help visualize your grid. Thanks @codebysubtract 📏
+
+
+[Diff with previous *minor* version 8.1.0](https://github.com/peterramsing/lost/compare/v8.1.0...v8.2.0)
+
+---
+
+## [v8.1.0] - 2017-07-01
+
+[v8.1 Milestone](https://github.com/peterramsing/lost/milestone/11?closed=1)
+
+### Updates
+- [#379](https://github.com/peterramsing/lost/pull/379) Updated to PostCSS version 6.0.2 - Thanks @codebysubtract ☕️
 
 ### Fixed
 - [#374](https://github.com/peterramsing/lost/pull/374) Fixes issue with `flex-basis` where IE10/11 would not lay out correctly with `lost-column`. - Thanks @finneganh! 🏙
@@ -26,9 +55,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - [#368](https://github.com/peterramsing/lost/pull/368) Adds NYC and Codecov coverage for reporting - Thanks @BarryThePenguin! 🛰
 - [#364](https://github.com/peterramsing/lost/pull/364) Inline docs are removed from the code, see [lostgrid.org](http://lostgrid.org) for docs.
 
-[v8.1 Milestone](https://github.com/peterramsing/lost/milestone/11?closed=1)
 
-[Diff with previous version 8.0.0](https://github.com/peterramsing/lost/compare/v8.0.0...v8.1.0-beta.0)
+[Diff with previous *minor* version 8.0.0](https://github.com/peterramsing/lost/compare/v8.0.0...v8.1.0)
 
 ---
 
