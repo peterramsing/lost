@@ -1,6 +1,7 @@
 'use strict';
 
 var check = require('./check');
+var throws = require('./throws');
 
 describe('lost-column', function() {
 
@@ -12,6 +13,10 @@ describe('lost-column', function() {
         'max-width: calc(99.9% * 1/3 - (30px - 30px * 1/3)); width:calc(99.9% * 1/3 - (30px - 30px * 1/3)); }' +
         'a:nth-child(1n) { margin-right: 30px; margin-left: 0; } a:last-child{ margin-right: 0; }' +
         'a:nth-child(3n) { margin-right: 0; margin-left: auto; }'
+      );
+      throws(
+        'a { lost-column: 1/2; lost-column-flexbox: flexible; }',
+        'lost-column-flexbox: property \'flexible\' is unknown.'
       );
     });
   });
@@ -68,8 +73,7 @@ describe('lost-column', function() {
       'a { width: calc(99.9% * 2/5 - (0.7em - 0.7em * 2/5)); }\n' +
       'a:nth-child(1n) { float: left; margin-right: 0.7em; clear: none; }\n' +
       'a:last-child { margin-right: 0; }\n' +
-      'a:nth-child(0n) { margin-right: 0; float: right; }\n' +
-      'a:nth-child(0n + 1) { clear: both; }'
+      'a:nth-child(0n) { float: right; }'
     );
   });
 
@@ -80,11 +84,19 @@ describe('lost-column', function() {
       'a { width: calc(99.9% * 2/5 - (.5em - .5em * 2/5)); }\n' +
       'a:nth-child(1n) { float: left; margin-right: .5em; clear: none; }\n' +
       'a:last-child { margin-right: 0; }\n' +
-      'a:nth-child(0n) { margin-right: 0; float: right; }\n' +
-      'a:nth-child(0n + 1) { clear: both; }'
+      'a:nth-child(0n) { float: right; }'
     );
   });
 
+  it('can support zero cycle', function() {
+    check(
+      'a { lost-column: 2/4 0; }',
+      'a { width: calc(99.9% * 2/4 - (30px - 30px * 2/4)); }' +
+      'a:nth-child(1n) { float: left; margin-right: 30px; clear: none; }' +
+      'a:last-child { margin-right: 0; }' +
+      'a:nth-child(0n) { float: right; }'
+    );
+  });
   it('supports flexbox', function() {
     check(
       'a { lost-column: 2/6 3 60px flex; }',
@@ -224,6 +236,64 @@ describe('lost-column', function() {
         'a:last-child { margin-left: 0; }\n' +
         'a:nth-child(10n) { margin-left: 0; float: left; }\n' +
         'a:nth-child(10n + 1) { clear: both; }'
+      );
+    });
+
+    it ('supports flexbox', () => {
+      check(
+        '@lost --beta-direction rtl;\n'+
+        'a { lost-column: 1/2 flex; }',
+        'a { flex-grow: 0; flex-shrink: 0;' +
+          'flex-basis: calc(99.9% * 1/2 - (30px - 30px * 1/2));' +
+          'max-width: calc(99.9% * 1/2 - (30px - 30px * 1/2));' +
+          'width: calc(99.9% * 1/2 - (30px - 30px * 1/2)); }' +
+        'a:nth-child(1n) { margin-left: 30px; margin-right: 0; }' +
+        'a:last-child { margin-left: 0; }' +
+        'a:nth-child(2n) { margin-left: 0; margin-right: auto;}'
+      );
+    });
+
+    it('supports zero cycles', () => {
+      check(
+        '@lost --beta-direction rtl;\n'+
+        'a { lost-column: 1/3; lost-column-cycle: 0; }',
+        'a{ width: calc( 99.9% * 1/3 - (30px - 30px * 1/3)); }' +
+        'a:nth-child(1n) { float: right; margin-left: 30px; clear: none; }' +
+        'a:last-child { margin-left: 0; } a:nth-child(0n) { float: left; }'
+      );
+      check(
+        '@lost --beta-direction rtl;\n'+
+        'a { lost-column: 1/2 0 flex; }',
+        'a { flex-grow: 0; flex-shrink: 0;' +
+        'flex-basis: calc(99.9% * 1/2 - (30px - 30px * 1/2));' +
+        'max-width: calc(99.9% * 1/2 - (30px - 30px * 1/2));' +
+        'width: calc(99.9% * 1/2 - (30px - 30px * 1/2)); }' +
+        'a:nth-child(1n) { margin-left: 30px; margin-right: 0; }' +
+        'a:last-child { margin-left: 0; }'
+      );
+    });
+
+    it('supports resetting columns', () => {
+      check(
+        '@lost --beta-direction rtl;\n'+
+        'a { lost-column: none; }',
+        'a { width: auto; }\n' +
+        'a:last-child { float: none; clear: none; margin-left: 0; width: auto; }' +
+        'a:nth-child(1n) { float: none; clear: none; margin-left: 0; width: auto; }' +
+        'a:nth-child(1n + 1) { float: none; clear: none; margin-left: 0; width: auto; }'
+      );
+    });
+
+    it('plays nice with the clearing fallback', () => {
+      check(
+        '@lost clearing left; \n' +
+        '@lost --beta-direction rtl;\n'+
+        'a { lost-column: 1/2; }',
+        'a { width: calc(99.9% * 1/2 - (30px - 30px * 1/2)); }' +
+        'a:nth-child(1n) { float: right; margin-left: 30px; clear: none; }' +
+        'a:last-child { margin-left: 0; }' +
+        'a:nth-child(2n) { margin-left: 0; float: left; }' +
+        'a:nth-child(2n + 1) { clear: right; }'
       );
     });
   });

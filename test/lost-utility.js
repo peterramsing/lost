@@ -4,6 +4,14 @@ var check = require('./check');
 var throws = require('./throws');
 
 describe('lost-utility', function() {
+  it('Doesn\'t remove the parent node if there are other rules in declaration', function () {
+    check(
+      'a { lost-utility: edit; color: blue; }',
+      'a { color:blue; } a *:not(input):not(textarea):not(select) ' +
+      '{ background-color:rgba(0,0,255,.1); }'
+    );
+  });
+
   it('applies edit indicator', function() {
     check(
       'a { lost-utility: edit }',
@@ -19,7 +27,7 @@ describe('lost-utility', function() {
       'a *:not(input):not(textarea):not(select) {\n' +
       '    background-color: rgba(44, 55, 33, 0.1)\n' +
       '}'
-    ),
+    );
     check(
       'a { lost-utility: edit rgb(44,55,111) }',
       'a *:not(input):not(textarea):not(select) {\n' +
