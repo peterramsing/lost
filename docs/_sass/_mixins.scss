@@ -1,0 +1,32 @@
+// clearfix
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+// custom breakpoints
+@mixin custom-breakpoint($max, $min: $w-min) {
+   @media (min-width: $min) and (max-width: $max){
+    @content;
+  }
+}
+// fixed breakpoints
+@mixin breakpoint($point) {
+   @if $point == l{
+    @media (max-width: $l-max) {
+       @content;
+    }
+  }
+  @else if $point == m {
+     @media (max-width: $m-max){
+      @content;
+    }
+  }
+  @else if $point == s {
+     @media (max-width: $s-max){
+      @content;
+    }
+  }
+}

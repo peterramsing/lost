@@ -1,0 +1,57 @@
+* {
+  margin: 0;
+  padding: 0;
+  &:focus {
+    outline: none;
+  }
+}
+body {
+  color: $dark-grey;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  background-color: $off-white;
+}
+a {
+  color: $turquoise;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+  font-weight: 600;
+
+  &:hover {
+    color: darken($turquoise, 20);
+  }
+}
+ol,
+ul {
+  padding-left: 22px;
+  margin-bottom: 30px;
+  li {
+    list-style-position: outside;
+  }
+}
+p {
+  margin-bottom: 30px;
+}
+.h2,
+h2 {
+  margin: 0 0 1rem;
+  font-size: 2.4rem;
+  letter-spacing: -1px;
+}
+.h3,
+h3 {
+  margin: 0 0 15px;
+  font-size: 1.8rem;
+}
+
+.h4,
+h4 {
+    font-size: 1.4rem;
+    margin: 0 0 15px;
+}
+
+table {
+    margin-bottom: 30px;
+}

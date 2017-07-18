@@ -1,0 +1,87 @@
+// Reusable elements
+.btn {
+  display: inline-block;
+  padding: 15px 30px;
+  color: $dark-grey;
+  text-decoration: none;
+  margin-bottom: 4px;
+  position: relative;
+  border-radius: 2rem;
+  font-size: 1.2em;
+  &:active {
+    top: 2px;
+  }
+  i {
+    position: relative;
+    margin-right: 5px;
+    top: 3px;
+  }
+  &--primary {
+    background: darken($dark-grey, 2);
+    color: $white;
+    &:hover {
+      background: $turquoise;
+    }
+  }
+  &--khaki {
+    background-color: $khaki;
+    box-shadow: 0 4px 0 darken($khaki, 16);
+    &:hover {
+      background-color: darken($khaki, 5);
+      box-shadow: 0 4px 0 darken($khaki, 20);
+      color: $dark-grey;
+    }
+    &:active {
+      //box-shadow: 0px 2px 0px darken($khaki, 16);
+    }
+  }
+  &--turquoise {
+    background-color: $turquoise;
+    box-shadow: 0 4px 0 darken($turquoise, 12);
+    &:hover {
+      background-color: darken($turquoise, 5);
+      box-shadow: 0 4px 0 darken($turquoise, 16);
+      color: $dark-grey;
+    }
+    &:active {
+      //box-shadow: 0px 2px 0px darken($turquoise, 12);
+    }
+  }
+}
+// scroll to top link
+.scroll-top {
+  display: inline-block;
+  width: 100%;
+  text-decoration: none;
+  padding: 1rem 0;
+  margin-bottom: 2rem;
+}
+
+.arrow {
+  position: relative;
+  top: 4px;
+}
+
+// table
+.table--rules {
+    border: 1px solid $off-white;
+    background-color: $very-light-grey;
+
+    td {
+        padding: 10px 15px;
+    }
+
+    &__code {
+        width: 20%;
+    }
+
+    &__description {
+        width: 80%;
+    }
+}
+
+.hamburger-box {
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 20px 14px;
+  border-radius: 50%;
+}
