@@ -22,7 +22,8 @@ There are various bug fixes in here due to increasing the test coverage. Huge pr
 - [#381](https://github.com/peterramsing/lost/pull/381) Fixed an issue where the flexbox long-form for `lost-waffle` woudn't actually set.
     - [Commit](https://github.com/peterramsing/lost/pull/381/commits/92fe8f785e29baff20a9fdac038601abe0687cc5)
 - [#381](https://github.com/peterramsing/lost/pull/381) Fixed an issue where the long-form `lost-masonry-wrap-gutter` didn't actually do anything. 😳
-
+- [#383/#384](https://github.com/peterramsing/lost/issues/383) Fixed an issue lost-masonry-column does not support no unit on a "0 gutter"
+- [#385](https://github.com/peterramsing/lost/pull/385) Fixes issue where long-form flex isn't being set correctly
 
 ### Added
 - [#389](https://github.com/peterramsing/lost/pull/389) New and improved Variables for using the gutters for other things like padding, etc. Thanks @codebysubtract 💪
