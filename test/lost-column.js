@@ -159,7 +159,7 @@ describe('lost-column', function() {
     check(
       'a { lost-column: 2/6; lost-column-gutter: 10px; }',
 
-      'a { width: calc(99.9% * 2/6 - 6.666667px); }\n' +
+      'a { width: calc(99.9% * 2/6 - 6.66667px); }\n' +
       'a:nth-child(1n) { float: left; margin-right: 10px; clear: none; }\n' +
       'a:last-child { margin-right: 0; }\n' +
       'a:nth-child(6n) { margin-right: 0; float: right; }\n' +
@@ -171,7 +171,7 @@ describe('lost-column', function() {
     check(
       'a { lost-column: 2/6; lost-column-gutter: 10px; lost-unit: $; }',
 
-      'a { width: calc(99.9% * 2/6 - 6.666667px); }\n' +
+      'a { width: calc(99.9% * 2/6 - 6.66667px); }\n' +
       'a:nth-child(1n) { float: left; margin-right: 10px; clear: none; }\n' +
       'a:last-child { margin-right: 0; }\n' +
       'a:nth-child(6n) { margin-right: 0; float: right; }\n' +
@@ -183,7 +183,7 @@ describe('lost-column', function() {
     check(
       'a { lost-column: 2/6; lost-column-gutter: 10px; lost-unit: vw; }',
 
-      'a { width: calc(99.9vw * 2/6 - 6.666667px); }\n' +
+      'a { width: calc(99.9vw * 2/6 - 6.66667px); }\n' +
       'a:nth-child(1n) { float: left; margin-right: 10px; clear: none; }\n' +
       'a:last-child { margin-right: 0; }\n' +
       'a:nth-child(6n) { margin-right: 0; float: right; }\n' +
