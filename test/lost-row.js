@@ -8,7 +8,7 @@ describe('lost-row', function() {
     it('supports no-flex', function() {
       check(
         'a { lost-row: 1/3 no-flex; }',
-        'a { width: 100%; height: calc(99.9% * 1/3 - (30px - 30px * 1/3));' +
+        'a { width: 100%; height: calc(99.9% * 1/3 - 20px);' +
         ' margin-bottom: 30px; }' +
         'a:last-child { margin-bottom: 0; }'
       );
@@ -17,7 +17,7 @@ describe('lost-row', function() {
     it('supports no-flex in long-form', function() {
       check(
         'a { lost-row: 1/3; lost-row-flexbox: no-flex; }',
-        'a { width: 100%; height: calc(99.9% * 1/3 - (30px - 30px * 1/3));' +
+        'a { width: 100%; height: calc(99.9% * 1/3 - 20px);' +
         ' margin-bottom: 30px; }' +
         'a:last-child { margin-bottom: 0; }'
       );
@@ -26,7 +26,7 @@ describe('lost-row', function() {
     it('supports flex in long-form', function() {
       check(
         'a { lost-row: 1/3; lost-row-flexbox: flex; }',
-        'a { width:100%; flex:0 0 auto; height:calc(99.9% * 1/3 - (30px - 30px * 1/3)); ' +
+        'a { width:100%; flex:0 0 auto; height:calc(99.9% * 1/3 - 20px); ' +
         'margin-bottom: 30px; } a:last-child{ margin-bottom:0; }'
       );
     });
@@ -36,7 +36,7 @@ describe('lost-row', function() {
   it('provides 3 row layout', function() {
     check(
       'a { lost-row: 1/3; }',
-      'a { width: 100%; height: calc(99.9% * 1/3 - (30px - 30px * 1/3));' +
+      'a { width: 100%; height: calc(99.9% * 1/3 - 20px);' +
       ' margin-bottom: 30px; }\n' +
       'a:last-child { margin-bottom: 0; }'
     );
@@ -45,7 +45,7 @@ describe('lost-row', function() {
   it('provides 2/5 row layout', function() {
     check(
       'a { lost-row: 2/5; }',
-      'a { width: 100%; height: calc(99.9% * 2/5 - (30px - 30px * 2/5));' +
+      'a { width: 100%; height: calc(99.9% * 2/5 - 18px);' +
       ' margin-bottom: 30px; }\n' +
       'a:last-child { margin-bottom: 0; }'
     );
@@ -63,7 +63,7 @@ describe('lost-row', function() {
     check(
       'a { lost-row: 2/6 60px flex; }',
       'a { width: 100%; flex: 0 0 auto;' +
-      ' height: calc(99.9% * 2/6 - (60px - 60px * 2/6));' +
+      ' height: calc(99.9% * 2/6 - 40px);' +
       ' margin-bottom: 60px; }\n' +
       'a:last-child { margin-bottom: 0; }'
     );
@@ -73,7 +73,7 @@ describe('lost-row', function() {
     check(
       'a { lost-row: 2/6 60px flex; lost-unit: $; }',
       'a { width: 100%; flex: 0 0 auto;' +
-      ' height: calc(99.9% * 2/6 - (60px - 60px * 2/6));' +
+      ' height: calc(99.9% * 2/6 - 40px);' +
       ' margin-bottom: 60px; }\n' +
       'a:last-child { margin-bottom: 0; }'
     );
@@ -83,7 +83,7 @@ describe('lost-row', function() {
     check(
       'a { lost-row: 2/6 60px flex; lost-unit: vh; }',
       'a { width: 100%; flex: 0 0 auto;' +
-      ' height: calc(99.9vh * 2/6 - (60px - 60px * 2/6));' +
+      ' height: calc(99.9vh * 2/6 - 40px);' +
       ' margin-bottom: 60px; }\n' +
       'a:last-child { margin-bottom: 0; }'
     );
@@ -101,7 +101,7 @@ describe('lost-row', function() {
     it('100%', function() {
       check(
         'a { lost-row: 1/3; lost-row-rounder: 100; }',
-        'a { width: 100%; height: calc(100% * 1/3 - (30px - 30px * 1/3));' +
+        'a { width: 100%; height: calc(100% * 1/3 - 20px);' +
         ' margin-bottom: 30px; }\n' +
         'a:last-child { margin-bottom: 0; }'
       );
@@ -110,7 +110,7 @@ describe('lost-row', function() {
     it('99.99999999999%', function() {
       check(
         'a { lost-row: 1/3; lost-row-rounder: 99.99999999999; }',
-        'a { width: 100%; height: calc(99.99999999999% * 1/3 - (30px - 30px * 1/3));' +
+        'a { width: 100%; height: calc(99.99999999999% * 1/3 - 20px);' +
         ' margin-bottom: 30px; }\n' +
         'a:last-child { margin-bottom: 0; }'
       );

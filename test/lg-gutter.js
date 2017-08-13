@@ -18,7 +18,7 @@ describe('lost-gutter', () => {
     );
     check(
       'div { padding: $lost-gutter; lost-column: 1/3 3 40px; }',
-      'div { padding: 30px; width: calc(99.9% * 1/3 - (40px - 40px * 1/3)); }\n'+
+      'div { padding: 30px; width: calc(99.9% * 1/3 - 26.66667px); }\n'+
       'div:nth-child(1n) { float: left; margin-right: 40px; clear: none; }\n'+
       'div:last-child { margin-right: 0; }\n'+
       'div:nth-child(3n) { margin-right: 0; float: right; }\n'+
@@ -38,7 +38,7 @@ describe('lost-gutter-local', () => {
   it('replaces $lost-gutter-local', () => {
     check(
       'div { padding: $lost-gutter-local; lost-column: 1/3; lost-column-gutter: 50px; }',
-      'div { padding: 50px; width: calc(99.9% * 1/3 - (50px - 50px * 1/3)); }\n'+
+      'div { padding: 50px; width: calc(99.9% * 1/3 - 33.33333px); }\n'+
       'div:nth-child(1n) { float: left; margin-right: 50px; clear: none; }\n'+
       'div:last-child { margin-right: 0; }\n'+
       'div:nth-child(3n) { margin-right: 0; float: right; }\n'+
@@ -56,7 +56,7 @@ describe('lost-gutter-local', () => {
   it('works on shortcut lost-column', () => {
     check(
       'div { padding: $lost-gutter-local; lost-column: 1/3 3 70px;}',
-      'div { padding: 70px; width: calc(99.9% * 1/3 - (70px - 70px * 1/3));}\n'+
+      'div { padding: 70px; width: calc(99.9% * 1/3 - 46.66667px);}\n'+
       'div:nth-child(1n) { float: left; margin-right: 70px; clear: none;}\n'+
       'div:last-child { margin-right: 0;}\n'+
       'div:nth-child(3n) { margin-right: 0; float: right;}\n'+
@@ -66,7 +66,7 @@ describe('lost-gutter-local', () => {
   it('works on shortcut lost-waffle', () => {
     check(
       'div { padding: $lost-gutter-local; lost-waffle: 1/3 3 20px;}',
-      'div { padding: 20px; width: calc(99.9% * 1/3 - (20px - 20px * 1/3)); height: calc(99.9% * 1/3 - (20px - 20px * 1/3));}\n'+
+      'div { padding: 20px; width: calc(99.9% * 1/3 - 13.33333px); height: calc(99.9% * 1/3 - 13.33333px);}\n'+
       'div:nth-child(1n) { float: left; margin-right: 20px; margin-bottom: 20px; clear: none;}\n' +
       'div:last-child { margin-right: 0; margin-bottom: 0;}\n' +
       'div:nth-child(3n) { margin-right: 0;}\n' +
@@ -103,14 +103,14 @@ describe('lost-gutter-local', () => {
   it('works on shortcut lost-row', () => {
     check(
       'div { padding: $lost-gutter-local; lost-row: 1/3 70px;}',
-      'div { padding: 70px; width: 100%; height: calc(99.9% * 1/3 - (70px - 70px * 1/3)); margin-bottom: 70px;}\n' +
+      'div { padding: 70px; width: 100%; height: calc(99.9% * 1/3 - 46.66667px); margin-bottom: 70px;}\n' +
       'div:last-child { margin-bottom: 0;}'
     );
   });
   it('takes global if no local one is given', () => {
     check(
       'div { padding: $lost-gutter-local; lost-column: 1/3;}',
-      'div { padding: 30px; width: calc(99.9% * 1/3 - (30px - 30px * 1/3));}\n' +
+      'div { padding: 30px; width: calc(99.9% * 1/3 - 20px);}\n' +
       'div:nth-child(1n) { float: left; margin-right: 30px; clear: none;}\n' +
       'div:last-child { margin-right: 0;}\n' +
       'div:nth-child(3n) { margin-right: 0; float: right;}\n' +
@@ -120,7 +120,7 @@ describe('lost-gutter-local', () => {
   it('allows for multiple uses of the variable', () => {
     check(
       'div { padding: $lost-gutter-local; lost-column: 1/3 3 20px; margin-top: $lost-gutter-local;}',
-      'div { padding: 20px; width: calc(99.9% * 1/3 - (20px - 20px * 1/3)); margin-top: 20px;}\n' +
+      'div { padding: 20px; width: calc(99.9% * 1/3 - 13.33333px); margin-top: 20px;}\n' +
       'div:nth-child(1n) { float: left; margin-right: 20px; clear: none;}\n' +
       'div:last-child { margin-right: 0;}\n' +
       'div:nth-child(3n) { margin-right: 0; float: right;}\n' +

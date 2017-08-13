@@ -11,7 +11,7 @@ describe('lost-at-rule', function() {
       '}',
 
       'div {\n' +
-      '  width: calc(99.9% * 1/3 - (60px - 60px * 1/3));\n' +
+      '  width: calc(99.9% * 1/3 - 40px);\n' +
       '}\n' +
       'div:nth-child(1n) {\n' +
       '  float: left;\n' +
@@ -41,9 +41,9 @@ describe('lost-at-rule', function() {
       'div {\n' +
       '  flex-grow: 0;\n' +
       '  flex-shrink: 0;\n' +
-      '  flex-basis: calc(99.9% * 1/3 - (30px - 30px * 1/3));\n' +
-      '  max-width: calc(99.9% * 1/3 - (30px - 30px * 1/3));\n' +
-      '  width: calc(99.9% * 1/3 - (30px - 30px * 1/3));\n' +
+      '  flex-basis: calc(99.9% * 1/3 - 20px);\n' +
+      '  max-width: calc(99.9% * 1/3 - 20px);\n' +
+      '  width: calc(99.9% * 1/3 - 20px);\n' +
       '}\n' +
       'div:nth-child(1n) {\n' +
       '  margin-right: 30px;\n' +
@@ -67,7 +67,7 @@ describe('lost-at-rule', function() {
       '}',
 
       'div {\n' +
-      '  width: calc(99.9% * 1/3 - (30px - 30px * 1/3));\n' +
+      '  width: calc(99.9% * 1/3 - 20px);\n' +
       '}\n' +
       'div:nth-child(1n) {\n' +
       '  float: left;\n' +
@@ -91,7 +91,7 @@ describe('lost-at-rule', function() {
       '}',
 
       'div {\n' +
-      '  width: calc(99.9% * 1/3 - (30px - 30px * 1/3));\n' +
+      '  width: calc(99.9% * 1/3 - 20px);\n' +
       '}\n' +
       'div:nth-child(1n) {\n' +
       '  float: left;\n' +
@@ -119,7 +119,7 @@ describe('lost-at-rule', function() {
       '}',
 
       'div {\n' +
-      '  width: calc(99.9% * 1/3 - (30px - 30px * 1/3));\n' +
+      '  width: calc(99.9% * 1/3 - 20px);\n' +
       '}\n' +
       'div:nth-child(1n) {\n' +
       '  float: left;\n' +
@@ -147,7 +147,7 @@ describe('lost-at-rule', function() {
       '}',
 
       'div {\n' +
-      '  width: calc(100% * 1/3 - (30px - 30px * 1/3));\n' +
+      '  width: calc(100% * 1/3 - 20px);\n' +
       '}\n' +
       'div:nth-child(1n) {\n' +
       '  float: left;\n' +
