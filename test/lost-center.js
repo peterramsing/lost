@@ -84,4 +84,19 @@ describe('lost-center', function() {
       'a { display: flex; flex-flow: row wrap; max-width: 1140px; margin-left: auto; margin-right: auto; padding-left: 30px; padding-right: 30px }'
     );
   });
+
+  it('overrides global flex when told to', function() {
+    check(
+      '@lost flexbox flex; .root { lost-center: 600px no-flex; }',
+      '.root { max-width: 600px; margin-left: auto; margin-right: auto; }\n' +
+      '.root:before { content: \'\'; display: table; }\n' +
+      '.root:after { content: \'\'; display: table; clear: both; }'
+    );
+    check(
+      '@lost flexbox flex; .root { lost-center: 600px; lost-center-flexbox: no-flex;}',
+      '.root { max-width: 600px; margin-left: auto; margin-right: auto; }\n' +
+      '.root:before { content: \'\'; display: table; }\n' +
+      '.root:after { content: \'\'; display: table; clear: both; }'
+    );
+  });
 });
