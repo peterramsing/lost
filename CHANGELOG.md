@@ -5,6 +5,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ---
 
+## [v8.2.1] - 2018-02-28
+
+### Fixed
+-  [#405](https://github.com/peterramsing/lost/pull/405) Fixed issue where the shorthand override for flexbox wasn't working for to override the global flexbox setting for `lost-center`.
+
+---
+
 ## [v8.2.0] - 2017-07-18
 
 [v8.2 Milestone](https://github.com/peterramsing/lost/milestone/12?closed=1)
