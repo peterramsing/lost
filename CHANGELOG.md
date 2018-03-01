@@ -8,7 +8,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [v8.2.1] - 2018-02-28
 
 ### Fixed
--  [#405](https://github.com/peterramsing/lost/pull/405) Fixed issue where the shorthand override for flexbox wasn't working for to override the global flexbox setting for `lost-center`.
+-  [#405](https://github.com/peterramsing/lost/pull/405) Fixed issue where the shorthand override for flexbox wasn't working for the override of the global flexbox setting for `lost-center`.
 
 ---
 
