@@ -8,6 +8,7 @@ describe('lost-waffle', function() {
     check(
       'a { lost-waffle: 1/3; }',
       'a { width: calc(99.9% * 1/3 - (30px - 30px * 1/3));' +
+      ' max-width: calc(99.9% * 1/3 - (30px - 30px * 1/3));\n' +
       ' height: calc(99.9% * 1/3 - (30px - 30px * 1/3)); }\n' +
       'a:nth-child(1n) { float: left; margin-right: 30px;' +
       ' margin-bottom: 30px; clear: none; }\n' +
@@ -22,6 +23,7 @@ describe('lost-waffle', function() {
     check(
       'a { lost-waffle: 2/4 2; }',
       'a { width: calc(99.9% * 2/4 - (30px - 30px * 2/4));' +
+      ' max-width: calc(99.9% * 2/4 - (30px - 30px * 2/4));\n' +
       ' height: calc(99.9% * 2/4 - (30px - 30px * 2/4)); }\n' +
       'a:nth-child(1n) { float: left; margin-right: 30px;' +
       ' margin-bottom: 30px; clear: none; }\n' +
@@ -33,6 +35,7 @@ describe('lost-waffle', function() {
     check(
       'a { lost-waffle: 2/4; lost-waffle-cycle: 2; }',
       'a { width: calc(99.9% * 2/4 - (30px - 30px * 2/4));' +
+      ' max-width: calc(99.9% * 2/4 - (30px - 30px * 2/4));' +
       ' height: calc(99.9% * 2/4 - (30px - 30px * 2/4)); }\n' +
       'a:nth-child(1n) { float: left; margin-right: 30px;' +
       ' margin-bottom: 30px; clear: none; }\n' +
@@ -45,6 +48,7 @@ describe('lost-waffle', function() {
       '@lost cycle 0;' +
       'a { lost-waffle: 2/4; }',
       'a { width: calc(99.9% * 2/4 - (30px - 30px * 2/4));' +
+      ' max-width: calc(99.9% * 2/4 - (30px - 30px * 2/4));' +
       ' height: calc(99.9% * 2/4 - (30px - 30px * 2/4)); }' +
       'a:nth-child(1n) { float: left; margin-right: 30px;' +
       ' margin-bottom: 30px; clear: none; }' +
@@ -53,7 +57,8 @@ describe('lost-waffle', function() {
     check(
       'a { lost-waffle: 2/4 0 0 flex; }',
       'a { flex-grow: 0; flex-shrink: 0; flex-basis: calc(99.9% * 2/4);' +
-        'width: calc(99.9% * 2/4); height: calc(99.9% * 2/4) }' +
+      'width: calc(99.9% * 2/4); max-width: calc(99.9% * 2/4); '+
+      'height: calc(99.9% * 2/4)}' +
       'a:nth-child(1n) { margin-right: 0; margin-bottom: 0; margin-left:0; }' +
       'a:last-child { margin-right: 0; margin-bottom: 0;}'
     );
@@ -63,6 +68,7 @@ describe('lost-waffle', function() {
     check(
       'a { lost-waffle: 3/6 2 60px; }',
       'a { width: calc(99.9% * 3/6 - (60px - 60px * 3/6));' +
+      'max-width: calc(99.9% * 3/6 - (60px - 60px * 3/6));'+
       ' height: calc(99.9% * 3/6 - (60px - 60px * 3/6)); }\n' +
       'a:nth-child(1n) { float: left; margin-right: 60px;' +
       ' margin-bottom: 60px; clear: none; }\n' +
@@ -74,6 +80,7 @@ describe('lost-waffle', function() {
     check(
       'a { lost-waffle: 3/6 2; lost-waffle-gutter: 60px; }',
       'a { width: calc(99.9% * 3/6 - (60px - 60px * 3/6));' +
+      ' max-width: calc(99.9% * 3/6 - (60px - 60px * 3/6));' +
       ' height: calc(99.9% * 3/6 - (60px - 60px * 3/6)); }\n' +
       'a:nth-child(1n) { float: left; margin-right: 60px;' +
       ' margin-bottom: 60px; clear: none; }\n' +
@@ -89,6 +96,7 @@ describe('lost-waffle', function() {
       '@lost clearing left; \n' +
       'a { lost-waffle: 1/3; }',
       'a { width: calc(99.9% * 1/3 - (30px - 30px * 1/3));' +
+      ' max-width: calc(99.9% * 1/3 - (30px - 30px * 1/3));' +
       ' height: calc(99.9% * 1/3 - (30px - 30px * 1/3)); }\n' +
       'a:nth-child(1n) { float: left; margin-right: 30px;' +
       ' margin-bottom: 30px; clear: none; }\n' +
@@ -104,7 +112,8 @@ describe('lost-waffle', function() {
       'a { lost-waffle: 2/5 3 0 flex; }',
       'a { flex-grow: 0; flex-shrink: 0; ' +
       'flex-basis: calc(99.9% * 2/5); ' +
-      'width: calc(99.9% * 2/5); height: calc(99.9% * 2/5); }\n' +
+      'width: calc(99.9% * 2/5); max-width: calc(99.9% * 2/5);' +
+      'height: calc(99.9% * 2/5); }'+
       'a:nth-child(1n) { ' +
       'margin-right: 0; margin-bottom: 0; margin-left: 0; }\n' +
       'a:last-child { margin-right: 0; margin-bottom: 0; }\n' +
@@ -116,6 +125,7 @@ describe('lost-waffle', function() {
       'a { flex-grow: 0; flex-shrink: 0;' +
        'flex-basis: calc(99.9% * 2/5 - (30px - 30px * 2/5));' +
        'width: calc(99.9% * 2/5 - (30px - 30px * 2/5));' +
+       'max-width: calc(99.9% * 2/5 - (30px - 30px * 2/5));' +
        'height: calc(99.9% * 2/5 - (30px - 30px * 2/5)) }' +
       'a:nth-child(1n) { margin-right: 30px; margin-bottom: 30px; margin-left:0; }' +
       'a:last-child{ margin-right: 0; margin-bottom: 0;}' +
@@ -132,7 +142,8 @@ describe('lost-waffle', function() {
     check(
       'a { lost-waffle: 2/5 3 0 no-flex; }',
 
-      'a { width: calc(99.9% * 2/5); height: calc(99.9% * 2/5); }\n' +
+      'a { width: calc(99.9% * 2/5); max-width: calc(99.9% * 2/5); ' +
+      'height: calc(99.9% * 2/5); }' +
       'a:nth-child(1n) { float: left; margin-right: 0; margin-bottom: 0; clear: none; }\n' +
       'a:last-child { margin-right: 0; margin-bottom: 0; }\n' +
       'a:nth-child(3n) { margin-right: 0; }\n' +
@@ -145,7 +156,8 @@ describe('lost-waffle', function() {
     check(
       'a { lost-waffle: 2/5 3 0 no-flex float-right; }',
 
-      'a { width: calc(99.9% * 2/5); height: calc(99.9% * 2/5); }\n' +
+      'a { width: calc(99.9% * 2/5); max-width: calc(99.9% * 2/5); ' +
+      'height: calc(99.9% * 2/5); }' +
       'a:nth-child(1n) { float: left; margin-right: 0; margin-bottom: 0; clear: none; }\n' +
       'a:last-child { margin-right: 0; margin-bottom: 0; }\n' +
       'a:nth-child(3n) { margin-right: 0; float: right; }\n' +
@@ -157,7 +169,8 @@ describe('lost-waffle', function() {
   it('Supports custom unit', function() {
     check(
       'a { lost-waffle: 2/5 3 0 no-flex float-right; lost-unit: vw; }',
-      'a { width: calc(99.9vw * 2/5); height: calc(99.9vw * 2/5); }\n' +
+      'a { width: calc(99.9vw * 2/5); max-width: calc(99.9vw * 2/5);' +
+      'height: calc(99.9vw * 2/5); }\n' +
       'a:nth-child(1n) { float: left; margin-right: 0; margin-bottom: 0; clear: none; }\n' +
       'a:last-child { margin-right: 0; margin-bottom: 0; }\n' +
       'a:nth-child(3n) { margin-right: 0; float: right; }\n' +
@@ -175,7 +188,8 @@ describe('lost-waffle', function() {
       check(
         'a { lost-waffle: 2/5 3 0 no-flex; lost-waffle-rounder: 100; }',
 
-        'a { width: calc(100% * 2/5); height: calc(100% * 2/5); }\n' +
+        'a { width: calc(100% * 2/5); max-width: calc(100% * 2/5);' +
+        ' height: calc(100% * 2/5); }\n' +
         'a:nth-child(1n) { float: left; margin-right: 0; margin-bottom: 0; clear: none; }\n' +
         'a:last-child { margin-right: 0; margin-bottom: 0; }\n' +
         'a:nth-child(3n) { margin-right: 0; }\n' +
@@ -188,7 +202,7 @@ describe('lost-waffle', function() {
       check(
         'a { lost-waffle: 2/5 3 0 no-flex; lost-waffle-rounder: 99.99999999999; }',
 
-        'a { width: calc(99.99999999999% * 2/5); height: calc(99.99999999999% * 2/5); }\n' +
+        'a { width: calc(99.99999999999% * 2/5); max-width: calc(99.99999999999% * 2/5); height: calc(99.99999999999% * 2/5); }\n' +
         'a:nth-child(1n) { float: left; margin-right: 0; margin-bottom: 0; clear: none; }\n' +
         'a:last-child { margin-right: 0; margin-bottom: 0; }\n' +
         'a:nth-child(3n) { margin-right: 0; }\n' +
@@ -203,7 +217,8 @@ describe('lost-waffle', function() {
       check(
         '@lost --beta-direction rtl;\n'+
         'div { lost-waffle: 1/3; }',
-        'div { width: calc(99.9% * 1/3 - (30px - 30px * 1/3)); height: calc(99.9% * 1/3 - (30px - 30px * 1/3)); }\n' +
+        'div { width: calc(99.9% * 1/3 - (30px - 30px * 1/3));' +
+        ' max-width: calc(99.9% * 1/3 - (30px - 30px * 1/3)); height: calc(99.9% * 1/3 - (30px - 30px * 1/3)); }\n' +
         'div:nth-child(1n) { float: right; margin-left: 30px; margin-bottom: 30px; clear: none; }\n' +
         'div:last-child { margin-left: 0; margin-bottom: 0; }\n' +
         'div:nth-child(3n) { margin-left: 0; }\n' +
@@ -216,6 +231,7 @@ describe('lost-waffle', function() {
         'div { flex-grow: 0; flex-shrink: 0; ' +
           'flex-basis: calc(99.9% * 1/3 - (30px - 30px * 1/3));' +
           'width: calc(99.9% * 1/3 - (30px - 30px * 1/3));' +
+          'max-width: calc(99.9% * 1/3 - (30px - 30px * 1/3));' +
           'height: calc(99.9% * 1/3 - (30px - 30px * 1/3)) }' +
         'div:nth-child(1n) { margin-left: 30px; margin-bottom: 30px; margin-right: 0; }' +
         'div:last-child{ margin-left: 0; margin-bottom: 0; }' +
