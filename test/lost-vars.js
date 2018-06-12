@@ -63,7 +63,7 @@ describe('lost-vars', function() {
     it('works on shortcut lost-waffle', () => {
       check(
         'div { padding: lost-vars(\'gutter-local\'); lost-waffle: 1/3 3 20px;}',
-        'div { padding: 20px; width: calc(99.9% * 1/3 - (20px - 20px * 1/3)); height: calc(99.9% * 1/3 - (20px - 20px * 1/3));}\n'+
+        'div { padding: 20px; width: calc(99.9% * 1/3 - (20px - 20px * 1/3)); max-width: calc(99.9% * 1/3 - (20px - 20px * 1/3)); height: calc(99.9% * 1/3 - (20px - 20px * 1/3));}\n'+
         'div:nth-child(1n) { float: left; margin-right: 20px; margin-bottom: 20px; clear: none;}\n' +
         'div:last-child { margin-right: 0; margin-bottom: 0;}\n' +
         'div:nth-child(3n) { margin-right: 0;}\n' +
