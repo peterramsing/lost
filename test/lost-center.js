@@ -8,8 +8,8 @@ describe('lost-center', function() {
       'a { lost-center: 4/12; lost-unit: $ }',
 
       'a { max-width: calc(99.9% * 4/12); margin-left: auto; margin-right: auto }\n' +
-      'a:before { content: \'\'; display: table }\n' +
-      'a:after { content: \'\'; display: table; clear: both }'
+        "a:before { content: ''; display: table }\n" +
+        "a:after { content: ''; display: table; clear: both }"
     );
   });
 
@@ -18,8 +18,8 @@ describe('lost-center', function() {
       'a { lost-center: 3/9; lost-unit: vw }',
 
       'a { max-width: calc(99.9vw * 3/9); margin-left: auto; margin-right: auto }\n' +
-      'a:before { content: \'\'; display: table }\n' +
-      'a:after { content: \'\'; display: table; clear: both }'
+        "a:before { content: ''; display: table }\n" +
+        "a:after { content: ''; display: table; clear: both }"
     );
   });
 
@@ -27,8 +27,8 @@ describe('lost-center', function() {
     check(
       'a { lost-center: 980px }',
       'a { max-width: 980px; margin-left: auto; margin-right: auto }\n' +
-      'a:before { content: \'\'; display: table }\n' +
-      'a:after { content: \'\'; display: table; clear: both }'
+        "a:before { content: ''; display: table }\n" +
+        "a:after { content: ''; display: table; clear: both }"
     );
   });
 
@@ -37,8 +37,8 @@ describe('lost-center', function() {
       'a { lost-center: 2/6 }',
 
       'a { max-width: calc(99.9% * 2/6); margin-left: auto; margin-right: auto }\n' +
-      'a:before { content: \'\'; display: table }\n' +
-      'a:after { content: \'\'; display: table; clear: both }'
+        "a:before { content: ''; display: table }\n" +
+        "a:after { content: ''; display: table; clear: both }"
     );
   });
 
@@ -46,8 +46,8 @@ describe('lost-center', function() {
     check(
       'a { lost-center: 980px 30px }',
       'a { max-width: 980px; margin-left: auto; margin-right: auto; padding-left: 30px; padding-right: 30px }\n' +
-      'a:before { content: \'\'; display: table }\n' +
-      'a:after { content: \'\'; display: table; clear: both }'
+        "a:before { content: ''; display: table }\n" +
+        "a:after { content: ''; display: table; clear: both }"
     );
   });
 
@@ -62,8 +62,8 @@ describe('lost-center', function() {
     check(
       'a { lost-center: 1140px 30px no-flex }',
       'a { max-width: 1140px; margin-left: auto; margin-right: auto; padding-left: 30px; padding-right: 30px }\n' +
-      'a:before { content: \'\'; display: table }\n' +
-      'a:after { content: \'\'; display: table; clear: both }'
+        "a:before { content: ''; display: table }\n" +
+        "a:after { content: ''; display: table; clear: both }"
     );
   });
 
@@ -72,8 +72,8 @@ describe('lost-center', function() {
       'a { lost-center: 1140px 30px; lost-center-padding: 10px }',
 
       'a { max-width: 1140px; margin-left: auto; margin-right: auto; padding-left: 10px; padding-right: 10px }\n' +
-      'a:before { content: \'\'; display: table }\n' +
-      'a:after { content: \'\'; display: table; clear: both }'
+        "a:before { content: ''; display: table }\n" +
+        "a:after { content: ''; display: table; clear: both }"
     );
   });
 
@@ -89,14 +89,14 @@ describe('lost-center', function() {
     check(
       '@lost flexbox flex; .root { lost-center: 600px no-flex; }',
       '.root { max-width: 600px; margin-left: auto; margin-right: auto; }\n' +
-      '.root:before { content: \'\'; display: table; }\n' +
-      '.root:after { content: \'\'; display: table; clear: both; }'
+        ".root:before { content: ''; display: table; }\n" +
+        ".root:after { content: ''; display: table; clear: both; }"
     );
     check(
       '@lost flexbox flex; .root { lost-center: 600px; lost-center-flexbox: no-flex;}',
       '.root { max-width: 600px; margin-left: auto; margin-right: auto; }\n' +
-      '.root:before { content: \'\'; display: table; }\n' +
-      '.root:after { content: \'\'; display: table; clear: both; }'
+        ".root:before { content: ''; display: table; }\n" +
+        ".root:after { content: ''; display: table; clear: both; }"
     );
   });
 });

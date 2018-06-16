@@ -29,12 +29,19 @@
     "clean-css": "^4.1.6",
     "codecov": "^3.0.2",
     "eslint": "^3.16",
+    "eslint-plugin-prettier": "2.6.0",
+    "husky": "^0.14.3",
     "mocha": "^5.2.0",
-    "nyc": "^13.0.0"
+    "nyc": "^13.0.0",
+    "prettier": "1.13.5"
   },
   "scripts": {
+    "precommit": "lint-staged",
     "test": "nyc mocha",
     "lint": "eslint .",
     "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
+  },
+  "lint-staged": {
+    "*.{js,json,css,md}": ["prettier --write", "git add"]
   }
 }

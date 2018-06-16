@@ -4,7 +4,6 @@ var expect = require('chai').expect;
 var lgLogic = require('../lib/_lg-logic.js');
 var postcss = require('postcss');
 
-
 describe('calcValue works as it should', () => {
   it('gutter, rounder, and unit ✅', () => {
     var testCase = lgLogic.calcValue('1/3', '30px', 100, 'vw');
@@ -31,11 +30,11 @@ describe('calcValue works as it should', () => {
 
 describe('Units are validated based on if they make sense', () => {
   it('only allows what is in the array of accepted units', () => {
-    expect(lgLogic.validateUnit('vw', ['%','vw'])).to.be.true;
-    expect(lgLogic.validateUnit('%', ['%','vw'])).to.be.true;
-    expect(lgLogic.validateUnit('px', ['%','vw', 'px', 'em'])).to.be.true;
-    expect(lgLogic.validateUnit('foobar', ['%','vw'])).to.not.be.true;
-    expect(lgLogic.validateUnit(3, ['%','vw'])).to.not.be.true;
+    expect(lgLogic.validateUnit('vw', ['%', 'vw'])).to.be.true;
+    expect(lgLogic.validateUnit('%', ['%', 'vw'])).to.be.true;
+    expect(lgLogic.validateUnit('px', ['%', 'vw', 'px', 'em'])).to.be.true;
+    expect(lgLogic.validateUnit('foobar', ['%', 'vw'])).to.not.be.true;
+    expect(lgLogic.validateUnit(3, ['%', 'vw'])).to.not.be.true;
   });
 });
 
@@ -71,5 +70,4 @@ describe('parseLostProperty works as it should', () => {
 
     expect(testCase).to.equal(expectedResult);
   });
-
 });

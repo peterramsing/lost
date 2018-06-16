@@ -3,14 +3,13 @@
 var check = require('./check');
 
 describe('lost-row', function() {
-
-  describe('Flexbox modifiers', function () {
+  describe('Flexbox modifiers', function() {
     it('supports no-flex', function() {
       check(
         'a { lost-row: 1/3 no-flex; }',
         'a { width: 100%; height: calc(99.9% * 1/3 - (30px - 30px * 1/3));' +
-        ' margin-bottom: 30px; }' +
-        'a:last-child { margin-bottom: 0; }'
+          ' margin-bottom: 30px; }' +
+          'a:last-child { margin-bottom: 0; }'
       );
     });
 
@@ -18,8 +17,8 @@ describe('lost-row', function() {
       check(
         'a { lost-row: 1/3; lost-row-flexbox: no-flex; }',
         'a { width: 100%; height: calc(99.9% * 1/3 - (30px - 30px * 1/3));' +
-        ' margin-bottom: 30px; }' +
-        'a:last-child { margin-bottom: 0; }'
+          ' margin-bottom: 30px; }' +
+          'a:last-child { margin-bottom: 0; }'
       );
     });
 
@@ -27,18 +26,17 @@ describe('lost-row', function() {
       check(
         'a { lost-row: 1/3; lost-row-flexbox: flex; }',
         'a { width:100%; flex:0 0 auto; height:calc(99.9% * 1/3 - (30px - 30px * 1/3)); ' +
-        'margin-bottom: 30px; } a:last-child{ margin-bottom:0; }'
+          'margin-bottom: 30px; } a:last-child{ margin-bottom:0; }'
       );
     });
   });
-
 
   it('provides 3 row layout', function() {
     check(
       'a { lost-row: 1/3; }',
       'a { width: 100%; height: calc(99.9% * 1/3 - (30px - 30px * 1/3));' +
-      ' margin-bottom: 30px; }\n' +
-      'a:last-child { margin-bottom: 0; }'
+        ' margin-bottom: 30px; }\n' +
+        'a:last-child { margin-bottom: 0; }'
     );
   });
 
@@ -46,8 +44,8 @@ describe('lost-row', function() {
     check(
       'a { lost-row: 2/5; }',
       'a { width: 100%; height: calc(99.9% * 2/5 - (30px - 30px * 2/5));' +
-      ' margin-bottom: 30px; }\n' +
-      'a:last-child { margin-bottom: 0; }'
+        ' margin-bottom: 30px; }\n' +
+        'a:last-child { margin-bottom: 0; }'
     );
   });
 
@@ -55,7 +53,7 @@ describe('lost-row', function() {
     check(
       'a { lost-row: 2/5 0; }',
       'a { width: 100%; height: calc(99.9% * 2/5); margin-bottom: 0; }\n' +
-      'a:last-child { margin-bottom: 0; }'
+        'a:last-child { margin-bottom: 0; }'
     );
   });
 
@@ -63,9 +61,9 @@ describe('lost-row', function() {
     check(
       'a { lost-row: 2/6 60px flex; }',
       'a { width: 100%; flex: 0 0 auto;' +
-      ' height: calc(99.9% * 2/6 - (60px - 60px * 2/6));' +
-      ' margin-bottom: 60px; }\n' +
-      'a:last-child { margin-bottom: 0; }'
+        ' height: calc(99.9% * 2/6 - (60px - 60px * 2/6));' +
+        ' margin-bottom: 60px; }\n' +
+        'a:last-child { margin-bottom: 0; }'
     );
   });
 
@@ -73,9 +71,9 @@ describe('lost-row', function() {
     check(
       'a { lost-row: 2/6 60px flex; lost-unit: $; }',
       'a { width: 100%; flex: 0 0 auto;' +
-      ' height: calc(99.9% * 2/6 - (60px - 60px * 2/6));' +
-      ' margin-bottom: 60px; }\n' +
-      'a:last-child { margin-bottom: 0; }'
+        ' height: calc(99.9% * 2/6 - (60px - 60px * 2/6));' +
+        ' margin-bottom: 60px; }\n' +
+        'a:last-child { margin-bottom: 0; }'
     );
   });
 
@@ -83,17 +81,16 @@ describe('lost-row', function() {
     check(
       'a { lost-row: 2/6 60px flex; lost-unit: vh; }',
       'a { width: 100%; flex: 0 0 auto;' +
-      ' height: calc(99.9vh * 2/6 - (60px - 60px * 2/6));' +
-      ' margin-bottom: 60px; }\n' +
-      'a:last-child { margin-bottom: 0; }'
+        ' height: calc(99.9vh * 2/6 - (60px - 60px * 2/6));' +
+        ' margin-bottom: 60px; }\n' +
+        'a:last-child { margin-bottom: 0; }'
     );
   });
 
   it('provides none rule', function() {
     check(
       'a { lost-row: none; }',
-      'a { width: auto; height: auto;' +
-      ' margin-bottom: 0; }'
+      'a { width: auto; height: auto;' + ' margin-bottom: 0; }'
     );
   });
 
@@ -102,8 +99,8 @@ describe('lost-row', function() {
       check(
         'a { lost-row: 1/3; lost-row-rounder: 100; }',
         'a { width: 100%; height: calc(100% * 1/3 - (30px - 30px * 1/3));' +
-        ' margin-bottom: 30px; }\n' +
-        'a:last-child { margin-bottom: 0; }'
+          ' margin-bottom: 30px; }\n' +
+          'a:last-child { margin-bottom: 0; }'
       );
     });
 
@@ -111,8 +108,8 @@ describe('lost-row', function() {
       check(
         'a { lost-row: 1/3; lost-row-rounder: 99.99999999999; }',
         'a { width: 100%; height: calc(99.99999999999% * 1/3 - (30px - 30px * 1/3));' +
-        ' margin-bottom: 30px; }\n' +
-        'a:last-child { margin-bottom: 0; }'
+          ' margin-bottom: 30px; }\n' +
+          'a:last-child { margin-bottom: 0; }'
       );
     });
   });

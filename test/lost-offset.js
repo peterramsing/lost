@@ -3,21 +3,21 @@
 var check = require('./check');
 
 describe('lost-offset', function() {
-  it('Supports direction in new property', function () {
+  it('Supports direction in new property', function() {
     check(
       'a { lost-offset: 0/3; lost-offset-direction: row; }',
       'a { margin-left: 0 !important; margin-right: 30px !important; }'
     );
   });
 
-  it('Supports gutter in new property', function () {
+  it('Supports gutter in new property', function() {
     check(
       'a { lost-offset: 0/3; lost-offset-gutter: 10px; }',
       'a { margin-left: 0 !important; margin-right: 10px !important; }'
     );
   });
 
-  it('Does not move with a zero numerator (of you\'re so inclined)' , function() {
+  it("Does not move with a zero numerator (of you're so inclined)", function() {
     check(
       'a { lost-offset: 0/3; }',
       'a { margin-left: 0 !important; margin-right: 30px !important; }'
@@ -33,7 +33,7 @@ describe('lost-offset', function() {
     check(
       'a { lost-offset: 1/3; }',
       'a { margin-left: calc(99.9% * (-1/3 * -1) - (30px - 30px * (-1/3 * -1)) + 30px' +
-      ') !important; }'
+        ') !important; }'
     );
   });
 
@@ -41,7 +41,7 @@ describe('lost-offset', function() {
     check(
       'a { lost-offset: -1/3; }',
       'a { margin-left: calc(99.9% * -1/3 - (30px - 30px * ' +
-      '-1/3) + 30px) !important; }'
+        '-1/3) + 30px) !important; }'
     );
     check(
       'a { lost-offset: -1/3 row 0; }',
@@ -53,7 +53,7 @@ describe('lost-offset', function() {
     check(
       'a { lost-offset: 1/3 column; }',
       'a { margin-bottom: calc(99.9% * 1/3 - (30px - 30px * 1/3) + ' +
-      '(30px * 2)) !important; }'
+        '(30px * 2)) !important; }'
     );
   });
 
@@ -61,7 +61,7 @@ describe('lost-offset', function() {
     check(
       'a { lost-offset: -1/3 column; }',
       'a { margin-top: calc(99.9% * (-1/3 * -1) - (30px - 30px * ' +
-      '(-1/3 * -1)) + 30px) !important; }'
+        '(-1/3 * -1)) + 30px) !important; }'
     );
   });
 
@@ -69,7 +69,7 @@ describe('lost-offset', function() {
     check(
       'a { lost-offset: 1/2 row 60px; }',
       'a { margin-left: calc(99.9% * (-1/2 * -1) - (60px - 60px * (-1/2 * -1)) + ' +
-      '60px) !important; }'
+        '60px) !important; }'
     );
 
     check(
@@ -92,7 +92,7 @@ describe('lost-offset', function() {
       check(
         'a { lost-offset: 1/2 row 60px; lost-offset-rounder: 100; }',
         'a { margin-left: calc(100% * (-1/2 * -1) - (60px - 60px * (-1/2 * -1)) + ' +
-        '60px) !important; }'
+          '60px) !important; }'
       );
     });
 
@@ -100,7 +100,7 @@ describe('lost-offset', function() {
       check(
         'a { lost-offset: 1/2 row 60px; lost-offset-rounder: 99.99999999999; }',
         'a { margin-left: calc(99.99999999999% * (-1/2 * -1) - (60px - 60px * (-1/2 * -1)) + ' +
-        '60px) !important; }'
+          '60px) !important; }'
       );
     });
   });
