@@ -8,7 +8,7 @@ describe('lost-masonry-column', function() {
       check(
         'a { lost-masonry-column: 60px; lost-masonry-column-gutter: 20px; }',
         'a { float: left; width: calc(99.9% * 60px - 20px); margin-left: 10px;' +
-        ' margin-right: 10px; }'
+          ' margin-right: 10px; }'
       );
     });
 
@@ -16,12 +16,12 @@ describe('lost-masonry-column', function() {
       check(
         'a { lost-masonry-column: 60px; lost-masonry-column-gutter: 0px; }',
         'a { float: left; width: calc(99.9% * 60px - 0px); margin-left: 0;' +
-        ' margin-right: 0; }'
+          ' margin-right: 0; }'
       );
       check(
         'a { lost-masonry-column: 60px; lost-masonry-column-gutter: 0; }',
         'a { float: left; width: calc(99.9% * 60px); margin-left: 0;' +
-        ' margin-right: 0; }'
+          ' margin-right: 0; }'
       );
     });
   });
@@ -31,7 +31,7 @@ describe('lost-masonry-column', function() {
       check(
         'a { lost-masonry-column: 60px; lost-masonry-column-flexbox: flex; }',
         'a { flex: 0 0 auto; width: calc(99.9% * 60px - 30px);' +
-        ' margin-left: 15px; margin-right: 15px; }'
+          ' margin-left: 15px; margin-right: 15px; }'
       );
     });
 
@@ -39,7 +39,7 @@ describe('lost-masonry-column', function() {
       check(
         'a { lost-masonry-column: 60px 10px flex; }',
         'a { flex: 0 0 auto; width: calc(99.9% * 60px - 10px);' +
-        ' margin-left: 5px; margin-right: 5px; }'
+          ' margin-left: 5px; margin-right: 5px; }'
       );
     });
 
@@ -47,7 +47,7 @@ describe('lost-masonry-column', function() {
       check(
         'a { lost-masonry-column: 60px flex; }',
         'a { flex: 0 0 auto; width: calc(99.9% * 60px - 30px);' +
-        ' margin-left: 15px; margin-right: 15px; }'
+          ' margin-left: 15px; margin-right: 15px; }'
       );
     });
   });
@@ -57,13 +57,13 @@ describe('lost-masonry-column', function() {
       check(
         'a { lost-masonry-column: 60px no-flex; }',
         'a { float: left; width: calc(99.9% * 60px - 30px); margin-left: 15px;' +
-        ' margin-right: 15px; }'
+          ' margin-right: 15px; }'
       );
 
       check(
         'a { lost-masonry-column: 60px; lost-masonry-column-flexbox: no-flex; }',
         'a { float: left; width: calc(99.9% * 60px - 30px); margin-left: 15px;' +
-        ' margin-right: 15px; }'
+          ' margin-right: 15px; }'
       );
     });
   });
@@ -73,7 +73,7 @@ describe('lost-masonry-column', function() {
       check(
         'a { lost-masonry-column: 60px; lost-masonry-column-rounder: 99.99999999999; }',
         'a { float: left; width: calc(99.99999999999% * 60px - 30px); margin-left: 15px;' +
-        ' margin-right: 15px; }'
+          ' margin-right: 15px; }'
       );
     });
 
@@ -81,7 +81,7 @@ describe('lost-masonry-column', function() {
       check(
         'a { lost-masonry-column: 60px; lost-masonry-column-rounder: 100; }',
         'a { float: left; width: calc(100% * 60px - 30px); margin-left: 15px;' +
-        ' margin-right: 15px; }'
+          ' margin-right: 15px; }'
       );
     });
   });
