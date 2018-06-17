@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ---
+## [v8.3.0] - 2018-06-11
+
+### Fixed
+-  [#406](https://github.com/peterramsing/lost/pull/406) [#370](https://github.com/peterramsing/lost/issues/370) Fixes issue where waffle widths were the wrong width on FF browsers
+
+
+[Diff with previous version 8.2.1](https://github.com/peterramsing/lost/compare/v8.2.1...v8.3.0)
+
 
 ## [v8.2.1] - 2018-02-28
 
