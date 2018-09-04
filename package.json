@@ -42,6 +42,9 @@
     "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
   },
   "lint-staged": {
-    "*.{js,json,css,md}": ["prettier --write", "git add"]
+    "*.{js,json,css,md}": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }
