@@ -18,4 +18,4 @@
   - Safari 9+
 - Automated browser testing with Selenium is coming soon. 👍
 
-Note: LostGrid no longer supports Node 0.10 and 0.12. I'll be following the Node LTS plan for Node. Let me know if you any questions. Thanks!
+Note: LostGrid no longer supports Node versions 6 and up. I'll be following the [Node LTS plan for Node](https://github.com/nodejs/LTS#lts-schedule). Let me know if you any questions. Thanks!
