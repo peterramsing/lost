@@ -8,8 +8,8 @@
     "url": "https://github.com/peterramsing/lost.git"
   },
   "dependencies": {
-    "object-assign": "^4.1.0",
-    "postcss": "^6.0.6"
+    "object-assign": "^4.1.1",
+    "postcss": "^7.0.2"
   },
   "keywords": [
     "grid",
@@ -25,15 +25,15 @@
   },
   "homepage": "http://lostgrid.org",
   "devDependencies": {
-    "chai": "^3.5",
-    "clean-css": "^4.1.6",
-    "codecov": "^3.0.2",
-    "eslint": "^3.16",
-    "eslint-plugin-prettier": "2.6.0",
+    "chai": "^4.1",
+    "clean-css": "^4.2.1",
+    "codecov": "^3.1.0",
+    "eslint": "^5.5",
+    "eslint-plugin-prettier": "2.6.2",
     "husky": "^0.14.3",
     "mocha": "^5.2.0",
-    "nyc": "^13.0.0",
-    "prettier": "1.13.5"
+    "nyc": "^13.0.1",
+    "prettier": "1.14.2"
   },
   "scripts": {
     "precommit": "lint-staged",
