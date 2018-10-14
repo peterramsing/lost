@@ -236,4 +236,24 @@ describe('lost-waffle', function() {
       );
     });
   });
+
+  describe('supports start-indication', () => {
+    it('supports start-indication', () => {
+      check(
+        'div { lost-waffle: 1/3 3/1 }',
+        'div { width: calc(99.9% * 1/3 - (30px - 30px * 1/3));\n' +
+          'max-width: calc(99.9% * 1/3 - (30px - 30px * 1/3));\n' +
+          'height: calc(99.9% * 1/3 - (30px - 30px * 1/3)) }' +
+          'div:nth-child(1n) { float:left;\n' +
+          'margin-right: 30px;\n' +
+          'margin-bottom: 30px;\n' +
+          'clear:none }\n' +
+          'div:last-child { margin-right: 0;\n' +
+          'margin-bottom: 0 }\n' +
+          'div:nth-child(3n+1) { margin-right: 0 }\n' +
+          'div:nth-child(3n+2) { clear:both }\n' +
+          'div:nth-last-child(-n+3){ margin-bottom:0 }'
+      );
+    });
+  });
 });
