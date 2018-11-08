@@ -37,7 +37,7 @@
   },
   "scripts": {
     "precommit": "lint-staged",
-    "test": "nyc mocha",
+    "test": "nyc mocha ./**/*.spec.js",
     "lint": "eslint .",
     "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
   },
