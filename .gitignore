@@ -33,3 +33,7 @@ node_modules
 
 ### IDEA ###
 .idea/
+
+
+# jsDoc
+out

@@ -1,3 +1,4 @@
 docs/*
+out/*
 .nyc_output
 coverage

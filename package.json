@@ -40,6 +40,7 @@
     "test": "nyc mocha ./**/*.spec.js",
     "test:watch": "mocha ./**/*.spec.js --watch",
     "lint": "eslint .",
+    "generate:docs": "npx jsdoc ./core/*.js",
     "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
   },
   "lint-staged": {
