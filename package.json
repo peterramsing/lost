@@ -38,6 +38,7 @@
   "scripts": {
     "precommit": "lint-staged",
     "test": "nyc mocha ./**/*.spec.js",
+    "test:watch": "mocha ./**/*.spec.js --watch",
     "lint": "eslint .",
     "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
   },
