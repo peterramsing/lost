@@ -46,6 +46,7 @@ describe('safeHexToRgb', () => {
     expect(utils.safeHexToRgb('F000')).to.deep.equal([255, 0, 0]);
     expect(utils.safeHexToRgb('FF0000')).to.deep.equal([255, 0, 0]);
     expect(utils.safeHexToRgb('FF000000')).to.deep.equal([255, 0, 0]);
+    expect(utils.safeHexToRgb('ff0000')).to.deep.equal([255, 0, 0]);
     expect(utils.safeHexToRgb('Languedoc-roussillon')).to.deep.equal(
       defaultBlue
     );
