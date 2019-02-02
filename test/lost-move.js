@@ -19,6 +19,14 @@ describe('lost-move', function() {
     );
   });
 
+  it('generates valid output even with spaces at various places in the declaration', function() {
+    check(
+      'a { lost-move: -1 / 3; }',
+      'a { position: relative; left: calc(99.9% * -1/3 -' +
+        ' (30px - 30px * -1/3) + 30px); }'
+    );
+  });
+
   it('moves element up', function() {
     check(
       'a { lost-move: 1/3 column; }',

@@ -3,6 +3,14 @@
 var expect = require('chai').expect;
 var utils = require('../lib/_lu-utilities.js');
 
+describe('glueFractionMembers', () => {
+  it('glues fraction members together, avoiding a class of parsing errors', () => {
+    expect(utils.glueFractionMembers('-1      / 8')).to.equal('-1/8');
+    expect(utils.glueFractionMembers('27      /   32')).to.equal('27/32');
+    expect(utils.glueFractionMembers('1   /1')).to.equal('1/1');
+  });
+});
+
 describe('hToD', () => {
   it('converts one or two hex digits to an int value', () => {
     expect(utils.hToD(0, 0)).to.equal(0);

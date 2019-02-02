@@ -23,6 +23,16 @@ describe('lost-center', function() {
     );
   });
 
+  it('generates valid output given spaces are present in the input', function() {
+    check(
+      'a { lost-center: 3 / 9; lost-unit: vw }',
+
+      'a { max-width: calc(99.9vw * 3/9); margin-left: auto; margin-right: auto }\n' +
+        "a:before { content: ''; display: table }\n" +
+        "a:after { content: ''; display: table; clear: both }"
+    );
+  });
+
   it('horizontally centers container', function() {
     check(
       'a { lost-center: 980px }',
