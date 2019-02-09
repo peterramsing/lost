@@ -1,7 +1,7 @@
 'use strict';
 
 var expect = require('chai').expect;
-var lgLogic = require('../lib/_lg-logic.js');
+var lgLogic = require('../lib/core/lg-logic.js');
 var postcss = require('postcss');
 
 describe('calcValue works as it should', () => {
