@@ -1,6 +1,6 @@
 {
   "name": "lost",
-  "version": "8.3.0",
+  "version": "8.3.1",
   "description": "LostGrid is a powerful grid system built in PostCSS that works with any preprocessor and even vanilla CSS.",
   "main": "lost.js",
   "repository": {
@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "object-assign": "^4.1.1",
-    "postcss": "^7.0.2"
+    "postcss": "7.0.14"
   },
   "keywords": [
     "grid",
@@ -25,15 +25,15 @@
   },
   "homepage": "http://lostgrid.org",
   "devDependencies": {
-    "chai": "^4.1",
+    "chai": "^4.2.0",
     "clean-css": "^4.2.1",
     "codecov": "^3.1.0",
-    "eslint": "^5.5",
-    "eslint-plugin-prettier": "2.6.2",
+    "eslint": "^5.13.0",
+    "eslint-plugin-prettier": "3.0.1",
     "husky": "^0.14.3",
     "mocha": "^5.2.0",
-    "nyc": "^13.0.1",
-    "prettier": "1.14.2"
+    "nyc": "^13.2.0",
+    "prettier": "1.16.4"
   },
   "scripts": {
     "precommit": "lint-staged",
