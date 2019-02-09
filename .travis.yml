@@ -3,9 +3,12 @@ sudo: false
 language: node_js
 
 node_js:
-  - "6"
-  - "8"
-  - "10"
+  - 6
+  - 8
+  - 10
+  - 11
+  - 12
+  - node
 
 script:
   - npm test
