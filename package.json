@@ -18,7 +18,7 @@
     "postcss",
     "postcss-plugin"
   ],
-  "author": "Cory Simmons & Peter Ramsing <hi@peterramsing.com> (http://peter.coffee)",
+  "author": "Cory Simmons & Peter Ramsing <hi@peterramsing.com> (https://peter.coffee)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/peterramsing/lost/issues"
