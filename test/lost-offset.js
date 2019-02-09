@@ -17,6 +17,14 @@ describe('lost-offset', function() {
     );
   });
 
+  it('generates valid output even with spaces at various places in the declaration', function() {
+    check(
+      'a { lost-offset: 1 / 3; }',
+      'a { margin-left: calc(99.9% * (-1/3 * -1) - (30px - 30px * (-1/3 * -1)) + 30px' +
+        ') !important; }'
+    );
+  });
+
   it("Does not move with a zero numerator (of you're so inclined)", function() {
     check(
       'a { lost-offset: 0/3; }',

@@ -31,6 +31,17 @@ describe('lost-column', function() {
     );
   });
 
+  it('generates valid output even with spaces at various places in the declaration', function() {
+    check(
+      'a { lost-column: 1 / 3; }',
+      'a { width: calc(99.9% * 1/3 - (30px - 30px * 1/3)); }\n' +
+        'a:nth-child(1n) { float: left; margin-right: 30px; clear: none; }\n' +
+        'a:last-child { margin-right: 0; }\n' +
+        'a:nth-child(3n) { margin-right: 0; float: right; }\n' +
+        'a:nth-child(3n + 1) { clear: both; }'
+    );
+  });
+
   it('provides 2/5 column layout', function() {
     check(
       'a { lost-column: 2/5; }',

@@ -22,6 +22,15 @@ describe('lost-row', function() {
       );
     });
 
+    it('generates valid output even with spaces at various places in the declaration', function() {
+      check(
+        'a { lost-row: 1 / 3; lost-row-flexbox: no-flex; }',
+        'a { width: 100%; height: calc(99.9% * 1/3 - (30px - 30px * 1/3));' +
+          ' margin-bottom: 30px; }' +
+          'a:last-child { margin-bottom: 0; }'
+      );
+    });
+
     it('supports flex in long-form', function() {
       check(
         'a { lost-row: 1/3; lost-row-flexbox: flex; }',
