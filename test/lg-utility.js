@@ -1,7 +1,7 @@
 'use strict';
 
 var expect = require('chai').expect;
-var utils = require('../lib/_lu-utilities.js');
+var utils = require('../lib/_lg-utilities.js');
 
 describe('glueFractionMembers', () => {
   it('glues fraction members together, avoiding a class of parsing errors', () => {
