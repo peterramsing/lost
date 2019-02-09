@@ -33,7 +33,7 @@ const libs = [
   lostWaffle,
   lostOffset,
   lostMasonryWrap,
-  lostMasonryColumn
+  lostMasonryColumn,
 ];
 
 const defaultSettings = {
@@ -43,7 +43,7 @@ const defaultSettings = {
   clearing: 'both',
   rounder: 99.9,
   gridUnit: '%',
-  direction: 'ltr'
+  direction: 'ltr',
 };
 
 module.exports = postcss.plugin('lost', settings => {

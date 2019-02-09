@@ -30,7 +30,7 @@ describe('safeRgbToRgb', () => {
     expect(utils.safeRgbToRgb('rgba(0,255,0,grenoble)')).to.deep.equal([
       0,
       255,
-      0
+      0,
     ]);
     expect(utils.safeRgbToRgb('rgba(0,255,0, 0)')).to.deep.equal([0, 255, 0]);
     expect(utils.safeRgbToRgb('rgba(0,0)')).to.deep.equal(defaultBlue);
@@ -68,7 +68,7 @@ describe('getColorValue', () => {
     expect(utils.getColorValue('rgba(0,255,0,grenoble)')).to.deep.equal([
       0,
       255,
-      0
+      0,
     ]);
     expect(utils.getColorValue('rgb(0,  0,   0)')).to.deep.equal([0, 0, 0]);
     expect(utils.getColorValue('0,0')).to.deep.equal(defaultBlue);
