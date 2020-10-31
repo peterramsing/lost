@@ -3,8 +3,8 @@
 var check = require('./check');
 var throws = require('./throws');
 
-describe('lost-align', function() {
-  it('resets the alignment', function() {
+describe('lost-align', () => {
+  it('resets the alignment', () => {
     check(
       'a { lost-align: reset; }',
       'a { position: static; }\n' +
@@ -13,7 +13,7 @@ describe('lost-align', function() {
     );
   });
 
-  it('aligns horizontally', function() {
+  it('aligns horizontally', () => {
     check(
       'a { lost-align: horizontal; }',
       'a { position: relative; }\n' +
@@ -22,7 +22,7 @@ describe('lost-align', function() {
     );
   });
 
-  it('aligns vertically', function() {
+  it('aligns vertically', () => {
     check(
       'a { lost-align: vertical; }',
       'a { position: relative; }\n' +
@@ -31,7 +31,7 @@ describe('lost-align', function() {
     );
   });
 
-  it('aligns top left', function() {
+  it('aligns top left', () => {
     check(
       'a { lost-align: top-left; }',
       'a { position: relative; }\n' +
@@ -40,7 +40,7 @@ describe('lost-align', function() {
     );
   });
 
-  it('aligns top center', function() {
+  it('aligns top center', () => {
     check(
       'a { lost-align: top-center; }',
       'a { position: relative; }\n' +
@@ -49,7 +49,7 @@ describe('lost-align', function() {
     );
   });
 
-  it('aligns top', function() {
+  it('aligns top', () => {
     check(
       'a { lost-align: top; }',
       'a { position: relative; }\n' +
@@ -58,7 +58,7 @@ describe('lost-align', function() {
     );
   });
 
-  it('aligns top right', function() {
+  it('aligns top right', () => {
     check(
       'a { lost-align: top-right; }',
       'a { position: relative; }\n' +
@@ -67,7 +67,7 @@ describe('lost-align', function() {
     );
   });
 
-  it('aligns middle left', function() {
+  it('aligns middle left', () => {
     check(
       'a { lost-align: middle-left; }',
       'a { position: relative; }\n' +
@@ -76,7 +76,7 @@ describe('lost-align', function() {
     );
   });
 
-  it('aligns left', function() {
+  it('aligns left', () => {
     check(
       'a { lost-align: left; }',
       'a { position: relative; }\n' +
@@ -85,7 +85,7 @@ describe('lost-align', function() {
     );
   });
 
-  it('aligns middle center', function() {
+  it('aligns middle center', () => {
     check(
       'a { lost-align: middle-center; }',
       'a { position: relative; }\n' +
@@ -94,7 +94,7 @@ describe('lost-align', function() {
     );
   });
 
-  it('aligns center', function() {
+  it('aligns center', () => {
     check(
       'a { lost-align: center; }',
       'a { position: relative; }\n' +
@@ -103,7 +103,7 @@ describe('lost-align', function() {
     );
   });
 
-  it('aligns middle right', function() {
+  it('aligns middle right', () => {
     check(
       'a { lost-align: middle-right; }',
       'a { position: relative; }\n' +
@@ -112,7 +112,7 @@ describe('lost-align', function() {
     );
   });
 
-  it('aligns right', function() {
+  it('aligns right', () => {
     check(
       'a { lost-align: right; }',
       'a { position: relative; }\n' +
@@ -121,7 +121,7 @@ describe('lost-align', function() {
     );
   });
 
-  it('aligns bottom left', function() {
+  it('aligns bottom left', () => {
     check(
       'a { lost-align: bottom-left; }',
       'a { position: relative; }\n' +
@@ -130,7 +130,7 @@ describe('lost-align', function() {
     );
   });
 
-  it('aligns bottom center', function() {
+  it('aligns bottom center', () => {
     check(
       'a { lost-align: bottom-center; }',
       'a { position: relative; }\n' +
@@ -139,7 +139,7 @@ describe('lost-align', function() {
     );
   });
 
-  it('aligns bottom', function() {
+  it('aligns bottom', () => {
     check(
       'a { lost-align: bottom; }',
       'a { position: relative; }\n' +
@@ -148,7 +148,7 @@ describe('lost-align', function() {
     );
   });
 
-  it('aligns bottom right', function() {
+  it('aligns bottom right', () => {
     check(
       'a { lost-align: bottom-right; }',
       'a { position: relative; }\n' +
@@ -157,15 +157,15 @@ describe('lost-align', function() {
     );
   });
 
-  it('throws error if it does not understand the direction', function() {
+  it('throws error if it does not understand the direction', () => {
     throws(
       'a { lost-align: bottom-rigth; }',
       "lost-align: direction 'bottom-rigth' is unknown."
     );
   });
 
-  describe('flexbox', function() {
-    it('resets the alignment', function() {
+  describe('flexbox', () => {
+    it('resets the alignment', () => {
       check(
         'a { lost-align: reset flex; }',
         'a { display: initial; }\n' +
@@ -173,7 +173,7 @@ describe('lost-align', function() {
       );
     });
 
-    it('aligns horizontally', function() {
+    it('aligns horizontally', () => {
       check(
         'a { lost-align: horizontal flex; }',
         'a { display: flex; }\n' +
@@ -181,7 +181,7 @@ describe('lost-align', function() {
       );
     });
 
-    it('aligns vertically', function() {
+    it('aligns vertically', () => {
       check(
         'a { lost-align: vertical flex; }',
         'a { display: flex; }\n' +
@@ -189,7 +189,7 @@ describe('lost-align', function() {
       );
     });
 
-    it('aligns top left', function() {
+    it('aligns top left', () => {
       check(
         'a { lost-align: top-left flex; }',
         'a { display: flex; }\n' +
@@ -197,7 +197,7 @@ describe('lost-align', function() {
       );
     });
 
-    it('aligns top center', function() {
+    it('aligns top center', () => {
       check(
         'a { lost-align: top-center flex; }',
         'a { display: flex; }\n' +
@@ -205,7 +205,7 @@ describe('lost-align', function() {
       );
     });
 
-    it('aligns top', function() {
+    it('aligns top', () => {
       check(
         'a { lost-align: top flex; }',
         'a { display: flex; }\n' +
@@ -213,7 +213,7 @@ describe('lost-align', function() {
       );
     });
 
-    it('aligns top right', function() {
+    it('aligns top right', () => {
       check(
         'a { lost-align: top-right flex; }',
         'a { display: flex; }\n' +
@@ -221,7 +221,7 @@ describe('lost-align', function() {
       );
     });
 
-    it('aligns middle left', function() {
+    it('aligns middle left', () => {
       check(
         'a { lost-align: middle-left flex; }',
         'a { display: flex; }\n' +
@@ -229,7 +229,7 @@ describe('lost-align', function() {
       );
     });
 
-    it('aligns left', function() {
+    it('aligns left', () => {
       check(
         'a { lost-align: left flex; }',
         'a { display: flex; }\n' +
@@ -237,7 +237,7 @@ describe('lost-align', function() {
       );
     });
 
-    it('aligns middle center', function() {
+    it('aligns middle center', () => {
       check(
         'a { lost-align: middle-center flex; }',
         'a { display: flex; }\n' +
@@ -245,7 +245,7 @@ describe('lost-align', function() {
       );
     });
 
-    it('aligns center', function() {
+    it('aligns center', () => {
       check(
         'a { lost-align: center flex; }',
         'a { display: flex; }\n' +
@@ -253,7 +253,7 @@ describe('lost-align', function() {
       );
     });
 
-    it('aligns middle right', function() {
+    it('aligns middle right', () => {
       check(
         'a { lost-align: middle-right flex; }',
         'a { display: flex; }\n' +
@@ -261,7 +261,7 @@ describe('lost-align', function() {
       );
     });
 
-    it('aligns right', function() {
+    it('aligns right', () => {
       check(
         'a { lost-align: right flex; }',
         'a { display: flex; }\n' +
@@ -269,7 +269,7 @@ describe('lost-align', function() {
       );
     });
 
-    it('aligns bottom left', function() {
+    it('aligns bottom left', () => {
       check(
         'a { lost-align: bottom-left flex; }',
         'a { display: flex; }\n' +
@@ -277,7 +277,7 @@ describe('lost-align', function() {
       );
     });
 
-    it('aligns bottom center', function() {
+    it('aligns bottom center', () => {
       check(
         'a { lost-align: bottom-center flex; }',
         'a { display: flex; }\n' +
@@ -285,7 +285,7 @@ describe('lost-align', function() {
       );
     });
 
-    it('aligns bottom', function() {
+    it('aligns bottom', () => {
       check(
         'a { lost-align: bottom flex; }',
         'a { display: flex; }\n' +
@@ -293,7 +293,7 @@ describe('lost-align', function() {
       );
     });
 
-    it('aligns bottom right', function() {
+    it('aligns bottom right', () => {
       check(
         'a { lost-align: bottom-right flex; }',
         'a { display: flex; }\n' +
@@ -301,14 +301,14 @@ describe('lost-align', function() {
       );
     });
 
-    it('throws error if it does not understand the direction', function() {
+    it('throws error if it does not understand the direction', () => {
       throws(
         'a { lost-align: bottom-rigth flex; }',
         "lost-align: direction 'bottom-rigth' is unknown."
       );
     });
 
-    it('Flexbox is set globally', function() {
+    it('Flexbox is set globally', () => {
       check(
         '@lost flexbox flex; \n' + 'a { lost-align: bottom-right; }',
         'a { display: flex; }\n' +

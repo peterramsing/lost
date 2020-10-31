@@ -7,7 +7,7 @@ var CssSyntaxError = require('postcss').CssSyntaxError;
 
 module.exports = function throws(input, message, opts) {
   var processor = postcss([lost(opts)]);
-  expect(function() {
+  expect(() => {
     return processor.process(input).css;
   }).to.throw(CssSyntaxError, message);
 };

@@ -2,8 +2,8 @@
 
 var check = require('./check');
 
-describe('lost-move', function() {
-  it('moves element to the left', function() {
+describe('lost-move', () => {
+  it('moves element to the left', () => {
     check(
       'a { lost-move: 1/3; }',
       'a { position: relative; left: calc(99.9% * 1/3 - (30px - 30px * 1/3)' +
@@ -11,7 +11,7 @@ describe('lost-move', function() {
     );
   });
 
-  it('moves element to the right', function() {
+  it('moves element to the right', () => {
     check(
       'a { lost-move: -1/3; }',
       'a { position: relative; left: calc(99.9% * -1/3 -' +
@@ -19,7 +19,7 @@ describe('lost-move', function() {
     );
   });
 
-  it('generates valid output even with spaces at various places in the declaration', function() {
+  it('generates valid output even with spaces at various places in the declaration', () => {
     check(
       'a { lost-move: -1 / 3; }',
       'a { position: relative; left: calc(99.9% * -1/3 -' +
@@ -27,7 +27,7 @@ describe('lost-move', function() {
     );
   });
 
-  it('moves element up', function() {
+  it('moves element up', () => {
     check(
       'a { lost-move: 1/3 column; }',
       'a { position: relative; top: calc(99.9% * 1/3 - (30px - 30px * 1/3)' +
@@ -35,7 +35,7 @@ describe('lost-move', function() {
     );
   });
 
-  it('moves element down', function() {
+  it('moves element down', () => {
     check(
       'a { lost-move: -1/3 column; }',
       'a { position: relative; top: calc(99.9% * -1/3 - (30px - 30px * -1/3)' +
@@ -43,7 +43,7 @@ describe('lost-move', function() {
     );
   });
 
-  it('supports custom gutter', function() {
+  it('supports custom gutter', () => {
     check(
       'a { lost-move: 1/2; lost-move-gutter: 0; }',
       'a { position:relative; left:calc(99.9% * 1/2); }'
@@ -54,7 +54,7 @@ describe('lost-move', function() {
     );
   });
 
-  it('retains the lost-column gutter', function() {
+  it('retains the lost-column gutter', () => {
     check(
       'a { lost-column: 1/3 3 50px; lost-move: -1/3 row; }',
       'a { width: calc(99.9% * 1/3 - (50px - 50px * 1/3)); position: relative; left: calc(99.9% * -1/3 - (50px - 50px * -1/3) + 50px); }\n' +
@@ -73,7 +73,7 @@ describe('lost-move', function() {
     );
   });
 
-  it('retains the lost-row gutter', function() {
+  it('retains the lost-row gutter', () => {
     check(
       'a { lost-row: 1/3 50px; lost-move: -1/3 column; }',
       'a { width: 100%; height: calc(99.9% * 1/3 - (50px - 50px * 1/3)); margin-bottom: 50px; position: relative; top: calc(99.9% * -1/3 - (50px - 50px * -1/3) + 50px); }\n' +
@@ -86,7 +86,7 @@ describe('lost-move', function() {
     );
   });
 
-  it("doesn't override the gutter set by lost-move", function() {
+  it("doesn't override the gutter set by lost-move", () => {
     check(
       'a { lost-row: 1/3; lost-move: -1/3 column 70px; lost-row-gutter: 50px; }',
       'a { width: 100%; height: calc(99.9% * 1/3 - (50px - 50px * 1/3)); margin-bottom: 50px; position: relative; top: calc(99.9% * -1/3 - (70px - 70px * -1/3) + 70px); }\n' +
@@ -99,7 +99,7 @@ describe('lost-move', function() {
     );
   });
 
-  it('supports custom gutter', function() {
+  it('supports custom gutter', () => {
     check(
       'a { lost-move: 1/2 row 60px; }',
       'a { position: relative; left: calc(99.9% * 1/2 - (60px - 60px * 1/2)' +
@@ -107,8 +107,8 @@ describe('lost-move', function() {
     );
   });
 
-  describe('allows for customizable rounders', function() {
-    it('100%', function() {
+  describe('allows for customizable rounders', () => {
+    it('100%', () => {
       check(
         'a { lost-move: 1/2 row 60px; lost-move-rounder: 100; }',
         'a { position: relative; left: calc(100% * 1/2 - (60px - 60px * 1/2)' +
@@ -116,7 +116,7 @@ describe('lost-move', function() {
       );
     });
 
-    it('99.99999999999%', function() {
+    it('99.99999999999%', () => {
       check(
         'a { lost-move: 1/2 row 60px; lost-move-rounder: 99.99999999999; }',
         'a { position: relative; left: calc(99.99999999999% * 1/2 - (60px - 60px * 1/2)' +
@@ -125,8 +125,8 @@ describe('lost-move', function() {
     });
   });
 
-  describe('Long-form names', function() {
-    it('allows lost-move-direction to work', function() {
+  describe('Long-form names', () => {
+    it('allows lost-move-direction to work', () => {
       check(
         'a {lost-move: 1/2; lost-move-direction: column; }',
         'a { position:relative; top:calc(99.9% * 1/2 - (30px - 30px * 1/2) + 30px); }'

@@ -3,8 +3,8 @@
 var check = require('./check');
 var throws = require('./throws');
 
-describe('lost-waffle', function() {
-  it('provides 3 column layout', function() {
+describe('lost-waffle', () => {
+  it('provides 3 column layout', () => {
     check(
       'a { lost-waffle: 1/3; }',
       'a { width: calc(99.9% * 1/3 - (30px - 30px * 1/3));' +
@@ -19,7 +19,7 @@ describe('lost-waffle', function() {
     );
   });
 
-  it('generates valid output even with spaces at various places in the declaration', function() {
+  it('generates valid output even with spaces at various places in the declaration', () => {
     check(
       'a { lost-waffle: 1 / 3; }',
       'a { width: calc(99.9% * 1/3 - (30px - 30px * 1/3));' +
@@ -34,7 +34,7 @@ describe('lost-waffle', function() {
     );
   });
 
-  it('supports a custom cycle', function() {
+  it('supports a custom cycle', () => {
     check(
       'a { lost-waffle: 2/4 2; }',
       'a { width: calc(99.9% * 2/4 - (30px - 30px * 2/4));' +
@@ -78,7 +78,7 @@ describe('lost-waffle', function() {
     );
   });
 
-  it('supports a custom gutter', function() {
+  it('supports a custom gutter', () => {
     check(
       'a { lost-waffle: 3/6 2 60px; }',
       'a { width: calc(99.9% * 3/6 - (60px - 60px * 3/6));' +
@@ -105,7 +105,7 @@ describe('lost-waffle', function() {
     );
   });
 
-  it('supports clearing fallback', function() {
+  it('supports clearing fallback', () => {
     check(
       '@lost clearing left; \n' + 'a { lost-waffle: 1/3; }',
       'a { width: calc(99.9% * 1/3 - (30px - 30px * 1/3));' +
@@ -120,7 +120,7 @@ describe('lost-waffle', function() {
     );
   });
 
-  it('supports flexbox', function() {
+  it('supports flexbox', () => {
     check(
       'a { lost-waffle: 2/5 3 0 flex; }',
       'a { flex-grow: 0; flex-shrink: 0; ' +
@@ -151,7 +151,7 @@ describe('lost-waffle', function() {
     );
   });
 
-  it('supports no-flexbox', function() {
+  it('supports no-flexbox', () => {
     check(
       'a { lost-waffle: 2/5 3 0 no-flex; }',
 
@@ -165,7 +165,7 @@ describe('lost-waffle', function() {
     );
   });
 
-  it('supports float-right', function() {
+  it('supports float-right', () => {
     check(
       'a { lost-waffle: 2/5 3 0 no-flex float-right; }',
 
@@ -179,7 +179,7 @@ describe('lost-waffle', function() {
     );
   });
 
-  it('Supports custom unit', function() {
+  it('Supports custom unit', () => {
     check(
       'a { lost-waffle: 2/5 3 0 no-flex float-right; lost-unit: vw; }',
       'a { width: calc(99.9vw * 2/5); max-width: calc(99.9vw * 2/5);' +
@@ -196,8 +196,8 @@ describe('lost-waffle', function() {
     );
   });
 
-  describe('allows for customizable rounders', function() {
-    it('100%', function() {
+  describe('allows for customizable rounders', () => {
+    it('100%', () => {
       check(
         'a { lost-waffle: 2/5 3 0 no-flex; lost-waffle-rounder: 100; }',
 
@@ -211,7 +211,7 @@ describe('lost-waffle', function() {
       );
     });
 
-    it('99.99999999999%', function() {
+    it('99.99999999999%', () => {
       check(
         'a { lost-waffle: 2/5 3 0 no-flex; lost-waffle-rounder: 99.99999999999; }',
 

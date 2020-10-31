@@ -3,8 +3,8 @@
 var check = require('./check');
 var throws = require('./throws');
 
-describe('lost-utility', function() {
-  it("Doesn't remove the parent node if there are other rules in declaration", function() {
+describe('lost-utility', () => {
+  it("Doesn't remove the parent node if there are other rules in declaration", () => {
     check(
       'a { lost-utility: edit; color: blue; }',
       'a { color:blue; } a *:not(input):not(textarea):not(select) ' +
@@ -12,7 +12,7 @@ describe('lost-utility', function() {
     );
   });
 
-  it('applies edit indicator', function() {
+  it('applies edit indicator', () => {
     check(
       'a { lost-utility: edit }',
       'a *:not(input):not(textarea):not(select) {\n' +
@@ -21,7 +21,7 @@ describe('lost-utility', function() {
     );
   });
 
-  it('applies edit indicator with color', function() {
+  it('applies edit indicator with color', () => {
     check(
       'a { lost-utility: edit rgb(44, 55, 33) }',
       'a *:not(input):not(textarea):not(select) {\n' +
@@ -36,7 +36,7 @@ describe('lost-utility', function() {
     );
   });
 
-  it('applies clearfix', function() {
+  it('applies clearfix', () => {
     check(
       'a { lost-utility: clearfix }',
       'a:before {\n' +
@@ -51,7 +51,7 @@ describe('lost-utility', function() {
     );
   });
 
-  it('applies overlay uses defaults', function() {
+  it('applies overlay uses defaults', () => {
     check(
       'body { lost-utility: overlay }',
       'body:before{background-image:linear-gradient(to right, ' +
@@ -85,7 +85,7 @@ describe('lost-utility', function() {
     );
   });
 
-  it('applies overlay', function() {
+  it('applies overlay', () => {
     check(
       'body { lost-utility: overlay 200px 2 50px #ccc }',
       'body:before{background-image:linear-gradient(to right,' +
@@ -105,7 +105,7 @@ describe('lost-utility', function() {
     );
   });
 
-  it('applies overlay unit mismatch', function() {
+  it('applies overlay unit mismatch', () => {
     throws(
       'lost-utility: overlay 1600px 2 10em #999',
       'lost-utility: Please use the same units for width and gutter.'
