@@ -46,10 +46,10 @@ const defaultSettings = {
   direction: 'ltr',
 };
 
-module.exports = postcss.plugin('lost', settings => {
+module.exports = postcss.plugin('lost', (settings) => {
   let runSettings = assign({}, defaultSettings, settings | {});
   return (css, result) => {
-    libs.forEach(lib => {
+    libs.forEach((lib) => {
       lib(css, runSettings, result);
     });
   };
