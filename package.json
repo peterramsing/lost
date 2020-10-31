@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "object-assign": "^4.1.1",
-    "postcss": "7.0.14"
+    "postcss": "^8.1.4"
   },
   "keywords": [
     "grid",
