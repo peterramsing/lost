@@ -6,10 +6,6 @@
   <a href="https://www.npmjs.com/package/lost"><img src="https://img.shields.io/npm/v/lost.svg?style=flat-square"></a>
   <a href="https://github.com/peterramsing/lost/stargazers"><img src="http://img.shields.io/npm/dm/lost.svg?style=flat-square"></a>
   <a href="https://travis-ci.org/peterramsing/lost"><img src="https://img.shields.io/travis/peterramsing/lost/master.svg?style=flat-square"></a>
-  <a href="https://gitter.im/peterramsing/lost"><img src="https://badges.gitter.im/Join%20Chat.svg"></a>
-  <br><br>
-  <a href="http://waffle.io/peterramsing/lost"><img src="https://badge.waffle.io/peterramsing/lost.svg?label=status:%20Slated%20For%20Dev&title=Slated%20for%20Dev"></a>
-  <a href="http://waffle.io/peterramsing/lost"><img src="https://badge.waffle.io/peterramsing/lost.svg?label=status:%20In%20Progress&title=In%20Progress"></a>
   <br><br>
   <a href="https://codecov.io/gh/peterramsing/lost"><img src="https://codecov.io/gh/peterramsing/lost/branch/master/graph/badge.svg" alt="Codecov" /></a>
 </p>
