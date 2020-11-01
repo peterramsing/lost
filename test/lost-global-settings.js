@@ -2,8 +2,8 @@
 
 var check = require('./check');
 
-describe('lost-global-settings', function() {
-  it('resets global settings between builds', function() {
+describe('lost-global-settings', () => {
+  it('resets global settings between builds', () => {
     check(
       '@lost clearing left; \n' + 'a { lost-column: 1/3; }',
       'a { width: calc(99.9% * 1/3 - (30px - 30px * 1/3)); }\n' +

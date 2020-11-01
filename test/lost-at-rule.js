@@ -2,8 +2,8 @@
 
 var check = require('./check');
 
-describe('lost-at-rule', function() {
-  it('changes the default gutter', function() {
+describe('lost-at-rule', () => {
+  it('changes the default gutter', () => {
     check(
       '@lost gutter 60px;\n' + 'div {\n' + '  lost-column: 1/3;\n' + '}',
 
@@ -28,7 +28,7 @@ describe('lost-at-rule', function() {
     );
   });
 
-  it('changes the flexbox default', function() {
+  it('changes the flexbox default', () => {
     check(
       '@lost flexbox flex;\n' + 'div {\n' + '  lost-column: 1/3;\n' + '}',
 
@@ -53,7 +53,7 @@ describe('lost-at-rule', function() {
     );
   });
 
-  it('changes the cycle to none', function() {
+  it('changes the cycle to none', () => {
     check(
       '@lost cycle none;\n' + 'div {\n' + '  lost-column: 1/3;\n' + '}',
 
@@ -74,7 +74,7 @@ describe('lost-at-rule', function() {
     );
   });
 
-  it('changes the cycle to auto', function() {
+  it('changes the cycle to auto', () => {
     check(
       '@lost cycle auto;\n' + 'div {\n' + '  lost-column: 1/3;\n' + '}',
 
@@ -99,7 +99,7 @@ describe('lost-at-rule', function() {
     );
   });
 
-  it('changes the cycle to number', function() {
+  it('changes the cycle to number', () => {
     check(
       '@lost cycle 2;\n' + 'div {\n' + '  lost-column: 1/3;\n' + '}',
 
@@ -124,7 +124,7 @@ describe('lost-at-rule', function() {
     );
   });
 
-  it('can adapt the global rounder', function() {
+  it('can adapt the global rounder', () => {
     check(
       '@lost rounder 100;\n' + 'div {\n' + '  lost-column: 1/3;\n' + '}',
 

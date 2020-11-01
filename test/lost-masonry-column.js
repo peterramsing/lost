@@ -2,9 +2,9 @@
 
 var check = require('./check');
 
-describe('lost-masonry-column', function() {
-  describe('Custom Gutter', function() {
-    it('supports a custom gutter', function() {
+describe('lost-masonry-column', () => {
+  describe('Custom Gutter', () => {
+    it('supports a custom gutter', () => {
       check(
         'a { lost-masonry-column: 60px; lost-masonry-column-gutter: 20px; }',
         'a { float: left; width: calc(99.9% * 60px - 20px); margin-left: 10px;' +
@@ -12,7 +12,7 @@ describe('lost-masonry-column', function() {
       );
     });
 
-    it('supports no gutter', function() {
+    it('supports no gutter', () => {
       check(
         'a { lost-masonry-column: 60px; lost-masonry-column-gutter: 0px; }',
         'a { float: left; width: calc(99.9% * 60px - 0px); margin-left: 0;' +
@@ -26,8 +26,8 @@ describe('lost-masonry-column', function() {
     });
   });
 
-  describe('flexbox', function() {
-    it('supports flexbox with long-form property', function() {
+  describe('flexbox', () => {
+    it('supports flexbox with long-form property', () => {
       check(
         'a { lost-masonry-column: 60px; lost-masonry-column-flexbox: flex; }',
         'a { flex: 0 0 auto; width: calc(99.9% * 60px - 30px);' +
@@ -35,7 +35,7 @@ describe('lost-masonry-column', function() {
       );
     });
 
-    it('supports a custom gutter', function() {
+    it('supports a custom gutter', () => {
       check(
         'a { lost-masonry-column: 60px 10px flex; }',
         'a { flex: 0 0 auto; width: calc(99.9% * 60px - 10px);' +
@@ -43,7 +43,7 @@ describe('lost-masonry-column', function() {
       );
     });
 
-    it('supports flexbox without specifying custom gutter', function() {
+    it('supports flexbox without specifying custom gutter', () => {
       check(
         'a { lost-masonry-column: 60px flex; }',
         'a { flex: 0 0 auto; width: calc(99.9% * 60px - 30px);' +
@@ -52,8 +52,8 @@ describe('lost-masonry-column', function() {
     });
   });
 
-  describe('non-flexbox', function() {
-    it('supports non-flexbox', function() {
+  describe('non-flexbox', () => {
+    it('supports non-flexbox', () => {
       check(
         'a { lost-masonry-column: 60px no-flex; }',
         'a { float: left; width: calc(99.9% * 60px - 30px); margin-left: 15px;' +
@@ -68,8 +68,8 @@ describe('lost-masonry-column', function() {
     });
   });
 
-  describe('allows for customizable rounders', function() {
-    it('100%', function() {
+  describe('allows for customizable rounders', () => {
+    it('100%', () => {
       check(
         'a { lost-masonry-column: 60px; lost-masonry-column-rounder: 99.99999999999; }',
         'a { float: left; width: calc(99.99999999999% * 60px - 30px); margin-left: 15px;' +
@@ -77,7 +77,7 @@ describe('lost-masonry-column', function() {
       );
     });
 
-    it('99.99999999999%', function() {
+    it('99.99999999999%', () => {
       check(
         'a { lost-masonry-column: 60px; lost-masonry-column-rounder: 100; }',
         'a { float: left; width: calc(100% * 60px - 30px); margin-left: 15px;' +
