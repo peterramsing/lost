@@ -2,22 +2,22 @@
 
 var check = require('./check');
 
-describe('lost-offset', function() {
-  it('Supports direction in new property', function() {
+describe('lost-offset', () => {
+  it('Supports direction in new property', () => {
     check(
       'a { lost-offset: 0/3; lost-offset-direction: row; }',
       'a { margin-left: 0 !important; margin-right: 30px !important; }'
     );
   });
 
-  it('Supports gutter in new property', function() {
+  it('Supports gutter in new property', () => {
     check(
       'a { lost-offset: 0/3; lost-offset-gutter: 10px; }',
       'a { margin-left: 0 !important; margin-right: 10px !important; }'
     );
   });
 
-  it('generates valid output even with spaces at various places in the declaration', function() {
+  it('generates valid output even with spaces at various places in the declaration', () => {
     check(
       'a { lost-offset: 1 / 3; }',
       'a { margin-left: calc(99.9% * (-1/3 * -1) - (30px - 30px * (-1/3 * -1)) + 30px' +
@@ -25,7 +25,7 @@ describe('lost-offset', function() {
     );
   });
 
-  it("Does not move with a zero numerator (of you're so inclined)", function() {
+  it("Does not move with a zero numerator (of you're so inclined)", () => {
     check(
       'a { lost-offset: 0/3; }',
       'a { margin-left: 0 !important; margin-right: 30px !important; }'
@@ -37,7 +37,7 @@ describe('lost-offset', function() {
     );
   });
 
-  it('moves element to the left', function() {
+  it('moves element to the left', () => {
     check(
       'a { lost-offset: 1/3; }',
       'a { margin-left: calc(99.9% * (-1/3 * -1) - (30px - 30px * (-1/3 * -1)) + 30px' +
@@ -45,7 +45,7 @@ describe('lost-offset', function() {
     );
   });
 
-  it('moves element to the right', function() {
+  it('moves element to the right', () => {
     check(
       'a { lost-offset: -1/3; }',
       'a { margin-left: calc(99.9% * -1/3 - (30px - 30px * ' +
@@ -57,7 +57,7 @@ describe('lost-offset', function() {
     );
   });
 
-  it('moves element up', function() {
+  it('moves element up', () => {
     check(
       'a { lost-offset: 1/3 column; }',
       'a { margin-bottom: calc(99.9% * 1/3 - (30px - 30px * 1/3) + ' +
@@ -65,7 +65,7 @@ describe('lost-offset', function() {
     );
   });
 
-  it('moves element down', function() {
+  it('moves element down', () => {
     check(
       'a { lost-offset: -1/3 column; }',
       'a { margin-top: calc(99.9% * (-1/3 * -1) - (30px - 30px * ' +
@@ -73,7 +73,7 @@ describe('lost-offset', function() {
     );
   });
 
-  it('supports custom gutter', function() {
+  it('supports custom gutter', () => {
     check(
       'a { lost-offset: 1/2 row 60px; }',
       'a { margin-left: calc(99.9% * (-1/2 * -1) - (60px - 60px * (-1/2 * -1)) + ' +
@@ -95,8 +95,8 @@ describe('lost-offset', function() {
       'a { margin-top: calc(99.9% * -1/2)!important; }'
     );
   });
-  describe('allows for customizable rounders', function() {
-    it('100%', function() {
+  describe('allows for customizable rounders', () => {
+    it('100%', () => {
       check(
         'a { lost-offset: 1/2 row 60px; lost-offset-rounder: 100; }',
         'a { margin-left: calc(100% * (-1/2 * -1) - (60px - 60px * (-1/2 * -1)) + ' +
@@ -104,7 +104,7 @@ describe('lost-offset', function() {
       );
     });
 
-    it('99.99999999999%', function() {
+    it('99.99999999999%', () => {
       check(
         'a { lost-offset: 1/2 row 60px; lost-offset-rounder: 99.99999999999; }',
         'a { margin-left: calc(99.99999999999% * (-1/2 * -1) - (60px - 60px * (-1/2 * -1)) + ' +
@@ -113,8 +113,8 @@ describe('lost-offset', function() {
     });
   });
 
-  describe('disables the offset', function() {
-    it('disables for row', function() {
+  describe('disables the offset', () => {
+    it('disables for row', () => {
       check(
         'a { lost-offset: clear; }',
         'a { margin-left: auto!important; margin-right: auto!important; }'
@@ -128,7 +128,7 @@ describe('lost-offset', function() {
         'a { margin-right: auto!important; }'
       );
     });
-    it('disables for column', function() {
+    it('disables for column', () => {
       check(
         'a { lost-offset: clear column; }',
         'a { margin-top: auto!important; margin-bottom: auto!important; }'

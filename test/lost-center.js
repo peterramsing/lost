@@ -2,8 +2,8 @@
 
 var check = require('./check');
 
-describe('lost-center', function() {
-  it('Ignores bad unit', function() {
+describe('lost-center', () => {
+  it('Ignores bad unit', () => {
     check(
       'a { lost-center: 4/12; lost-unit: $ }',
 
@@ -13,7 +13,7 @@ describe('lost-center', function() {
     );
   });
 
-  it('Uses unit if one is passed', function() {
+  it('Uses unit if one is passed', () => {
     check(
       'a { lost-center: 3/9; lost-unit: vw }',
 
@@ -23,7 +23,7 @@ describe('lost-center', function() {
     );
   });
 
-  it('generates valid output given spaces are present in the input', function() {
+  it('generates valid output given spaces are present in the input', () => {
     check(
       'a { lost-center: 3 / 9; lost-unit: vw }',
 
@@ -33,7 +33,7 @@ describe('lost-center', function() {
     );
   });
 
-  it('horizontally centers container', function() {
+  it('horizontally centers container', () => {
     check(
       'a { lost-center: 980px }',
       'a { max-width: 980px; margin-left: auto; margin-right: auto }\n' +
@@ -42,7 +42,7 @@ describe('lost-center', function() {
     );
   });
 
-  it('horizontally centers container (fraction)', function() {
+  it('horizontally centers container (fraction)', () => {
     check(
       'a { lost-center: 2/6 }',
 
@@ -52,7 +52,7 @@ describe('lost-center', function() {
     );
   });
 
-  it('adds 30px padding', function() {
+  it('adds 30px padding', () => {
     check(
       'a { lost-center: 980px 30px }',
       'a { max-width: 980px; margin-left: auto; margin-right: auto; padding-left: 30px; padding-right: 30px }\n' +
@@ -61,14 +61,14 @@ describe('lost-center', function() {
     );
   });
 
-  it('uses flexbox', function() {
+  it('uses flexbox', () => {
     check(
       'a { lost-center: 1140px 30px flex }',
       'a { display: flex; flex-flow: row wrap; max-width: 1140px; margin-left: auto; margin-right: auto; padding-left: 30px; padding-right: 30px }'
     );
   });
 
-  it('uses no-flexbox', function() {
+  it('uses no-flexbox', () => {
     check(
       'a { lost-center: 1140px 30px no-flex }',
       'a { max-width: 1140px; margin-left: auto; margin-right: auto; padding-left: 30px; padding-right: 30px }\n' +
@@ -77,7 +77,7 @@ describe('lost-center', function() {
     );
   });
 
-  it('lost-center-padding', function() {
+  it('lost-center-padding', () => {
     check(
       'a { lost-center: 1140px 30px; lost-center-padding: 10px }',
 
@@ -87,7 +87,7 @@ describe('lost-center', function() {
     );
   });
 
-  it('lost-center-flexbox', function() {
+  it('lost-center-flexbox', () => {
     check(
       'a { lost-center: 1140px 30px; lost-center-flexbox: flex }',
 
@@ -95,7 +95,7 @@ describe('lost-center', function() {
     );
   });
 
-  it('overrides global flex when told to', function() {
+  it('overrides global flex when told to', () => {
     check(
       '@lost flexbox flex; .root { lost-center: 600px no-flex; }',
       '.root { max-width: 600px; margin-left: auto; margin-right: auto; }\n' +

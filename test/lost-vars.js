@@ -3,15 +3,15 @@
 var check = require('./check');
 var throws = require('./throws');
 
-describe('lost-vars', function() {
-  it('unknown variable', function() {
+describe('lost-vars', () => {
+  it('unknown variable', () => {
     throws(
       'a { margin: 0 0 lost-vars("randomvariablename"); }',
       "lost-vars: variable 'randomvariablename' is unknown."
     );
   });
 
-  it('matches multiple variables', function() {
+  it('matches multiple variables', () => {
     check(
       "div { margin: lost-vars('gutter') lost-vars('gutter'); padding: lost-vars('gutter-local'); lost-offset: 1/3 3 100px;}",
       'div { margin: 30px 30px; padding: 100px; margin-left: calc(99.9% * (-1/3 * -1) - (100px - 100px * (-1/3 * -1)) + 100px) !important;}'
@@ -22,8 +22,8 @@ describe('lost-vars', function() {
     );
   });
 
-  describe('gutter', function() {
-    it('is replaced', function() {
+  describe('gutter', () => {
+    it('is replaced', () => {
       check(
         "a { margin: 0 0 lost-vars('gutter'); }",
         'a { margin: 0 0 30px; }'

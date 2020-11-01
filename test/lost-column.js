@@ -3,9 +3,9 @@
 var check = require('./check');
 var throws = require('./throws');
 
-describe('lost-column', function() {
-  describe('flexbox support', function() {
-    it('supports being set in long form', function() {
+describe('lost-column', () => {
+  describe('flexbox support', () => {
+    it('supports being set in long form', () => {
       check(
         'a { lost-column: 1/3; lost-column-flexbox: flex; }',
         'a { flex-grow: 0; flex-shrink: 0; flex-basis: calc(99.9% * 1/3 - (30px - 30px * 1/3));' +
@@ -140,7 +140,7 @@ describe('lost-column', function() {
     });
   });
 
-  it('provides 3 column layout', function() {
+  it('provides 3 column layout', () => {
     check(
       'a { lost-column: 1/3; }',
       'a { width: calc(99.9% * 1/3 - (30px - 30px * 1/3)); }\n' +
@@ -151,7 +151,7 @@ describe('lost-column', function() {
     );
   });
 
-  it('generates valid output even with spaces at various places in the declaration', function() {
+  it('generates valid output even with spaces at various places in the declaration', () => {
     check(
       'a { lost-column: 1 / 3; }',
       'a { width: calc(99.9% * 1/3 - (30px - 30px * 1/3)); }\n' +
@@ -162,7 +162,7 @@ describe('lost-column', function() {
     );
   });
 
-  it('provides 2/5 column layout', function() {
+  it('provides 2/5 column layout', () => {
     check(
       'a { lost-column: 2/5; }',
       'a { width: calc(99.9% * 2/5 - (30px - 30px * 2/5)); }\n' +
@@ -173,7 +173,7 @@ describe('lost-column', function() {
     );
   });
 
-  it('can support custom cycle', function() {
+  it('can support custom cycle', () => {
     check(
       'a { lost-column: 2/4 2; }',
       'a { width: calc(99.9% * 2/4 - (30px - 30px * 2/4)); }\n' +
@@ -184,7 +184,7 @@ describe('lost-column', function() {
     );
   });
 
-  it('supports no gutter', function() {
+  it('supports no gutter', () => {
     check(
       'a { lost-column: 2/5 3 0; }',
       'a { width: calc(99.9% * 2/5); }\n' +
@@ -195,7 +195,7 @@ describe('lost-column', function() {
     );
   });
 
-  it('supports gutter with decimal value', function() {
+  it('supports gutter with decimal value', () => {
     check(
       'a { lost-column: 2/5 0 0.7em; }',
 
@@ -206,7 +206,7 @@ describe('lost-column', function() {
     );
   });
 
-  it('supports gutter with decimal value (no leading zero)', function() {
+  it('supports gutter with decimal value (no leading zero)', () => {
     check(
       'a { lost-column: 2/5 0 .5em; }',
 
@@ -217,7 +217,7 @@ describe('lost-column', function() {
     );
   });
 
-  it('can support zero cycle', function() {
+  it('can support zero cycle', () => {
     check(
       'a { lost-column: 2/4 0; }',
       'a { width: calc(99.9% * 2/4 - (30px - 30px * 2/4)); }' +
@@ -226,7 +226,7 @@ describe('lost-column', function() {
         'a:nth-child(0n) { float: right; }'
     );
   });
-  it('supports flexbox', function() {
+  it('supports flexbox', () => {
     check(
       'a { lost-column: 2/6 3 60px flex; }',
       'a { flex-grow: 0; flex-shrink: 0; ' +
@@ -239,7 +239,7 @@ describe('lost-column', function() {
     );
   });
 
-  it('supports clearing fallback', function() {
+  it('supports clearing fallback', () => {
     check(
       '@lost clearing left; \n' + 'a { lost-column: 1/3; }',
       'a { width: calc(99.9% * 1/3 - (30px - 30px * 1/3)); }\n' +
@@ -250,7 +250,7 @@ describe('lost-column', function() {
     );
   });
 
-  it('provides none rule', function() {
+  it('provides none rule', () => {
     check(
       'a { lost-column: none; }',
       'a { width: auto; }\n' +
@@ -260,7 +260,7 @@ describe('lost-column', function() {
     );
   });
 
-  it('supports no-flexbox', function() {
+  it('supports no-flexbox', () => {
     check(
       'a { lost-column: 2/6 3 60px no-flex; }',
       'a { width: calc(99.9% * 2/6 - (60px - 60px * 2/6)); }\n' +
@@ -271,7 +271,7 @@ describe('lost-column', function() {
     );
   });
 
-  it('lost-column-cycle', function() {
+  it('lost-column-cycle', () => {
     check(
       'a { lost-column: 2/6; lost-column-cycle: 6; }',
 
@@ -283,7 +283,7 @@ describe('lost-column', function() {
     );
   });
 
-  it('lost-column-gutter', function() {
+  it('lost-column-gutter', () => {
     check(
       'a { lost-column: 2/6; lost-column-gutter: 10px; }',
 
@@ -295,7 +295,7 @@ describe('lost-column', function() {
     );
   });
 
-  it('Ignores bad unit', function() {
+  it('Ignores bad unit', () => {
     check(
       'a { lost-column: 2/6; lost-column-gutter: 10px; lost-unit: $; }',
 
@@ -307,7 +307,7 @@ describe('lost-column', function() {
     );
   });
 
-  it('Uses unit if one is passed', function() {
+  it('Uses unit if one is passed', () => {
     check(
       'a { lost-column: 2/6; lost-column-gutter: 10px; lost-unit: vw; }',
 
@@ -319,8 +319,8 @@ describe('lost-column', function() {
     );
   });
 
-  describe('allows for customizable rounders', function() {
-    it('100%', function() {
+  describe('allows for customizable rounders', () => {
+    it('100%', () => {
       check(
         'a { lost-column: 2/6; lost-column-rounder: 100; }',
 
@@ -332,7 +332,7 @@ describe('lost-column', function() {
       );
     });
 
-    it('99.99999999999%', function() {
+    it('99.99999999999%', () => {
       check(
         'a { lost-column: 2/6; lost-column-rounder: 99.99999999999; }',
 

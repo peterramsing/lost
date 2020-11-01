@@ -2,8 +2,8 @@
 
 var check = require('./check');
 
-describe('lost-masonry-wrap', function() {
-  it('creates a flexbox wrapper', function() {
+describe('lost-masonry-wrap', () => {
+  it('creates a flexbox wrapper', () => {
     check(
       'a { lost-masonry-wrap: flex; }',
       'a { display: flex; flex-flow: row wrap; margin-left: -15px;' +
@@ -21,7 +21,7 @@ describe('lost-masonry-wrap', function() {
     );
   });
 
-  it('creates a non-flexbox wrapper', function() {
+  it('creates a non-flexbox wrapper', () => {
     check(
       'a { lost-masonry-wrap: no-flex; }',
       'a { margin-left: -15px; margin-right: -15px; }\n' +
@@ -36,7 +36,7 @@ describe('lost-masonry-wrap', function() {
     );
   });
 
-  it('support a custom gutter', function() {
+  it('support a custom gutter', () => {
     check(
       'a { lost-masonry-wrap: flex 60px; }',
       'a { display: flex; flex-flow: row wrap; margin-left: -30px;' +

@@ -2,9 +2,9 @@
 
 var check = require('./check');
 
-describe('lost-row', function() {
-  describe('Flexbox modifiers', function() {
-    it('supports no-flex', function() {
+describe('lost-row', () => {
+  describe('Flexbox modifiers', () => {
+    it('supports no-flex', () => {
       check(
         'a { lost-row: 1/3 no-flex; }',
         'a { width: 100%; height: calc(99.9% * 1/3 - (30px - 30px * 1/3));' +
@@ -13,7 +13,7 @@ describe('lost-row', function() {
       );
     });
 
-    it('supports no-flex in long-form', function() {
+    it('supports no-flex in long-form', () => {
       check(
         'a { lost-row: 1/3; lost-row-flexbox: no-flex; }',
         'a { width: 100%; height: calc(99.9% * 1/3 - (30px - 30px * 1/3));' +
@@ -22,7 +22,7 @@ describe('lost-row', function() {
       );
     });
 
-    it('generates valid output even with spaces at various places in the declaration', function() {
+    it('generates valid output even with spaces at various places in the declaration', () => {
       check(
         'a { lost-row: 1 / 3; lost-row-flexbox: no-flex; }',
         'a { width: 100%; height: calc(99.9% * 1/3 - (30px - 30px * 1/3));' +
@@ -31,7 +31,7 @@ describe('lost-row', function() {
       );
     });
 
-    it('supports flex in long-form', function() {
+    it('supports flex in long-form', () => {
       check(
         'a { lost-row: 1/3; lost-row-flexbox: flex; }',
         'a { width:100%; flex:0 0 auto; height:calc(99.9% * 1/3 - (30px - 30px * 1/3)); ' +
@@ -40,7 +40,7 @@ describe('lost-row', function() {
     });
   });
 
-  it('provides 3 row layout', function() {
+  it('provides 3 row layout', () => {
     check(
       'a { lost-row: 1/3; }',
       'a { width: 100%; height: calc(99.9% * 1/3 - (30px - 30px * 1/3));' +
@@ -49,7 +49,7 @@ describe('lost-row', function() {
     );
   });
 
-  it('provides 2/5 row layout', function() {
+  it('provides 2/5 row layout', () => {
     check(
       'a { lost-row: 2/5; }',
       'a { width: 100%; height: calc(99.9% * 2/5 - (30px - 30px * 2/5));' +
@@ -58,7 +58,7 @@ describe('lost-row', function() {
     );
   });
 
-  it('supports no gutter', function() {
+  it('supports no gutter', () => {
     check(
       'a { lost-row: 2/5 0; }',
       'a { width: 100%; height: calc(99.9% * 2/5); margin-bottom: 0; }\n' +
@@ -66,7 +66,7 @@ describe('lost-row', function() {
     );
   });
 
-  it('supports flexbox', function() {
+  it('supports flexbox', () => {
     check(
       'a { lost-row: 2/6 60px flex; }',
       'a { width: 100%; flex: 0 0 auto;' +
@@ -76,7 +76,7 @@ describe('lost-row', function() {
     );
   });
 
-  it('ignores bad unit', function() {
+  it('ignores bad unit', () => {
     check(
       'a { lost-row: 2/6 60px flex; lost-unit: $; }',
       'a { width: 100%; flex: 0 0 auto;' +
@@ -86,7 +86,7 @@ describe('lost-row', function() {
     );
   });
 
-  it('Uses unit if one is passed', function() {
+  it('Uses unit if one is passed', () => {
     check(
       'a { lost-row: 2/6 60px flex; lost-unit: vh; }',
       'a { width: 100%; flex: 0 0 auto;' +
@@ -96,15 +96,15 @@ describe('lost-row', function() {
     );
   });
 
-  it('provides none rule', function() {
+  it('provides none rule', () => {
     check(
       'a { lost-row: none; }',
       'a { width: auto; height: auto;' + ' margin-bottom: 0; }'
     );
   });
 
-  describe('allows for customizable rounders', function() {
-    it('100%', function() {
+  describe('allows for customizable rounders', () => {
+    it('100%', () => {
       check(
         'a { lost-row: 1/3; lost-row-rounder: 100; }',
         'a { width: 100%; height: calc(100% * 1/3 - (30px - 30px * 1/3));' +
@@ -113,7 +113,7 @@ describe('lost-row', function() {
       );
     });
 
-    it('99.99999999999%', function() {
+    it('99.99999999999%', () => {
       check(
         'a { lost-row: 1/3; lost-row-rounder: 99.99999999999; }',
         'a { width: 100%; height: calc(99.99999999999% * 1/3 - (30px - 30px * 1/3));' +
