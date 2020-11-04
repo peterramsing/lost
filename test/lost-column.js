@@ -18,6 +18,126 @@ describe('lost-column', () => {
         "lost-column-flexbox: property 'flexible' is unknown."
       );
     });
+    describe('reset', () => {
+      it('resets lost-column with global flex in LTR', () => {
+        check(
+          `
+            @lost flexbox flex;
+    
+            .grid { 
+              lost-flex-container: row; 
+            }
+    
+            .grid--alternate .right { 
+              lost-column: none; 
+            }
+          `,
+          `
+           .grid {
+             display: flex;
+             flex-flow: row wrap;
+            }
+            .grid--alternate .right {
+              flex: unset;
+              max-width: unset;
+              width: unset;
+            }
+            .grid--alternate .right:last-child {
+              margin-right: 0;
+            }
+            .grid--alternate .right:nth-child(1n) {
+              margin-right: 0;
+            }
+            .grid--alternate .right:nth-child(1n+1) {
+              margin-right: 0;
+            }
+          `
+        );
+        check(
+          `
+            .grid { 
+              lost-flex-container: row; 
+            }
+            
+            .grid--alternate .right { 
+              lost-column-flexbox: flex;
+              lost-column: none; 
+            }
+          `,
+          `
+           .grid {
+             display: flex;
+             flex-flow: row wrap;
+            }
+            .grid--alternate .right {
+              flex: unset;
+              max-width: unset;
+              width: unset;
+            }
+            .grid--alternate .right:last-child {
+              margin-right: 0;
+            }
+            .grid--alternate .right:nth-child(1n) {
+              margin-right: 0;
+            }
+            .grid--alternate .right:nth-child(1n+1) {
+              margin-right: 0;
+            }
+          `
+        );
+        throws(
+          `
+          @lost flexbox flex;
+  
+          .grid { 
+            lost-flex-container: row; 
+          }
+  
+          .grid--alternate .thing { 
+            lost-column-flexbox: flexible;
+            lost-column: none; 
+          }
+          `,
+          "lost-column-flexbox: property 'flexible' is unknown."
+        );
+      });
+      it('resets lost-column with global flex in RTL', () => {
+        check(
+          `
+            @lost flexbox flex;
+            @lost --beta-direction rtl;
+    
+            .grid { 
+              lost-flex-container: row; 
+            }
+    
+            .grid--alternate .thing { 
+              lost-column: none; 
+            }
+          `,
+          `
+           .grid {
+             display: flex;
+             flex-flow: row wrap;
+            }
+            .grid--alternate .thing {
+              flex: unset;
+              max-width: unset;
+              width: unset;
+            }
+            .grid--alternate .thing:last-child {
+              margin-left: 0;
+            }
+            .grid--alternate .thing:nth-child(1n) {
+              margin-left: 0;
+            }
+            .grid--alternate .thing:nth-child(1n+1) {
+              margin-left: 0;
+            }
+          `
+        );
+      });
+    });
   });
 
   it('provides 3 column layout', () => {
