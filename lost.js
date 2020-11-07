@@ -1,5 +1,4 @@
 // Module dependencies
-const postcss = require('postcss');
 const assign = require('object-assign');
 
 const lostAlign = require('./lib/lost-align');
@@ -46,11 +45,16 @@ const defaultSettings = {
   direction: 'ltr',
 };
 
-module.exports = postcss.plugin('lost', (settings) => {
-  let runSettings = assign({}, defaultSettings, settings | {});
-  return (css, result) => {
-    libs.forEach((lib) => {
-      lib(css, runSettings, result);
-    });
+module.exports = (settings = {}) => {
+  return {
+    postcssPlugin: 'lost',
+    Once(css, { result }) {
+      let runSettings = assign({}, defaultSettings, settings | {});
+      libs.forEach((lib) => {
+        lib(css, runSettings, result);
+      });
+    },
   };
-});
+};
+
+module.exports.postcss = true;
