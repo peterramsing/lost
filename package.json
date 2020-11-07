@@ -8,8 +8,7 @@
     "url": "https://github.com/peterramsing/lost.git"
   },
   "dependencies": {
-    "object-assign": "^4.1.1",
-    "postcss": "^8.1.4"
+    "object-assign": "^4.1.1"
   },
   "keywords": [
     "grid",
@@ -33,8 +32,12 @@
     "husky": "^4.3.0",
     "lint-staged": "^10.5.1",
     "mocha": "^8.2.0",
+    "postcss": "^8.1.4",
     "nyc": "^15.1.0",
     "prettier": "^2.1.2"
+  },
+  "peerDependencies": {
+    "postcss": "^8.1.4"
   },
   "scripts": {
     "test": "nyc mocha",
