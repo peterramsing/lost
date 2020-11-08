@@ -48,11 +48,15 @@ const defaultSettings = {
 module.exports = (settings = {}) => {
   return {
     postcssPlugin: 'lost',
-    Once(css, { result }) {
+    prepare() {
       let runSettings = assign({}, defaultSettings, settings | {});
-      libs.forEach((lib) => {
-        lib(css, runSettings, result);
-      });
+      return {
+        Once(css, { result }) {
+          libs.forEach((lib) => {
+            lib(css, runSettings, result);
+          });
+        },
+      };
     },
   };
 };
