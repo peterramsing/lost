@@ -16,10 +16,8 @@ const lostUtility = require('./lib/lost-utility');
 const lostVars = require('./lib/lost-vars');
 const lostWaffle = require('./lib/lost-waffle');
 
-// Lost At Rules and Declarations
 // NOTE: Order Matters
 const libs = [
-  lostAtRule,
   lostVars,
   lostGutter,
   lostMove,
@@ -51,7 +49,10 @@ module.exports = (settings = {}) => {
     prepare() {
       let runSettings = assign({}, defaultSettings, settings | {});
       return {
-        Once(css, { result }) {
+        AtRule(atRule) {
+          lostAtRule(atRule, runSettings);
+        },
+        OnceExit(css, { result }) {
           libs.forEach((lib) => {
             lib(css, runSettings, result);
           });
