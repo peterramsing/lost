@@ -1,5 +1,4 @@
 // Module dependencies
-const postcss = require('postcss');
 const assign = require('object-assign');
 
 const lostAlign = require('./lib/lost-align');
@@ -17,10 +16,8 @@ const lostUtility = require('./lib/lost-utility');
 const lostVars = require('./lib/lost-vars');
 const lostWaffle = require('./lib/lost-waffle');
 
-// Lost At Rules and Declarations
 // NOTE: Order Matters
 const libs = [
-  lostAtRule,
   lostVars,
   lostGutter,
   lostMove,
@@ -46,11 +43,23 @@ const defaultSettings = {
   direction: 'ltr',
 };
 
-module.exports = postcss.plugin('lost', (settings) => {
-  let runSettings = assign({}, defaultSettings, settings | {});
-  return (css, result) => {
-    libs.forEach((lib) => {
-      lib(css, runSettings, result);
-    });
+module.exports = (settings = {}) => {
+  return {
+    postcssPlugin: 'lost',
+    prepare() {
+      let runSettings = assign({}, defaultSettings, settings | {});
+      return {
+        AtRule(atRule) {
+          lostAtRule(atRule, runSettings);
+        },
+        OnceExit(css, { result }) {
+          libs.forEach((lib) => {
+            lib(css, runSettings, result);
+          });
+        },
+      };
+    },
   };
-});
+};
+
+module.exports.postcss = true;
