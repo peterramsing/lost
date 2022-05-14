@@ -20,7 +20,7 @@ module.exports = function pluginCheck(input, output, options) {
   postcss([postcssPresetEnv({ stage: 0 }), lost(options)])
     .process(input)
     .then(async (result) => {
-      cleanInput = new cleanCss({}).minify(processor.process(input).css);
+      cleanInput = new cleanCss({}).minify(result.css);
       cleanOutput = new cleanCss({}).minify(output);
 
       expect(cleanOutput.styles).to.equal(cleanInput.styles);
