@@ -11,7 +11,7 @@ module.exports = function check(input, output, options) {
   var cleanInput = new cleanCss({}).minify(processor.process(input).css);
   var cleanOutput = new cleanCss({}).minify(output);
 
-  expect(cleanInput.styles).to.equal(cleanOutput.styles);
+  expect(cleanOutput.styles).to.equal(cleanInput.styles);
 };
 
 module.exports = function pluginCheck(input, output, options) {
@@ -23,6 +23,6 @@ module.exports = function pluginCheck(input, output, options) {
       cleanInput = new cleanCss({}).minify(processor.process(input).css);
       cleanOutput = new cleanCss({}).minify(output);
 
-      expect(cleanInput.styles).to.equal(cleanOutput.styles);
+      expect(cleanOutput.styles).to.equal(cleanInput.styles);
     });
 };
