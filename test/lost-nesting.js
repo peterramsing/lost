@@ -15,9 +15,11 @@ describe('nesting-queries', () => {
       `,
       `
       body {
-        background: green;
-        @media (min-width: 768px) {
-            background: red;
+        background: green
+      }
+      @media (min-width: 768px) {
+        body {
+          background: red
         }
       }
       `
