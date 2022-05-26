@@ -1,0 +1,5 @@
+## Ignore docs
+docs
+
+## Ignore test to presever some formatting
+test
