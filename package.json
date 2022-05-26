@@ -33,7 +33,7 @@
     "lint-staged": "^10.5.1",
     "mocha": "^8.2.0",
     "nyc": "^15.1.0",
-    "postcss": "^8.1.4",
+    "postcss": "^8.4.13",
     "postcss-preset-env": "^7.5.0",
     "prettier": "^2.1.2"
   },
