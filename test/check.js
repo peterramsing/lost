@@ -1,27 +1,17 @@
 'use strict';
 
-var expect = require('chai').expect;
-var lost = require('../lost');
-var cleanCss = require('clean-css');
-var postcss = require('postcss');
-const postcssPresetEnv = require('postcss-preset-env');
+const expect = require('chai').expect;
+const lost = require('../lost');
+const cleanCss = require('clean-css');
+const postcss = require('postcss');
 
 module.exports = function check(input, output, options) {
-  var processor = postcss([lost(options)]);
-  var cleanInput = new cleanCss({}).minify(processor.process(input).css);
-  var cleanOutput = new cleanCss({}).minify(output);
+  const cleanOutput = new cleanCss({}).minify(output);
 
-  expect(cleanOutput.styles).to.equal(cleanInput.styles);
-};
-
-module.exports = function pluginCheck(input, output, options) {
-  let cleanInput, cleanOutput;
-
-  postcss([postcssPresetEnv({ stage: 0 }), lost(options)])
+  postcss([lost(options)])
     .process(input)
     .then(async (result) => {
-      cleanInput = new cleanCss({}).minify(result.css);
-      cleanOutput = new cleanCss({}).minify(output);
+      const cleanInput = new cleanCss({}).minify(result.css);
 
       expect(cleanOutput.styles).to.equal(cleanInput.styles);
     });
