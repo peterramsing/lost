@@ -6,13 +6,9 @@ const cleanCss = require('clean-css');
 const postcss = require('postcss');
 
 module.exports = function check(input, output, options) {
-  const cleanOutput = new cleanCss({}).minify(output);
+  let processor = postcss([lost(options)]);
+   let cleanInput = new cleanCss({}).minify(processor.process(input).css);
+   let cleanOutput = new cleanCss({}).minify(output);
 
-  postcss([lost(options)])
-    .process(input)
-    .then(async (result) => {
-      const cleanInput = new cleanCss({}).minify(result.css);
-
-      expect(cleanOutput.styles).to.equal(cleanInput.styles);
-    });
+   expect(cleanInput.styles).to.equal(cleanOutput.styles);
 };
