@@ -4,7 +4,7 @@ title: "Nesting"
 nav: "nesting"
 code-example: "true"
 type: "getting-started"
-description: "Nesting is simple. There is no context required."
+description: "Nesting is simple, but context is not supported. Nested elements are relative to their direct parent’s dimensions."
 
 ---
 
