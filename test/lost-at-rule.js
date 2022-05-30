@@ -148,4 +148,30 @@ describe('lost-at-rule', () => {
         '}'
     );
   });
+
+
+  it('changes the default units', () => {
+    check(
+      '@lost gridUnit vw;\n' + 'div {\n' + '  lost-column: 1/3;\n' + '}',
+
+      'div {\n' +
+        '  width: calc(99.9vw * 1/3 - (30px - 30px * 1/3));\n' +
+        '}\n' +
+        'div:nth-child(1n) {\n' +
+        '  float: left;\n' +
+        '  margin-right: 30px;\n' +
+        '  clear: none;\n' +
+        '}\n' +
+        'div:last-child {\n' +
+        '  margin-right: 0;\n' +
+        '}\n' +
+        'div:nth-child(3n) {\n' +
+        '  margin-right: 0;\n' +
+        '  float: right;\n' +
+        '}\n' +
+        'div:nth-child(3n + 1) {\n' +
+        '  clear: both;\n' +
+        '}'
+    );
+  });
 });
