@@ -39,6 +39,6 @@ describe('plugin-options', () => {
       })
     ])
       .process(input);
-      expect(output).to.equal(result.css);
+      expect(result.css).to.equal(output);
   });
 });
