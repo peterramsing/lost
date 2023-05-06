@@ -1,5 +1,4 @@
 // Module dependencies
-const assign = require('object-assign');
 
 const lostAlign = require('./lib/lost-align');
 const lostAtRule = require('./lib/lost-at-rule');
@@ -47,15 +46,13 @@ module.exports = (settings = {}) => {
   return {
     postcssPlugin: 'lost',
     prepare() {
-      let runSettings = assign({}, defaultSettings, settings || {});
+      const runSettings = { ...defaultSettings, ...settings };
       return {
         AtRule(atRule) {
           lostAtRule(atRule, runSettings);
         },
         OnceExit(css, { result }) {
-          libs.forEach((lib) => {
-            lib(css, runSettings, result);
-          });
+          libs.forEach((lib) => lib(css, runSettings, result));
         },
       };
     },
