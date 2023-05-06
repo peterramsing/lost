@@ -43,6 +43,7 @@
   },
   "scripts": {
     "test": "nyc mocha",
+    "dev": "nyc mocha --watch",
     "lint": "eslint .",
     "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
     "prepare": "husky install"
