@@ -40,6 +40,7 @@
   },
   "scripts": {
     "test": "nyc mocha",
+    "reset--node": "rm -rf node_modules && npm install",
     "dev": "nyc mocha --watch",
     "lint": "eslint .",
     "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
