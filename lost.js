@@ -47,7 +47,7 @@ module.exports = (settings = {}) => {
   return {
     postcssPlugin: 'lost',
     prepare() {
-      let runSettings = assign({}, defaultSettings, settings | {});
+      let runSettings = assign({}, defaultSettings, settings || {});
       return {
         AtRule(atRule) {
           lostAtRule(atRule, runSettings);
