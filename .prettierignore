@@ -3,3 +3,6 @@ docs
 
 ## Ignore test to presever some formatting
 test
+
+## ignores nyc output in prettier
+.nyc_output
