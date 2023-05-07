@@ -6,10 +6,12 @@ name: Node CI
 on:
   push:
     branches:
-      - master
+      - main
+      - v*
   pull_request:
     branches:
-      - master
+      - main
+      - v*
 
 jobs:
   build:
@@ -17,8 +19,8 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.x, 17.x, 18.x, 19.x, 20.x]
-        # See supported Node.js release schedule at https://endoflife.date/nodejs
+        node-version: [14.x, 16.x, 17.x, 18.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
       - uses: actions/checkout@v3
