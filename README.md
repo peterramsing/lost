@@ -34,6 +34,7 @@ Read the docs on [LostGrid.org](http://lostgrid.org/docs.html)!
 
 ### Official Support
 
+- [Supported versions of Node](https://endoflife.date/nodejs)
 - LostGrid is tested in the following browsers for compatibility
   - IE10+ (IE9 has the same `calc()` support as IE10 except for background position which LostGrid doesn't affect)
   - Evergreen Browsers (as they update automatically, tests are performed on the latest version of the following browsers)
