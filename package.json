@@ -7,9 +7,6 @@
     "type": "git",
     "url": "https://github.com/peterramsing/lost.git"
   },
-  "dependencies": {
-    "object-assign": "^4.1.1"
-  },
   "keywords": [
     "grid",
     "fraction",
@@ -24,6 +21,7 @@
   },
   "homepage": "http://lostgrid.org",
   "devDependencies": {
+    "c8": "^7.13.0",
     "chai": "^4.3.6",
     "clean-css": "^5.3.0",
     "codecov": "^3.8.2",
@@ -32,7 +30,6 @@
     "husky": "^8.0.0",
     "lint-staged": "^12.4.2",
     "mocha": "^10.0.0",
-    "nyc": "^15.1.0",
     "postcss": "^8.4.14",
     "postcss-preset-env": "^7.6.0",
     "prettier": "^2.6.2",
@@ -43,9 +40,11 @@
     "postcss": "^8.4.14"
   },
   "scripts": {
-    "test": "nyc mocha",
+    "test": "c8 mocha",
+    "reset--node": "rm -rf node_modules && npm install",
+    "dev": "c8 mocha --watch",
     "lint": "eslint .",
-    "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
+    "report-coverage": "c8 report --reporter=text-lcov > coverage.lcov && codecov",
     "prepare": "husky install",
     "release": "release-it"
   }

@@ -1,5 +1,8 @@
 ## Ignore docs
 docs
 
-## Ignore test to presever some formatting
+## Ignore test to perserve some formatting
 test
+
+## ignores nyc output in prettier
+.nyc_output

@@ -8,7 +8,7 @@ google_analytics_id: 'UA-71789679-1'
 
 
 # Version of LostGrid this is targeted for:
-docs-version: '9.0.0'
+docs-version: '9.0.1'
 
 # Enable/show navigation. There are there options:
 #   0 - always hide
