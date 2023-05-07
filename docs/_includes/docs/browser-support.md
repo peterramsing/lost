@@ -17,5 +17,4 @@
       - FirefoxDeveloperEdition as well
     - Edge
   - Safari 9+
-- Automated browser testing with Selenium is coming soon. 👍
 

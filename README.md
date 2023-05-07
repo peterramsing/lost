@@ -45,7 +45,6 @@ Read the docs on [LostGrid.org](http://lostgrid.org/docs.html)!
       - FirefoxDeveloperEdition as well
     - Edge
   - Safari 9+
-- Automated browser testing with Selenium is coming soon. 👍
 
 ### LostGrid Team
 
