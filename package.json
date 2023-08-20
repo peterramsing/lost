@@ -52,7 +52,7 @@
     "lint": "eslint .",
     "report-coverage": "c8 report --reporter=text-lcov > coverage.lcov && codecov",
     "prepare": "husky install",
-    "start": "nodemon --watch 'src/**/*.ts' --exec 'tsc -p .'",
+    "start": "nodemon -e ts --ignore dist/ --exec 'tsc -p .' --verbose",
     "release": "release-it"
   }
 }

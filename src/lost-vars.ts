@@ -1,9 +1,9 @@
-import { lostGutter } from './lost-gutter';
+import { lostVarsGutter } from './lost-vars-gutter';
 import { lostVarsGutterLocal } from './lost-vars-gutter-local';
 
 export const lostVars = (css: any, settings: any) => {
   let variableFunctions = {
-    gutter: lostGutter,
+    gutter: lostVarsGutter,
     'gutter-local': lostVarsGutterLocal,
   };
 
@@ -27,7 +27,6 @@ export const lostVars = (css: any, settings: any) => {
     }
 
     variables.forEach((variable) => {
-      console.log(declaration, 'declaration');
       // @ts-ignore
       let func = variableFunctions[variable];
 
@@ -37,16 +36,7 @@ export const lostVars = (css: any, settings: any) => {
         );
       }
       let newValue;
-      if (variable === 'gutter-local') {
-        newValue = func(declaration, settings);
-      } else if (variable === 'gutter') {
-        newValue = func(css, settings);
-      } else {
-        throw declaration.error(
-          `lost-vars: variable '${variable}' is unknown.`
-        );
-      }
-
+      newValue = func(declaration, settings);
       let replaceRegex = new RegExp(
         // eslint-disable-next-line
         `lost-vars\\(\s?['"]${variable}['"]\s?\\)`,

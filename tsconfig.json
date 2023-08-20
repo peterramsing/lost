@@ -6,12 +6,6 @@
     "strict": true,
     "esModuleInterop": true
   },
-  "include": [
-    "src/**/*.ts",
-    "src/core/lg-logic.test.ts",
-    "src/core/lg-utilities.test.js",
-    "src/core/lg-logic.test.js",
-    "test/lg-utilities.test.ts"
-  ],
+  "include": ["src/**/*.ts"],
   "exclude": ["node_modules"]
 }

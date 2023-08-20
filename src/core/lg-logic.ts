@@ -8,6 +8,7 @@ const calcValue = (
   let gutterLogic = '';
 
   if (gutter !== '0') {
+    // FIXME: there's messed up logic here with lost-center
     gutterLogic = ` - (${gutter} - ${gutter} * ${fraction})`;
   }
 

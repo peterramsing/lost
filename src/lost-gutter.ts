@@ -3,15 +3,12 @@ import { lostVarsGutter } from './lost-vars-gutter';
 
 export const lostGutter = (css: any, settings: any) => {
   var gutter, newValue;
-
-  console.log(css, 'css');
-
   css.walkDecls((declaration: any) => {
     if (
       /(\$lost-gutter)/g.test(declaration.value) &&
       !/(\$lost-gutter-local)/g.test(declaration.value)
     ) {
-      gutter = lostVarsGutter(settings);
+      gutter = lostVarsGutter(declaration, settings);
 
       newValue = declaration.value.replace(/(\$lost-gutter)/g, gutter);
       declaration.value = newValue;

@@ -27,6 +27,20 @@ describe('lg-logic', () => {
   
       expect(testCase).to.equal(expectedResult);
     });
+    it.skip('TODO: no gutter ✅ when gutter is 0', () => { // FIXME: should work
+      var testCase = lgLogic.calcValue('1/3', 0, 99.9);
+  
+      var expectedResult = 'calc(99.9% * 1/3)';
+  
+      expect(testCase).to.equal(expectedResult);
+    });
+    it('no gutter ✅ when gutter is string 0', () => {
+      var testCase = lgLogic.calcValue('1/3', '0', 99.9);
+  
+      var expectedResult = 'calc(99.9% * 1/3)';
+  
+      expect(testCase).to.equal(expectedResult);
+    });
   });
   
   describe('Units are validated based on if they make sense', () => {

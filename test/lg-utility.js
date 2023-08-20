@@ -3,8 +3,6 @@
 var expect = require('chai').expect;
 var { lgUtils } = require('../dist/core/lg-utilities.js');
 
-console.log(lgUtils);
-
 describe('lg-utilities', () => {
   describe('glueFractionMembers', () => {
     it('glues fraction members together, avoiding a class of parsing errors', () => {

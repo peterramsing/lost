@@ -10,7 +10,7 @@ export const lostCenter = (css: any, settings: any, result: any) => {
     var lostCenterFlexbox = settings.flexbox;
     var lostUnit = settings.gridUnit;
     var lostColumnRounder = settings.rounder;
-    var lostColumnGutter = 0;
+    var lostColumnGutter = '0';
     var validUnits = ['%', 'vw'];
 
     var isFractionValue = (value: any) => {
