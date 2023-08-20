@@ -2,8 +2,8 @@ import { newBlock } from './core/lg-new-block';
 import { lgUtils } from './core/lg-utilities';
 
 const unitsMatch = (...args: any) => {
-  let re = /(px|%|em|rem|vh|vw)$/gi;
-  let extension = args[0].match(re).toString();
+  const re = /(px|%|em|rem|vh|vw)$/gi;
+  const extension = args[0].match(re).toString();
   let matched = true;
 
   args.forEach(function compareExtension(arg: any) {
@@ -16,8 +16,8 @@ const unitsMatch = (...args: any) => {
 
 export const lostUtility = (css: any) => {
   css.walkDecls('lost-utility', function lostUtilityDeclFunction(decl: any) {
-    let utilityArray = decl.value.split(' ');
-    let utility = utilityArray[0];
+    const utilityArray = decl.value.split(' ');
+    const utility = utilityArray[0];
     let color;
 
     if (utility === 'edit') {

@@ -4,12 +4,12 @@ export const lostMasonryColumn = (css: any, settings: any) => {
   css.walkDecls(
     'lost-masonry-column',
     function lostMasonryColumnFunction(decl: any) {
-      var declArr = [];
-      var lostMasonryColumn;
-      var lostMasonryColumnRounder = settings.rounder;
-      var lostMasonryColumnFlexbox = settings.flexbox;
-      var lostMasonryColumnGutter = settings.gutter;
-      var lostMasonryColumnGutterUnit;
+      let declArr = [];
+      let lostMasonryColumn;
+      let lostMasonryColumnRounder = settings.rounder;
+      let lostMasonryColumnFlexbox = settings.flexbox;
+      let lostMasonryColumnGutter = settings.gutter;
+      let lostMasonryColumnGutterUnit;
 
       function cloneAllBefore(props: any) {
         Object.keys(props).forEach(function traverseProps(prop) {

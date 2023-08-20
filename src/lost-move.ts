@@ -2,11 +2,11 @@ import { lgUtils } from './core/lg-utilities';
 
 export const lostMove = (css: any, settings: any) => {
   css.walkDecls('lost-move', function lostMoveDeclFunction(decl: any) {
-    var declArr = [];
-    var lostMove;
-    var lostMoveDirection;
-    var lostMoveRounder = settings.rounder;
-    var lostMoveGutter = settings.gutter;
+    let declArr = [];
+    let lostMove;
+    let lostMoveDirection;
+    let lostMoveRounder = settings.rounder;
+    let lostMoveGutter = settings.gutter;
 
     const sanitizedDecl = lgUtils.glueFractionMembers(decl.value);
     declArr = sanitizedDecl.split(' ');
@@ -31,7 +31,7 @@ export const lostMove = (css: any, settings: any) => {
 
     decl.parent.nodes.forEach((declaration: any) => {
       if (declaration.prop === 'lost-column') {
-        var columnArray = declaration.value.split(' ');
+        const columnArray = declaration.value.split(' ');
         if (columnArray[2]) {
           lostMoveGutter = columnArray[2];
         }
@@ -43,7 +43,7 @@ export const lostMove = (css: any, settings: any) => {
 
     decl.parent.nodes.forEach((declaration: any) => {
       if (declaration.prop === 'lost-row') {
-        var rowArray = declaration.value.split(' ');
+        const rowArray = declaration.value.split(' ');
         if (rowArray[1]) {
           lostMoveGutter = rowArray[1];
         }

@@ -4,11 +4,8 @@ export const newBlock = (
   props: any[],
   values: any
 ) => {
-  let completeSelector: any;
-  let block: any;
-
   function appendToSelectors(_thisSelector: string, selectorToAppend: any) {
-    let appendedSelectors: any[] = [];
+    const appendedSelectors: any[] = [];
 
     _thisSelector
       .split(',')
@@ -19,9 +16,9 @@ export const newBlock = (
     return appendedSelectors.join(',');
   }
 
-  completeSelector = appendToSelectors(decl.parent.selector, selector);
+  const completeSelector = appendToSelectors(decl.parent.selector, selector);
 
-  block = decl.parent.cloneAfter({
+  const block = decl.parent.cloneAfter({
     selector: completeSelector,
   });
 
@@ -32,7 +29,7 @@ export const newBlock = (
   });
 
   props.forEach(function addRulesFunction(prop: any, i: string | number) {
-    var rule = decl.clone({
+    const rule = decl.clone({
       prop: prop,
       value: values[i].toString(),
     });

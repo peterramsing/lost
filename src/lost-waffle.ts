@@ -5,15 +5,14 @@ import { lgUtils } from './core/lg-utilities';
 export const lostWaffle = (css: any, settings: any) => {
   css.walkDecls('lost-waffle', function lostWaffleDeclFunction(decl: any) {
     let declArr = [];
-    let gridDirection = settings.direction;
-    let lostWaffle;
+    const gridDirection = settings.direction;
     let floatRight;
     let lostWaffleCycle;
     let unit = settings.gridUnit;
     let lostWaffleRounder = settings.rounder;
     let lostWaffleGutter = settings.gutter;
     let lostWaffleFlexbox = settings.flexbox;
-    let validUnits = ['%', 'vh', 'vw'];
+    const validUnits = ['%', 'vh', 'vw'];
 
     function cloneAllBefore(props: any) {
       Object.keys(props).forEach(function traverseProps(prop) {
@@ -32,7 +31,7 @@ export const lostWaffle = (css: any, settings: any) => {
 
     const sanitizedDecl = lgUtils.glueFractionMembers(decl.value);
     declArr = sanitizedDecl.split(' ');
-    lostWaffle = declArr[0];
+    const lostWaffle = declArr[0];
 
     if (declArr[1] !== undefined && declArr[1].search(/^\d/) !== -1) {
       lostWaffleCycle = declArr[1];

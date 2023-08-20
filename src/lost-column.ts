@@ -4,15 +4,15 @@ import { lgUtils } from './core/lg-utilities';
 
 export const lostColumn = (css: any, settings: any, result: any) => {
   css.walkDecls('lost-column', function lostColumnFunction(decl: any) {
-    var declArr = [];
-    var gridDirection = settings.direction;
-    var lostColumn;
-    var lostColumnCycle;
-    var unit = settings.gridUnit;
-    var lostColumnRounder = settings.rounder;
-    var lostColumnGutter = settings.gutter;
-    var lostColumnFlexbox = settings.flexbox;
-    var validUnits = ['%', 'vw'];
+    let declArr = [];
+    const gridDirection = settings.direction;
+    let lostColumn;
+    let lostColumnCycle;
+    let unit = settings.gridUnit;
+    let lostColumnRounder = settings.rounder;
+    let lostColumnGutter = settings.gutter;
+    let lostColumnFlexbox = settings.flexbox;
+    const validUnits = ['%', 'vw'];
 
     if (decl.value !== 'none') {
       if (settings.cycle === 'auto') {

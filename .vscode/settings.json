@@ -1,3 +1,6 @@
 {
-  "cSpell.words": ["codecov", "flexbox", "lcov", "linebreak"]
+  "cSpell.words": ["codecov", "flexbox", "lcov", "linebreak"],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
 }

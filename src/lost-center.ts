@@ -4,17 +4,17 @@ import { lgUtils } from './core/lg-utilities';
 
 export const lostCenter = (css: any, settings: any, result: any) => {
   css.walkDecls('lost-center', function lostCenterFunction(decl: any) {
-    var declArr = [];
-    var lostCenterPadding;
-    var lostCenterMaxWidth;
-    var lostCenterFlexbox = settings.flexbox;
-    var lostUnit = settings.gridUnit;
-    var lostColumnRounder = settings.rounder;
-    var lostColumnGutter = '0';
-    var validUnits = ['%', 'vw'];
+    let declArr = [];
+    let lostCenterPadding;
+    let lostCenterMaxWidth;
+    let lostCenterFlexbox = settings.flexbox;
+    let lostUnit = settings.gridUnit;
+    let lostColumnRounder = settings.rounder;
+    const lostColumnGutter = '0';
+    const validUnits = ['%', 'vw'];
 
-    var isFractionValue = (value: any) => {
-      var lostFractionPattern = /^\d+\/\d+$/;
+    const isFractionValue = (value: any) => {
+      const lostFractionPattern = /^\d+\/\d+$/;
       return lostFractionPattern.test(value);
     };
 

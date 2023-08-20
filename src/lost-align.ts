@@ -2,12 +2,11 @@ import { newBlock } from './core/lg-new-block';
 
 export const lostAlign = (css: any, settings: any) => {
   css.walkDecls('lost-align', function alignDirectionFunction(decl: any) {
-    var declArr = [];
-    var alignDirection;
-    var flexbox = settings.flexbox;
+    let declArr = [];
+    let flexbox = settings.flexbox;
 
     declArr = decl.value.split(' ');
-    alignDirection = declArr[0];
+    const alignDirection = declArr[0];
 
     if (declArr.indexOf('flex') !== -1) {
       flexbox = 'flex';

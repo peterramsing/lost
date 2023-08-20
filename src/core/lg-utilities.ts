@@ -12,13 +12,13 @@ const glueFractionMembers = (str: string): string =>
  * Returns a base10 number from one or two hex digits
  */
 const hToD = function hToD(...h: (string | number)[]): number {
-  var hh = '00';
+  let hh = '00';
   if (h.length === 1) {
     hh = '' + h[0] + h[0];
   } else if (h.length === 2) {
     hh = '' + h[0] + h[1];
   }
-  var d = parseInt(hh, 16);
+  const d = parseInt(hh, 16);
   return !isNaN(d) ? d : 0;
 };
 

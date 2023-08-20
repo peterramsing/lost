@@ -4,13 +4,13 @@ import { lgUtils } from './core/lg-utilities';
 
 export const lostRow = (css: any, settings: any, result: any) => {
   css.walkDecls('lost-row', function lostRowDeclFunction(decl: any) {
-    var declArr = [];
-    var lostRow;
-    var unit = settings.gridUnit;
-    var lostRowRounder = settings.rounder;
-    var lostRowGutter = settings.gutter;
-    var lostRowFlexbox = settings.flexbox;
-    var validUnits = ['%', 'vh'];
+    let declArr = [];
+    let lostRow;
+    let unit = settings.gridUnit;
+    let lostRowRounder = settings.rounder;
+    let lostRowGutter = settings.gutter;
+    let lostRowFlexbox = settings.flexbox;
+    const validUnits = ['%', 'vh'];
 
     if (decl.value !== 'none') {
       const sanitizedDecl = lgUtils.glueFractionMembers(decl.value);

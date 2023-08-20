@@ -4,10 +4,10 @@ export const lostMasonryWrap = (css: any, settings: any) => {
   css.walkDecls(
     'lost-masonry-wrap',
     function lostMasonryWrapDeclFunction(decl: any) {
-      var declArr = [];
-      var lostMasonryWrapFlexbox = settings.flexbox;
-      var lostMasonryWrapGutter = settings.gutter;
-      var lostMasonryWrapGutterUnit;
+      let declArr = [];
+      let lostMasonryWrapFlexbox = settings.flexbox;
+      let lostMasonryWrapGutter = settings.gutter;
+      let lostMasonryWrapGutterUnit;
 
       function cloneAllBefore(props: any) {
         Object.keys(props).forEach(function traverseProps(prop) {
