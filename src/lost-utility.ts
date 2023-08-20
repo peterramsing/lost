@@ -1,29 +1,28 @@
-var newBlock = require('./core/lg-new-block.js');
-var getColorValue = require('./core/lg-utilities').getColorValue;
+import { newBlock } from './core/lg-new-block';
+import { lgUtils } from './core/lg-utilities';
 
-function unitsMatch() {
-  var args = Array.prototype.slice.call(arguments, 0);
-  var re = /(px|%|em|rem|vh|vw)$/gi;
-  var extension = args[0].match(re).toString();
-  var matched = true;
+const unitsMatch = (...args: any) => {
+  let re = /(px|%|em|rem|vh|vw)$/gi;
+  let extension = args[0].match(re).toString();
+  let matched = true;
 
-  args.forEach(function compareExtension(arg) {
+  args.forEach(function compareExtension(arg: any) {
     if (arg.match(re).toString() !== extension) {
       matched = false;
     }
   });
   return matched;
-}
+};
 
-module.exports = function lostUtilityDecl(css) {
-  css.walkDecls('lost-utility', function lostUtilityDeclFunction(decl) {
-    var utilityArray = decl.value.split(' ');
-    var utility = utilityArray[0];
-    var color;
+export const lostUtility = (css: any) => {
+  css.walkDecls('lost-utility', function lostUtilityDeclFunction(decl: any) {
+    let utilityArray = decl.value.split(' ');
+    let utility = utilityArray[0];
+    let color;
 
     if (utility === 'edit') {
       if (utilityArray[1]) {
-        color = getColorValue(decl.value);
+        color = lgUtils.getColorValue(decl.value);
 
         newBlock(
           decl,
@@ -53,7 +52,7 @@ module.exports = function lostUtilityDecl(css) {
     }
 
     if (utility === 'overlay') {
-      var maxWidth = utilityArray[1] || '1024px',
+      let maxWidth = utilityArray[1] || '1024px',
         numCols = utilityArray[2] || 12,
         gutter = utilityArray[3] || '20px',
         totalGutter = parseFloat(gutter) * (numCols - 1),
@@ -75,7 +74,7 @@ module.exports = function lostUtilityDecl(css) {
         );
       }
 
-      for (var i = 1; i < numCols; i++) {
+      for (let i = 1; i < numCols; i++) {
         // Start of color column
         gradient = gradient + color + ' ' + position + '%, ';
 

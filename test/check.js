@@ -1,7 +1,7 @@
 'use strict';
 
 const expect = require('chai').expect;
-const lost = require('../lost');
+const { lost } = require('../dist/lost');
 const cleanCss = require('clean-css');
 const postcss = require('postcss');
 

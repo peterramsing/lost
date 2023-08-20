@@ -1,15 +1,15 @@
-var newBlock = require('./core/lg-new-block.js');
+import { newBlock } from './core/lg-new-block';
 
-module.exports = function lostMasonryWrapDecl(css, settings) {
+export const lostMasonryWrap = (css: any, settings: any) => {
   css.walkDecls(
     'lost-masonry-wrap',
-    function lostMasonryWrapDeclFunction(decl) {
+    function lostMasonryWrapDeclFunction(decl: any) {
       var declArr = [];
       var lostMasonryWrapFlexbox = settings.flexbox;
       var lostMasonryWrapGutter = settings.gutter;
       var lostMasonryWrapGutterUnit;
 
-      function cloneAllBefore(props) {
+      function cloneAllBefore(props: any) {
         Object.keys(props).forEach(function traverseProps(prop) {
           decl.cloneBefore({
             prop: prop,
@@ -40,7 +40,7 @@ module.exports = function lostMasonryWrapDecl(css, settings) {
       }
 
       decl.parent.nodes.forEach(function lostMasonryWrapFlexboxFunction(
-        declaration
+        declaration: any
       ) {
         if (declaration.prop === 'lost-masonry-wrap-flexbox') {
           if (declaration.value === 'flex') {
@@ -51,7 +51,9 @@ module.exports = function lostMasonryWrapDecl(css, settings) {
         }
       });
 
-      decl.parent.nodes.forEach(function lostMasonryWrapFunction(declaration) {
+      decl.parent.nodes.forEach(function lostMasonryWrapFunction(
+        declaration: any
+      ) {
         if (declaration.prop === 'lost-masonry-wrap-gutter') {
           lostMasonryWrapGutter = declaration.value;
           declaration.remove();

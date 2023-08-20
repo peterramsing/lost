@@ -1,4 +1,4 @@
-module.exports = function lostAtRule(rule, settings) {
+export const lostAtRule = (rule: any, settings: any) => {
   if (rule.name != 'lost') {
     return;
   }

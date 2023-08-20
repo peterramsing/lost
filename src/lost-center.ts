@@ -1,10 +1,9 @@
-var newBlock = require('./core/lg-new-block.js');
+import { newBlock } from './core/lg-new-block';
+import { lgLogic } from './core/lg-logic';
+import { lgUtils } from './core/lg-utilities';
 
-var lgLogic = require('./core/lg-logic');
-var lgUtils = require('./core/lg-utilities');
-
-module.exports = function lostCenterDecl(css, settings, result) {
-  css.walkDecls('lost-center', function lostCenterFunction(decl) {
+export const lostCenter = (css: any, settings: any, result: any) => {
+  css.walkDecls('lost-center', function lostCenterFunction(decl: any) {
     var declArr = [];
     var lostCenterPadding;
     var lostCenterMaxWidth;
@@ -14,7 +13,7 @@ module.exports = function lostCenterDecl(css, settings, result) {
     var lostColumnGutter = 0;
     var validUnits = ['%', 'vw'];
 
-    var isFractionValue = (value) => {
+    var isFractionValue = (value: any) => {
       var lostFractionPattern = /^\d+\/\d+$/;
       return lostFractionPattern.test(value);
     };

@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES2019",
+    "module": "CommonJS",
+    "outDir": "./dist",
+    "strict": true,
+    "esModuleInterop": true
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/core/lg-logic.test.ts",
+    "src/core/lg-utilities.test.js",
+    "src/core/lg-logic.test.js",
+    "test/lg-utilities.test.ts"
+  ],
+  "exclude": ["node_modules"]
+}

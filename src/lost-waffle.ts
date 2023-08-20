@@ -1,22 +1,21 @@
-var newBlock = require('./core/lg-new-block.js');
+import { newBlock } from './core/lg-new-block';
+import { lgLogic } from './core/lg-logic';
+import { lgUtils } from './core/lg-utilities';
 
-var lgLogic = require('./core/lg-logic');
-var lgUtils = require('./core/lg-utilities');
+export const lostWaffle = (css: any, settings: any) => {
+  css.walkDecls('lost-waffle', function lostWaffleDeclFunction(decl: any) {
+    let declArr = [];
+    let gridDirection = settings.direction;
+    let lostWaffle;
+    let floatRight;
+    let lostWaffleCycle;
+    let unit = settings.gridUnit;
+    let lostWaffleRounder = settings.rounder;
+    let lostWaffleGutter = settings.gutter;
+    let lostWaffleFlexbox = settings.flexbox;
+    let validUnits = ['%', 'vh', 'vw'];
 
-module.exports = function lostWaffleDecl(css, settings) {
-  css.walkDecls('lost-waffle', function lostWaffleDeclFunction(decl) {
-    var declArr = [];
-    var gridDirection = settings.direction;
-    var lostWaffle;
-    var floatRight;
-    var lostWaffleCycle;
-    var unit = settings.gridUnit;
-    var lostWaffleRounder = settings.rounder;
-    var lostWaffleGutter = settings.gutter;
-    var lostWaffleFlexbox = settings.flexbox;
-    var validUnits = ['%', 'vh', 'vw'];
-
-    function cloneAllBefore(props) {
+    function cloneAllBefore(props: any) {
       Object.keys(props).forEach(function traverseProps(prop) {
         decl.cloneBefore({
           prop: prop,
@@ -63,14 +62,18 @@ module.exports = function lostWaffleDecl(css, settings) {
       floatRight = true;
     }
 
-    decl.parent.nodes.forEach(function lostWaffleRounderFunction(declaration) {
+    decl.parent.nodes.forEach(function lostWaffleRounderFunction(
+      declaration: any
+    ) {
       if (declaration.prop === 'lost-waffle-rounder') {
         lostWaffleRounder = declaration.value;
         declaration.remove();
       }
     });
 
-    decl.parent.nodes.forEach(function lostWaffleCycleFunction(declaration) {
+    decl.parent.nodes.forEach(function lostWaffleCycleFunction(
+      declaration: any
+    ) {
       if (declaration.prop === 'lost-waffle-cycle') {
         lostWaffleCycle = declaration.value;
 
@@ -81,7 +84,9 @@ module.exports = function lostWaffleDecl(css, settings) {
     // Converts the cycle to an integer so that checks on whether it's 0 make sense
     lostWaffleCycle = parseInt(lostWaffleCycle);
 
-    decl.parent.nodes.forEach(function lostWaffleGutterFunction(declaration) {
+    decl.parent.nodes.forEach(function lostWaffleGutterFunction(
+      declaration: any
+    ) {
       if (declaration.prop === 'lost-waffle-gutter') {
         lostWaffleGutter = declaration.value;
 
@@ -89,7 +94,7 @@ module.exports = function lostWaffleDecl(css, settings) {
       }
     });
 
-    decl.parent.nodes.forEach((declaration) => {
+    decl.parent.nodes.forEach((declaration: any) => {
       if (declaration.prop === 'lost-unit') {
         if (lgLogic.validateUnit(declaration.value, validUnits)) {
           unit = declaration.value;
@@ -102,7 +107,9 @@ module.exports = function lostWaffleDecl(css, settings) {
       }
     });
 
-    decl.parent.nodes.forEach(function lostWaffleFlexboxFunction(declaration) {
+    decl.parent.nodes.forEach(function lostWaffleFlexboxFunction(
+      declaration: any
+    ) {
       if (declaration.prop === 'lost-waffle-flexbox') {
         if (declaration.value === 'flex') {
           lostWaffleFlexbox = 'flex';

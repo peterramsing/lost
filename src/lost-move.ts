@@ -1,7 +1,7 @@
-var lgUtils = require('./core/lg-utilities');
+import { lgUtils } from './core/lg-utilities';
 
-module.exports = function lostMoveDecl(css, settings) {
-  css.walkDecls('lost-move', function lostMoveDeclFunction(decl) {
+export const lostMove = (css: any, settings: any) => {
+  css.walkDecls('lost-move', function lostMoveDeclFunction(decl: any) {
     var declArr = [];
     var lostMove;
     var lostMoveDirection;
@@ -19,7 +19,9 @@ module.exports = function lostMoveDecl(css, settings) {
       lostMoveDirection = declArr[1];
     }
 
-    decl.parent.nodes.forEach(function lostMoveRounderFunction(declaration) {
+    decl.parent.nodes.forEach(function lostMoveRounderFunction(
+      declaration: any
+    ) {
       if (declaration.prop === 'lost-move-rounder') {
         lostMoveRounder = declaration.value;
 
@@ -27,7 +29,7 @@ module.exports = function lostMoveDecl(css, settings) {
       }
     });
 
-    decl.parent.nodes.forEach((declaration) => {
+    decl.parent.nodes.forEach((declaration: any) => {
       if (declaration.prop === 'lost-column') {
         var columnArray = declaration.value.split(' ');
         if (columnArray[2]) {
@@ -39,7 +41,7 @@ module.exports = function lostMoveDecl(css, settings) {
       }
     });
 
-    decl.parent.nodes.forEach((declaration) => {
+    decl.parent.nodes.forEach((declaration: any) => {
       if (declaration.prop === 'lost-row') {
         var rowArray = declaration.value.split(' ');
         if (rowArray[1]) {
@@ -55,7 +57,9 @@ module.exports = function lostMoveDecl(css, settings) {
       lostMoveGutter = declArr[2];
     }
 
-    decl.parent.nodes.forEach(function lostMoveDirectionFunction(declaration) {
+    decl.parent.nodes.forEach(function lostMoveDirectionFunction(
+      declaration: any
+    ) {
       if (declaration.prop === 'lost-move-direction') {
         lostMoveDirection = declaration.value;
 
@@ -63,7 +67,9 @@ module.exports = function lostMoveDecl(css, settings) {
       }
     });
 
-    decl.parent.nodes.forEach(function lostMoveGutterFunction(declaration) {
+    decl.parent.nodes.forEach(function lostMoveGutterFunction(
+      declaration: any
+    ) {
       if (declaration.prop === 'lost-move-gutter') {
         lostMoveGutter = declaration.value;
 

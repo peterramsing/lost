@@ -1,7 +1,7 @@
-var newBlock = require('./core/lg-new-block.js');
+import { newBlock } from './core/lg-new-block';
 
-module.exports = function lostAlign(css, settings) {
-  css.walkDecls('lost-align', function alignDirectionFunction(decl) {
+export const lostAlign = (css: any, settings: any) => {
+  css.walkDecls('lost-align', function alignDirectionFunction(decl: any) {
     var declArr = [];
     var alignDirection;
     var flexbox = settings.flexbox;
