@@ -1,7 +1,7 @@
-module.exports = function lostFlexContainerDecl(css) {
+export const lostFlexContainer = (css: any) => {
   css.walkDecls(
     'lost-flex-container',
-    function lostFlexContainerFunction(decl) {
+    function lostFlexContainerFunction(decl: any) {
       decl.cloneBefore({
         prop: 'display',
         value: 'flex',

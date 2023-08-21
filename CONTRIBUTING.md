@@ -22,42 +22,4 @@ Thanks, and don't hesitate to reach out if you have any questions!
 
 ## Git Hooks for LostGrid
 
-LostGrid requires linting in order for PR's to be accepted.
-
-Having a pre-commit hook is a great way to enforce this before CI catches it.
-
-This was taken from Angular's Material project nearly wholesale. Thanks to them for the great docs!
-Read how: [Material2's Wiki](https://github.com/angular/material2/wiki/Pre-commit-hook-for-linters)
-
-`pre-commit` code for LostGrid's linter
-
-```bash
-#!/bin/sh
-
-pass=true
-RED='\033[1;31m'
-GREEN='\033[0;32m'
-NC='\033[0m'
-
-echo "Running Linter:"
-
-# Run elsint and get the output and return code
-eslint=$(npm run lint)
-ret_code=$?
-
-# If it didn't pass, announce it failed and print the output
-if [ $ret_code != 0 ]; then
-	printf "\n${RED}eslint failed:${NC}"
-	echo "$eslint\n"
-	pass=false
-else
-	printf "${GREEN}eslint passed.${NC}\n"
-fi
-
-# If there were no failures, it is good to commit
-if $pass; then
-	exit 0
-fi
-
-exit 1
-```
+Husky should take care of this for you now

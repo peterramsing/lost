@@ -1,15 +1,13 @@
-var lgUtils = require('./core/lg-utilities');
+import { lgUtils } from './core/lg-utilities';
 
-module.exports = function lostOffsetDecl(css, settings) {
-  css.walkDecls('lost-offset', function lostOffsetDeclFunction(decl) {
-    var declArr = [];
-    var lostOffset;
-    var lostOffsetNumerator;
-    var lostOffsetDirection;
-    var lostOffsetRounder = settings.rounder;
-    var lostOffsetGutter = settings.gutter;
+export const lostOffset = (css: any, settings: any) => {
+  css.walkDecls('lost-offset', function lostOffsetDeclFunction(decl: any) {
+    let declArr = [];
+    let lostOffsetDirection: any;
+    let lostOffsetRounder = settings.rounder;
+    let lostOffsetGutter = settings.gutter;
 
-    function cloneAllBefore(props) {
+    function cloneAllBefore(props: any) {
       Object.keys(props).forEach(function traverseProps(prop) {
         decl.cloneBefore({
           prop: prop,
@@ -20,8 +18,8 @@ module.exports = function lostOffsetDecl(css, settings) {
 
     const sanitizedDecl = lgUtils.glueFractionMembers(decl.value);
     declArr = sanitizedDecl.split(' ');
-    lostOffset = declArr[0];
-    lostOffsetNumerator = declArr[0].split('/')[0];
+    const lostOffset = declArr[0];
+    const lostOffsetNumerator = parseInt(declArr[0].split('/')[0]);
 
     if (
       (declArr[1] !== undefined && declArr[1] === 'row') ||
@@ -34,7 +32,9 @@ module.exports = function lostOffsetDecl(css, settings) {
       lostOffsetGutter = declArr[2];
     }
 
-    decl.parent.nodes.forEach(function lostOffsetRounderFunction(declaration) {
+    decl.parent.nodes.forEach(function lostOffsetRounderFunction(
+      declaration: any
+    ) {
       if (declaration.prop === 'lost-offset-rounder') {
         lostOffsetRounder = declaration.value;
 
@@ -43,7 +43,7 @@ module.exports = function lostOffsetDecl(css, settings) {
     });
 
     decl.parent.nodes.forEach(function lostOffsetDirectionFunction(
-      declaration
+      declaration: any
     ) {
       if (declaration.prop === 'lost-offset-direction') {
         lostOffsetDirection = declaration.value;
@@ -52,7 +52,9 @@ module.exports = function lostOffsetDecl(css, settings) {
       }
     });
 
-    decl.parent.nodes.forEach(function lostOffsetGutterFunction(declaration) {
+    decl.parent.nodes.forEach(function lostOffsetGutterFunction(
+      declaration: any
+    ) {
       if (declaration.prop === 'lost-offset-gutter') {
         lostOffsetGutter = declaration.value;
 

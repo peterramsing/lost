@@ -1,13 +1,12 @@
-var newBlock = require('./core/lg-new-block.js');
+import { newBlock } from './core/lg-new-block';
 
-module.exports = function lostAlign(css, settings) {
-  css.walkDecls('lost-align', function alignDirectionFunction(decl) {
-    var declArr = [];
-    var alignDirection;
-    var flexbox = settings.flexbox;
+export const lostAlign = (css: any, settings: any) => {
+  css.walkDecls('lost-align', function alignDirectionFunction(decl: any) {
+    let declArr = [];
+    let flexbox = settings.flexbox;
 
     declArr = decl.value.split(' ');
-    alignDirection = declArr[0];
+    const alignDirection = declArr[0];
 
     if (declArr.indexOf('flex') !== -1) {
       flexbox = 'flex';

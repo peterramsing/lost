@@ -1,21 +1,20 @@
-var newBlock = require('./core/lg-new-block.js');
+import { newBlock } from './core/lg-new-block';
+import { lgLogic } from './core/lg-logic';
+import { lgUtils } from './core/lg-utilities';
 
-var lgLogic = require('./core/lg-logic');
-var lgUtils = require('./core/lg-utilities');
+export const lostCenter = (css: any, settings: any, result: any) => {
+  css.walkDecls('lost-center', function lostCenterFunction(decl: any) {
+    let declArr = [];
+    let lostCenterPadding;
+    let lostCenterMaxWidth;
+    let lostCenterFlexbox = settings.flexbox;
+    let lostUnit = settings.gridUnit;
+    let lostColumnRounder = settings.rounder;
+    const lostColumnGutter = '0';
+    const validUnits = ['%', 'vw'];
 
-module.exports = function lostCenterDecl(css, settings, result) {
-  css.walkDecls('lost-center', function lostCenterFunction(decl) {
-    var declArr = [];
-    var lostCenterPadding;
-    var lostCenterMaxWidth;
-    var lostCenterFlexbox = settings.flexbox;
-    var lostUnit = settings.gridUnit;
-    var lostColumnRounder = settings.rounder;
-    var lostColumnGutter = 0;
-    var validUnits = ['%', 'vw'];
-
-    var isFractionValue = (value) => {
-      var lostFractionPattern = /^\d+\/\d+$/;
+    const isFractionValue = (value: any) => {
+      const lostFractionPattern = /^\d+\/\d+$/;
       return lostFractionPattern.test(value);
     };
 

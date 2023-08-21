@@ -1,19 +1,18 @@
-var newBlock = require('./core/lg-new-block.js');
+import { newBlock } from './core/lg-new-block';
+import { lgLogic } from './core/lg-logic';
+import { lgUtils } from './core/lg-utilities';
 
-var lgLogic = require('./core/lg-logic');
-var lgUtils = require('./core/lg-utilities');
-
-module.exports = function lostColumnDecl(css, settings, result) {
-  css.walkDecls('lost-column', function lostColumnFunction(decl) {
-    var declArr = [];
-    var gridDirection = settings.direction;
-    var lostColumn;
-    var lostColumnCycle;
-    var unit = settings.gridUnit;
-    var lostColumnRounder = settings.rounder;
-    var lostColumnGutter = settings.gutter;
-    var lostColumnFlexbox = settings.flexbox;
-    var validUnits = ['%', 'vw'];
+export const lostColumn = (css: any, settings: any, result: any) => {
+  css.walkDecls('lost-column', function lostColumnFunction(decl: any) {
+    let declArr = [];
+    const gridDirection = settings.direction;
+    let lostColumn;
+    let lostColumnCycle;
+    let unit = settings.gridUnit;
+    let lostColumnRounder = settings.rounder;
+    let lostColumnGutter = settings.gutter;
+    let lostColumnFlexbox = settings.flexbox;
+    const validUnits = ['%', 'vw'];
 
     if (decl.value !== 'none') {
       if (settings.cycle === 'auto') {
@@ -50,7 +49,9 @@ module.exports = function lostColumnDecl(css, settings, result) {
         lostColumnFlexbox = 'no-flex';
       }
 
-      decl.parent.nodes.forEach(function lostColumnCycleFunction(declaration) {
+      decl.parent.nodes.forEach(function lostColumnCycleFunction(
+        declaration: any
+      ) {
         if (declaration.prop === 'lost-column-cycle') {
           lostColumnCycle = declaration.value;
 
@@ -61,7 +62,7 @@ module.exports = function lostColumnDecl(css, settings, result) {
       // Converts the cycle to an integer so that checks on whether it's 0 make sense
       lostColumnCycle = parseInt(lostColumnCycle);
 
-      decl.parent.nodes.forEach((declaration) => {
+      decl.parent.nodes.forEach((declaration: any) => {
         if (declaration.prop === 'lost-unit') {
           if (lgLogic.validateUnit(declaration.value, validUnits)) {
             unit = declaration.value;
@@ -76,7 +77,7 @@ module.exports = function lostColumnDecl(css, settings, result) {
       });
 
       decl.parent.nodes.forEach(function lostColumnRounderFunction(
-        declaration
+        declaration: any
       ) {
         if (declaration.prop === 'lost-column-rounder') {
           lostColumnRounder = declaration.value;
@@ -85,7 +86,9 @@ module.exports = function lostColumnDecl(css, settings, result) {
         }
       });
 
-      decl.parent.nodes.forEach(function lostColumnGutterFunction(declaration) {
+      decl.parent.nodes.forEach(function lostColumnGutterFunction(
+        declaration: any
+      ) {
         if (declaration.prop === 'lost-column-gutter') {
           lostColumnGutter = declaration.value;
 
@@ -94,7 +97,7 @@ module.exports = function lostColumnDecl(css, settings, result) {
       });
 
       decl.parent.nodes.forEach(function lostColumnFlexboxFunction(
-        declaration
+        declaration: any
       ) {
         if (declaration.prop === 'lost-column-flexbox') {
           if (declaration.value === 'flex') {
@@ -269,7 +272,7 @@ module.exports = function lostColumnDecl(css, settings, result) {
         ),
       });
     } else {
-      decl.parent.nodes.forEach((declaration) => {
+      decl.parent.nodes.forEach((declaration: any) => {
         if (declaration.prop === 'lost-column-flexbox') {
           if (declaration.value === 'flex') {
             lostColumnFlexbox = 'flex';

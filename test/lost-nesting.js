@@ -3,7 +3,7 @@
 const check = require('./check');
 const postcss = require('postcss');
 const postcssPresetEnv = require('postcss-preset-env');
-const lost = require('../lost');
+const {lost} = require('../dist/lost');
 const expect = require('chai').expect;
 
 describe('nesting-queries', () => {

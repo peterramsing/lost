@@ -1,17 +1,16 @@
-var lgUtils = require('./core/lg-utilities');
+import { lgUtils } from './core/lg-utilities';
 
-module.exports = function lostMasonryColumnDecl(css, settings) {
+export const lostMasonryColumn = (css: any, settings: any) => {
   css.walkDecls(
     'lost-masonry-column',
-    function lostMasonryColumnFunction(decl) {
-      var declArr = [];
-      var lostMasonryColumn;
-      var lostMasonryColumnRounder = settings.rounder;
-      var lostMasonryColumnFlexbox = settings.flexbox;
-      var lostMasonryColumnGutter = settings.gutter;
-      var lostMasonryColumnGutterUnit;
+    function lostMasonryColumnFunction(decl: any) {
+      let declArr = [];
+      let lostMasonryColumnRounder = settings.rounder;
+      let lostMasonryColumnFlexbox = settings.flexbox;
+      let lostMasonryColumnGutter = settings.gutter;
+      let lostMasonryColumnGutterUnit;
 
-      function cloneAllBefore(props) {
+      function cloneAllBefore(props: any) {
         Object.keys(props).forEach(function traverseProps(prop) {
           decl.cloneBefore({
             prop: prop,
@@ -22,7 +21,7 @@ module.exports = function lostMasonryColumnDecl(css, settings) {
 
       const sanitizedDecl = lgUtils.glueFractionMembers(decl.value);
       declArr = sanitizedDecl.split(' ');
-      lostMasonryColumn = declArr[0];
+      const lostMasonryColumn = declArr[0];
 
       if (declArr[1] !== undefined && declArr[1].search(/^\d/) !== -1) {
         lostMasonryColumnGutter = declArr[1];
@@ -37,7 +36,7 @@ module.exports = function lostMasonryColumnDecl(css, settings) {
       }
 
       decl.parent.nodes.forEach(function lostMasonryColumnRounderFunction(
-        declaration
+        declaration: any
       ) {
         if (declaration.prop === 'lost-masonry-column-rounder') {
           lostMasonryColumnRounder = declaration.value;
@@ -47,7 +46,7 @@ module.exports = function lostMasonryColumnDecl(css, settings) {
       });
 
       decl.parent.nodes.forEach(function lostMasonryColumnGutterFunction(
-        declaration
+        declaration: any
       ) {
         if (declaration.prop === 'lost-masonry-column-gutter') {
           lostMasonryColumnGutter = declaration.value;
@@ -56,7 +55,7 @@ module.exports = function lostMasonryColumnDecl(css, settings) {
         }
       });
       decl.parent.nodes.forEach(function lostMasonryColumnFlexboxFunction(
-        declaration
+        declaration: any
       ) {
         if (declaration.prop === 'lost-masonry-column-flexbox') {
           if (declaration.value === 'flex') {

@@ -1,8 +1,8 @@
-module.exports = function lostVarsGutterLocal(declaration, settings) {
-  var newLocalValue = settings.gutter;
+export const lostVarsGutterLocal = (declaration: any, settings: any) => {
+  let newLocalValue = settings.gutter;
 
-  declaration.parent.nodes.forEach((parentDeclaration) => {
-    var declarationArray = parentDeclaration.value.split(' ');
+  declaration.parent.nodes.forEach((parentDeclaration: any) => {
+    const declarationArray = parentDeclaration.value.split(' ');
 
     if (
       parentDeclaration.prop === 'lost-column' ||

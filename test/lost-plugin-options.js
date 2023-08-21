@@ -1,7 +1,7 @@
 'use strict';
 
 const postcss = require('postcss');
-const lost = require('../lost');
+const {lost} = require('../dist/lost');
 const expect = require('chai').expect;
 
 describe('plugin-options', () => {

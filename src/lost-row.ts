@@ -1,17 +1,16 @@
-var newBlock = require('./core/lg-new-block.js');
+import { newBlock } from './core/lg-new-block';
+import { lgLogic } from './core/lg-logic';
+import { lgUtils } from './core/lg-utilities';
 
-var lgLogic = require('./core/lg-logic');
-var lgUtils = require('./core/lg-utilities');
-
-module.exports = function lostRowDecl(css, settings, result) {
-  css.walkDecls('lost-row', function lostRowDeclFunction(decl) {
-    var declArr = [];
-    var lostRow;
-    var unit = settings.gridUnit;
-    var lostRowRounder = settings.rounder;
-    var lostRowGutter = settings.gutter;
-    var lostRowFlexbox = settings.flexbox;
-    var validUnits = ['%', 'vh'];
+export const lostRow = (css: any, settings: any, result: any) => {
+  css.walkDecls('lost-row', function lostRowDeclFunction(decl: any) {
+    let declArr = [];
+    let lostRow;
+    let unit = settings.gridUnit;
+    let lostRowRounder = settings.rounder;
+    let lostRowGutter = settings.gutter;
+    let lostRowFlexbox = settings.flexbox;
+    const validUnits = ['%', 'vh'];
 
     if (decl.value !== 'none') {
       const sanitizedDecl = lgUtils.glueFractionMembers(decl.value);
@@ -30,7 +29,9 @@ module.exports = function lostRowDecl(css, settings, result) {
         lostRowFlexbox = 'no-flex';
       }
 
-      decl.parent.nodes.forEach(function lostRowRounderFunction(declaration) {
+      decl.parent.nodes.forEach(function lostRowRounderFunction(
+        declaration: any
+      ) {
         if (declaration.prop === 'lost-row-rounder') {
           lostRowRounder = declaration.value;
 
@@ -38,7 +39,9 @@ module.exports = function lostRowDecl(css, settings, result) {
         }
       });
 
-      decl.parent.nodes.forEach(function lostRowGutterFunction(declaration) {
+      decl.parent.nodes.forEach(function lostRowGutterFunction(
+        declaration: any
+      ) {
         if (declaration.prop === 'lost-row-gutter') {
           lostRowGutter = declaration.value;
 
@@ -46,7 +49,9 @@ module.exports = function lostRowDecl(css, settings, result) {
         }
       });
 
-      decl.parent.nodes.forEach(function lostRowFlexboxFunction(declaration) {
+      decl.parent.nodes.forEach(function lostRowFlexboxFunction(
+        declaration: any
+      ) {
         if (declaration.prop === 'lost-row-flexbox') {
           if (declaration.value === 'flex') {
             lostRowFlexbox = 'flex';
@@ -56,7 +61,7 @@ module.exports = function lostRowDecl(css, settings, result) {
         }
       });
 
-      decl.parent.nodes.forEach((declaration) => {
+      decl.parent.nodes.forEach((declaration: any) => {
         if (declaration.prop === 'lost-unit') {
           if (lgLogic.validateUnit(declaration.value, validUnits)) {
             unit = declaration.value;
