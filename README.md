@@ -25,6 +25,13 @@ LostGrid makes use of [`calc()`](https://developer.mozilla.org/en-US/docs/Web/CS
 
 Read the docs on [LostGrid.org](http://lostgrid.org/docs.html)!
 
+## Roadmap
+
+- [ ] Migrate the core of the code to TypeScript
+- [ ] Remove a lot of the complexity, focusing on moving complexity to CSS Grid
+- [ ] Optimize LostGrid to support CSS Grid, getting out of the way while helping enabled developers to use CSS Grid
+- [ ] Maintain backwards compatibility with older browsers for those who need it
+
 ## Browser Support
 
 - LostGrid relies on [`calc()`](https://developer.mozilla.org/en-US/docs/Web/CSS/calc) to create the grid. Thus, LostGrid is limited to browsers that support `calc()`. The great thing is that `calc()` is widely supported in all current browsers and the LostGrid usage of `calc()` is supported as far back as IE9+.
