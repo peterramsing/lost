@@ -1,5 +1,4 @@
 // Module dependencies
-
 import { AtRule } from 'postcss';
 import { lostAlign } from './lost-align';
 import { lostAtRule } from './lost-at-rule';
@@ -59,5 +58,3 @@ export const lost = (settings = {}) => {
     },
   };
 };
-
-// module.exports.postcss = true;

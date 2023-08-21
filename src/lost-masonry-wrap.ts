@@ -7,7 +7,6 @@ export const lostMasonryWrap = (css: any, settings: any) => {
       let declArr = [];
       let lostMasonryWrapFlexbox = settings.flexbox;
       let lostMasonryWrapGutter = settings.gutter;
-      let lostMasonryWrapGutterUnit;
 
       function cloneAllBefore(props: any) {
         Object.keys(props).forEach(function traverseProps(prop) {
@@ -81,7 +80,9 @@ export const lostMasonryWrap = (css: any, settings: any) => {
         });
       }
 
-      lostMasonryWrapGutterUnit = lostMasonryWrapGutter.match(/\D/g).join('');
+      const lostMasonryWrapGutterUnit = lostMasonryWrapGutter
+        .match(/\D/g)
+        .join('');
 
       cloneAllBefore({
         'margin-left':

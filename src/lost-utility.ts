@@ -52,7 +52,7 @@ export const lostUtility = (css: any) => {
     }
 
     if (utility === 'overlay') {
-      let maxWidth = utilityArray[1] || '1024px',
+      const maxWidth = utilityArray[1] || '1024px',
         numCols = utilityArray[2] || 12,
         gutter = utilityArray[3] || '20px',
         totalGutter = parseFloat(gutter) * (numCols - 1),
@@ -61,9 +61,9 @@ export const lostUtility = (css: any) => {
             numCols /
             parseFloat(maxWidth)) *
           100,
-        gutterPercentage = (parseFloat(gutter) / parseFloat(maxWidth)) * 100,
-        position = 0,
-        gradient = 'to right, ';
+        gutterPercentage = (parseFloat(gutter) / parseFloat(maxWidth)) * 100;
+      let position = 0;
+      let gradient = 'to right, ';
 
       color = utilityArray[4] || '#e6f6ff';
 

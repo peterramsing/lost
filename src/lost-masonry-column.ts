@@ -5,7 +5,6 @@ export const lostMasonryColumn = (css: any, settings: any) => {
     'lost-masonry-column',
     function lostMasonryColumnFunction(decl: any) {
       let declArr = [];
-      let lostMasonryColumn;
       let lostMasonryColumnRounder = settings.rounder;
       let lostMasonryColumnFlexbox = settings.flexbox;
       let lostMasonryColumnGutter = settings.gutter;
@@ -22,7 +21,7 @@ export const lostMasonryColumn = (css: any, settings: any) => {
 
       const sanitizedDecl = lgUtils.glueFractionMembers(decl.value);
       declArr = sanitizedDecl.split(' ');
-      lostMasonryColumn = declArr[0];
+      const lostMasonryColumn = declArr[0];
 
       if (declArr[1] !== undefined && declArr[1].search(/^\d/) !== -1) {
         lostMasonryColumnGutter = declArr[1];

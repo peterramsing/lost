@@ -3,14 +3,13 @@ import { lgUtils } from './core/lg-utilities';
 export const lostMove = (css: any, settings: any) => {
   css.walkDecls('lost-move', function lostMoveDeclFunction(decl: any) {
     let declArr = [];
-    let lostMove;
     let lostMoveDirection;
     let lostMoveRounder = settings.rounder;
     let lostMoveGutter = settings.gutter;
 
     const sanitizedDecl = lgUtils.glueFractionMembers(decl.value);
     declArr = sanitizedDecl.split(' ');
-    lostMove = declArr[0];
+    const lostMove = declArr[0];
 
     if (
       (declArr[1] !== undefined && declArr[1] === 'row') ||

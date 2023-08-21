@@ -3,8 +3,6 @@ import { lgUtils } from './core/lg-utilities';
 export const lostOffset = (css: any, settings: any) => {
   css.walkDecls('lost-offset', function lostOffsetDeclFunction(decl: any) {
     let declArr = [];
-    let lostOffset: any;
-    let lostOffsetNumerator: any;
     let lostOffsetDirection: any;
     let lostOffsetRounder = settings.rounder;
     let lostOffsetGutter = settings.gutter;
@@ -20,8 +18,8 @@ export const lostOffset = (css: any, settings: any) => {
 
     const sanitizedDecl = lgUtils.glueFractionMembers(decl.value);
     declArr = sanitizedDecl.split(' ');
-    lostOffset = declArr[0];
-    lostOffsetNumerator = declArr[0].split('/')[0];
+    const lostOffset = declArr[0];
+    const lostOffsetNumerator = parseInt(declArr[0].split('/')[0]);
 
     if (
       (declArr[1] !== undefined && declArr[1] === 'row') ||
