@@ -3,58 +3,59 @@ import { lgLogic } from './core/lg-logic';
 import { lgUtils } from './core/lg-utilities';
 
 export const lostColumn = (css: any, settings: any, result: any) => {
-  css.walkDecls('lost-column', (decl: any) => {
+  css.walkDecls('lost-column', function lostColumnFunction(decl: any) {
+    let declArr = [];
     const gridDirection = settings.direction;
-    const validUnits = ['%', 'vw'];
-
-    let lostColumnCycle =
-      settings.cycle === 'auto' ? decl.value.split('/')[1] : settings.cycle;
+    let lostColumn;
+    let lostColumnCycle;
     let unit = settings.gridUnit;
     let lostColumnRounder = settings.rounder;
     let lostColumnGutter = settings.gutter;
     let lostColumnFlexbox = settings.flexbox;
-    let lostColumn;
+    const validUnits = ['%', 'vw'];
 
     if (decl.value !== 'none') {
+      if (settings.cycle === 'auto') {
+        lostColumnCycle = decl.value.split('/')[1];
+      } else {
+        lostColumnCycle = settings.cycle;
+      }
+
       const sanitizedDecl = lgUtils.glueFractionMembers(decl.value);
-      const declArr = sanitizedDecl.split(' ');
+      declArr = sanitizedDecl.split(' ');
       lostColumn = declArr[0];
 
-      decl.parent.nodes.forEach((declaration: any) => {
-        switch (declaration.prop) {
-          case 'lost-column-cycle':
-            lostColumnCycle = declaration.value;
-            declaration.remove();
-            break;
-          case 'lost-unit':
-            if (lgLogic.validateUnit(declaration.value, validUnits)) {
-              unit = declaration.value;
-            } else {
-              decl.warn(
-                result,
-                `${declaration.value} is not a valid unit for lost-column`
-              );
-            }
-            declaration.remove();
-            break;
-          case 'lost-column-rounder':
-            lostColumnRounder = declaration.value;
-            declaration.remove();
-            break;
-          case 'lost-column-gutter':
-            lostColumnGutter = declaration.value;
-            declaration.remove();
-            break;
-          case 'lost-column-flexbox':
-            if (declaration.value === 'flex') {
-              lostColumnFlexbox = 'flex';
-            } else {
-              throw declaration.error(
-                `lost-column-flexbox: property '${declaration.value}' is unknown.`
-              );
-            }
-            declaration.remove();
-            break;
+      if (declArr[1] !== undefined && declArr[1].search(/^\d/) !== -1) {
+        lostColumnCycle = declArr[1];
+      }
+
+      if (
+        declArr[1] === 'flex' ||
+        declArr[1] === 'no-flex' ||
+        declArr[1] === 'auto'
+      ) {
+        lostColumnCycle = declArr[0].split('/')[1];
+      }
+      // eslint-disable-next-line
+      if (declArr[2] !== undefined && declArr[2].search(/^[\.\d]/) !== -1) {
+        lostColumnGutter = declArr[2];
+      }
+
+      if (declArr.indexOf('flex') !== -1) {
+        lostColumnFlexbox = 'flex';
+      }
+
+      if (declArr.indexOf('no-flex') !== -1) {
+        lostColumnFlexbox = 'no-flex';
+      }
+
+      decl.parent.nodes.forEach(function lostColumnCycleFunction(
+        declaration: any
+      ) {
+        if (declaration.prop === 'lost-column-cycle') {
+          lostColumnCycle = declaration.value;
+
+          declaration.remove();
         }
       });
 
@@ -271,7 +272,6 @@ export const lostColumn = (css: any, settings: any, result: any) => {
         ),
       });
     } else {
-      // If decl.value is 'none'
       decl.parent.nodes.forEach((declaration: any) => {
         if (declaration.prop === 'lost-column-flexbox') {
           if (declaration.value === 'flex') {
