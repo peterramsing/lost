@@ -2,7 +2,7 @@
   "name": "lost",
   "version": "9.0.1",
   "description": "LostGrid is a powerful grid system built in PostCSS that works with any preprocessor and even vanilla CSS.",
-  "main": "dist/index.js",
+  "main": "dist/lost.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/peterramsing/lost.git"
