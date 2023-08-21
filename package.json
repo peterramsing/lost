@@ -55,6 +55,7 @@
     "report-coverage": "c8 report --reporter=text-lcov > coverage.lcov && codecov",
     "prepare": "husky install",
     "start": "nodemon -e ts --ignore dist/ --exec 'tsc -p .' --verbose",
+    "build": "tsc -p .",
     "release": "release-it"
   }
 }
