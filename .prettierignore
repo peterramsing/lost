@@ -6,3 +6,6 @@ test
 
 ## ignores nyc output in prettier
 .nyc_output
+coverage
+
+dist
