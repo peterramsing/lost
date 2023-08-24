@@ -1,7 +1,7 @@
-docs/*
-.nyc_output
-coverage
+## Ignore docs
+docs
 
-// FIXME: kill these
-test/check.js
-test/lost-nesting.js
+## Ignore test to presever some formatting
+test
+coverage
+.nyc_output

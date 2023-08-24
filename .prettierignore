@@ -3,3 +3,5 @@ docs
 
 ## Ignore test to presever some formatting
 test
+coverage
+.nyc_output
