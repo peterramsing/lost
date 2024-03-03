@@ -1,5 +1,10 @@
 {
   "git": {
     "commitMessage": "chore: release v${version}"
+  },
+  "github": {
+    "release": true,
+    "releaseName": "v${version}",
+    "releaseNotes": "changelog"
   }
 }
