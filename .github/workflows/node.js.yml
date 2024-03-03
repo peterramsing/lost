@@ -6,10 +6,12 @@ name: Node CI
 on:
   push:
     branches:
-      - master
+      - main
+      - v*
   pull_request:
     branches:
-      - master
+      - main
+      - v*
 
 jobs:
   build:
